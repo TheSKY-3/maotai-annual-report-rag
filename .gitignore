@@ -1,0 +1,21 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# 数据产物（可由脚本重新生成或下载）
+data/raw_pdfs/
+data/extracted/
+data/db/
+
+# 评测与构建产物
+report/*.pdf
+report/_build/
+*.aux
+*.log
+*.out
+
+# 环境与密钥
+.env
+*.key
