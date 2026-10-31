@@ -22,3 +22,6 @@ report/_build/
 # 环境与密钥
 .env
 *.key
+
+# 会话内部文件
+.zcode/
