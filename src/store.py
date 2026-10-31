@@ -46,6 +46,7 @@ class VectorStore:
                 return []
         scores = self.embs[idx] @ query_emb[0]
         top_local = np.argsort(-scores)[:top_k]
+        top = idx[top_local]  # 子集排名 -> 全局块编号
         return [
             Hit(
                 id=self.chunks[i]["id"],
@@ -54,5 +55,5 @@ class VectorStore:
                 page=self.chunks[i]["page"],
                 score=float(scores[j]),
             )
-            for j, i in enumerate(top_local)
+            for j, i in enumerate(top)
         ]
