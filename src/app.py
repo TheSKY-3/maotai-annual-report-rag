@@ -213,7 +213,7 @@ def get_retriever():
 
 def _client() -> OpenAI:
     return OpenAI(base_url=os.environ.get("RAG_BASE_URL", OLLAMA_BASE_URL),
-                  api_key="ollama")
+                  api_key=os.environ.get("RAG_API_KEY", "ollama"))
 
 
 def generate(question: str, hits: list[dict]) -> str:

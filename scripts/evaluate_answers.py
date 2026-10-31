@@ -58,7 +58,8 @@ def main() -> None:
     from openai import OpenAI
     model = os.environ.get("RAG_MODEL", "qwen3:4b")
     base_url = os.environ.get("RAG_BASE_URL", OLLAMA_BASE_URL)
-    client = OpenAI(base_url=base_url, api_key="ollama")
+    client = OpenAI(base_url=base_url,
+                    api_key=os.environ.get("RAG_API_KEY", "ollama"))
     search_fn = get_search()
 
     questions = [json.loads(l) for l in

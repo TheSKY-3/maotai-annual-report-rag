@@ -163,6 +163,64 @@ def fig_answers() -> None:
     plt.close(fig)
 
 
+def _per_num_hit(d: dict, types: list[str]) -> list[float]:
+    """按题型聚合关键数字命中率（宽松口径：任一形态命中即算）。"""
+    out = []
+    for t in types:
+        rs = [r for r in d["rows"] if r["type"] == t]
+        tt = sum(r["num_total"] for r in rs)
+        hh = sum(r["num_hit"] for r in rs)
+        out.append(hh / tt * 100 if tt else 0)
+    return out
+
+
+def fig_e4_compare() -> None:
+    """E4：本地 4B vs 云端 DeepSeek 答案层对比（完整答案率 + 关键数字命中率）。"""
+    fl, fc = RESULTS / "final_local_answers.json", RESULTS / "final_cloud_answers.json"
+    if not (fl.exists() and fc.exists()):
+        return
+    dl = json.loads(fl.read_text(encoding="utf-8"))
+    dc = json.loads(fc.read_text(encoding="utf-8"))
+    types = ["fact", "cross_page", "cross_year"]
+    labels = ["事实题", "跨页题", "跨年题"]
+
+    def strict(d: dict) -> list[float]:
+        s = d.get("summary_rescored", d["summary"])
+        return [s[t]["answer_correct率"] * 100 for t in types]
+
+    refuse_l = dl["summary"]["无答案题"]["refusal_correct率"] * 100
+    refuse_c = dc["summary"]["无答案题"]["refusal_correct率"] * 100
+
+    fig, axes = plt.subplots(1, 2, figsize=(11.6, 4.2))
+    x = range(len(types))
+    w = 0.36
+    panels = [
+        (axes[0], strict(dl), strict(dc), "完整答案率（重打分，所有数字都对）"),
+        (axes[1], _per_num_hit(dl, types), _per_num_hit(dc, types),
+         "关键数字命中率（宽松，任一数字命中即算）"),
+    ]
+    for ax, lv, cv, title in panels:
+        b1 = ax.bar([i - w / 2 for i in x], lv, w, label="本地 Qwen3-4B",
+                    color="#4a7ebb")
+        b2 = ax.bar([i + w / 2 for i in x], cv, w, label="云端 DeepSeek-Flash",
+                    color="#c0504d")
+        for bars in (b1, b2):
+            for b in bars:
+                ax.text(b.get_x() + b.get_width() / 2, b.get_height() + 1,
+                        f"{b.get_height():.0f}%", ha="center", fontsize=9)
+        ax.set_xticks(list(x), labels)
+        ax.set_ylabel("百分比 (%)")
+        ax.set_ylim(0, 105)
+        ax.set_title(title, fontsize=11)
+        ax.legend(fontsize=9)
+    fig.suptitle("E4 生成模型对比：同一检索管线，本地 4B vs 云端 DeepSeek\n"
+                 f"（无答案题拒答正确率：本地 {refuse_l:.0f}% / 云端 {refuse_c:.0f}%）",
+                 fontsize=12.5, y=1.02)
+    fig.savefig(FIG_DIR / "fig_e4_compare.png", dpi=160,
+                bbox_inches="tight")
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     FIG_DIR.mkdir(parents=True, exist_ok=True)
     fig_pipeline()
@@ -176,3 +234,6 @@ if __name__ == "__main__":
     if (RESULTS / "final_local_answers.json").exists():
         fig_answers()
         print("fig_answers.png 完成")
+    if (RESULTS / "final_cloud_answers.json").exists():
+        fig_e4_compare()
+        print("fig_e4_compare.png 完成")

@@ -1,0 +1,58 @@
+{
+ "summary": {
+  "model": "deepseek-flash",
+  "有答案题": {
+   "n": 3,
+   "answer_correct率": 0.3333,
+   "cite_correct率": 1.0,
+   "false_refusal率": 0.0
+  },
+  "无答案题": {
+   "n": 0
+  },
+  "fact": {
+   "n": 3,
+   "answer_correct率": 0.3333,
+   "cite_correct率": 1.0,
+   "false_refusal率": 0.0
+  }
+ },
+ "rows": [
+  {
+   "id": 1,
+   "type": "fact",
+   "question": "茅台2022年实现营业总收入多少？",
+   "answer": "茅台2022年实现营业总收入1,275.54亿元。[来源: 2022年报 P7]",
+   "refused": false,
+   "num_hit": 3,
+   "num_total": 5,
+   "answer_correct": false,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 2,
+   "type": "fact",
+   "question": "i茅台数字营销平台2022年上线后表现如何？注册用户和销售收入是多少？",
+   "answer": "i茅台数字营销平台截至2022年末注册用户超3000万，实现销售收入118.83亿元，成为现象级的APP；线上销售情况表中，该平台本期销售收入为1,188,270.28万元，毛利率95.26%，并注明该销售收入是公司通过该平台实现的酒类不含税收入。[来源: 2022年报 P7；2022年报 P16]",
+   "refused": false,
+   "num_hit": 7,
+   "num_total": 7,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 3,
+   "type": "fact",
+   "question": "2022年茅台系列酒（其他系列酒）的营业收入是多少？毛利率多少？",
+   "answer": "2022年其他系列酒的营业收入为15,938,647,070.77元，毛利率为77.22%。[来源: 2022年报 P16]",
+   "refused": false,
+   "num_hit": 6,
+   "num_total": 7,
+   "answer_correct": false,
+   "cite_correct": true,
+   "false_refusal": false
+  }
+ ]
+}
