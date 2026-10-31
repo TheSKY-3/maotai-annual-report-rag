@@ -17,13 +17,14 @@ class Retriever:
         self.store = VectorStore(chunks_file, index_file)
         self.top_k = top_k
 
-    def search(self, query: str, top_k: int | None = None) -> list[dict]:
+    def search(self, query: str, top_k: int | None = None,
+               year: int | None = None) -> list[dict]:
         """返回 [{id, text, year, page, score}]，score 为余弦相似度。"""
         k = top_k or self.top_k
         q = self.model.encode(
             [QUERY_INSTRUCTION + query], normalize_embeddings=True,
         )
-        hits = self.store.search(np.asarray(q), top_k=k)
+        hits = self.store.search(np.asarray(q), top_k=k, year=year)
         return [
             {"id": h.id, "text": h.text, "year": h.year,
              "page": h.page, "score": h.score}
