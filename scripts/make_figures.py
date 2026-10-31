@@ -118,7 +118,7 @@ def fig_experiments() -> None:
                         f"{v:.0f}%", ha="center", fontsize=9)
     ax.set_xticks(list(x), labels, fontsize=9)
     ax.set_ylabel("百分比 (%)")
-    ax.set_title("检索策略对比：混合检索 + 年份识别让命中率翻倍（30%→56%）")
+    ax.set_title("检索策略对比：基线 30% 最终 62%")
     ax.set_ylim(0, max(v for v in hit if v) + 12)
     ax.legend()
     fig.savefig(FIG_DIR / "fig_experiments.png", dpi=160, bbox_inches="tight")
