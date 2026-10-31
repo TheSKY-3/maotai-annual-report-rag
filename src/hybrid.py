@@ -12,6 +12,7 @@ import jieba
 import numpy as np
 from rank_bm25 import BM25Okapi
 
+from src.config import YEARS
 from src.store import VectorStore
 
 YEAR_RE = re.compile(r"(20\d{2})\s*年")
@@ -39,10 +40,12 @@ class HybridRetriever:
             self.bm25 = BM25Okapi(tokenized)
 
     def search(self, query: str, top_k: int = 5,
-               year: int | None = None) -> list[dict]:
+               year: int | set[int] | None = None) -> list[dict]:
         years = detect_years(query)
-        if self.use_year_filter and year is None and len(set(years)) == 1:
-            year = years[0]  # 单一明确年份：限定范围；跨年题不过滤
+        if self.use_year_filter and year is None:
+            known = [y for y in dict.fromkeys(years) if y in YEARS]
+            if len(known) in (1, 2):
+                year = set(known)  # 单年题或跨年题：限定到出现的年份（集合）
 
         q_emb = np.asarray(self.embed_model.encode(
             [query], normalize_embeddings=True))
@@ -56,9 +59,11 @@ class HybridRetriever:
 
         # 向量路排名
         vec_rank = {h.id: r for r, h in enumerate(idx, start=1)}
-        # BM25 路（仅在该年份子集上）
+        # BM25 路（仅在该年份子集上；year 可能是集合）
+        allow = year if isinstance(year, (set, frozenset)) else (
+            None if year is None else {year})
         pos = [i for i, c in enumerate(self.chunks)
-               if year is None or c["year"] == year]
+               if allow is None or c["year"] in allow]
         tokens = list(jieba.cut_for_search(query))
         bm_scores = self.bm25.get_scores(tokens)
         bm_sorted = sorted(pos, key=lambda i: -bm_scores[i])

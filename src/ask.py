@@ -29,7 +29,7 @@ PROMPT_TEMPLATE = """你是贵州茅台年报问答助手。请仅根据下面�
 
 问题：{question}
 
-回答："""
+回答：/no_think"""
 
 
 def build_context(hits: list[dict]) -> str:

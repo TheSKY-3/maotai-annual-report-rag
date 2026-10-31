@@ -125,6 +125,44 @@ def fig_experiments() -> None:
     plt.close(fig)
 
 
+def fig_answers() -> None:
+    """答案层最终成绩（本地 Qwen3-4B + 最优检索）。"""
+    f = RESULTS / "final_local_answers.json"
+    if not f.exists():
+        return
+    d = json.loads(f.read_text(encoding="utf-8"))
+    rows = [r for r in d["rows"] if r["type"] != "no_answer"]
+    types = ["fact", "cross_page", "cross_year"]
+    labels = ["事实题", "跨页题", "跨年题"]
+    strict = [d["summary"][t]["answer_correct率"] * 100 for t in types]
+    per_num = []
+    for t in types:
+        rs = [r for r in rows if r["type"] == t]
+        tt = sum(r["num_total"] for r in rs)
+        hh = sum(r["num_hit"] for r in rs)
+        per_num.append(hh / tt * 100)
+
+    fig, ax = plt.subplots(figsize=(7.2, 4.0))
+    x = range(len(types))
+    w = 0.38
+    b1 = ax.bar([i - w / 2 for i in x], strict, w,
+                label="完整答案率（所有数字都对）", color="#c0504d")
+    b2 = ax.bar([i + w / 2 for i in x], per_num, w,
+                label="关键数字命中率（宽松）", color="#4a7ebb")
+    for bars in (b1, b2):
+        for b in bars:
+            ax.text(b.get_x() + b.get_width() / 2, b.get_height() + 1,
+                    f"{b.get_height():.0f}%", ha="center", fontsize=9)
+    ax.set_xticks(list(x), labels)
+    ax.set_ylabel("百分比 (%)")
+    ax.set_title("答案层成绩（本地 Qwen3-4B）：单数字 68.6%，完整答案 26.7%\n"
+                 "无答案题拒答正确率 100%（图中不含）")
+    ax.set_ylim(0, max(max(strict), max(per_num)) + 12)
+    ax.legend(fontsize=9)
+    fig.savefig(FIG_DIR / "fig_answers.png", dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     FIG_DIR.mkdir(parents=True, exist_ok=True)
     fig_pipeline()
@@ -135,3 +173,6 @@ if __name__ == "__main__":
     if (RESULTS / "E3_rerank_retrieval.json").exists():
         fig_experiments()
         print("fig_experiments.png 完成")
+    if (RESULTS / "final_local_answers.json").exists():
+        fig_answers()
+        print("fig_answers.png 完成")
