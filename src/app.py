@@ -53,16 +53,17 @@ PROMPT = """你是贵州茅台年报问答助手。请仅根据下面的年报�
 
 回答：/no_think"""
 
-st.set_page_config(page_title="茅台年报问答助手", page_icon="🍷", layout="wide")
+st.set_page_config(page_title="茅台年报问答助手", page_icon="📑", layout="wide")
 
 # ---------------------------------------------------------------------------
-# 视觉主题：「档案纸面」—— 暖白纸底、宋体标题、飞天朱红强调、出处做成档案卡片
+# 视觉主题：「档案纸面」—— 暖白纸底、宋体标题、墨青蓝强调、出处做成档案卡片
+# （刻意去品牌化：不使用茅台商标红与商标元素，蓝色取自金融档案文件的墨青色）
 # ---------------------------------------------------------------------------
 CSS = """
 :root {
   --paper: #FAF8F4; --card: #FFFFFF; --wash: #F3EFE6;
   --ink: #211D18; --muted: #857E70; --line: #E7E1D4;
-  --seal: #A8231F; --seal-dark: #8C1B18; --gold: #A08339;
+  --accent: #2F5D8A; --accent-dark: #244B72; --gold: #A08339;
 }
 .stApp, [data-testid="stApp"] {
   background: var(--paper);
@@ -88,11 +89,11 @@ CSS = """
 }
 .mt-seal {
   flex: 0 0 auto; width: 46px; height: 46px; border-radius: 9px;
-  background: linear-gradient(160deg, #B5261F, var(--seal-dark));
+  background: linear-gradient(160deg, #35618F, var(--accent-dark));
   color: #FBF6EC; display: flex; align-items: center; justify-content: center;
   font-family: "Source Han Serif SC", "Noto Serif SC", "STZhongsong", "SimSun", serif;
   font-size: 27px; font-weight: 700;
-  box-shadow: inset 0 0 0 2px rgba(255, 251, 240, .30), 0 2px 5px rgba(140, 27, 24, .25);
+  box-shadow: inset 0 0 0 2px rgba(255, 251, 240, .30), 0 2px 5px rgba(36, 75, 114, .25);
 }
 .mt-title {
   font-family: "Source Han Serif SC", "Noto Serif SC", "STZhongsong", "SimSun", serif;
@@ -104,7 +105,7 @@ CSS = """
 /* ---- 小节眉标（红、疏排）---- */
 .mt-eyebrow {
   font-size: 12px; font-weight: 700; letter-spacing: .22em;
-  color: var(--seal); margin: 4px 0 10px;
+  color: var(--accent); margin: 4px 0 10px;
 }
 
 /* ---- 聊天气泡 ---- */
@@ -123,7 +124,7 @@ CSS = """
   border-radius: 14px 4px 14px 14px;
 }
 [data-testid="stChatMessageAvatarAssistant"] {
-  background: var(--seal); border-radius: 9px;
+  background: var(--accent); border-radius: 9px;
   box-shadow: inset 0 0 0 2px rgba(255, 251, 240, .30);
 }
 [data-testid="stChatMessageAvatarAssistant"] span,
@@ -137,14 +138,14 @@ CSS = """
 /* ---- 出处档案卡 ---- */
 [data-testid="stExpander"] {
   background: var(--card); border: 1px solid var(--line);
-  border-left: 3px solid var(--seal); border-radius: 6px;
+  border-left: 3px solid var(--accent); border-radius: 6px;
   box-shadow: 0 1px 2px rgba(33, 29, 24, .04);
   margin-bottom: 2px;
 }
 [data-testid="stExpander"] summary {
   font-size: 13.5px; font-weight: 600; color: var(--ink);
 }
-[data-testid="stExpander"] summary:hover { color: var(--seal); }
+[data-testid="stExpander"] summary:hover { color: var(--accent); }
 [data-testid="stExpanderDetails"] { font-size: 13px; color: #4A443B; }
 
 /* ---- 问题按钮（预设/追问统一为候选卡）---- */
@@ -155,11 +156,11 @@ CSS = """
   transition: border-color .15s, color .15s, transform .15s, box-shadow .15s;
 }
 [data-testid="stButton"] button:hover {
-  border-color: var(--seal); color: var(--seal);
-  transform: translateY(-1px); box-shadow: 0 3px 8px rgba(140, 27, 24, .08);
+  border-color: var(--accent); color: var(--accent);
+  transform: translateY(-1px); box-shadow: 0 3px 8px rgba(36, 75, 114, .08);
 }
 [data-testid="stButton"] button:focus-visible {
-  border-color: var(--seal); box-shadow: 0 0 0 3px rgba(168, 35, 31, .18);
+  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(47, 93, 138, .18);
 }
 [data-testid="stButton"] button p { font-size: 14px; }
 
@@ -172,13 +173,13 @@ CSS = """
   background: var(--card); box-shadow: 0 2px 14px rgba(33, 29, 24, .06);
 }
 [data-testid="stChatInput"]:focus-within {
-  border-color: var(--seal); box-shadow: 0 0 0 3px rgba(168, 35, 31, .12);
+  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(47, 93, 138, .12);
 }
 [data-testid="stChatInputSubmitButton"] button {
-  background: var(--seal); border-color: var(--seal); border-radius: 9px;
+  background: var(--accent); border-color: var(--accent); border-radius: 9px;
 }
 [data-testid="stChatInputSubmitButton"] button:hover {
-  background: var(--seal-dark); border-color: var(--seal-dark);
+  background: var(--accent-dark); border-color: var(--accent-dark);
 }
 
 /* ---- 控件标签与标题 ---- */
@@ -193,7 +194,7 @@ st.markdown(f"<style>{CSS}</style>", unsafe_allow_html=True)
 st.markdown(
     """
     <div class="mt-header">
-      <div class="mt-seal">茅</div>
+      <div class="mt-seal">档</div>
       <div>
         <div class="mt-title">茅台年报问答</div>
         <div class="mt-tagline">贵州茅台 2022–2025 年度报告<em>·</em>答案必附原文页码出处<em>·</em>查不到就明说</div>
