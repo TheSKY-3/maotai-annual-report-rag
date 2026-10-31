@@ -54,8 +54,154 @@ PROMPT = """你是贵州茅台年报问答助手。请仅根据下面的年报�
 回答：/no_think"""
 
 st.set_page_config(page_title="茅台年报问答助手", page_icon="🍷", layout="wide")
-st.title("🍷 茅台年报问答助手")
-st.caption("数据：贵州茅台 2022–2025 年年度报告（巨潮资讯网公开披露）· 答案必带原文出处")
+
+# ---------------------------------------------------------------------------
+# 视觉主题：「档案纸面」—— 暖白纸底、宋体标题、飞天朱红强调、出处做成档案卡片
+# ---------------------------------------------------------------------------
+CSS = """
+:root {
+  --paper: #FAF8F4; --card: #FFFFFF; --wash: #F3EFE6;
+  --ink: #211D18; --muted: #857E70; --line: #E7E1D4;
+  --seal: #A8231F; --seal-dark: #8C1B18; --gold: #A08339;
+}
+.stApp, [data-testid="stApp"] {
+  background: var(--paper);
+  font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+  color: var(--ink);
+}
+[data-testid="stHeader"] { background: transparent; }
+[data-testid="stAppDeployButton"], [data-testid="stToolbarActions"],
+[data-testid="stMainMenu"], [data-testid="stStatusWidget"] { display: none; }
+
+/* ---- 居中排版（聊天产品惯例的阅读宽度）---- */
+[data-testid="stMainBlockContainer"],
+[data-testid="stBottomBlockContainer"] {
+  max-width: 920px; margin-left: auto; margin-right: auto;
+}
+
+/* ---- 页首：印章 + 宋体标题 + 金线 ---- */
+.mt-header {
+  display: flex; align-items: center; gap: 14px;
+  padding: 8px 2px 16px; margin-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 6px 12px -10px rgba(160, 131, 57, .45);
+}
+.mt-seal {
+  flex: 0 0 auto; width: 46px; height: 46px; border-radius: 9px;
+  background: linear-gradient(160deg, #B5261F, var(--seal-dark));
+  color: #FBF6EC; display: flex; align-items: center; justify-content: center;
+  font-family: "Source Han Serif SC", "Noto Serif SC", "STZhongsong", "SimSun", serif;
+  font-size: 27px; font-weight: 700;
+  box-shadow: inset 0 0 0 2px rgba(255, 251, 240, .30), 0 2px 5px rgba(140, 27, 24, .25);
+}
+.mt-title {
+  font-family: "Source Han Serif SC", "Noto Serif SC", "STZhongsong", "SimSun", serif;
+  font-size: 27px; font-weight: 700; letter-spacing: .02em; line-height: 1.15;
+}
+.mt-tagline { font-size: 12.5px; color: var(--muted); margin-top: 4px; letter-spacing: .05em; }
+.mt-tagline em { font-style: normal; color: var(--gold); padding: 0 7px; }
+
+/* ---- 小节眉标（红、疏排）---- */
+.mt-eyebrow {
+  font-size: 12px; font-weight: 700; letter-spacing: .22em;
+  color: var(--seal); margin: 4px 0 10px;
+}
+
+/* ---- 聊天气泡 ---- */
+[data-testid="stChatMessage"] { background: transparent; }
+[data-testid="stChatMessageContent"] {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 4px 14px 14px 14px; padding: 10px 16px;
+  box-shadow: 0 1px 2px rgba(33, 29, 24, .04);
+}
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
+  flex-direction: row-reverse;
+}
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"])
+  [data-testid="stChatMessageContent"] {
+  background: var(--wash); border-color: transparent;
+  border-radius: 14px 4px 14px 14px;
+}
+[data-testid="stChatMessageAvatarAssistant"] {
+  background: var(--seal); border-radius: 9px;
+  box-shadow: inset 0 0 0 2px rgba(255, 251, 240, .30);
+}
+[data-testid="stChatMessageAvatarAssistant"] span,
+[data-testid="stChatMessageAvatarAssistant"] svg {
+  color: #FBF6EC !important; fill: #FBF6EC;
+}
+[data-testid="stChatMessageAvatarUser"] {
+  background: #E9E2D2; border-radius: 9px;
+}
+
+/* ---- 出处档案卡 ---- */
+[data-testid="stExpander"] {
+  background: var(--card); border: 1px solid var(--line);
+  border-left: 3px solid var(--seal); border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(33, 29, 24, .04);
+  margin-bottom: 2px;
+}
+[data-testid="stExpander"] summary {
+  font-size: 13.5px; font-weight: 600; color: var(--ink);
+}
+[data-testid="stExpander"] summary:hover { color: var(--seal); }
+[data-testid="stExpanderDetails"] { font-size: 13px; color: #4A443B; }
+
+/* ---- 问题按钮（预设/追问统一为候选卡）---- */
+[data-testid="stButton"] button {
+  width: 100%; text-align: left; background: var(--card);
+  color: var(--ink); border: 1px solid var(--line); border-radius: 10px;
+  padding: 9px 14px; font-size: 14px; font-weight: 400;
+  transition: border-color .15s, color .15s, transform .15s, box-shadow .15s;
+}
+[data-testid="stButton"] button:hover {
+  border-color: var(--seal); color: var(--seal);
+  transform: translateY(-1px); box-shadow: 0 3px 8px rgba(140, 27, 24, .08);
+}
+[data-testid="stButton"] button:focus-visible {
+  border-color: var(--seal); box-shadow: 0 0 0 3px rgba(168, 35, 31, .18);
+}
+[data-testid="stButton"] button p { font-size: 14px; }
+
+/* ---- 输入框 ---- */
+[data-testid="stBottom"] {
+  background: linear-gradient(transparent, var(--paper) 32%);
+}
+[data-testid="stChatInput"] {
+  border-radius: 12px; border: 1px solid var(--line);
+  background: var(--card); box-shadow: 0 2px 14px rgba(33, 29, 24, .06);
+}
+[data-testid="stChatInput"]:focus-within {
+  border-color: var(--seal); box-shadow: 0 0 0 3px rgba(168, 35, 31, .12);
+}
+[data-testid="stChatInputSubmitButton"] button {
+  background: var(--seal); border-color: var(--seal); border-radius: 9px;
+}
+[data-testid="stChatInputSubmitButton"] button:hover {
+  background: var(--seal-dark); border-color: var(--seal-dark);
+}
+
+/* ---- 控件标签与标题 ---- */
+[data-testid="stWidgetLabel"] p { color: var(--muted); font-size: 13px; }
+h2, h3, [data-testid="stHeading"] {
+  font-family: "Source Han Serif SC", "Noto Serif SC", "STZhongsong", "SimSun", serif;
+}
+[data-testid="stRadio"] [role="radiogroup"] label { font-size: 14px; }
+"""
+st.markdown(f"<style>{CSS}</style>", unsafe_allow_html=True)
+
+st.markdown(
+    """
+    <div class="mt-header">
+      <div class="mt-seal">茅</div>
+      <div>
+        <div class="mt-title">茅台年报问答</div>
+        <div class="mt-tagline">贵州茅台 2022–2025 年度报告<em>·</em>答案必附原文页码出处<em>·</em>查不到就明说</div>
+      </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 @st.cache_resource(show_spinner="加载检索模型...")
@@ -109,8 +255,9 @@ def gen_followups(question: str, answer: str) -> list[str]:
 
 def render_sources(hits: list[dict]) -> None:
     for i, h in enumerate(hits):
-        with st.expander(f"出处 {i + 1}：{h['year']}年报 第{h['page']}页 "
-                         f"(相似度 {h['score']:.3f})"):
+        extra = ("页码直达" if h.get("direct")
+                 else f"相关度 {h['score']:.3f}")
+        with st.expander(f"出处 {i + 1} · {h['year']}年报 第{h['page']}页 · {extra}"):
             st.text(h["text"][:600])
 
 
@@ -133,14 +280,16 @@ if mode == "对话问答":
             if m.get("hits"):
                 render_sources(m["hits"])
             if m["role"] == "assistant" and m.get("followups"):
-                st.caption("💡 接着问")
+                st.markdown('<p class="mt-eyebrow">接着问</p>',
+                            unsafe_allow_html=True)
                 for j, fu in enumerate(m["followups"]):
                     st.button(fu, key=f"fu_{mi}_{j}", on_click=ask_followup,
                               args=(fu,))
 
     # ---- 空界面：预设问题 ----
     if not st.session_state.msgs:
-        st.markdown("**🎯 试试这些问题（点击即问）**")
+        st.markdown('<p class="mt-eyebrow">试试这些问题</p>',
+                    unsafe_allow_html=True)
         for row in range(0, len(PRESET_QUESTIONS), 2):
             cols = st.columns(2)
             for ci, q in enumerate(PRESET_QUESTIONS[row:row + 2]):
@@ -168,7 +317,8 @@ if mode == "对话问答":
             with st.spinner("生成追问建议..."):
                 fus = gen_followups(question, text)
             if fus:
-                st.caption("💡 接着问")
+                st.markdown('<p class="mt-eyebrow">接着问</p>',
+                            unsafe_allow_html=True)
                 for j, fu in enumerate(fus):
                     st.button(fu, key=f"fu_now_{j}", on_click=ask_followup,
                               args=(fu,))
