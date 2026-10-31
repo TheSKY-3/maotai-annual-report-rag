@@ -62,24 +62,12 @@ def build_pipelines() -> dict:
         print(f"[跳过 E3] 精排模型加载失败: {e}")
         return pipes
 
-        class Reranked:
-            def __init__(self, base):
-                self.base = base
+    from src.hybrid import RerankedRetriever
 
-            def search(self, query, top_k=5, year=None):
-                cands = self.base.search(query, top_k=20, year=year)
-                if not cands:
-                    return []
-                scores = reranker.predict(
-                    [(query, c["text"]) for c in cands], show_warnings=False)
-                for c, s in zip(cands, scores):
-                    c["score"] = float(s)
-                return sorted(cands, key=lambda c: -c["score"])[:top_k]
-
-        # 精排叠加在"混合检索+年份过滤"之上（E2 中预期最优者）
-        pipes["E3_rerank"] = Reranked(HybridRetriever(
-            CHUNKS_FILE, INDEX_FILE, emb,
-            use_bm25=True, use_year_filter=True)).search
+    # 精排叠加在"混合检索+年份过滤"之上（E2 中最优者）
+    pipes["E3_rerank"] = RerankedRetriever(HybridRetriever(
+        CHUNKS_FILE, INDEX_FILE, emb,
+        use_bm25=True, use_year_filter=True), reranker).search
     return pipes
 
 

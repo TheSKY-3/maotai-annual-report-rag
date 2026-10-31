@@ -14,7 +14,7 @@ import sys
 from openai import OpenAI
 
 from src.config import GEN_MODEL, OLLAMA_BASE_URL, TOP_K
-from src.retriever import Retriever
+from src.pipeline import get_search
 
 PROMPT_TEMPLATE = """你是贵州茅台年报问答助手。请仅根据下面的年报片段回答问题。
 
@@ -39,9 +39,9 @@ def build_context(hits: list[dict]) -> str:
     )
 
 
-def answer_question(client: OpenAI, retriever: Retriever, question: str,
+def answer_question(client: OpenAI, search_fn, question: str,
                     model: str) -> tuple[str, list[dict]]:
-    hits = retriever.search(question, top_k=TOP_K)
+    hits = search_fn(question, top_k=TOP_K)
     prompt = PROMPT_TEMPLATE.format(context=build_context(hits), question=question)
     resp = client.chat.completions.create(
         model=model,
@@ -55,13 +55,13 @@ def main() -> None:
     model = os.environ.get("RAG_MODEL", GEN_MODEL)
     base_url = os.environ.get("RAG_BASE_URL", OLLAMA_BASE_URL)
     client = OpenAI(base_url=base_url, api_key="ollama")
-    retriever = Retriever()
+    search_fn = get_search()
 
     questions = sys.argv[1:] or None
     if questions:
         for q in questions:
             print(f"\n问题: {q}")
-            text, hits = answer_question(client, retriever, q, model)
+            text, hits = answer_question(client, search_fn, q, model)
             print(f"回答: {text}")
             print("检索依据:", ", ".join(f"{h['year']}P{h['page']}({h['score']:.2f})" for h in hits))
         return
@@ -74,7 +74,7 @@ def main() -> None:
             break
         if not q or q.lower() == "q":
             break
-        text, hits = answer_question(client, retriever, q, model)
+        text, hits = answer_question(client, search_fn, q, model)
         print(f"回答: {text}")
         print("检索依据:", ", ".join(f"{h['year']}P{h['page']}({h['score']:.2f})" for h in hits))
 

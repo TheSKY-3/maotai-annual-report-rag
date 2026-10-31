@@ -23,7 +23,7 @@ sys.path.insert(0, str(PROJECT))
 
 from src.ask import answer_question  # noqa: E402
 from src.config import GOLD_FILE, RESULTS_DIR  # noqa: E402
-from src.retriever import Retriever  # noqa: E402
+from src.pipeline import get_search  # noqa: E402
 from src.config import OLLAMA_BASE_URL  # noqa: E402
 
 import os  # noqa: E402
@@ -59,7 +59,7 @@ def main() -> None:
     model = os.environ.get("RAG_MODEL", "qwen3:4b")
     base_url = os.environ.get("RAG_BASE_URL", OLLAMA_BASE_URL)
     client = OpenAI(base_url=base_url, api_key="ollama")
-    retriever = Retriever()
+    search_fn = get_search()
 
     questions = [json.loads(l) for l in
                  open(GOLD_FILE, encoding="utf-8") if l.strip()]
@@ -69,7 +69,7 @@ def main() -> None:
     rows = []
     for q in questions:
         try:
-            text, hits = answer_question(client, retriever, q["question"], model)
+            text, hits = answer_question(client, search_fn, q["question"], model)
         except Exception as e:  # noqa: BLE001
             text, hits = f"__ERROR__: {e}", []
         refused = REFUSE_MARK in text

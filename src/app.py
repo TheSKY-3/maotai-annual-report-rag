@@ -17,7 +17,7 @@ from openai import OpenAI
 
 from src.ask import build_context
 from src.config import GEN_MODEL, OLLAMA_BASE_URL, YEARS
-from src.retriever import Retriever
+from src.pipeline import get_search
 
 PROMPT = """你是贵州茅台年报问答助手。请仅根据下面的年报片段回答问题。
 要求：
@@ -39,8 +39,9 @@ st.caption("数据：贵州茅台 2022–2025 年年度报告（巨潮资讯网�
 
 
 @st.cache_resource(show_spinner="加载检索模型...")
-def get_retriever() -> Retriever:
-    return Retriever()
+def get_retriever():
+    """返回生产检索函数（混合检索+年份过滤+精排）。"""
+    return get_search()
 
 
 def generate(question: str, hits: list[dict]) -> str:

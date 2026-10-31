@@ -89,6 +89,7 @@ def fig_experiments() -> None:
         ("E2_year", "向量+\n年份过滤"),
         ("E2_hybrid", "混合检索\nBM25+向量"),
         ("E2_hybrid_year", "混合检索\n+年份过滤"),
+        ("E3_rerank", "再叠加\n精排"),
     ]
     names = [p[0] for p in pipelines]
     labels = [p[1] for p in pipelines]
@@ -131,6 +132,6 @@ if __name__ == "__main__":
     if (RESULTS / "baseline_retrieval.json").exists():
         fig_baseline()
         print("fig_baseline.png 完成")
-    if (RESULTS / "E2_hybrid_year_retrieval.json").exists():
+    if (RESULTS / "E3_rerank_retrieval.json").exists():
         fig_experiments()
         print("fig_experiments.png 完成")

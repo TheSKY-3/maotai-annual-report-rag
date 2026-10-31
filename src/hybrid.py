@@ -86,3 +86,21 @@ class HybridRetriever:
                           + 1.0 / (RRF_K + bm_rank.get(cid, 10 ** 9))),
             })
         return out
+
+
+class RerankedRetriever:
+    """在基础检索之上加交叉编码器精排（E3）：粗召回 top20 -> 重排 -> top_k。"""
+
+    def __init__(self, base, reranker):
+        self.base = base
+        self.reranker = reranker
+
+    def search(self, query: str, top_k: int = 5,
+               year: int | None = None) -> list[dict]:
+        cands = self.base.search(query, top_k=20, year=year)
+        if not cands:
+            return []
+        scores = self.reranker.predict([(query, c["text"]) for c in cands])
+        for c, s in zip(cands, scores):
+            c["score"] = float(s)
+        return sorted(cands, key=lambda c: -c["score"])[:top_k]
