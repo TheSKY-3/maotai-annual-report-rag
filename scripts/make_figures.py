@@ -50,10 +50,17 @@ def fig_pipeline() -> None:
                     arrowprops=dict(arrowstyle="->", lw=1.6, color="#333"))
         ax.annotate("", xy=(x0 + w + 0.01, 0.21), xytext=(x0 + w, 0.21),
                     arrowprops=dict(arrowstyle="->", lw=1.6, color="#333"))
-    # 索引 → 混合检索（两条流水线的交汇）
-    ax.annotate("", xy=(xs[2] + w / 2, 0.34), xytext=(xs[3] + w / 2, 0.64),
+    # 索引 → 混合检索（两条流水线的交汇）：直角折线，先垂直下行再水平左移
+    ix = xs[3] + w / 2   # ③ 向量化+建索引 中心 x
+    tx = xs[2] + w / 2   # ⑥ 混合检索 中心 x
+    mid_y = 0.445
+    ax.plot([ix, ix], [0.64, mid_y], color="#333", lw=1.6, zorder=1)
+    ax.plot([ix, tx], [mid_y, mid_y], color="#333", lw=1.6, zorder=1)
+    ax.annotate("", xy=(tx, 0.34), xytext=(tx, mid_y),
                 arrowprops=dict(arrowstyle="->", lw=1.6, color="#333"))
-    ax.text(xs[3] + w / 2 + 0.01, 0.49, "索引供检索", ha="left", va="center",
+    ax.text(ix + 0.012, 0.545, "块索引", ha="left", va="center",
+            fontsize=8.5, color="#666", zorder=3)
+    ax.text(ix + 0.012, 0.50, "供检索", ha="left", va="center",
             fontsize=8.5, color="#666", zorder=3)
     ax.text(0.015, 0.95, "离线建库（做一次，语境句生成约花 3 元）", ha="left",
             va="bottom", fontsize=10, color="#666")
