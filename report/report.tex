@@ -348,6 +348,43 @@ DeepSeek-Flash（V4.1-Flash），实测总花费 0.53 元。
 提示词鼓励大模型在材料相关时尽量作答，或对拒答自动触发一次宽松
 检索重试——而不是盲目堆更大的模型。
 
+\subsection{实验五：上下文增强索引（E5）——给每块文字写``说明书''}
+
+切块脱离原文语境是检索的固有失败源：``营业总收入 174,144,069,958.25
+元''这样的块不知道自己来自哪个章节，与四份年报里几十段相似文字
+难以区分。Anthropic 于 2024 年 9 月提出 Contextual Retrieval：建索引
+时让大模型为每块生成一句语境说明（``本段来自 2024 年报第 56 页分部
+报告，讨论\ldots''），与原文拼接后再嵌入与 BM25。本项目为全部
+1761 块生成语境句（DeepSeek-Flash，实测花费约 3 元、12 并发约
+7 分钟），得到两条新管线。
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccccc}
+\toprule
+管线 & 总体 hit@5 & 事实题 & 跨页题 & 跨年题 & MRR \\
+\midrule
+E2 混合+年份 & 56\% & 66.7\% & 50\% & 40\% & 0.416 \\
+E3 +精排（E4 所用最优） & 62\% & 76.7\% & 50\% & 40\% & 0.426 \\
+\textbf{E5 语境增强+混合+年份} & \textbf{66\%} & 76.7\% & 40\% & \textbf{80\%} & \textbf{0.438} \\
+E5 语境增强+精排 & 64\% & 76.7\% & 50\% & 60\% & 0.441 \\
+\bottomrule
+\end{tabular}
+\caption{E5：上下文增强前后（同一 50 题黄金集，k=5）}
+\label{tab:e5}
+\end{table}
+
+三个发现：其一，检索 62\%→66\%，其中跨年题 40\%→80\%——语境句最
+擅长的正是``这段话属于哪一年、哪一节''，恰好命中嵌入模型最弱的
+方向。其二，\textbf{精排的增益被语境句取代}：不加精排 66\%，加了
+反而 64\%——语境句已把``这段在讲什么''写进文本，交叉编码器的重排
+不再有增量，生产管线因此切换为 E5 混合配置，并省去每次查询约 2 秒
+的精排开销。其三，提升幅度（+4 个百分点）小于 Anthropic 报道的
+67\% 失败率下降：他们的基线没有混合检索与年份过滤（这些我们 E2
+已有），且本项目剩余未命中里相当部分是``同一信息在年报多处出现''
+——检索押中了另一版本的段落，语境句管不了。50 题样本下 ±2 个
+百分点在噪声边缘，方向性结论以 MRR 同向上升（0.426→0.438）为佐证。
+
 \subsection{典型病例分析}
 
 三个病例分别对应三种典型失败模式，全部来自真实评测记录：
@@ -365,12 +402,13 @@ DeepSeek-Flash（V4.1-Flash），实测总花费 0.53 元。
 占 15.6\%，与检索 38\% 的未命中率一致——\emph{修复它的钥匙仍在
 检索侧}（如章节感知的索引）。
 
+{\sloppy
 \textbf{病例三（数字对、单位错——小模型的粗心）。}系列酒营收
 15,938,647,070.77\emph{元}被答成``15,938,647,070.77\emph{万元}''——
 数字串完全正确，计量单位抄错，相差一万倍。这是 4B 模型在长数字上
 的典型粗心，也是 E4 云端对比最想量化的差距类型——云端模型实际
 作答的题里此类粗心基本消失（条件完整答案率 60.0\% 对 31.6\%，
-见表~\ref{tab:e4cloud}）。
+见表~\ref{tab:e4cloud}）。\par}
 
 \section{边界与结论}
 
@@ -388,8 +426,9 @@ DeepSeek-Flash（V4.1-Flash），实测总花费 0.53 元。
 \end{itemize}
 
 \textbf{结论。}这个项目做通了一件事：把``效果好不好''从感觉变成数字，
-再用数字指挥改进。三组检索实验把出处页命中率从 30\% 提到 62\%，
-其中性价比最高的是十几行代码的年份识别（+16 个百分点）；答案层
+再用数字指挥改进。四组检索实验把出处页命中率从 30\% 提到 66\%，
+性价比最高的两次几乎都不要钱：十几行代码的年份识别（+16 个百分点）
+和每块一句的语境说明（+4 个百分点，还让精排退役）；答案层
 守住了一条底线（对不知道的事 100\% 拒答），同时用一组换模型对照
 实验把天花板拆成了两半：本地小模型败在\emph{质量}（敢答的题完整率
 31.6\%），云端大模型败在\emph{覆盖}（误拒答 33.3\%）——检索、质量、
@@ -415,12 +454,14 @@ DeepSeek-Flash（V4.1-Flash），实测总花费 0.53 元。
         大模型推理，检索与嵌入 CPU 即可）；
   \item 数据：\texttt{python scripts/download\_data.py}（巨潮资讯网公开文件）；
   \item 建索引：\texttt{python scripts/extract\_text.py \&\& python scripts/build\_index.py}；
+        上下文增强（可选，需 DEEPSEEK\_API\_KEY）：
+        \texttt{python scripts/build\_contextual\_chunks.py}；
   \item 问答：\texttt{python -m src.ask "你的问题"} 或
         \texttt{python -m streamlit run src/app.py}；
   \item 评测：\texttt{python scripts/evaluate\_retrieval.py} 与
-        \texttt{python scripts/evaluate\_answers.py}；云端对比加
-        \texttt{RAG\_BASE\_URL=https://api.deepseek.com/v1
-        RAG\_MODEL=deepseek-flash RAG\_API\_KEY=...}；
+        \texttt{python scripts/evaluate\_answers.py}；云端对比设置环境变量
+        \texttt{RAG\_MODEL=deepseek-flash}、\texttt{RAG\_API\_KEY=...}，
+        并把 \texttt{RAG\_BASE\_URL} 设为 \texttt{https://api.deepseek.com/v1}；
   \item 报告编译：\texttt{tectonic -o report/\_build report/report.tex}。
 \end{enumerate}
 

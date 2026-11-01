@@ -1,15 +1,20 @@
-"""生产检索管线：混合检索 + 年份过滤 + 精排（E2/E3 实验出的最优配置）。
+"""生产检索管线（E5 配置）：上下文增强索引 + 混合检索 + 年份过滤。
 
 用法:
     from src.pipeline import get_search
     search = get_search()          # 首次调用加载模型（约几秒），之后复用
     hits = search("2024年茅台营业总收入是多少？", top_k=5)
+
+E5 起（2026-11）：每块文字前置大模型生成的语境句
+（scripts/build_contextual_chunks.py 生成，约 3 元），嵌入与 BM25 均
+使用增强文本。评测 hit@5 66%，高于 E3 精排管线的 62%，且不再需要
+每次查询约 2 秒的精排——精排增益已被语境句取代（E5_rerank 64%）。
 """
 from __future__ import annotations
 
-from src.config import CHUNKS_FILE, EMBED_PATH, INDEX_FILE, PROJECT
+from src.config import (CHUNKS_FILE, CONTEXTUAL_CHUNKS_FILE,
+                        CONTEXTUAL_INDEX_FILE, EMBED_PATH, INDEX_FILE)
 
-_RR_DIR = PROJECT / "data" / "models" / "bge-reranker-base"
 _search = None
 
 
@@ -19,17 +24,19 @@ def get_search():
     if _search is not None:
         return _search
 
-    from sentence_transformers import CrossEncoder, SentenceTransformer
+    from sentence_transformers import SentenceTransformer
 
-    from src.hybrid import HybridRetriever, RerankedRetriever
+    from src.hybrid import HybridRetriever
 
     emb = SentenceTransformer(EMBED_PATH, device="cpu")
-    base = HybridRetriever(CHUNKS_FILE, INDEX_FILE, emb,
-                           use_bm25=True, use_year_filter=True)
-    try:
-        reranker = CrossEncoder(str(_RR_DIR), max_length=512, device="cpu")
-        _search = RerankedRetriever(base, reranker).search
-    except Exception as e:  # noqa: BLE001
-        print(f"[pipeline] 精排模型不可用，退化为混合检索: {e}")
-        _search = base.search
+    if (CONTEXTUAL_CHUNKS_FILE.exists()
+            and CONTEXTUAL_INDEX_FILE.exists()):
+        _search = HybridRetriever(CONTEXTUAL_CHUNKS_FILE,
+                                  CONTEXTUAL_INDEX_FILE, emb,
+                                  use_bm25=True, use_year_filter=True).search
+    else:
+        print("[pipeline] 上下文增强索引缺失，退回基线索引"
+              "（先运行 scripts/build_contextual_chunks.py 生成）")
+        _search = HybridRetriever(CHUNKS_FILE, INDEX_FILE, emb,
+                                  use_bm25=True, use_year_filter=True).search
     return _search

@@ -68,6 +68,18 @@ def build_pipelines() -> dict:
     pipes["E3_rerank"] = RerankedRetriever(HybridRetriever(
         CHUNKS_FILE, INDEX_FILE, emb,
         use_bm25=True, use_year_filter=True), reranker).search
+
+    # ---- E5 上下文增强索引（Anthropic Contextual Retrieval 适配） ----
+    # 每块前置大模型生成的语境句；嵌入与 BM25 均使用增强文本
+    ctx_chunks = DATA / "chunks" / "contextual.jsonl"
+    ctx_index = DATA / "index" / "contextual.npz"
+    if ctx_chunks.exists() and ctx_index.exists():
+        pipes["E5_hybrid_year"] = HybridRetriever(
+            ctx_chunks, ctx_index, emb,
+            use_bm25=True, use_year_filter=True).search
+        pipes["E5_rerank"] = RerankedRetriever(HybridRetriever(
+            ctx_chunks, ctx_index, emb,
+            use_bm25=True, use_year_filter=True), reranker).search
     return pipes
 
 

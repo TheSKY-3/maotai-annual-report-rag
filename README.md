@@ -39,7 +39,7 @@
 
 **50 题黄金评测集，全部数字可复现**（评测脚本见 `scripts/`，原始结果见 `results/`）。
 
-### 检索层：出处页命中率 hit@5 从 30% 提升到 62%
+### 检索层：出处页命中率 hit@5 从 30% 提升到 66%
 
 每一步都有对照实验：
 
@@ -48,12 +48,13 @@
 | 基线 | 500字窗口切块 + 纯向量检索 | 30% | — |
 | E1 | 更小块/结构化切块 | 22~26% | ❌ 更细反而更差（页级出处目标下是覆盖面问题） |
 | E2 | 混合检索（BM25+向量 RRF）+ 年份识别过滤 | 56% | 年份正则 +16pp，全项目性价比最高 |
-| E3 | bge-reranker 精排（top20→top5） | **62%** | +6pp，代价是每次查询约 2 秒 CPU 推理 |
+| E3 | bge-reranker 精排（top20→top5） | 62% | +6pp，代价是每次查询约 2 秒 CPU 推理 |
+| E5 | 语境增强索引：大模型给每块写一句"说明书" | **66%** | +4pp，取代精排（E5+精排反而 64%），建库约 3 元 |
 
 <div align="center">
 <img src="report/figures/fig_experiments.png" width="720" alt="检索策略对比"/>
 
-*七种检索策略对照：更细的切块反而更差；两个便宜的优化带来翻倍效果*
+*九种检索策略对照：更细的切块反而更差；混合检索+年份、语境增强索引带来翻倍效果*
 
 </div>
 
@@ -79,7 +80,7 @@
 <div align="center">
 <img src="report/figures/fig_pipeline.png" width="720" alt="RAG 工作流程"/>
 
-*先查资料，再回答：离线建库做一次，在线问答每次提问。橙色三步（年份识别 / 混合检索 / 精排）即 E2/E3 的核心增强，对应上表 30% → 62% 的提升。*
+*先查资料，再回答：离线建库做一次，在线问答每次提问。橙色框是核心增强——离线的"语境句生成"为 E5，在线的年份识别/混合检索为 E2，对应上表 30% → 66% 的提升。*
 
 </div>
 
@@ -116,13 +117,17 @@ python scripts/download_data.py
 python scripts/extract_text.py
 python scripts/build_index.py
 
-# 3. 本地生成模型（可选，用于完整问答）
+# 3. 语境增强索引（可选，推荐：检索 62%→66%，需 DEEPSEEK_API_KEY，约 3 元）
+#    set DEEPSEEK_API_KEY=你的key
+python scripts/build_contextual_chunks.py
+
+# 4. 本地生成模型（可选，用于完整问答）
 #    安装 Ollama 后导入 Qwen3-4B（见 ollama.Modelfile）
 
-# 4. 启动问答界面
+# 5. 启动问答界面
 python -m streamlit run src/app.py
 
-# 5. 复现评测
+# 6. 复现评测
 python scripts/evaluate_retrieval.py      # 检索层
 python scripts/evaluate_answers.py --name final_local   # 答案层（本地模型）
 # 云端对比（可选）：
@@ -135,7 +140,7 @@ python scripts/evaluate_answers.py --name final_local   # 答案层（本地模�
 ## 仓库结构
 
 ```
-src/          核心代码：切块/索引/混合检索/精排/问答/Streamlit 界面
+src/          核心代码：切块/索引/混合检索/语境增强/精排/问答/Streamlit 界面
 scripts/      下载、建索引、评测、画图等一次性脚本
 data/gold/    50 题黄金评测集（问题+标准答案+出处页码）
 results/      全部评测结果 JSON（论文里的每个数字都出自这里）

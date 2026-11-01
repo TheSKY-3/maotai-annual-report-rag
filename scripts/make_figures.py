@@ -20,42 +20,43 @@ RESULTS = Path("results")
 
 
 def fig_pipeline() -> None:
-    """RAG 流程示意图：离线建库 + 在线问答两条流水线（含 E2/E3 增强）。"""
+    """RAG 流程示意图：离线建库 + 在线问答两条流水线（E2 检索增强 + E5 语境增强）。"""
     fig, ax = plt.subplots(figsize=(11, 4.4))
     ax.axis("off")
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
 
-    # (x, y0, 标签, 颜色)；上排离线 y=0.64，下排在线 y=0.08
+    # (x, y0, 标签, 颜色)；上排离线 y=0.64，下排在线 y=0.08，4 列等宽
+    xs = (0.015, 0.265, 0.515, 0.765)
+    w = 0.20
     boxes = [
-        (0.015, 0.64, "年报 PDF\n×4 份\n(556 页)", "#f5f5f5"),
-        (0.215, 0.64, "① 切块\n约500字/块\n(1761 块)", "#dce9f7"),
-        (0.415, 0.64, "② 向量化\nBGE 中文模型\n存成块库(文本+向量)", "#dce9f7"),
-        (0.015, 0.08, "③ 用户提问\n(自然语言)", "#fdf3d7"),
-        (0.215, 0.08, "④ 年份识别\n正则限定该年年报\n(E2 · +16pp)", "#fbe3c8"),
-        (0.415, 0.08, "⑤ 混合检索\n向量 + BM25 关键词\nRRF 融合取前20 (E2)", "#fbe3c8"),
-        (0.615, 0.08, "⑥ 精排\nbge-reranker\ntop20 → top5 (E3)", "#fbe3c8"),
-        (0.815, 0.08, "⑦ 大模型生成\n问题 + 5块资料\n→ 答案 + 出处页码", "#e8f3e2"),
+        (xs[0], 0.64, "年报 PDF\n×4 份\n(556 页)", "#f5f5f5"),
+        (xs[1], 0.64, "① 切块\n约500字/块\n(1761 块)", "#dce9f7"),
+        (xs[2], 0.64, "② 语境句生成\n大模型给每块写\n一句\"说明书\" (E5)", "#fbe3c8"),
+        (xs[3], 0.64, "③ 向量化+建索引\nBGE 中文模型\n文本=语境句+原文", "#dce9f7"),
+        (xs[0], 0.08, "④ 用户提问\n(自然语言)", "#fdf3d7"),
+        (xs[1], 0.08, "⑤ 年份识别\n正则限定该年年报\n(E2 · +16pp)", "#fbe3c8"),
+        (xs[2], 0.08, "⑥ 混合检索\n向量 + BM25 关键词\nRRF 融合取前5 (E2)", "#fbe3c8"),
+        (xs[3], 0.08, "⑦ 大模型生成\n问题 + 5块资料\n→ 答案 + 出处页码", "#e8f3e2"),
     ]
     for x, y0, label, color in boxes:
-        ax.add_patch(plt.Rectangle((x, y0), 0.17, 0.26, fc=color,
+        ax.add_patch(plt.Rectangle((x, y0), w, 0.26, fc=color,
                                    ec="#555", lw=1.2, zorder=2))
-        ax.text(x + 0.085, y0 + 0.13, label, ha="center", va="center",
+        ax.text(x + w / 2, y0 + 0.13, label, ha="center", va="center",
                 fontsize=9.8, zorder=3)
     # 上排内部箭头 + 下排内部箭头
-    for x0 in (0.185, 0.385):
-        ax.annotate("", xy=(x0 + 0.03, 0.77), xytext=(x0, 0.77),
+    for x0 in xs[:3]:
+        ax.annotate("", xy=(x0 + w + 0.01, 0.77), xytext=(x0 + w, 0.77),
                     arrowprops=dict(arrowstyle="->", lw=1.6, color="#333"))
-    for x0 in (0.185, 0.385, 0.585, 0.785):
-        ax.annotate("", xy=(x0 + 0.03, 0.21), xytext=(x0, 0.21),
+        ax.annotate("", xy=(x0 + w + 0.01, 0.21), xytext=(x0 + w, 0.21),
                     arrowprops=dict(arrowstyle="->", lw=1.6, color="#333"))
-    # 块库 → 混合检索（两条流水线的交汇）
-    ax.annotate("", xy=(0.50, 0.34), xytext=(0.50, 0.64),
+    # 索引 → 混合检索（两条流水线的交汇）
+    ax.annotate("", xy=(xs[2] + w / 2, 0.34), xytext=(xs[3] + w / 2, 0.64),
                 arrowprops=dict(arrowstyle="->", lw=1.6, color="#333"))
-    ax.text(0.515, 0.49, "块库供两路检索", ha="left", va="center",
+    ax.text(xs[3] + w / 2 + 0.01, 0.49, "索引供检索", ha="left", va="center",
             fontsize=8.5, color="#666", zorder=3)
-    ax.text(0.015, 0.95, "离线建库（做一次）", ha="left", va="bottom",
-            fontsize=10, color="#666")
+    ax.text(0.015, 0.95, "离线建库（做一次，语境句生成约花 3 元）", ha="left",
+            va="bottom", fontsize=10, color="#666")
     ax.text(0.015, 0.40, "在线问答（每次提问）", ha="left", va="bottom",
             fontsize=10, color="#666")
     fig.suptitle("RAG 工作流程：先查资料，再回答", fontsize=13, y=0.99)
@@ -102,6 +103,8 @@ def fig_experiments() -> None:
         ("E2_hybrid", "混合检索\nBM25+向量"),
         ("E2_hybrid_year", "混合检索\n+年份过滤"),
         ("E3_rerank", "再叠加\n精排"),
+        ("E5_hybrid_year", "E5 语境增强\n混合+年份"),
+        ("E5_rerank", "E5 语境增强\n+精排"),
     ]
     names = [p[0] for p in pipelines]
     labels = [p[1] for p in pipelines]
@@ -130,7 +133,7 @@ def fig_experiments() -> None:
                         f"{v:.0f}%", ha="center", fontsize=9)
     ax.set_xticks(list(x), labels, fontsize=9)
     ax.set_ylabel("百分比 (%)")
-    ax.set_title("检索策略对比：基线 30% 最终 62%")
+    ax.set_title("检索策略对比：基线 30% 最终 66%（E5 语境增强）")
     ax.set_ylim(0, max(v for v in hit if v) + 12)
     ax.legend()
     fig.savefig(FIG_DIR / "fig_experiments.png", dpi=160, bbox_inches="tight")
