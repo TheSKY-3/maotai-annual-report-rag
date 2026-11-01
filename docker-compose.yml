@@ -1,0 +1,18 @@
+# 茅台财报 RAG 问答系统：一条命令起全套（网页 + API）
+#
+#   1) （可选）云端生成：把 DeepSeek Key 写进同目录 .env 文件
+#      DEEPSEEK_API_KEY=sk-xxxx
+#      （不配 Key 也能跑：网页里粘贴自己的 Key，或切本地 Ollama——
+#        Ollama 需另行部署并挂载，见 README）
+#   2) docker compose up --build
+#   3) 网页 http://localhost:8501 · API 文档 http://localhost:8000/docs
+services:
+  maotai-rag:
+    build: .
+    container_name: maotai-rag
+    ports:
+      - "8501:8501"   # Streamlit 网页
+      - "8000:8000"   # FastAPI（/docs 可交互调试）
+    environment:
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+    restart: unless-stopped

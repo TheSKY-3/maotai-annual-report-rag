@@ -1,0 +1,21 @@
+# 密钥与本地环境绝不进镜像
+.env
+*.key
+.venv/
+.git/
+.github/
+.zcode/
+logs/
+*.bundle
+__pycache__/
+*.pyc
+
+# 原始 PDF 与一次性重建产物体积大且可由脚本重新获得
+data/raw_pdfs/
+data/extracted_tables/
+data/extracted_tables_plus/
+data/db/
+data/models/
+
+# 报告构建产物
+report/_build/

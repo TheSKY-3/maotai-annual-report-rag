@@ -13,6 +13,8 @@
 ![Embedding](https://img.shields.io/badge/Embedding-BGE--small--zh--v1.5-orange)
 ![LLM](https://img.shields.io/badge/LLM-Qwen3--4B_%7C_DeepSeek-orange)
 ![UI](https://img.shields.io/badge/UI-Streamlit-FF4B4B?logo=streamlit&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-compose_up_--build-2496ED?logo=docker&logoColor=white)
+![API](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white)
 
 <img src="docs/screenshots/chat_citations.png" width="720" alt="问答界面"/>
 
@@ -27,7 +29,7 @@
 - [这是什么](#这是什么)
 - [功能一览](#功能一览)
 - [系统架构](#系统架构)
-- [快速开始](#快速开始)
+- [快速开始：Docker / 源码 / API](#快速开始)
 - [效果如何：50 题黄金集可评测](#效果如何50-题黄金集可评测)
 - [仓库结构](#仓库结构)
 - [技术报告](#技术报告)
@@ -54,8 +56,8 @@
 
 ### 💬 对话问答，出处跟着答案走
 
-直接用自然语言提问；每条答案下方自动挂出**出处档案卡**（年份、页码、
-相关度），点开即可看到所引用的原文片段，十秒内完成核对。
+直接用自然语言提问；每条答案下方自动挂出**出处档案卡**（年份、页码），
+点开即可看到所引用的原文片段，十秒内完成核对。
 
 <div align="center">
 <img src="docs/screenshots/source_card.png" width="720" alt="出处档案卡"/>
@@ -64,6 +66,26 @@
 回答之后系统还会推荐 3 个**接着问**的问题（追问），点击即问，不用想
 下一句怎么措辞。另外，问题里直接写"P6"或"第6页"会触发**页码直达**：
 跳过语义检索，取该页原文回答。
+
+### 🧠 追问有记忆
+
+问过"2024年末国内经销商有多少家？"之后，直接追问**"那净利润呢？"**——
+系统自动把追问补全成"2024年净利润是多少？"，继承上一问的年份与主体，
+不用每次都问完整句子：
+
+<div align="center">
+<img src="docs/screenshots/chat_memory.png" width="720" alt="多轮追问记忆"/>
+</div>
+
+### 🔑 自带 Key 即用，也能完全离线
+
+侧边栏一键切换生成模型：粘贴你自己的 **DeepSeek API Key**（只保存在
+当前浏览器会话，不上传任何第三方）即刻云端问答，无需任何本地模型；
+选**本地 Ollama**（Qwen3-4B）则完全离线、零成本：
+
+<div align="center">
+<img src="docs/screenshots/settings_key.png" width="300" alt="侧边栏模型设置"/>
+</div>
 
 ### ⚖️ 双年报对比模式
 
@@ -81,15 +103,6 @@
 <img src="docs/screenshots/refusal.png" width="720" alt="拒答示意"/>
 </div>
 
-### 🖥️ 本地 / 云端，一键切换
-
-同一套检索管线，生成模型可选本机 Ollama（Qwen3-4B，离线、零成本）或
-云端 DeepSeek（更准）。切换只需改环境变量，界面完全一致：
-
-| 本地 Qwen3-4B | 云端 DeepSeek-Flash |
-|---|---|
-| ![本地](docs/screenshots/local_ui.png) | ![云端](docs/screenshots/cloud_ui.png) |
-
 ## 系统架构
 
 <div align="center">
@@ -101,8 +114,22 @@
 
 ## 快速开始
 
+### 方式一：Docker 一键起（网页 + API）
+
 ```bash
-# 0. 环境：Windows / Python 3.12（检索与嵌入 CPU 即可，显卡仅加速本地生成）
+docker compose up --build
+```
+
+- 网页界面：http://localhost:8501 （首次启动自动下载年报并建索引，约 3-5 分钟）
+- API 文档：http://localhost:8000/docs
+- （可选）云端生成：在项目根目录建 `.env` 写入 `DEEPSEEK_API_KEY=sk-…`，
+  或启动后直接在网页**侧边栏粘贴自己的 Key**。不配 Key 也可配合
+  本地 Ollama 使用（需自行安装并映射模型目录进容器）。
+
+### 方式二：源码运行
+
+```bash
+# 0. 环境：Windows / Linux / Python 3.12（检索与嵌入 CPU 即可）
 python -m venv .venv && .venv\Scripts\activate
 pip install -r requirements.txt
 
@@ -113,25 +140,37 @@ python scripts/download_data.py
 python scripts/extract_text.py
 python scripts/build_index.py
 
-# 3. 语境增强索引（可选，推荐：检索 62%→66%，需 DEEPSEEK_API_KEY，约 3 元）
-#    set DEEPSEEK_API_KEY=你的key
-python scripts/build_contextual_chunks.py
-
-# 4. 本地生成模型（可选，用于完整问答）
-#    安装 Ollama 后导入 Qwen3-4B（见 ollama.Modelfile）
-
-# 5. 启动问答界面
+# 3. 启动问答界面（侧边栏粘贴 DeepSeek Key 即云端问答；
+#    或选本地 Ollama qwen3:4b 完全离线）
 python -m streamlit run src/app.py
 
-# 6. 复现评测
+# 4. 语境增强索引（可选，推荐：检索 62%→66%，需 DeepSeek Key，约 3 元）
+python scripts/build_contextual_chunks.py
+
+# 5. 复现评测
 python scripts/evaluate_retrieval.py      # 检索层
 python scripts/evaluate_answers.py --name final_local   # 答案层（本地模型）
-# 云端对比（可选）：
-#   set RAG_BASE_URL=https://api.deepseek.com/v1
-#   set RAG_MODEL=deepseek-flash
-#   set RAG_API_KEY=你的key
-#   python scripts/evaluate_answers.py --name final_cloud
 ```
+
+### 也可以做成 API 服务
+
+```bash
+uvicorn src.api:app --port 8000     # Swagger 交互文档: /docs
+```
+
+```bash
+# 单轮问答
+curl -X POST localhost:8000/ask -H "Content-Type: application/json" \
+  -d '{"question": "2024年末国内经销商有多少家？"}'
+
+# 多轮追问：回传 history，"那净利润呢？"自动补全为"2024年净利润是多少？"
+curl -X POST localhost:8000/ask -H "Content-Type: application/json" \
+  -d '{"question": "那净利润呢？", "history": [{"role": "user", "content": "2024年末国内经销商有多少家？"}, {"role": "assistant", "content": "2024年末国内经销商有2,143家。"}]}'
+```
+
+返回 `answer`（含出处标注）、`sources`（页码级出处数组）、`refused`
+（是否拒答）与 `standalone_question`（多轮改写结果）；请求带 `"api_key"`
+字段即可用你自己的 DeepSeek Key。
 
 ## 效果如何：50 题黄金集可评测
 
@@ -173,8 +212,9 @@ python scripts/evaluate_answers.py --name final_local   # 答案层（本地模�
 ## 仓库结构
 
 ```
-src/          核心代码：切块/索引/混合检索/语境增强/问答/Streamlit 界面
+src/          核心代码：切块/索引/混合检索/语境增强/问答/Streamlit 界面/FastAPI 服务
 scripts/      下载、建索引、评测、画图等一次性脚本
+docker/       容器入口脚本（Dockerfile 与 docker-compose.yml 在根目录）
 data/gold/    50 题黄金评测集（问题+标准答案+出处页码）
 results/      全部评测结果 JSON（每个数字都出自这里）
 report/       通俗中文技术报告（LaTeX 源码 + 图表）

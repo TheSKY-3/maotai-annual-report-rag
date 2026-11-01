@@ -31,6 +31,10 @@ QUERY_INSTRUCTION = "为这个句子生成表示以用于检索相关文章："
 OLLAMA_BASE_URL = "http://127.0.0.1:11434/v1"
 GEN_MODEL = "qwen3:4b"  # 以实际部署的模型为准
 
+# 云端 DeepSeek（可选）：界面侧边栏粘贴自己的 Key 即用，或设环境变量
+DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1"
+DEEPSEEK_MODEL = "deepseek-flash"
+
 COLLECTION = "moutai"
 TOP_K = 5
 # E6 拒答自动重试：首轮拒答后扩充检索再问一次的块数

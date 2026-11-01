@@ -78,6 +78,61 @@ REFUSE_RE = re.compile(
     r"|无法(从|根据|凭).{0,12}(找到|获取|确定|回答)"
     r"|未披露|没有披露|未提供|无法提供|无法确定|无法给出|无从得知")
 
+# 多轮记忆：追问改写提示词。省调用启发式——已含年份且足够长的问题视为
+# 独立完整（如追问按钮生成的"2023年末经销商有多少家"），直接检索。
+FOLLOWUP_REWRITE_PROMPT = """你在财报问答系统里负责把用户的追问改写成独立完整的问题（补全省略的年份、主体、指标）。
+
+对话历史（从早到近）：
+{history}
+
+用户当前问题：{question}
+
+规则：
+1. 若当前问题本身已完整，原样输出；
+2. 若是追问（如"那净利润呢""2023年呢"），结合上文补全成完整问题；
+3. 只输出改写后的问题本身，一行，不要任何解释。
+
+/no_think"""
+
+_YEAR_RE = re.compile(r"20\d{2}")
+
+
+def rewrite_followup(client: OpenAI, model: str, history: list[dict],
+                     question: str) -> str:
+    """把依赖上文的追问改写成独立问题；无历史/已完整/失败时原样返回。
+
+    history 为 [{"role": "user"|"assistant", "content": str}, ...]。
+    """
+    if not history:
+        return question
+    if _YEAR_RE.search(question) and len(question) >= 12:
+        return question
+    lines = []
+    for h in history[-3:]:
+        who = "用户" if h["role"] == "user" else "助手"
+        lines.append(f"{who}: {h['content'][:160]}")
+    messages = [{"role": "user",
+                 "content": FOLLOWUP_REWRITE_PROMPT.format(
+                     history="\n".join(lines), question=question)}]
+    try:
+        resp = client.chat.completions.create(
+            model=model, messages=messages,
+            temperature=0.0, max_tokens=900)
+        out = (resp.choices[0].message.content or "").strip()
+        if not out:
+            # 思考模式偶发未被 /no_think 关闭：配额被思考吃尽导致正文为空，
+            # 翻倍配额重试一次（E5 语境句生成时已验证该现象）
+            resp = client.chat.completions.create(
+                model=model, messages=messages,
+                temperature=0.0, max_tokens=1800)
+            out = (resp.choices[0].message.content or "").strip()
+    except Exception:  # noqa: BLE001
+        return question
+    out = out.splitlines()[0].strip().strip("`\"'“” ") if out else ""
+    if 4 <= len(out) <= 60 and not out.startswith("/"):
+        return out
+    return question
+
 
 def build_context(hits: list[dict]) -> str:
     return "\n\n".join(
@@ -140,17 +195,19 @@ def ungrounded_numbers(answer: str, context: str) -> list[str]:
     return bad
 
 
-def answer_question(client: OpenAI, search_fn, question: str, model: str,
-                    search_kwargs: dict | None = None
-                    ) -> tuple[str, list[dict]]:
-    """检索+生成一问；返回 (答案文本, 实际使用的检索片段)。
+def _answer_core(client: OpenAI, search_fn, question: str, model: str,
+                 search_kwargs: dict | None = None,
+                 history: list[dict] | None = None
+                 ) -> tuple[str, list[dict], str]:
+    """检索+生成一问；返回 (答案, 实际使用的片段, 改写后的独立问题)。
 
     search_kwargs 传给检索函数的附加参数（如 {"year": 2024}），重试时保持一致。
+    多轮：history 非空时先把追问改写成独立问题再检索（多轮记忆）。
     E6：首轮命中拒答语义时，扩检索宽松重问一次（RAG_REFUSAL_RETRY=0 关）。
     E8：回答里有语境中找不到的数字（含单位换算双向）时，让模型对照原文
     修正一次——专治"元/万元"抄错一万倍（RAG_GROUNDING=0 关）。
     """
-    def finish(text: str, hits: list[dict]) -> tuple[str, list[dict]]:
+    def finish(text: str, hits: list[dict]) -> str:
         if grounding_enabled() and text:
             bad = ungrounded_numbers(text, build_context(hits))
             if bad:
@@ -160,25 +217,62 @@ def answer_question(client: OpenAI, search_fn, question: str, model: str,
                         bad_nums="\n".join(f"- {n}" for n in bad),
                         context=build_context(hits), answer=text))
                 if fixed:
-                    return fixed, hits
-        return text, hits
+                    return fixed
+        return text
 
     skw = search_kwargs or {}
-    hits = search_fn(question, top_k=TOP_K, **skw)
+    standalone = rewrite_followup(client, model, history or [], question)
+    hits = search_fn(standalone, top_k=TOP_K, **skw)
     text = _complete(client, model,
                      PROMPT_TEMPLATE.format(context=build_context(hits),
-                                            question=question))
+                                            question=standalone))
     if retry_enabled() and REFUSE_RE.search(text):
-        more = search_fn(question, top_k=RETRY_TOP_K, **skw)
+        more = search_fn(standalone, top_k=RETRY_TOP_K, **skw)
         retry_text = _complete(client, model,
                                RETRY_PROMPT_TEMPLATE.format(
                                    context=build_context(more),
-                                   question=question))
+                                   question=standalone))
         if retry_text:
             # 仍拒答则保留首轮片段（拒答本就不该带出处），答上了则换用扩充片段
-            return finish(retry_text,
-                          hits if REFUSE_RE.search(retry_text) else more)
-    return finish(text, hits)
+            return (finish(retry_text,
+                           hits if REFUSE_RE.search(retry_text) else more),
+                    more if not REFUSE_RE.search(retry_text) else hits,
+                    standalone)
+    return finish(text, hits), hits, standalone
+
+
+def answer_question(client: OpenAI, search_fn, question: str, model: str,
+                    search_kwargs: dict | None = None,
+                    history: list[dict] | None = None
+                    ) -> tuple[str, list[dict]]:
+    """检索+生成一问；返回 (答案文本, 实际使用的检索片段)。
+
+    history 传 [{"role", "content"}, ...] 即启用多轮记忆：追问会被改写成
+    独立问题（如"那净利润呢"→"2024年茅台归母净利润是多少"）再检索。
+    """
+    text, hits, _ = _answer_core(client, search_fn, question, model,
+                                 search_kwargs, history)
+    return text, hits
+
+
+def answer_with_meta(client: OpenAI, search_fn, question: str, model: str,
+                     search_kwargs: dict | None = None,
+                     history: list[dict] | None = None) -> dict:
+    """同 answer_question，但返回 API 友好的完整元信息（含拒答判定与出处）。"""
+    text, hits, standalone = _answer_core(client, search_fn, question, model,
+                                          search_kwargs, history)
+    return {
+        "question": question,
+        "standalone_question": standalone,
+        "answer": text,
+        "refused": bool(REFUSE_RE.search(text)),
+        "sources": [
+            {"year": h["year"], "page": h["page"],
+             "score": round(float(h["score"]), 4),
+             "snippet": h["text"][:200]}
+            for h in hits
+        ],
+    }
 
 
 def main() -> None:

@@ -1,0 +1,2 @@
+# shell 脚本必须 LF，否则 Linux 容器里 "bad interpreter"
+*.sh text eol=lf
