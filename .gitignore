@@ -7,6 +7,8 @@ __pycache__/
 # 数据产物（可由脚本重新生成或下载）
 data/raw_pdfs/
 data/extracted/
+data/extracted_tables/
+data/extracted_tables_plus/
 data/db/
 data/models/
 data/index/

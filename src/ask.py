@@ -53,6 +53,24 @@ RETRY_PROMPT_TEMPLATE = """你是贵州茅台年报问答助手。请仅根据�
 
 回答：/no_think"""
 
+GROUNDING_PROMPT_TEMPLATE = """你是贵州茅台年报问答助手。你刚才的回答里，下面这些数字在所引用的年报片段中找不到——可能抄错了数字或计量单位（元/万元/亿元相差一万倍），也可能是由片段数字计算得出的：
+
+{bad_nums}
+
+请对照下面的年报片段核对，输出修正后的完整回答：
+1. 若是抄写或单位错误，请改正——数字必须与片段中完全一致；
+2. 若确由片段中的数字计算得出，请保留该数字并在其后注明"（计算得出）"；
+3. 保持原有出处标注格式 [来源: 2024年报 P8]；其余内容尽量不要改动。
+
+--- 年报片段 ---
+{context}
+--- 片段结束 ---
+
+原回答：
+{answer}
+
+修正后的回答：/no_think"""
+
 # 拒答判定不限于标准句式：模型常换说法（"未披露 X""无法据此列出"），
 # 这些同样是拒答而非编造。仅匹配短语族，不会把给出数字的正常作答误判。
 REFUSE_RE = re.compile(
@@ -81,13 +99,70 @@ def retry_enabled() -> bool:
     return os.environ.get("RAG_REFUSAL_RETRY", "1") != "0"
 
 
+def grounding_enabled() -> bool:
+    return os.environ.get("RAG_GROUNDING", "1") != "0"
+
+
+_NUM_RE = re.compile(r"[0-9][0-9,，]*(?:\.[0-9]+)?")
+_CITE_RE = re.compile(r"\[来源[^\]]*\]")
+
+
+def _flat_digits(s: str) -> str:
+    return re.sub(r"\s+", "", s.replace(",", "").replace("，", ""))
+
+
+def ungrounded_numbers(answer: str, context: str) -> list[str]:
+    """回答中在语境（含单位换算双向）里找不到的数字，按出现顺序去重。
+
+    单位换算：answer 的 n 亿元 ↔ context 的 n×1e8 元，反之亦然——
+    E4 实测小模型最常见的粗心正是"元/万元"抄错一万倍。
+    """
+    ans = _CITE_RE.sub("", answer)  # 出处标注里的页码/年份不算数
+    hay = _flat_digits(context)
+    bad: list[str] = []
+    seen: set[str] = set()
+    for m in _NUM_RE.findall(ans):
+        n = m.replace(",", "").replace("，", "")
+        if len(n) < 2 or n in seen:
+            continue
+        seen.add(n)
+        try:
+            v = float(n)
+        except ValueError:
+            continue
+        forms = {n}
+        for f in (v * 1e4, v * 1e8, v / 1e4, v / 1e8):
+            # 小于 1 的换算形态会四舍五入成 "0"（永在原文中）→ 假接地，跳过
+            if f >= 1:
+                forms.add(f"{f:.2f}".rstrip("0").rstrip("."))
+        if not any(x in hay for x in forms):
+            bad.append(n)
+    return bad
+
+
 def answer_question(client: OpenAI, search_fn, question: str, model: str,
                     search_kwargs: dict | None = None
                     ) -> tuple[str, list[dict]]:
     """检索+生成一问；返回 (答案文本, 实际使用的检索片段)。
 
     search_kwargs 传给检索函数的附加参数（如 {"year": 2024}），重试时保持一致。
+    E6：首轮命中拒答语义时，扩检索宽松重问一次（RAG_REFUSAL_RETRY=0 关）。
+    E8：回答里有语境中找不到的数字（含单位换算双向）时，让模型对照原文
+    修正一次——专治"元/万元"抄错一万倍（RAG_GROUNDING=0 关）。
     """
+    def finish(text: str, hits: list[dict]) -> tuple[str, list[dict]]:
+        if grounding_enabled() and text:
+            bad = ungrounded_numbers(text, build_context(hits))
+            if bad:
+                fixed = _complete(
+                    client, model,
+                    GROUNDING_PROMPT_TEMPLATE.format(
+                        bad_nums="\n".join(f"- {n}" for n in bad),
+                        context=build_context(hits), answer=text))
+                if fixed:
+                    return fixed, hits
+        return text, hits
+
     skw = search_kwargs or {}
     hits = search_fn(question, top_k=TOP_K, **skw)
     text = _complete(client, model,
@@ -101,8 +176,9 @@ def answer_question(client: OpenAI, search_fn, question: str, model: str,
                                    question=question))
         if retry_text:
             # 仍拒答则保留首轮片段（拒答本就不该带出处），答上了则换用扩充片段
-            return (retry_text, hits if REFUSE_RE.search(retry_text) else more)
-    return text, hits
+            return finish(retry_text,
+                          hits if REFUSE_RE.search(retry_text) else more)
+    return finish(text, hits)
 
 
 def main() -> None:

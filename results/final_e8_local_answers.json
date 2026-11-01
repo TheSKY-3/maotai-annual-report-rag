@@ -1,0 +1,641 @@
+{
+ "summary": {
+  "model": "qwen3:4b",
+  "有答案题": {
+   "n": 45,
+   "answer_correct率": 0.3778,
+   "cite_correct率": 0.5111,
+   "false_refusal率": 0.0889
+  },
+  "无答案题": {
+   "n": 5,
+   "refusal_correct率": 1.0
+  },
+  "cross_page": {
+   "n": 10,
+   "answer_correct率": 0.1,
+   "cite_correct率": 0.3,
+   "false_refusal率": 0.1
+  },
+  "cross_year": {
+   "n": 5,
+   "answer_correct率": 0.4,
+   "cite_correct率": 0.2,
+   "false_refusal率": 0.2
+  },
+  "fact": {
+   "n": 30,
+   "answer_correct率": 0.4667,
+   "cite_correct率": 0.6333,
+   "false_refusal率": 0.0667
+  }
+ },
+ "rows": [
+  {
+   "id": 1,
+   "type": "fact",
+   "question": "茅台2022年实现营业总收入多少？",
+   "answer": "茅台2022年实现营业总收入1,275.54亿元[来源: 2024年报 P8]。",
+   "refused": false,
+   "num_hit": 3,
+   "num_total": 5,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 2,
+   "type": "fact",
+   "question": "i茅台数字营销平台2022年上线后表现如何？注册用户和销售收入是多少？",
+   "answer": "i茅台数字营销平台2022年上线后表现良好，截至2022年末注册用户超过3000万，实现销售收入118.83亿元。[来源: 2022年报 P7]",
+   "refused": false,
+   "num_hit": 7,
+   "num_total": 7,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 3,
+   "type": "fact",
+   "question": "2022年茅台系列酒（其他系列酒）的营业收入是多少？毛利率多少？",
+   "answer": "2022年茅台系列酒（其他系列酒）的营业收入是15,938,647,070.77元，毛利率是77.22%。[来源: 2022年报 P9]",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 7,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 4,
+   "type": "fact",
+   "question": "2022年茅台酒基酒的设计产能是多少吨？",
+   "answer": "根据年报内容，2022年茅台酒基酒的设计产能是42,742.50吨。[来源: 2022年报 P14]",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 6,
+   "answer_correct": false,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 5,
+   "type": "fact",
+   "question": "2022年末茅台在职员工一共有多少人？",
+   "answer": "根据年报内容，2022年末茅台在职员工一共有31,413人。[来源: 2022年报 P30]",
+   "refused": false,
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 6,
+   "type": "fact",
+   "question": "茅台2023年营业总收入是多少？",
+   "answer": "1,505.60亿元 [来源: 2023年报 P8]。",
+   "refused": false,
+   "num_hit": 3,
+   "num_total": 5,
+   "answer_correct": false,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 7,
+   "type": "fact",
+   "question": "2023年度茅台的分红方案是每10股派多少现金红利？",
+   "answer": "根据年报内容，2023年度茅台的分红方案是每10股派发现金红利308.76元。[来源: 2023年报 P2]",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 8,
+   "type": "fact",
+   "question": "2023年i茅台数字营销平台的线上销售收入是多少？",
+   "answer": "根据年报内容，2023年“i茅台”数字营销平台的线上销售收入为2,237,432.35万元。[来源: 2023年报 P17]",
+   "refused": false,
+   "num_hit": 3,
+   "num_total": 5,
+   "answer_correct": false,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 9,
+   "type": "fact",
+   "question": "2023年茅台酒的产量和销量分别是多少吨？",
+   "answer": "2023年茅台酒的产量是57,204.11吨，销量是42,109.50吨。[来源: 2023年报 P15]",
+   "refused": false,
+   "num_hit": 6,
+   "num_total": 8,
+   "answer_correct": false,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 10,
+   "type": "fact",
+   "question": "2023年茅台的销售费用是多少？比上一年涨了多少？",
+   "answer": "根据年报内容，2023年茅台的销售费用为5,384,603,095.58元（销售商品），加上其他销售商品的费用，如贵州茅台酒厂（集团）酒店经营管理有限公司销售商品费用38,081,330.95元，中国贵州茅台酒厂贸易(香港)有限公司销售商品费用23,478,824.28元，中国贵州茅台酒厂（集团）文化旅游有限责任公司销售商品费用15,409,493.26元，上海贵州茅台实业有限公司销售商品费用13,524,966.35元，贵州茅台酒厂（集团）三亚投资实业有限公司销售商品费用12,807,170.94元，贵州遵义茅台机场有限责任公司销售商品费用8,999,745.12元，北京茅台贸易有限责任公司销售商品费用6,364,991.14元。这些费用合计为5,514,236,727.27元（计算得出）。比上一年涨了272,733,703.37元（计算得出）。[来源: 2023年报 P130]",
+   "refused": false,
+   "num_hit": 1,
+   "num_total": 3,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 11,
+   "type": "fact",
+   "question": "2023年末茅台在职员工总数是多少人？",
+   "answer": "根据提供的年报片段内容，无法确定2023年末贵州茅台在职员工总数。年报中未提及具体员工人数数据，所有片段均未涉及员工总数的直接说明。因此，根据年报内容无法回答该问题。",
+   "refused": true,
+   "num_hit": 1,
+   "num_total": 4,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": true
+  },
+  {
+   "id": 12,
+   "type": "fact",
+   "question": "茅台1935这款产品2023年卖得怎么样？",
+   "answer": "根据年报内容，茅台1935在2023年成为营收百亿级大单品，上市仅两年即实现这一成就。[来源: 2023年报 P8]",
+   "refused": false,
+   "num_hit": 3,
+   "num_total": 3,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 13,
+   "type": "fact",
+   "question": "茅台2024年营业总收入是多少？",
+   "answer": "茅台2024年营业总收入为人民币17,089,915.23万元。[来源: 2024年报 P56]",
+   "refused": false,
+   "num_hit": 1,
+   "num_total": 5,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 14,
+   "type": "fact",
+   "question": "2024年贵州茅台归属于上市公司股东的净利润是多少？",
+   "answer": "2024年贵州茅台归属于上市公司股东的净利润是25,400,594,303.11元。[来源: 2024年报 P6]",
+   "refused": false,
+   "num_hit": 1,
+   "num_total": 2,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 15,
+   "type": "fact",
+   "question": "2024年度茅台的利润分配预案是每10股派多少现金红利？",
+   "answer": "2024年度茅台的利润分配预案是每10股派276.24元现金红利。[来源: 2024年报 P2]",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 16,
+   "type": "fact",
+   "question": "2024年末茅台国内经销商有多少家？当年有什么增减变化？",
+   "answer": "2024年末茅台国内经销商有2,143家，报告期内增加数量为67家，减少数量为4家。[来源: 2024年报 P16]",
+   "refused": false,
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 17,
+   "type": "fact",
+   "question": "2024年茅台酒的毛利率是多少？",
+   "answer": "2024年茅台酒的毛利率是94.06%。[来源: 2024年报 P16]",
+   "refused": false,
+   "num_hit": 3,
+   "num_total": 5,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 18,
+   "type": "fact",
+   "question": "2024年茅台酒基酒设计产能是多少？有新增产能吗？",
+   "answer": "2024年茅台酒基酒设计产能为44,595.00吨，有新增产能，同比新增基酒产能1,800.00吨。[来源: 2024年报 P14]",
+   "refused": false,
+   "num_hit": 6,
+   "num_total": 7,
+   "answer_correct": false,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 19,
+   "type": "fact",
+   "question": "2024年末茅台在职员工总数是多少人？",
+   "answer": "根据年报内容无法回答该问题。",
+   "refused": true,
+   "num_hit": 0,
+   "num_total": 4,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": true
+  },
+  {
+   "id": 20,
+   "type": "fact",
+   "question": "2024年茅台前五大客户的销售集中度怎么样？",
+   "answer": "根据年报内容，2024年茅台前五大客户的销售集中度为11.52%。前五名客户销售额1,964,793.93万元，占年度销售总额11.52%。[来源: 2024年报 P10]",
+   "refused": false,
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 21,
+   "type": "fact",
+   "question": "2024年末茅台的普通股股东总数是多少户？",
+   "answer": "2024年末茅台的普通股股东总数是207,894户。[来源: 2024年报 P50]",
+   "refused": false,
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 22,
+   "type": "fact",
+   "question": "茅台2024年支付给会计师事务所的审计费用是多少？",
+   "answer": "茅台2024年支付给会计师事务所的审计费用为125万元。[来源: 2024年报 P41]",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 23,
+   "type": "fact",
+   "question": "茅台2025年营业收入是多少？",
+   "answer": "茅台2025年营业收入为人民币16,883,810.25万元。[来源: 2025年报 P54]",
+   "refused": false,
+   "num_hit": 1,
+   "num_total": 3,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 24,
+   "type": "fact",
+   "question": "2025年贵州茅台归属于上市公司股东的净利润是多少？",
+   "answer": "2025年贵州茅台归属于上市公司股东的净利润是26,847,474,238.76元。[来源: 2025年报 P7]",
+   "refused": false,
+   "num_hit": 1,
+   "num_total": 3,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 25,
+   "type": "fact",
+   "question": "2025年度茅台的分红预案是每股派多少现金红利？",
+   "answer": "2025年度茅台的分红预案是每股派27.993元现金红利。[来源: 2025年报 P2]",
+   "refused": false,
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 26,
+   "type": "fact",
+   "question": "2025年末茅台国内经销商有多少家？当年是怎么变化的？",
+   "answer": "2025年末茅台国内经销商有2,353家，当年增加了233家，减少了23家。[来源: 2025年报 P17]",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 27,
+   "type": "fact",
+   "question": "2025年茅台酒基酒设计产能达到多少吨？",
+   "answer": "2025年茅台酒基酒设计产能为46,395.00吨。[来源: 2025年报 P15]",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 28,
+   "type": "fact",
+   "question": "2025年茅台酒的销售收入和毛利率分别是多少？",
+   "answer": "2025年茅台酒的销售收入为146,499,906,480.49万元，毛利率为93.53%。[来源: 2025年报 P10]",
+   "refused": false,
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 29,
+   "type": "fact",
+   "question": "2025年末茅台在职员工一共有多少人？",
+   "answer": "34,992 [来源: 2025年报 P42]",
+   "refused": false,
+   "num_hit": 3,
+   "num_total": 4,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 30,
+   "type": "fact",
+   "question": "2025年茅台劳务外包支付的报酬总额是多少？",
+   "answer": "5.95亿元（含税）[来源: 2025年报 P32]。",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 31,
+   "type": "cross_page",
+   "question": "2024年茅台通过i茅台数字营销平台实现的销售收入是多少？直销渠道整体收入又是多少？",
+   "answer": "2024年茅台通过i茅台数字营销平台实现的销售收入是2,002,366.62万元[来源: 2024年报 P16]。直销渠道整体收入为145,928,075,955.31元[来源: 2024年报 P16]。",
+   "refused": false,
+   "num_hit": 4,
+   "num_total": 6,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 32,
+   "type": "cross_page",
+   "question": "2024年茅台酒类产品整体销量是多少？其中系列酒销量是多少？",
+   "answer": "根据年报内容，2024年茅台酒类产品整体销量是46,412.95吨，其中系列酒销量是36,919.81吨。[来源: 2024年报 P15]",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 8,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 33,
+   "type": "cross_page",
+   "question": "2024年茅台酒的产量是多少吨？年末成品酒库存还有多少？",
+   "answer": "2024年茅台酒的产量是56,271.99吨[来源: 2024年报 P14]。年末成品酒库存是17,760.00吨[来源: 2024年报 P14]。",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 6,
+   "answer_correct": false,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 34,
+   "type": "cross_page",
+   "question": "贵州茅台酒销售有限公司和贵州茅台酱香酒营销有限公司2024年的净利润分别是多少？",
+   "answer": "根据年报内容无法回答该问题。",
+   "refused": true,
+   "num_hit": 0,
+   "num_total": 4,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": true
+  },
+  {
+   "id": 35,
+   "type": "cross_page",
+   "question": "2024年末茅台的存货余额是多少？其中半成品酒（含基础酒）库存有多少吨？",
+   "answer": "根据年报内容，2024年末茅台的存货余额为17,760.00吨成品酒和292,248.02吨半成品酒（含基础酒），因此存货余额总额为17,760.00 + 292,248.02 = 309,008.02吨。其中半成品酒（含基础酒）库存为292,248.02吨。[来源: 2024年报 P14]",
+   "refused": false,
+   "num_hit": 4,
+   "num_total": 7,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 36,
+   "type": "cross_page",
+   "question": "茅台2023年归母净利润是多少？当年批发代理渠道的销售收入是多少？",
+   "answer": "茅台2023年归母净利润是74,752,564,425.52万元[来源: 2023年报 P5]。当年批发代理渠道的销售收入是79,986,119,397.90万元[来源: 2023年报 P17]。",
+   "refused": false,
+   "num_hit": 2,
+   "num_total": 6,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 37,
+   "type": "cross_page",
+   "question": "2022年茅台归属于上市公司股东的净利润是多少？年末国内经销商有多少家？",
+   "answer": "2022年茅台归属于上市公司股东的净利润是627.16亿元[来源: 2022年报 P7]。年末国内经销商有2,084家[来源: 2022年报 P16]。",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 6,
+   "answer_correct": false,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 38,
+   "type": "cross_page",
+   "question": "2022年茅台直销渠道和批发代理渠道的收入各是多少？",
+   "answer": "2022年茅台直销渠道的收入为49,378,737,661.60元，批发代理渠道的收入为74,393,594,687.11元。[来源: 2022年报 P16]",
+   "refused": false,
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 39,
+   "type": "cross_page",
+   "question": "2025年茅台系列酒实现多少收入？i茅台平台当年销售收入是多少？",
+   "answer": "2025年茅台系列酒实现收入2,227,467.87万元。i茅台平台当年销售收入为1,303,141.15万元。[来源: 2025年报 P16]",
+   "refused": false,
+   "num_hit": 3,
+   "num_total": 8,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 40,
+   "type": "cross_page",
+   "question": "2025年茅台国内和国外市场的销售收入各是多少？各占多大比例？",
+   "answer": "2025年茅台国内市场的销售收入为163,924,442,864.97万元，国外市场的销售收入为4,850,142,322.68万元。国内市场的销售收入占总收入的比例为91.21%，国外市场的销售收入占总收入的比例为91.69%。[来源: 2025年报 P10]",
+   "refused": false,
+   "num_hit": 1,
+   "num_total": 6,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 41,
+   "type": "cross_year",
+   "question": "茅台2025年和2023年直销渠道的收入分别是多少？",
+   "answer": "茅台2025年直销渠道的收入为8,454,303.19万元，2023年直销渠道的收入为6,723,287.07万元。[来源: 2025年报 P17] [来源: 2023年报 P16]",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 8,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 42,
+   "type": "cross_year",
+   "question": "2024年和2023年茅台系列酒（其他系列酒）的营业收入分别是多少？",
+   "answer": "2024年茅台系列酒（其他系列酒）的营业收入为24,683,762,096.71元，2023年茅台系列酒（其他系列酒）的营业收入为24,683,762,096.71元。[来源: 2024年报 P14]",
+   "refused": false,
+   "num_hit": 5,
+   "num_total": 7,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 43,
+   "type": "cross_year",
+   "question": "茅台2025年和2022年经营活动产生的现金流量净额分别是多少？",
+   "answer": "茅台2025年经营活动产生的现金流量净额为61,522,204,989.35元[来源: 2025年报 P9]，2022年经营活动产生的现金流量净额为36,698,595,830.03元[来源: 2022年报 P62]。",
+   "refused": false,
+   "num_hit": 6,
+   "num_total": 6,
+   "answer_correct": true,
+   "cite_correct": false,
+   "false_refusal": false
+  },
+  {
+   "id": 44,
+   "type": "cross_year",
+   "question": "茅台2025年末和2024年末的总资产分别是多少？",
+   "answer": "茅台2025年末的总资产是303,834,844,021.44元，2024年末的总资产是298,944,579,918.70元。[来源: 2025年报 P6]",
+   "refused": false,
+   "num_hit": 6,
+   "num_total": 6,
+   "answer_correct": true,
+   "cite_correct": true,
+   "false_refusal": false
+  },
+  {
+   "id": 45,
+   "type": "cross_year",
+   "question": "子公司贵州茅台酒销售有限公司2023年和2022年的净利润分别是多少？",
+   "answer": "根据提供的年报片段，没有直接提到“贵州茅台酒销售有限公司”的净利润数据。因此，根据年报内容无法回答该问题。[来源: 2022年报 P113, 2023年报 P127]",
+   "refused": true,
+   "num_hit": 4,
+   "num_total": 8,
+   "answer_correct": false,
+   "cite_correct": false,
+   "false_refusal": true
+  },
+  {
+   "id": 46,
+   "type": "no_answer",
+   "question": "五粮液2024年的营业收入是多少？",
+   "answer": "根据年报内容无法回答该问题。",
+   "refused": true,
+   "refusal_correct": true
+  },
+  {
+   "id": 47,
+   "type": "no_answer",
+   "question": "茅台2024年海外经销商的具体名单有哪些？",
+   "answer": "根据年报内容无法回答该问题。",
+   "refused": true,
+   "refusal_correct": true
+  },
+  {
+   "id": 48,
+   "type": "no_answer",
+   "question": "飞天茅台2024年的出厂价是多少元一瓶？",
+   "answer": "根据提供的年报片段，没有直接提及飞天茅台2024年的出厂价具体数值。因此，根据年报内容无法回答该问题。",
+   "refused": true,
+   "refusal_correct": true
+  },
+  {
+   "id": 49,
+   "type": "no_answer",
+   "question": "茅台2024年员工的平均工资是多少？",
+   "answer": "根据年报内容无法回答该问题。",
+   "refused": true,
+   "refusal_correct": true
+  },
+  {
+   "id": 50,
+   "type": "no_answer",
+   "question": "2024年茅台在四川省有多少家经销商？",
+   "answer": "根据年报内容无法回答该问题。",
+   "refused": true,
+   "refusal_correct": true
+  }
+ ],
+ "summary_rescored": {
+  "有答案题(重打分)": {
+   "n": 45,
+   "answer_correct率": 0.3778,
+   "cite_correct率": 0.5111,
+   "false_refusal率": 0.0889
+  },
+  "cross_page": {
+   "n": 10,
+   "answer_correct率": 0.1,
+   "cite_correct率": 0.3,
+   "false_refusal率": 0.1
+  },
+  "cross_year": {
+   "n": 5,
+   "answer_correct率": 0.4,
+   "cite_correct率": 0.2,
+   "false_refusal率": 0.2
+  },
+  "fact": {
+   "n": 30,
+   "answer_correct率": 0.4667,
+   "cite_correct率": 0.6333,
+   "false_refusal率": 0.0667
+  }
+ }
+}

@@ -80,6 +80,28 @@ def build_pipelines() -> dict:
         pipes["E5_rerank"] = RerankedRetriever(HybridRetriever(
             ctx_chunks, ctx_index, emb,
             use_bm25=True, use_year_filter=True), reranker).search
+
+    # ---- E7 表格感知解析（pdfplumber 重建 + 键值句线性化） ----
+    t_chunks = DATA / "chunks" / "table.jsonl"
+    t_index = DATA / "index" / "table.npz"
+    if t_chunks.exists() and t_index.exists():
+        pipes["E7_table_hybrid_year"] = HybridRetriever(
+            t_chunks, t_index, emb,
+            use_bm25=True, use_year_filter=True).search
+    tp_chunks = DATA / "chunks" / "tableplus.jsonl"
+    tp_index = DATA / "index" / "tableplus.npz"
+    if tp_chunks.exists() and tp_index.exists():
+        pipes["E7b_tableplus_hybrid_year"] = HybridRetriever(
+            tp_chunks, tp_index, emb,
+            use_bm25=True, use_year_filter=True).search
+
+    # ---- E7c 表格感知 + 语境增强（E7b 语料上再生成语境句） ----
+    ct_chunks = DATA / "chunks" / "contextual_table.jsonl"
+    ct_index = DATA / "index" / "contextual_table.npz"
+    if ct_chunks.exists() and ct_index.exists():
+        pipes["E7c_ctx_table_hybrid_year"] = HybridRetriever(
+            ct_chunks, ct_index, emb,
+            use_bm25=True, use_year_filter=True).search
     return pipes
 
 

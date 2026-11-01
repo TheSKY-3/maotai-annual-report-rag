@@ -38,6 +38,16 @@ OUT_CHUNKS = PROJECT / "data" / "chunks" / "contextual.jsonl"
 OUT_INDEX = PROJECT / "data" / "index" / "contextual.npz"
 PROGRESS = PROJECT / "data" / "chunks" / "contextual_progress.jsonl"
 
+
+def _resolve(args) -> tuple[Path, Path, Path, Path]:
+    """允许 --in/--out/--index/--progress 覆盖（E7 表格语料复用同一脚本）。"""
+    base = Path(args.input) if args.input else BASELINE
+    out = Path(args.out) if args.out else OUT_CHUNKS
+    index = Path(args.index) if args.index else OUT_INDEX
+    prog = Path(args.progress) if args.progress else \
+        out.with_name(out.stem + "_progress.jsonl")
+    return base, out, index, prog
+
 API_BASE = "https://api.deepseek.com/v1"
 API_MODEL = "deepseek-flash"
 
@@ -105,10 +115,15 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=0, help="只处理前 N 块（调试）")
     parser.add_argument("--workers", type=int, default=12)
+    parser.add_argument("--input", default=None, help="源切块 jsonl（默认基线）")
+    parser.add_argument("--out", default=None, help="输出增强切块 jsonl")
+    parser.add_argument("--index", default=None, help="输出向量索引 npz")
+    parser.add_argument("--progress", default=None, help="断点续跑进度文件")
     args = parser.parse_args()
+    base, out_chunks, out_index, progress = _resolve(args)
 
     chunks = [json.loads(l) for l in
-              open(BASELINE, encoding="utf-8") if l.strip()]
+              open(base, encoding="utf-8") if l.strip()]
     if args.limit:
         chunks = chunks[: args.limit]
     by_id = {c["id"]: c for c in chunks}
@@ -120,8 +135,8 @@ def main() -> None:
 
     # 断点续跑
     done: dict[str, str] = {}
-    if PROGRESS.exists():
-        for l in PROGRESS.open(encoding="utf-8"):
+    if progress.exists():
+        for l in progress.open(encoding="utf-8"):
             if l.strip():
                 rid, ctx = json.loads(l)
                 done[rid] = ctx
@@ -132,7 +147,7 @@ def main() -> None:
     client = OpenAI(base_url=API_BASE, api_key=load_key())
     t0 = time.time()
     n_new = 0
-    with PROGRESS.open("a", encoding="utf-8") as log, \
+    with progress.open("a", encoding="utf-8") as log, \
             ThreadPoolExecutor(max_workers=args.workers) as pool:
         futures = [pool.submit(worker, client, c, by_id) for c in todo]
         for fut in as_completed(futures):
@@ -154,15 +169,15 @@ def main() -> None:
                          f"{missing[:5]}...")
 
     # 写增强切块文件（text = 语境句 + 原文）
-    OUT_CHUNKS.parent.mkdir(parents=True, exist_ok=True)
-    with OUT_CHUNKS.open("w", encoding="utf-8") as f:
+    out_chunks.parent.mkdir(parents=True, exist_ok=True)
+    with out_chunks.open("w", encoding="utf-8") as f:
         for c in chunks:
             f.write(json.dumps(
                 {"id": c["id"], "text": f"{done[c['id']]}\n{c['text']}",
                  "year": c["year"], "page": c["page"],
                  "context": done[c["id"]]},
                 ensure_ascii=False) + "\n")
-    print(f"增强切块 -> {OUT_CHUNKS}")
+    print(f"增强切块 -> {out_chunks}")
 
     # 重建向量索引
     from sentence_transformers import SentenceTransformer
@@ -172,13 +187,13 @@ def main() -> None:
     print("向量化中...")
     emb = model.encode(texts, batch_size=64, show_progress_bar=True,
                        normalize_embeddings=True)
-    OUT_INDEX.parent.mkdir(parents=True, exist_ok=True)
+    out_index.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(
-        OUT_INDEX,
+        out_index,
         ids=np.array([c["id"] for c in chunks]),
         embeddings=emb.astype(np.float32),
     )
-    print(f"索引 -> {OUT_INDEX}  完成，共 {len(chunks)} 块")
+    print(f"索引 -> {out_index}  完成，共 {len(chunks)} 块")
 
 
 if __name__ == "__main__":

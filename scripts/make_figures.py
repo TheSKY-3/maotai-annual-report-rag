@@ -105,6 +105,9 @@ def fig_experiments() -> None:
         ("E3_rerank", "再叠加\n精排"),
         ("E5_hybrid_year", "E5 语境增强\n混合+年份"),
         ("E5_rerank", "E5 语境增强\n+精排"),
+        ("E7_table_hybrid_year", "E7 表格\n全替换"),
+        ("E7b_tableplus_hybrid_year", "E7 表格\n追加"),
+        ("E7c_ctx_table_hybrid_year", "E7 追加\n+语境句"),
     ]
     names = [p[0] for p in pipelines]
     labels = [p[1] for p in pipelines]
@@ -119,7 +122,7 @@ def fig_experiments() -> None:
         hit.append(s["page_hit@k"] * 100)
         mrr.append(s["mrr"] * 100)
 
-    fig, ax = plt.subplots(figsize=(8.6, 4.2))
+    fig, ax = plt.subplots(figsize=(10.8, 4.2))
     x = range(len(names))
     w = 0.38
     b1 = ax.bar([i - w / 2 for i in x], [h or 0 for h in hit], w,
@@ -131,9 +134,9 @@ def fig_experiments() -> None:
             if v is not None:
                 ax.text(b.get_x() + b.get_width() / 2, b.get_height() + 1,
                         f"{v:.0f}%", ha="center", fontsize=9)
-    ax.set_xticks(list(x), labels, fontsize=9)
+    ax.set_xticks(list(x), labels, fontsize=8)
     ax.set_ylabel("百分比 (%)")
-    ax.set_title("检索策略对比：基线 30% 最终 66%（E5 语境增强）")
+    ax.set_title("检索策略对比：基线 30% → E5 语境增强 66%（E7 表格增强不敌语境句）")
     ax.set_ylim(0, max(v for v in hit if v) + 12)
     ax.legend()
     fig.savefig(FIG_DIR / "fig_experiments.png", dpi=160, bbox_inches="tight")
