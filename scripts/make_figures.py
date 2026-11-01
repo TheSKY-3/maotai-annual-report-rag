@@ -20,33 +20,45 @@ RESULTS = Path("results")
 
 
 def fig_pipeline() -> None:
-    """RAG 五步流程示意图。"""
-    fig, ax = plt.subplots(figsize=(10, 3.6))
+    """RAG 流程示意图：离线建库 + 在线问答两条流水线（含 E2/E3 增强）。"""
+    fig, ax = plt.subplots(figsize=(11, 4.4))
     ax.axis("off")
-    boxes = [
-        (0.01, "年报 PDF\n×4 份\n(556 页)", "#f5f5f5"),
-        (0.21, "① 切块\n约500字/块\n(1761 块)", "#dce9f7"),
-        (0.41, "② 向量化\nBGE 中文模型\n(每块→512个数)", "#dce9f7"),
-        (0.61, "③ 建索引\n相似度检索\n(numpy)", "#dce9f7"),
-        (0.81, "⑤ 大模型生成\n答案+出处\n[2024年报 P8]", "#e8f3e2"),
-    ]
-    for x, label, color in boxes:
-        ax.add_patch(plt.Rectangle((x, 0.30), 0.17, 0.42, fc=color,
-                                   ec="#555", lw=1.2, zorder=2))
-        ax.text(x + 0.085, 0.51, label, ha="center", va="center",
-                fontsize=10.5, zorder=3)
-    for x0 in (0.18, 0.38, 0.58, 0.78):
-        ax.annotate("", xy=(x0 + 0.03, 0.51), xytext=(x0, 0.51),
-                    arrowprops=dict(arrowstyle="->", lw=1.6, color="#333"))
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
 
-    # 用户问题从下方进入检索步骤
-    ax.add_patch(plt.Rectangle((0.61, 0.02), 0.17, 0.16, fc="#fdf3d7",
-                               ec="#555", lw=1.2, zorder=2))
-    ax.text(0.695, 0.10, "④ 用户提问\n(先变成向量再检索)", ha="center",
-            va="center", fontsize=9.5, zorder=3)
-    ax.annotate("", xy=(0.72, 0.30), xytext=(0.72, 0.18),
+    # (x, y0, 标签, 颜色)；上排离线 y=0.64，下排在线 y=0.08
+    boxes = [
+        (0.015, 0.64, "年报 PDF\n×4 份\n(556 页)", "#f5f5f5"),
+        (0.215, 0.64, "① 切块\n约500字/块\n(1761 块)", "#dce9f7"),
+        (0.415, 0.64, "② 向量化\nBGE 中文模型\n存成块库(文本+向量)", "#dce9f7"),
+        (0.015, 0.08, "③ 用户提问\n(自然语言)", "#fdf3d7"),
+        (0.215, 0.08, "④ 年份识别\n正则限定该年年报\n(E2 · +16pp)", "#fbe3c8"),
+        (0.415, 0.08, "⑤ 混合检索\n向量 + BM25 关键词\nRRF 融合取前20 (E2)", "#fbe3c8"),
+        (0.615, 0.08, "⑥ 精排\nbge-reranker\ntop20 → top5 (E3)", "#fbe3c8"),
+        (0.815, 0.08, "⑦ 大模型生成\n问题 + 5块资料\n→ 答案 + 出处页码", "#e8f3e2"),
+    ]
+    for x, y0, label, color in boxes:
+        ax.add_patch(plt.Rectangle((x, y0), 0.17, 0.26, fc=color,
+                                   ec="#555", lw=1.2, zorder=2))
+        ax.text(x + 0.085, y0 + 0.13, label, ha="center", va="center",
+                fontsize=9.8, zorder=3)
+    # 上排内部箭头 + 下排内部箭头
+    for x0 in (0.185, 0.385):
+        ax.annotate("", xy=(x0 + 0.03, 0.77), xytext=(x0, 0.77),
+                    arrowprops=dict(arrowstyle="->", lw=1.6, color="#333"))
+    for x0 in (0.185, 0.385, 0.585, 0.785):
+        ax.annotate("", xy=(x0 + 0.03, 0.21), xytext=(x0, 0.21),
+                    arrowprops=dict(arrowstyle="->", lw=1.6, color="#333"))
+    # 块库 → 混合检索（两条流水线的交汇）
+    ax.annotate("", xy=(0.50, 0.34), xytext=(0.50, 0.64),
                 arrowprops=dict(arrowstyle="->", lw=1.6, color="#333"))
-    fig.suptitle("RAG 工作流程：先查资料，再回答", fontsize=13, y=0.97)
+    ax.text(0.515, 0.49, "块库供两路检索", ha="left", va="center",
+            fontsize=8.5, color="#666", zorder=3)
+    ax.text(0.015, 0.95, "离线建库（做一次）", ha="left", va="bottom",
+            fontsize=10, color="#666")
+    ax.text(0.015, 0.40, "在线问答（每次提问）", ha="left", va="bottom",
+            fontsize=10, color="#666")
+    fig.suptitle("RAG 工作流程：先查资料，再回答", fontsize=13, y=0.99)
     fig.savefig(FIG_DIR / "fig_pipeline.png", dpi=160, bbox_inches="tight")
     plt.close(fig)
 
