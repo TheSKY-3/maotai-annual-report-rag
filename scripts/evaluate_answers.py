@@ -21,14 +21,12 @@ from pathlib import Path
 PROJECT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT))
 
-from src.ask import answer_question  # noqa: E402
+from src.ask import REFUSE_RE, answer_question  # noqa: E402
 from src.config import GOLD_FILE, RESULTS_DIR  # noqa: E402
 from src.pipeline import get_search  # noqa: E402
 from src.config import OLLAMA_BASE_URL  # noqa: E402
 
 import os  # noqa: E402
-
-REFUSE_MARK = "无法回答"
 
 
 def gold_numbers(text: str) -> list[str]:
@@ -73,7 +71,7 @@ def main() -> None:
             text, hits = answer_question(client, search_fn, q["question"], model)
         except Exception as e:  # noqa: BLE001
             text, hits = f"__ERROR__: {e}", []
-        refused = REFUSE_MARK in text
+        refused = bool(REFUSE_RE.search(text))
         row = {"id": q["id"], "type": q["type"], "question": q["question"],
                "answer": text, "refused": refused}
         if q["type"] == "no_answer":

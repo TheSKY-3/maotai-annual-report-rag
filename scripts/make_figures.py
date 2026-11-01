@@ -236,6 +236,55 @@ def fig_e4_compare() -> None:
     plt.close(fig)
 
 
+def fig_e6_retry() -> None:
+    """E6：拒答自动重试前后（本地/云端 × 完整答案率/误拒答率）。"""
+    names = ["final_e5_local", "final_e6_local",
+             "final_e5_cloud", "final_e6_cloud"]
+    if not all((RESULTS / f"{n}_answers.json").exists() for n in names):
+        return
+    data = {n: json.loads((RESULTS / f"{n}_answers.json").read_text(
+        encoding="utf-8"))["summary"] for n in names}
+
+    def get(name: str, key: str) -> float:
+        grp = "无答案题" if key == "refusal" else "有答案题"
+        k = {"strict": "answer_correct率",
+             "refuse": "false_refusal率",
+             "refusal": "refusal_correct率"}[key]
+        return data[name][grp][k] * 100
+
+    refuse_l = get("final_e6_local", "refusal")
+    refuse_c = get("final_e6_cloud", "refusal")
+
+    fig, axes = plt.subplots(1, 2, figsize=(11.6, 4.2))
+    panels = [
+        (axes[0], "strict", "完整答案率（所有数字都对）", (0, 60)),
+        (axes[1], "refuse", "误拒答率（有答案却说查不到）", (0, 45)),
+    ]
+    for ax, key, title, ylim in panels:
+        vals = [[get("final_e5_local", key), get("final_e5_cloud", key)],
+                [get("final_e6_local", key), get("final_e6_cloud", key)]]
+        x = range(2)
+        w = 0.36
+        b1 = ax.bar([i - w / 2 for i in x], vals[0], w,
+                    label="无重试（E5）", color="#9bbb59")
+        b2 = ax.bar([i + w / 2 for i in x], vals[1], w,
+                    label="E6 拒答自动重试", color="#4a7ebb")
+        for bars in (b1, b2):
+            for b in bars:
+                ax.text(b.get_x() + b.get_width() / 2, b.get_height() + 0.8,
+                        f"{b.get_height():.1f}%", ha="center", fontsize=9)
+        ax.set_xticks(list(x), ["本地 Qwen3-4B", "云端 DeepSeek-Flash"])
+        ax.set_ylabel("百分比 (%)")
+        ax.set_ylim(*ylim)
+        ax.set_title(title, fontsize=11)
+        ax.legend(fontsize=9)
+    fig.suptitle("E6 拒答自动重试：误拒答降到原来的 1/3～1/2，完整答案率同升\n"
+                 f"（无答案题拒答正确率重试前后均为 {refuse_l:.0f}% / {refuse_c:.0f}%）",
+                 fontsize=12.5, y=1.02)
+    fig.savefig(FIG_DIR / "fig_e6_retry.png", dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     FIG_DIR.mkdir(parents=True, exist_ok=True)
     fig_pipeline()
@@ -252,3 +301,6 @@ if __name__ == "__main__":
     if (RESULTS / "final_cloud_answers.json").exists():
         fig_e4_compare()
         print("fig_e4_compare.png 完成")
+    if (RESULTS / "final_e6_cloud_answers.json").exists():
+        fig_e6_retry()
+        print("fig_e6_retry.png 完成")

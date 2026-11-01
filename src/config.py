@@ -33,3 +33,5 @@ GEN_MODEL = "qwen3:4b"  # 以实际部署的模型为准
 
 COLLECTION = "moutai"
 TOP_K = 5
+# E6 拒答自动重试：首轮拒答后扩充检索再问一次的块数
+RETRY_TOP_K = 10
