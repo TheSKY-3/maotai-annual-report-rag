@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: retrieval-results
-          path: results/ci_retrieval.json
+          path: results/ci_retrieval_retrieval.json
 
   answers:
     # 仅手动勾选 run_answers 时运行：云端 API 有真实成本，密钥存仓库 Secrets
