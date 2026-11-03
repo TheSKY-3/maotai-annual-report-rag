@@ -247,6 +247,10 @@ curl -N -X POST localhost:8000/ask/stream -H "Content-Type: application/json" \
 都会自动免费复跑检索层评测**（`eval-gate` 工作流，hit@5 低于 64% 直接
 失败亮红灯），防止改动悄悄打漏水位：
 
+<div align="center">
+<img src="docs/screenshots/ci_gate.png" width="720" alt="eval-gate 评测回归工作流"/>
+</div>
+
 ### 检索层：出处页命中率 hit@5 从 30% 提升到 66%
 
 | 实验 | 改动 | hit@5 | 增益 |
