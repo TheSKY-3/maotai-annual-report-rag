@@ -15,6 +15,7 @@
 ![UI](https://img.shields.io/badge/UI-Streamlit-FF4B4B?logo=streamlit&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-compose_up_--build-2496ED?logo=docker&logoColor=white)
 ![API](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white)
+![eval-gate](https://github.com/TheSKY-3/maotai-annual-report-rag/actions/workflows/eval-gate.yml/badge.svg)
 
 <img src="docs/screenshots/chat_citations.png" width="720" alt="问答界面"/>
 
@@ -146,6 +147,10 @@ docker compose up --build
 python -m venv .venv && .venv\Scripts\activate
 pip install -r requirements.txt
 
+# 注：语境增强索引已随仓库分发（data/chunks/contextual.jsonl +
+#     data/index/contextual.npz，共 5.5MB）——克隆后即可直接问答与复现
+#     评测；想从头重建再执行下面第 1-2 步（需下载约 30MB 年报 PDF）
+
 # 1. 下载 4 份年报（巨潮资讯网公开文件，约 30MB）
 python scripts/download_data.py
 
@@ -161,8 +166,9 @@ python -m streamlit run src/app.py
 python scripts/build_contextual_chunks.py
 
 # 5. 复现评测
-python scripts/evaluate_retrieval.py      # 检索层
-python scripts/evaluate_answers.py --name final_local   # 答案层（本地模型）
+python scripts/ci_retrieval_gate.py                    # 检索层·生产管线（应显示 hit@5 66%，低于 64% 报错）
+python scripts/evaluate_retrieval.py                   # 检索层·E1 基线对照（历史实验口径 30%）
+python scripts/evaluate_answers.py --name final_local  # 答案层（本地模型）
 ```
 
 ### 也可以做成 API 服务
@@ -216,7 +222,9 @@ curl -X POST localhost:8000/ask -H "Content-Type: application/json" \
 
 自建 50 题评测集（30 事实题 / 10 跨页题 / 5 跨年对比 / 5 无答案题），
 检索是否命中出处页由程序判定，全部数字可复现（脚本在 `scripts/`，
-原始结果在 `results/`）。每一步改进都有对照实验：
+原始结果在 `results/`）。每一步改进都有对照实验；**每次推送 GitHub
+都会自动免费复跑检索层评测**（`eval-gate` 工作流，hit@5 低于 64% 直接
+失败亮红灯），防止改动悄悄打漏水位：
 
 ### 检索层：出处页命中率 hit@5 从 30% 提升到 66%
 

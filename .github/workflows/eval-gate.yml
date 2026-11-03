@@ -1,0 +1,86 @@
+name: eval-gate
+
+# 评测回归 gate：每次推送自动免费复跑检索层评测（纯本地计算，无 API 成本），
+# hit@5 低于 64%（生产 66% - 2pp 容忍）即失败，防止改动悄悄打漏检索水位。
+# 答案层评测消耗云端 API（约 ¥1/次），只在手动触发且配置了密钥时运行。
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      run_answers:
+        description: '同时跑答案层评测（云端 DeepSeek，约 ¥1）'
+        type: boolean
+        default: false
+
+jobs:
+  retrieval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 安装检索层依赖（CPU 版 torch，不装界面/API 相关包）
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install numpy==2.5.4 rank-bm25==0.2.2 jieba==0.42.1 \
+              sentence-transformers==3.4.1
+
+      - name: 缓存嵌入模型（BGE-small-zh，约 90MB）
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-bge-small-zh-v1.5
+
+      - name: 检索层评测 gate（50 题黄金集）
+        run: python scripts/ci_retrieval_gate.py
+
+      - name: 上传逐题明细
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: retrieval-results
+          path: results/ci_retrieval.json
+
+  answers:
+    # 仅手动勾选 run_answers 时运行：云端 API 有真实成本，密钥存仓库 Secrets
+    if: github.event_name == 'workflow_dispatch' && inputs.run_answers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 安装依赖
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install numpy==2.5.4 rank-bm25==0.2.2 jieba==0.42.1 \
+              sentence-transformers==3.4.1 openai==1.109.1
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-bge-small-zh-v1.5
+
+      - name: 答案层评测（路由管线，50 题）
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          RAG_BASE_URL: https://api.deepseek.com/v1
+          RAG_MODEL: deepseek-flash
+        run: |
+          export RAG_API_KEY="$DEEPSEEK_API_KEY"
+          python scripts/evaluate_answers.py --name ci_cloud --router
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: answers-results
+          path: results/ci_cloud_answers.json

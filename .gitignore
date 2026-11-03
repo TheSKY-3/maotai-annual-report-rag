@@ -4,15 +4,19 @@ __pycache__/
 *.pyc
 *.egg-info/
 
-# 数据产物（可由脚本重新生成或下载）
+# 数据产物（可由脚本重新生成或下载）；
+# 例外：语境增强索引随仓库分发（5.5MB），克隆即可复现评测/问答，
+# 也是 CI 检索层评测回归（.github/workflows/eval-gate.yml）的数据来源
 data/raw_pdfs/
 data/extracted/
 data/extracted_tables/
 data/extracted_tables_plus/
 data/db/
 data/models/
-data/index/
-data/chunks/
+data/index/*
+!data/index/contextual.npz
+data/chunks/*
+!data/chunks/contextual.jsonl
 
 # 评测与构建产物
 report/*.pdf
