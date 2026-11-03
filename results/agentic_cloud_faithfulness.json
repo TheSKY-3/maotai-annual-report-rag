@@ -1,0 +1,398 @@
+{
+ "summary": {
+  "model": "deepseek-flash",
+  "judge_source": "agentic_cloud_answers.json",
+  "判答卷数": 41,
+  "拒答跳过": 9,
+  "解析失败": 0,
+  "总体": {
+   "n": 41,
+   "faithfulness均分": 5.0,
+   "relevance均分": 5.0,
+   "完全忠实占比": 1.0
+  },
+  "route=agent": {
+   "n": 21,
+   "faithfulness均分": 5.0,
+   "relevance均分": 5.0,
+   "完全忠实占比": 1.0
+  },
+  "route=direct": {
+   "n": 20,
+   "faithfulness均分": 5.0,
+   "relevance均分": 5.0,
+   "完全忠实占比": 1.0
+  }
+ },
+ "rows": [
+  {
+   "id": 1,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答数字与片段1原文完全一致，直接切题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 2,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "注册用户、销售收入、毛利率均与2022年报原文一致，完整回答两问点",
+   "type": "fact",
+   "route": "agent"
+  },
+  {
+   "id": 3,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "营业收入和毛利率均与原文一致，完整回答两问",
+   "type": "fact",
+   "route": "agent"
+  },
+  {
+   "id": 4,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答数字与年报P14设计产能完全一致，直接切题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 5,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答数字与片段7完全一致，直接回答问题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 6,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答数字与片段4原文一致，直接切题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 7,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答准确引用年报P2的308.76元，完全切题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 8,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答数字与片段1完全一致，直接切题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 9,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "产量销量及同比均与片段1完全一致，切题完整",
+   "type": "fact",
+   "route": "agent"
+  },
+  {
+   "id": 10,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "销售费用及上年数据均见原文，差额计算已标注，原因有原文依据",
+   "type": "fact",
+   "route": "agent"
+  },
+  {
+   "id": 12,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答准确引用原文，完整回应销售表现问点",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 13,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答数字与片段1原文完全一致，直接回答营业总收入问点",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 14,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "净利润数字与P35原文完全一致，直接回答问点",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 15,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答准确引用原文276.24元，完全切题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 16,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "经销商数量及增减均与片段2/5一致，净增已标注计算得出",
+   "type": "fact",
+   "route": "agent"
+  },
+  {
+   "id": 17,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "毛利率94.06%与年报片段完全一致，直接回答问题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 18,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "产能数字与新增产能均与原文一致，完整回答两问",
+   "type": "fact",
+   "route": "agent"
+  },
+  {
+   "id": 20,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答数字与占比均与片段2原文一致，完整覆盖集中度问点",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 21,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答数字与片段3原文完全一致，直接切题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 22,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答准确引用片段1的审计费用数据，完整切题。",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 23,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答数字与片段1原文完全一致，直接切题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 24,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "净利润数据与P33原文完全一致，直接回答问点",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 25,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答准确引用P2每股27.993元，完全切题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 26,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "经销商数量及增减均与原文一致，净增已标注计算",
+   "type": "fact",
+   "route": "agent"
+  },
+  {
+   "id": 27,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答数字与片段2原文完全一致，直接切题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 28,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "营收与毛利率均与原文一致，完整回答两问点",
+   "type": "fact",
+   "route": "agent"
+  },
+  {
+   "id": 29,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答数字与片段9完全一致，直接回答问点",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 30,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "回答直接引用片段4原文数据，完全切题",
+   "type": "fact",
+   "route": "direct"
+  },
+  {
+   "id": 31,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "i茅台收入及直销两口径数据均与原文一致",
+   "type": "cross_page",
+   "route": "agent"
+  },
+  {
+   "id": 32,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "销量数据均出自片段1，合计已标注计算得出，完整回答两问",
+   "type": "cross_page",
+   "route": "agent"
+  },
+  {
+   "id": 33,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "产量与成品酒库存数字均与原文一致，完整回答两问",
+   "type": "cross_page",
+   "route": "agent"
+  },
+  {
+   "id": 35,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "存货余额与半成品酒吨数均与原文一致，完整回答两问",
+   "type": "cross_page",
+   "route": "agent"
+  },
+  {
+   "id": 36,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "两项数据均与原文一致，换算已标注计算得出",
+   "type": "cross_page",
+   "route": "agent"
+  },
+  {
+   "id": 37,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "净利润与经销商数量均与原文一致，计算标注合规",
+   "type": "cross_page",
+   "route": "agent"
+  },
+  {
+   "id": 38,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "两个渠道收入数字及同比均与原文一致，完整回答问点",
+   "type": "cross_page",
+   "route": "agent"
+  },
+  {
+   "id": 39,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "系列酒收入与i茅台收入均与原文一致，换算已标注计算得出",
+   "type": "cross_page",
+   "route": "agent"
+  },
+  {
+   "id": 40,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "数据均与原文一致，完整回答两问",
+   "type": "cross_page",
+   "route": "agent"
+  },
+  {
+   "id": 41,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "两年直销收入数字均与原文一致，计算换算已标注",
+   "type": "cross_year",
+   "route": "agent"
+  },
+  {
+   "id": 42,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "两年数据均与原文一致，完整回答问点",
+   "type": "cross_year",
+   "route": "agent"
+  },
+  {
+   "id": 43,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "两年数据均与片段原文一致，口径说明正确",
+   "type": "cross_year",
+   "route": "agent"
+  },
+  {
+   "id": 44,
+   "faithfulness": 5,
+   "relevance": 5,
+   "unsupported_claims": [],
+   "reason": "两个总资产数字均可在片段中找到原文依据，计算值已标注",
+   "type": "cross_year",
+   "route": "agent"
+  }
+ ]
+}

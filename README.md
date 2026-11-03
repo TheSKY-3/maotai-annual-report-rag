@@ -240,6 +240,21 @@ curl -X POST localhost:8000/ask -H "Content-Type: application/json" \
 路由是零成本正则（≥2 个年份 / 对比词 / 多问号 / "分别是"句式），50 题里
 23 题进 agent、27 题保持直通。结果文件：`results/agentic_cloud_answers.json`。
 
+### 生成质量：忠实度评测（LLM-as-judge）
+
+数字比对能判"标准答案里的数有没有出现"，判不了"答案里的每个论断是否
+真有原文依据"。参考 RAGAS 的 faithfulness 口径，用 DeepSeek-Flash 当
+判卷员，对照**作答时实际看到的检索原文**给每份答案打忠实度与相关性分
+（1-5 分）并摘录无依据论点（脚本 `scripts/evaluate_faithfulness.py`）：
+
+- 41 份非拒答答案：**忠实度均分 5.0 / 相关性均分 5.0，无依据论点 0 条**
+- 判卷员经过对抗校验：喂编造数字的答案判 3 分并精确摘录该论点，喂
+  只答一半的答案相关性判 3 分——不是盖橡皮章
+- 全 5.0 与 E8 的归因互相印证：数字接地校验在源头修掉了"抄错数"，
+  剩余失分是检索未送达与评测匹配口径，而非编造
+
+结果文件：`results/agentic_cloud_faithfulness.json`。
+
 ## 仓库结构
 
 ```
