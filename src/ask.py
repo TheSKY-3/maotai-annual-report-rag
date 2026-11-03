@@ -439,26 +439,28 @@ def needs_agent(question: str) -> bool:
     return bool(_MULTI_METRIC_RE.search(question))
 
 
+def _agent_call(client: OpenAI, model: str, messages, **kw):
+    """agent 单轮调用。思考模式必须显式关闭：与 tools 同用时不回传
+    reasoning_content 会直接 400（官方文档），也顺带避开思考吃配额
+    导致正文为空的老坑；空正文翻倍配额重试一次（项目红线口径）。"""
+    resp = client.chat.completions.create(
+        model=model, messages=messages, temperature=0.1,
+        max_tokens=900, extra_body={"thinking": {"type": "disabled"}}, **kw)
+    msg = resp.choices[0].message
+    if not (msg.content or "").strip() and not msg.tool_calls:
+        resp = client.chat.completions.create(
+            model=model, messages=messages, temperature=0.1,
+            max_tokens=1800,
+            extra_body={"thinking": {"type": "disabled"}}, **kw)
+        msg = resp.choices[0].message
+    return msg
+
+
 def _agent_loop(client: OpenAI, search_fn, page_fn, standalone: str,
                 model: str, locked_year: int | None
                 ) -> tuple[str, list[dict], list[dict]]:
     """工具调用循环；返回 (答案, 证据片段池, 工具调用轨迹)。"""
-    def call(messages, **kw):
-        # 思考模式必须显式关闭：与 tools 同用时不回传 reasoning_content
-        # 会直接 400（官方文档），也顺带避开思考吃配额导致正文为空的老坑
-        resp = client.chat.completions.create(
-            model=model, messages=messages, temperature=0.1,
-            max_tokens=900, extra_body={"thinking": {"type": "disabled"}},
-            **kw)
-        msg = resp.choices[0].message
-        if not (msg.content or "").strip() and not msg.tool_calls:
-            # 空正文翻倍配额重试一次（项目红线口径）
-            resp = client.chat.completions.create(
-                model=model, messages=messages, temperature=0.1,
-                max_tokens=1800,
-                extra_body={"thinking": {"type": "disabled"}}, **kw)
-            msg = resp.choices[0].message
-        return msg
+    call = lambda messages, **kw: _agent_call(client, model, messages, **kw)
 
     messages = [{"role": "system", "content": AGENT_SYSTEM_PROMPT},
                 {"role": "user", "content": standalone}]
@@ -528,6 +530,135 @@ def answer_auto(client: OpenAI, search_fn, question: str, model: str,
                                           search_kwargs, history,
                                           standalone=standalone)
     return _meta(question, standalone, text, hits)
+
+
+def answer_auto_stream(client: OpenAI, search_fn, question: str, model: str,
+                       search_kwargs: dict | None = None,
+                       history: list[dict] | None = None,
+                       force_agent: bool = False):
+    """answer_auto 的流式版：逐个产出事件字典，最后 yield done（含完整 meta）。
+
+    事件类型：
+      {"type": "status", "label": str}  阶段进展（检索中/工具调用/重试/校验）
+      {"type": "delta",  "text": str}   答案增量（直通路径逐 token）
+      {"type": "replace", "text": str}  用完整文本替换已流出内容
+                                        （E6 拒答重试 / E8 接地修正时）
+      {"type": "done",   "meta": dict}  结束；meta 与 answer_auto 返回值同构
+
+    直通路径真实逐 token 流式；E6/E8 语义与 _answer_core 逐条对应。
+    agent 路径按工具轮次推送 status、最终答案整段返回——工具循环行为与
+    评测过的 _agent_loop 完全一致，不为流式改动它（改了就得重新评测）。
+    """
+    def emit(t, **kw):
+        return dict(type=t, **kw)
+
+    def _stream_call(prompt, max_tokens=None):
+        """流式生成一次；边收边 yield delta 事件，yield from 取回全文。"""
+        collected = []
+        kwargs = dict(model=model,
+                      messages=[{"role": "user", "content": prompt}],
+                      temperature=0.1, stream=True)
+        if max_tokens:
+            kwargs["max_tokens"] = max_tokens
+        for chunk in client.chat.completions.create(**kwargs):
+            if chunk.choices:
+                d = chunk.choices[0].delta.content
+                if d:
+                    collected.append(d)
+                    yield emit("delta", text=d)
+        return "".join(collected)
+
+    standalone = rewrite_followup(client, model, history or [], question)
+
+    # ---- agent 路径：轮次状态 + 整段答案 ----
+    if force_agent or needs_agent(standalone):
+        yield emit("status", label="Agent 已拆解问题，开始工具调用…")
+        locked_year = (search_kwargs or {}).get("year")
+        page_fn = get_page_reader()
+        messages = [{"role": "system", "content": AGENT_SYSTEM_PROMPT},
+                    {"role": "user", "content": standalone}]
+        steps: list[dict] = []
+        pool: list[dict] = []
+        seen: set[str] = set()
+        text = ""
+        for _ in range(AGENT_MAX_ROUNDS):
+            msg = _agent_call(client, model, messages, tools=AGENT_TOOLS)
+            if not msg.tool_calls:
+                text = msg.content or ""
+                break
+            messages.append({
+                "role": "assistant", "content": msg.content or "",
+                "tool_calls": [{"id": tc.id, "type": "function",
+                                "function": {"name": tc.function.name,
+                                             "arguments": tc.function.arguments}}
+                               for tc in msg.tool_calls]})
+            for tc in msg.tool_calls:
+                name = tc.function.name
+                try:
+                    args = json.loads(tc.function.arguments or "{}")
+                    if not isinstance(args, dict):
+                        args = {}
+                except json.JSONDecodeError:
+                    args = {}
+                try:
+                    hits = _exec_tool(name, args, search_fn, page_fn,
+                                      locked_year)
+                except Exception:  # noqa: BLE001
+                    hits = []
+                steps.append({"tool": name, "args": args,
+                              "n_hits": len(hits)})
+                for h in hits:
+                    if h["id"] not in seen:
+                        seen.add(h["id"])
+                        pool.append(h)
+                arg_str = "、".join(f"{k}: {v}" for k, v in args.items())
+                yield emit("status", label=f"调用 {name}（{arg_str}），"
+                                           f"取回 {len(hits)} 个片段")
+                content = build_context(hits) or "（未检索到相关片段）"
+                messages.append({"role": "tool", "tool_call_id": tc.id,
+                                 "content": content})
+        if not text:
+            text = _agent_call(client, model, messages).content or ""
+        yield emit("status", label="数字接地校验…")
+        capped = pool[:12]
+        fixed = _grounding_fix(client, model, text, capped)
+        if fixed != text:
+            yield emit("replace", text=fixed)
+            text = fixed
+        yield emit("done", meta=_meta(question, standalone, text,
+                                      capped, "agent", steps))
+        return
+
+    # ---- 直通路径：逐 token 流式（E6/E8 语义与 _answer_core 一致）----
+    skw = search_kwargs or {}
+    yield emit("status", label="检索年报…")
+    hits = search_fn(standalone, top_k=TOP_K, **skw)
+    yield emit("status", label=f"检索到 {len(hits)} 个片段，开始生成…")
+    prompt = PROMPT_TEMPLATE.format(context=build_context(hits),
+                                    question=standalone)
+    text = yield from _stream_call(prompt)
+    if not text:
+        text = yield from _stream_call(prompt, max_tokens=1800)
+
+    hits_used = hits
+    if retry_enabled() and REFUSE_RE.search(text):
+        yield emit("status", label="首轮疑似拒答，扩充检索重问一次…")
+        more = search_fn(standalone, top_k=RETRY_TOP_K, **skw)
+        retry_prompt = RETRY_PROMPT_TEMPLATE.format(
+            context=build_context(more), question=standalone)
+        retry_text = yield from _stream_call(retry_prompt)
+        if retry_text and not REFUSE_RE.search(retry_text):
+            hits_used = more
+            text = retry_text
+            yield emit("replace", text=retry_text)
+
+    yield emit("status", label="数字接地校验…")
+    fixed = _grounding_fix(client, model, text, hits_used)
+    if fixed != text:
+        yield emit("replace", text=fixed)
+        text = fixed
+    yield emit("done", meta=_meta(question, standalone, text,
+                                  hits_used, "direct"))
 
 
 def main() -> None:

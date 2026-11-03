@@ -91,6 +91,21 @@
 <img src="docs/screenshots/agent_trace.png" width="720" alt="Agent 工具调用轨迹"/>
 </div>
 
+### ⚡ 边生成边显示（流式输出）
+
+答案像打字机一样逐字蹦出，不用盯着转圈等全文：回答时上方实时显示当前阶段
+（正在检索 → 开始生成 → 数字接地校验），答案流出过程直接可见，完成后出处
+卡片自动挂出。下图是**生成中途**的真实截图——答案刚写到第 2 条的一半：
+
+<div align="center">
+<img src="docs/screenshots/streaming.png" width="720" alt="流式输出进行中"/>
+</div>
+
+底层是 SSE 流式协议：FastAPI 暴露 `POST /ask/stream` 端点，事件流含
+`status`（阶段进展）/`delta`（答案增量）/`replace`（整体替换）/`done`
+（最终元信息）四类——拒答重试或数字接地修正会替换已流出内容，流式显示
+与答案质量校验互不牺牲。
+
 ### 🔑 自带 Key 即用，也能完全离线
 
 侧边栏一键切换生成模型：粘贴你自己的 **DeepSeek API Key**（只保存在
@@ -190,6 +205,12 @@ curl -X POST localhost:8000/ask -H "Content-Type: application/json" \
 返回 `answer`（含出处标注）、`sources`（页码级出处数组）、`refused`
 （是否拒答）与 `standalone_question`（多轮改写结果）；请求带 `"api_key"`
 字段即可用你自己的 DeepSeek Key。
+
+```bash
+# 流式问答（SSE）：status/delta/replace/done 事件边生成边推送，参数与 /ask 相同
+curl -N -X POST localhost:8000/ask/stream -H "Content-Type: application/json" \
+  -d '{"question": "2024年末国内经销商有多少家？"}'
+```
 
 ### 也可以做成 MCP 工具，接进 Claude Desktop / Cursor
 

@@ -19,7 +19,7 @@ import re
 import streamlit as st
 from openai import OpenAI
 
-from src.ask import answer_auto
+from src.ask import answer_auto, answer_auto_stream
 from src.config import (DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, GEN_MODEL,
                         OLLAMA_BASE_URL, YEARS)
 from src.pipeline import get_search
@@ -467,19 +467,43 @@ if mode == "对话问答":
         filt = None if year_sel == "全部年份" else int(year_sel)
         history = _chat_history()
         with st.chat_message("assistant"):
+            status_box = st.status("正在查年报…", expanded=True)
+            answer_slot = st.empty()
+            box: dict = {}
             try:
-                with st.spinner("检索年报并生成答案..."):
-                    meta = generate(question, year=filt, history=history,
-                                    force_agent=force_agent)
+                with status_box as s:
+
+                    def evgen():
+                        client, model = _resolve_backend()
+                        for ev in answer_auto_stream(
+                                client, get_retriever(), question, model,
+                                search_kwargs={"year": filt}
+                                if filt is not None else None,
+                                history=history, force_agent=force_agent):
+                            if ev["type"] == "status":
+                                s.update(label=ev["label"])
+                            elif ev["type"] == "delta":
+                                yield ev["text"]
+                            elif ev["type"] == "replace":
+                                box["replace"] = ev["text"]
+                            elif ev["type"] == "done":
+                                box["meta"] = ev["meta"]
+
+                    text = answer_slot.write_stream(evgen())
             except Exception as e:  # noqa: BLE001
+                status_box.update(state="error", expanded=False)
                 st.error(f"生成失败：{e}")
                 st.markdown('<p class="mt-side-caption">云端模式请检查侧边栏'
                             '的 API Key；本地模式请确认已运行 ollama serve。</p>',
                             unsafe_allow_html=True)
                 st.session_state.msgs.pop()  # 撤回这条提问，便于重试
                 st.stop()
-            text, hits = meta["answer"], meta["hits"]
-            st.markdown(fmt_answer(text), unsafe_allow_html=True)
+            status_box.update(state="complete", expanded=False)
+            if "replace" in box:  # 拒答重试/接地修正给出全文：整体替换
+                text = box["replace"]
+                answer_slot.markdown(fmt_answer(text), unsafe_allow_html=True)
+            meta = box["meta"]
+            hits = meta["hits"]
             render_sources(hits)
             render_steps(meta.get("steps"))
             with st.spinner("生成追问建议..."):

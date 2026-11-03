@@ -13,18 +13,20 @@
 """
 from __future__ import annotations
 
+import json
 import os
 from typing import Literal
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from openai import OpenAI
 from pydantic import BaseModel, Field
 
 from src.config import (DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, GEN_MODEL,
                         OLLAMA_BASE_URL, YEARS)
 from src.pipeline import get_search
-from src.ask import answer_auto
+from src.ask import answer_auto, answer_auto_stream
 
 app = FastAPI(
     title="茅台财报 RAG API",
@@ -140,3 +142,37 @@ def ask(req: AskRequest) -> AskResponse:
     except Exception as e:  # noqa: BLE001
         raise HTTPException(502, f"生成失败：{e}") from e
     return AskResponse(model=model, **meta)
+
+
+@app.post("/ask/stream")
+def ask_stream(req: AskRequest) -> StreamingResponse:
+    """SSE 流式问答（/ask 的流式版，参数完全相同）。
+
+    事件流（text/event-stream，每事件两行 event:/data:）：
+      status  阶段进展 {"label": "检索到 5 个片段，开始生成…"}
+      delta   答案增量 {"text": "…"}（直通路径逐 token）
+      replace 用完整文本替换已流出内容（拒答重试/数字接地修正时）
+      done    结束 {"meta": {…与 /ask 响应同构…}}
+      error   出错 {"message": "…"}
+    """
+    if req.year is not None and req.year not in YEARS:
+        raise HTTPException(400, f"year 仅支持 {YEARS}")
+    client, model = _resolve(req.api_key, req.model)
+
+    def sse():
+        try:
+            for ev in answer_auto_stream(
+                    client, _get_search(), req.question, model,
+                    search_kwargs={"year": req.year}
+                    if req.year is not None else None,
+                    history=[m.model_dump() for m in req.history],
+                    force_agent=req.agent):
+                yield (f"event: {ev['type']}\n"
+                       f"data: {json.dumps(ev, ensure_ascii=False)}\n\n")
+        except Exception as e:  # noqa: BLE001
+            yield (f"event: error\n"
+                   f"data: {json.dumps({'message': str(e)}, ensure_ascii=False)}\n\n")
+
+    return StreamingResponse(
+        sse(), media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
