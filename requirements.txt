@@ -13,3 +13,6 @@ openai==1.109.1
 fastapi==0.162.0
 uvicorn==0.54.0
 matplotlib==3.11.2
+# MCP server（src/mcp_server.py）。pin 1.x：2.x 起官方示例换用新 API
+# （MCPServer/Client），FastMCP 模式以 1.30 为稳定参照
+mcp==1.30.0

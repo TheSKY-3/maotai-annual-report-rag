@@ -185,6 +185,33 @@ curl -X POST localhost:8000/ask -H "Content-Type: application/json" \
 （是否拒答）与 `standalone_question`（多轮改写结果）；请求带 `"api_key"`
 字段即可用你自己的 DeepSeek Key。
 
+### 也可以做成 MCP 工具，接进 Claude Desktop / Cursor
+
+本项目还是一个 **MCP（Model Context Protocol）server**：任何 MCP 客户端
+都能把"茅台年报问答"当成一个标准工具直接调用，配置即插即用：
+
+```json
+{
+  "mcpServers": {
+    "maotai-annual-report": {
+      "command": "<项目路径>/.venv/Scripts/python.exe",
+      "args": ["<项目路径>/src/mcp_server.py"]
+    }
+  }
+}
+```
+
+本地一行即可实测（起 stdio 子进程 → 握手 → 列工具 → 真实调用一次）：
+
+```bash
+.venv/Scripts/python.exe scripts/test_mcp_client.py "2025年比2022年净利润增长了多少？"
+```
+
+真实调用记录见 `results/mcp_test_answer.txt`：跨年对比题返回带两个年份
+页码出处的计算结果。server 启动时预热检索模型（数秒，之后进程内复用），
+并从项目 `.env` 兜底读取 DeepSeek Key（MCP 客户端拉起子进程时默认过滤
+密钥类环境变量，值不打印、不入日志）。
+
 ## 效果如何：50 题黄金集可评测
 
 自建 50 题评测集（30 事实题 / 10 跨页题 / 5 跨年对比 / 5 无答案题），
@@ -258,8 +285,9 @@ curl -X POST localhost:8000/ask -H "Content-Type: application/json" \
 ## 仓库结构
 
 ```
-src/          核心代码：切块/索引/混合检索/语境增强/问答/Streamlit 界面/FastAPI 服务
-scripts/      下载、建索引、评测、画图等一次性脚本
+src/          核心代码：切块/索引/混合检索/语境增强/问答（直通+Agent 路由）/
+              Streamlit 界面/FastAPI 服务/MCP server
+scripts/      下载、建索引、评测（答案层/忠实度）、画图等一次性脚本
 docker/       容器入口脚本（Dockerfile 与 docker-compose.yml 在根目录）
 data/gold/    50 题黄金评测集（问题+标准答案+出处页码）
 results/      全部评测结果 JSON（每个数字都出自这里）
