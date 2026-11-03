@@ -267,6 +267,16 @@ curl -X POST localhost:8000/ask -H "Content-Type: application/json" \
 路由是零成本正则（≥2 个年份 / 对比词 / 多问号 / "分别是"句式），50 题里
 23 题进 agent、27 题保持直通。结果文件：`results/agentic_cloud_answers.json`。
 
+**这个提升是统计显著的，不是运气**：45 题配对样本中 7 次不一致全部是
+新管线获胜（0 次反例），McNemar 精确检验 **p=0.016**；提升量 +15.6pp 的
+bootstrap 95% 置信区间 **[+6.7pp, +26.7pp]**，不含 0。复现命令：
+
+```bash
+python scripts/stat_significance.py \
+  --baseline results/final_e8_cloud_answers.json \
+  --treatment results/agentic_cloud_answers.json
+```
+
 ### 生成质量：忠实度评测（LLM-as-judge）
 
 数字比对能判"标准答案里的数有没有出现"，判不了"答案里的每个论断是否
