@@ -21,7 +21,7 @@ from pathlib import Path
 PROJECT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT))
 
-from src.ask import REFUSE_RE, answer_question  # noqa: E402
+from src.ask import REFUSE_RE, answer_auto, answer_question  # noqa: E402
 from src.config import GOLD_FILE, RESULTS_DIR  # noqa: E402
 from src.pipeline import get_search  # noqa: E402
 from src.config import OLLAMA_BASE_URL  # noqa: E402
@@ -51,6 +51,8 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--name", default="baseline")
     parser.add_argument("--limit", type=int, default=0, help="只跑前 N 题（调试用）")
+    parser.add_argument("--router", action="store_true",
+                        help="走 answer_auto 路由（跨年/跨页题进 agent 工具循环）")
     args = parser.parse_args()
 
     from openai import OpenAI
@@ -67,13 +69,25 @@ def main() -> None:
 
     rows = []
     for q in questions:
+        meta = None
         try:
-            text, hits = answer_question(client, search_fn, q["question"], model)
+            if args.router:
+                meta = answer_auto(client, search_fn, q["question"], model)
+                text, hits = meta["answer"], meta["hits"]
+            else:
+                text, hits = answer_question(client, search_fn,
+                                             q["question"], model)
         except Exception as e:  # noqa: BLE001
             text, hits = f"__ERROR__: {e}", []
         refused = bool(REFUSE_RE.search(text))
         row = {"id": q["id"], "type": q["type"], "question": q["question"],
                "answer": text, "refused": refused}
+        if meta is not None:
+            # 落盘路由信息与证据块 id，忠实度评测（judge）据此重建原文依据，
+            # 不必重跑检索，避免两次检索差异造成的判卷漂移
+            row["route"] = meta["route"]
+            row["standalone_question"] = meta["standalone_question"]
+            row["hit_ids"] = [h["id"] for h in hits]
         if q["type"] == "no_answer":
             row["refusal_correct"] = refused
         else:
@@ -114,6 +128,10 @@ def main() -> None:
     summary = {"model": model,
                "有答案题": agg(has), "无答案题": agg(na),
                **{t: agg(rs) for t, rs in sorted(by_type.items())}}
+    if args.router:
+        n_agent = sum(r.get("route") == "agent" for r in rows)
+        summary["路由"] = {"agent题数": n_agent,
+                          "direct题数": len(rows) - n_agent}
 
     RESULTS_DIR.mkdir(exist_ok=True)
     out = RESULTS_DIR / f"{args.name}_answers.json"

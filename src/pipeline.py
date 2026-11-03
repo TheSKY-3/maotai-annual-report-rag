@@ -16,13 +16,14 @@ from src.config import (CHUNKS_FILE, CONTEXTUAL_CHUNKS_FILE,
                         CONTEXTUAL_INDEX_FILE, EMBED_PATH, INDEX_FILE)
 
 _search = None
+_retriever = None
 
 
-def get_search():
-    """返回 search(query, top_k=5, year=None) -> [hits]（进程内单例）。"""
-    global _search
-    if _search is not None:
-        return _search
+def _get_retriever():
+    """构建 HybridRetriever（进程内单例），供检索与整页读取共用。"""
+    global _retriever, _search
+    if _retriever is not None:
+        return _retriever
 
     from sentence_transformers import SentenceTransformer
 
@@ -31,12 +32,28 @@ def get_search():
     emb = SentenceTransformer(EMBED_PATH, device="cpu")
     if (CONTEXTUAL_CHUNKS_FILE.exists()
             and CONTEXTUAL_INDEX_FILE.exists()):
-        _search = HybridRetriever(CONTEXTUAL_CHUNKS_FILE,
-                                  CONTEXTUAL_INDEX_FILE, emb,
-                                  use_bm25=True, use_year_filter=True).search
+        _retriever = HybridRetriever(CONTEXTUAL_CHUNKS_FILE,
+                                     CONTEXTUAL_INDEX_FILE, emb,
+                                     use_bm25=True, use_year_filter=True)
     else:
         print("[pipeline] 上下文增强索引缺失，退回基线索引"
               "（先运行 scripts/build_contextual_chunks.py 生成）")
-        _search = HybridRetriever(CHUNKS_FILE, INDEX_FILE, emb,
-                                  use_bm25=True, use_year_filter=True).search
+        _retriever = HybridRetriever(CHUNKS_FILE, INDEX_FILE, emb,
+                                     use_bm25=True, use_year_filter=True)
+    _search = _retriever.search
+    return _retriever
+
+
+def get_search():
+    """返回 search(query, top_k=5, year=None) -> [hits]（进程内单例）。"""
+    _get_retriever()
     return _search
+
+
+def get_page_reader():
+    """返回 read_page(year, page) -> [hits]（进程内单例，页码直达工具用）。
+
+    与 get_search() 共用同一次模型/索引加载。
+    """
+    _get_retriever()
+    return _retriever.get_page

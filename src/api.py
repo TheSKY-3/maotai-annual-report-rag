@@ -24,7 +24,7 @@ from pydantic import BaseModel, Field
 from src.config import (DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, GEN_MODEL,
                         OLLAMA_BASE_URL, YEARS)
 from src.pipeline import get_search
-from src.ask import answer_with_meta
+from src.ask import answer_auto
 
 app = FastAPI(
     title="茅台财报 RAG API",
@@ -65,6 +65,10 @@ class AskRequest(BaseModel):
     api_key: str | None = Field(
         default=None, description="自带 DeepSeek API Key（可选）")
     model: str | None = Field(default=None, description="覆盖模型名（可选）")
+    agent: bool = Field(
+        default=False,
+        description="强制走 Agent 工具循环（默认自动路由：仅跨年对比/"
+                    "页码直达题启用）")
 
 
 class Source(BaseModel):
@@ -72,6 +76,12 @@ class Source(BaseModel):
     page: int
     score: float
     snippet: str
+
+
+class Step(BaseModel):
+    tool: str
+    args: dict
+    n_hits: int
 
 
 class AskResponse(BaseModel):
@@ -82,6 +92,10 @@ class AskResponse(BaseModel):
     refused: bool = Field(description="是否为拒答（年报中确无该信息）")
     sources: list[Source]
     model: str
+    route: str = Field(default="direct",
+                       description="回答路径：direct=直通检索，agent=工具调用循环")
+    steps: list[Step] = Field(
+        default=[], description="agent 路径的工具调用轨迹")
 
 
 def _resolve(api_key: str | None, model: str | None) -> tuple[OpenAI, str]:
@@ -117,10 +131,11 @@ def ask(req: AskRequest) -> AskResponse:
         raise HTTPException(400, f"year 仅支持 {YEARS}")
     client, model = _resolve(req.api_key, req.model)
     try:
-        meta = answer_with_meta(
+        meta = answer_auto(
             client, _get_search(), req.question, model,
             search_kwargs={"year": req.year} if req.year is not None else None,
             history=[m.model_dump() for m in req.history],
+            force_agent=req.agent,
         )
     except Exception as e:  # noqa: BLE001
         raise HTTPException(502, f"生成失败：{e}") from e

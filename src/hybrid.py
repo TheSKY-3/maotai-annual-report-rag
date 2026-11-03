@@ -47,6 +47,20 @@ class HybridRetriever:
                          for c in self.chunks]
             self.bm25 = BM25Okapi(tokenized)
 
+    def get_page(self, year: int, page: int) -> list[dict]:
+        """取某年某页的全部块（Agentic RAG 的 page_direct 工具用）。
+
+        语义检索受 top_k 截断，密集页（最多 26 块）只能进 5 块——
+        通读整页必须走这里，返回格式与 search() 一致。
+        """
+        found = [c for c in self.chunks
+                 if c["year"] == year and c["page"] == page]
+        found.sort(key=lambda c: c["id"])  # id 含零填充块序号，即原文顺序
+        return [{"id": c["id"], "text": c["text"],
+                 "year": c["year"], "page": c["page"],
+                 "score": 1.0, "direct": True}
+                for c in found]
+
     def search(self, query: str, top_k: int = 5,
                year: int | set[int] | None = None) -> list[dict]:
         years = detect_years(query)

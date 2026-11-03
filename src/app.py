@@ -19,7 +19,7 @@ import re
 import streamlit as st
 from openai import OpenAI
 
-from src.ask import answer_question
+from src.ask import answer_auto
 from src.config import (DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, GEN_MODEL,
                         OLLAMA_BASE_URL, YEARS)
 from src.pipeline import get_search
@@ -275,13 +275,17 @@ def _resolve_backend() -> tuple[OpenAI, str]:
 
 
 def generate(question: str, year: int | None = None,
-             history: list[dict] | None = None) -> tuple[str, list[dict]]:
-    """检索+生成（多轮改写 + E6 拒答自动重试），返回 (答案文本, 实际使用的片段)。"""
+             history: list[dict] | None = None,
+             force_agent: bool = False) -> dict:
+    """路由式问答：跨年对比/页码直达题自动走 agent 工具循环，其余直通。
+
+    返回 answer_auto 的完整元信息（answer/hits/route/steps 等）。
+    """
     client, model = _resolve_backend()
-    return answer_question(client, get_retriever(), question, model,
-                           search_kwargs={"year": year}
-                           if year is not None else None,
-                           history=history)
+    return answer_auto(client, get_retriever(), question, model,
+                       search_kwargs={"year": year}
+                       if year is not None else None,
+                       history=history, force_agent=force_agent)
 
 
 _CITE_TAG_RE = re.compile(r"\[来源: ([^\]]+)\]")
@@ -346,6 +350,19 @@ def render_sources(hits: list[dict]) -> None:
                         unsafe_allow_html=True)
 
 
+def render_steps(steps: list[dict]) -> None:
+    """agent 路径的工具调用轨迹（Function Calling 过程可视化）。"""
+    if not steps:
+        return
+    with st.expander(f"🔧 Agent 工具调用轨迹（{len(steps)} 步）"):
+        lines = []
+        for i, s in enumerate(steps, start=1):
+            arg_str = "、".join(f"{k}: {v}" for k, v in s["args"].items())
+            lines.append(f"**{i}. `{s['tool']}`**（{arg_str}）→ "
+                         f"取回 {s['n_hits']} 个片段")
+        st.markdown("\n\n".join(lines))
+
+
 def ask_followup(q: str) -> None:
     st.session_state.pending = q
 
@@ -373,6 +390,10 @@ with st.sidebar:
 
     if mode == "对话问答":
         year_sel = st.selectbox("检索范围", ["全部年份"] + YEARS)
+        force_agent = st.checkbox(
+            "强制 Agent 模式（演示工具调用）", value=False,
+            help="所有问题都走 Function Calling 工具循环。默认关闭："
+                 "只有跨年对比/页码直达题会自动启用 Agent。")
 
     st.markdown('<p class="mt-eyebrow">生成模型</p>', unsafe_allow_html=True)
     backend = st.segmented_control(
@@ -411,6 +432,8 @@ if mode == "对话问答":
                 st.markdown(m["content"])
             if m.get("hits"):
                 render_sources(m["hits"])
+            if m.get("steps"):
+                render_steps(m["steps"])
             if m["role"] == "assistant" and m.get("followups"):
                 st.markdown('<p class="mt-eyebrow">接着问</p>',
                             unsafe_allow_html=True)
@@ -446,7 +469,8 @@ if mode == "对话问答":
         with st.chat_message("assistant"):
             try:
                 with st.spinner("检索年报并生成答案..."):
-                    text, hits = generate(question, year=filt, history=history)
+                    meta = generate(question, year=filt, history=history,
+                                    force_agent=force_agent)
             except Exception as e:  # noqa: BLE001
                 st.error(f"生成失败：{e}")
                 st.markdown('<p class="mt-side-caption">云端模式请检查侧边栏'
@@ -454,8 +478,10 @@ if mode == "对话问答":
                             unsafe_allow_html=True)
                 st.session_state.msgs.pop()  # 撤回这条提问，便于重试
                 st.stop()
+            text, hits = meta["answer"], meta["hits"]
             st.markdown(fmt_answer(text), unsafe_allow_html=True)
             render_sources(hits)
+            render_steps(meta.get("steps"))
             with st.spinner("生成追问建议..."):
                 fus = gen_followups(question, text)
             if fus:
@@ -468,7 +494,7 @@ if mode == "对话问答":
                                   args=(fu,))
         st.session_state.msgs.append(
             {"role": "assistant", "content": text, "hits": hits,
-             "followups": fus})
+             "steps": meta.get("steps"), "followups": fus})
 
 else:  # 对比模式
     st.markdown('<p class="mt-eyebrow">双年报对比</p>', unsafe_allow_html=True)
@@ -485,9 +511,9 @@ else:  # 对比模式
                 st.subheader(f"{year} 年报")
                 try:
                     with st.spinner("检索并生成中..."):
-                        text, hits = generate(q, year=year)
+                        meta = generate(q, year=year)
                 except Exception as e:  # noqa: BLE001
                     st.error(f"生成失败：{e}")
                     continue
-                st.markdown(fmt_answer(text), unsafe_allow_html=True)
-                render_sources(hits)
+                st.markdown(fmt_answer(meta["answer"]), unsafe_allow_html=True)
+                render_sources(meta["hits"])

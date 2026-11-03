@@ -27,3 +27,7 @@ report/_build/
 
 # 会话内部文件
 .zcode/
+
+# 交接文件（不入库）
+HANDOFF.md
+.handoff/
