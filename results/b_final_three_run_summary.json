@@ -1,0 +1,239 @@
+{
+  "method": "3 runs, same config; metrics on answered rows; precision over rows with non-null cite_precision; 95% CI = mean ± t(0.975,df=2)*sd/sqrt(3), t=4.303",
+  "runs": [
+    {
+      "file": "b_final_unit_run1_score.json",
+      "all": {
+        "n": 45,
+        "answer_correct": 0.6444,
+        "cite_any": 0.8667,
+        "cite_precision": 0.697,
+        "cite_nonempty": 44,
+        "false_refusal": 0.0222
+      },
+      "agent": {
+        "n": 23,
+        "answer_correct": 0.6087,
+        "cite_any": 0.8696,
+        "cite_precision": 0.6439,
+        "cite_nonempty": 22,
+        "false_refusal": 0.0435
+      },
+      "direct": {
+        "n": 22,
+        "answer_correct": 0.6818,
+        "cite_any": 0.8636,
+        "cite_precision": 0.75,
+        "cite_nonempty": 22,
+        "false_refusal": 0
+      }
+    },
+    {
+      "file": "b_final_unit_run2_score.json",
+      "all": {
+        "n": 45,
+        "answer_correct": 0.6222,
+        "cite_any": 0.8667,
+        "cite_precision": 0.6793,
+        "cite_nonempty": 45,
+        "false_refusal": 0.0222
+      },
+      "agent": {
+        "n": 23,
+        "answer_correct": 0.5652,
+        "cite_any": 0.8696,
+        "cite_precision": 0.6116,
+        "cite_nonempty": 23,
+        "false_refusal": 0.0435
+      },
+      "direct": {
+        "n": 22,
+        "answer_correct": 0.6818,
+        "cite_any": 0.8636,
+        "cite_precision": 0.75,
+        "cite_nonempty": 22,
+        "false_refusal": 0
+      }
+    },
+    {
+      "file": "b_final_unit_run3_score.json",
+      "all": {
+        "n": 45,
+        "answer_correct": 0.6222,
+        "cite_any": 0.8667,
+        "cite_precision": 0.6963,
+        "cite_nonempty": 45,
+        "false_refusal": 0.0222
+      },
+      "agent": {
+        "n": 23,
+        "answer_correct": 0.5652,
+        "cite_any": 0.8696,
+        "cite_precision": 0.6449,
+        "cite_nonempty": 23,
+        "false_refusal": 0.0435
+      },
+      "direct": {
+        "n": 22,
+        "answer_correct": 0.6818,
+        "cite_any": 0.8636,
+        "cite_precision": 0.75,
+        "cite_nonempty": 22,
+        "false_refusal": 0
+      }
+    }
+  ],
+  "all": {
+    "n": 45,
+    "answer_correct": {
+      "mean": 0.6296,
+      "ci95": [
+        0.5978,
+        0.6614
+      ],
+      "runs": [
+        0.6444,
+        0.6222,
+        0.6222
+      ]
+    },
+    "cite_any": {
+      "mean": 0.8667,
+      "ci95": [
+        0.8667,
+        0.8667
+      ],
+      "runs": [
+        0.8667,
+        0.8667,
+        0.8667
+      ]
+    },
+    "cite_precision": {
+      "mean": 0.6909,
+      "ci95": [
+        0.666,
+        0.7158
+      ],
+      "runs": [
+        0.697,
+        0.6793,
+        0.6963
+      ]
+    },
+    "false_refusal": {
+      "mean": 0.0222,
+      "ci95": [
+        0.0222,
+        0.0222
+      ],
+      "runs": [
+        0.0222,
+        0.0222,
+        0.0222
+      ]
+    }
+  },
+  "agent": {
+    "n": 23,
+    "answer_correct": {
+      "mean": 0.5797,
+      "ci95": [
+        0.5173,
+        0.6421
+      ],
+      "runs": [
+        0.6087,
+        0.5652,
+        0.5652
+      ]
+    },
+    "cite_any": {
+      "mean": 0.8696,
+      "ci95": [
+        0.8696,
+        0.8696
+      ],
+      "runs": [
+        0.8696,
+        0.8696,
+        0.8696
+      ]
+    },
+    "cite_precision": {
+      "mean": 0.6335,
+      "ci95": [
+        0.5864,
+        0.6805
+      ],
+      "runs": [
+        0.6439,
+        0.6116,
+        0.6449
+      ]
+    },
+    "false_refusal": {
+      "mean": 0.0435,
+      "ci95": [
+        0.0435,
+        0.0435
+      ],
+      "runs": [
+        0.0435,
+        0.0435,
+        0.0435
+      ]
+    }
+  },
+  "direct": {
+    "n": 22,
+    "answer_correct": {
+      "mean": 0.6818,
+      "ci95": [
+        0.6818,
+        0.6818
+      ],
+      "runs": [
+        0.6818,
+        0.6818,
+        0.6818
+      ]
+    },
+    "cite_any": {
+      "mean": 0.8636,
+      "ci95": [
+        0.8636,
+        0.8636
+      ],
+      "runs": [
+        0.8636,
+        0.8636,
+        0.8636
+      ]
+    },
+    "cite_precision": {
+      "mean": 0.75,
+      "ci95": [
+        0.75,
+        0.75
+      ],
+      "runs": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    },
+    "false_refusal": {
+      "mean": 0,
+      "ci95": [
+        0,
+        0
+      ],
+      "runs": [
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}

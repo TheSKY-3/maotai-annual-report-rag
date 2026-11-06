@@ -24,9 +24,17 @@ def test_plain_vs_money():
     assert numeric.find_number("174144069958.25", ["1741.44亿元"])
 
 
-def test_percent_strict():
-    # 51.9% 与裸数字 51.9 不互相满足（单位不同，宁可报错让人看原文）
-    assert not numeric.find_number("51.9%", ["51.90"])
+def test_percent_vs_bare_table_cell():
+    # 年报表格列头写“毛利率（%）”，单元格只写 51.90；回答写 51.9% 应视为同值
+    assert numeric.find_number("51.9%", ["51.90"])
+    assert not numeric.find_number("51.9%", ["52.00"])
+
+
+def test_money_vs_table_unit_header():
+    # 表格表头写“单位：万元”，单元格只写 3,626,162.73；回答带“万元”应能对上
+    table = "单位：万元 币种：人民币\n净利润 3,626,162.73"
+    assert numeric.find_number("3,626,162.73 万元", [table])
+    assert not numeric.find_number("3,626,162.73 亿元", [table])
 
 
 def test_negative_number():

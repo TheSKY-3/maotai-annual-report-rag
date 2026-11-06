@@ -1,9 +1,9 @@
 """CI 检索层回归 gate：生产检索 hit@5 低于阈值则退出非零（GitHub Actions 用）。
 
 每次 push 免费复跑检索层评测（纯本地计算，无 API 成本），防止改动悄悄
-打漏检索水位。阈值 0.74 = 修正口径基线 76%（金标页码解析修复后，E5 语境
-增强索引）− 2pp 容忍；旧阈值 0.64 是按漏页的 66% 定的，修复后会放过约
-12pp 的静默回退。
+打漏检索水位。阈值 0.84 = 当前实测 86%（min-max 融合 + 年份过滤 + 金标
+页码解析修复）− 2pp 容忍；旧阈值 0.74 基于 76% 的旧基线，会放过约 12pp
+的静默回退。
 
 默认只读：结果只打印到 stdout / $GITHUB_STEP_SUMMARY；只有显式设置
 CI_RETRIEVAL_OUT 时才写逐题明细（CI 里写临时文件随 artifact 上传），
@@ -24,7 +24,7 @@ from src.config import GOLD_FILE, RESULTS_DIR  # noqa: E402
 from src.evalcore import run_eval  # noqa: E402
 from src.pipeline import get_search  # noqa: E402
 
-THRESHOLD = 0.74  # 修正口径生产 0.76 - 2pp 容忍
+THRESHOLD = 0.84  # 当前实测 0.86 - 2pp 容忍
 
 
 def main() -> None:

@@ -1,0 +1,3261 @@
+{
+ "manifest": {
+  "created_at": "2026-11-06T13:40:45.088297+00:00",
+  "git_sha": "daa78fb",
+  "model": "deepseek-flash",
+  "structured": true,
+  "structured_thinking": "disabled",
+  "budget_cny": 2.0,
+  "price_note": "deepseek-flash off-peak in $0.15/M out $0.6/M, peak in $0.30/M out $1.2/M, USD_CNY=7.1",
+  "peak": false
+ },
+ "summary": {
+  "n": 50,
+  "refused": 6,
+  "degraded": 1,
+  "with_violations": 9,
+  "structured": 27,
+  "agent": 23,
+  "citations_total": 73,
+  "avg_citations": 1.46,
+  "cost_cny": 0.2583,
+  "calls": 90,
+  "usage": {
+   "prompt_tokens": 196063,
+   "completion_tokens": 11615
+  }
+ },
+ "rows": [
+  {
+   "id": 1,
+   "type": "fact",
+   "question": "茅台2022年实现营业总收入多少？",
+   "gold_answer": "营业总收入1,275.54亿元，同比增长16.53%（2022年报P7：\"实现营业总收入 1,275.54 亿元，同比增长 16.53%\"）",
+   "source": "2022年报 P7",
+   "answer": "1. 2022年度，公司实现营业总收入1,275.54亿元，同比增长16.53%。 [来源: 2022年报 P7]\n2. 合并利润表显示，2022年度营业总收入为127,553,959,355.97元。 [来源: 2022年报 P58]",
+   "standalone": "茅台2022年实现营业总收入多少？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2022年报 P7",
+    "2022年报 P58"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2022年度，公司实现营业总收入1,275.54亿元，同比增长16.53%。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "1,275.54",
+      "16.53"
+     ],
+     "kind": "extract"
+    },
+    {
+     "text": "合并利润表显示，2022年度营业总收入为127,553,959,355.97元。",
+     "evidence": [
+      "E2"
+     ],
+     "numbers": [
+      "127,553,959,355.97"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2022-p007-c02",
+     "year": 2022,
+     "page": 7
+    },
+    {
+     "id": "2022-p058-c01",
+     "year": 2022,
+     "page": 58
+    },
+    {
+     "id": "2022-p052-c00",
+     "year": 2022,
+     "page": 52
+    },
+    {
+     "id": "2022-p016-c01",
+     "year": 2022,
+     "page": 16
+    },
+    {
+     "id": "2022-p007-c01",
+     "year": 2022,
+     "page": 7
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1946,
+    "completion_tokens": 125,
+    "calls": 1
+   },
+   "cost_cny": 0.002605,
+   "elapsed_sec": 1.33
+  },
+  {
+   "id": 2,
+   "type": "fact",
+   "question": "i茅台数字营销平台2022年上线后表现如何？注册用户和销售收入是多少？",
+   "gold_answer": "截至2022年末注册用户超3000万，实现销售收入118.83亿元（2022年报P7：\"成功上线运行 i 茅台数字营销平台，截至 2022 年末注册用户超 3000 万， 实现销售收入118.83 亿元\"）",
+   "source": "2022年报 P7",
+   "answer": "根据2022年报，i茅台数字营销平台于2022年上线运行，表现如下：\n- **注册用户**：截至2022年末，注册用户超3000万，年报称其“成为现象级的APP”。 [来源: 2022年报 P7]- **销售收入**：实现销售收入118.83亿元； [来源: 2022年报 P7]按线上销售情况表口径，该平台中、高档酒本期销售收入为1,188,270.28万元（即118.83亿元），毛利率95.26%。 [来源: 2022年报 P7；2022年报 P16]年报注明，该收入是公司通过该平台实现的酒类不含税收入。补充：2023年该平台销售收入增至2,237,432.35万元，同比增长88.29%，毛利率96.09%。 [来源: 2023年报 P17]",
+   "standalone": "i茅台数字营销平台2022年上线后表现如何？注册用户和销售收入是多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2022年报 P7",
+    "2022年报 P16",
+    "2023年报 P17"
+   ],
+   "violations": [
+    "数字在检索证据中找不到：2,237,432.35万元"
+   ],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2022-p016-c00",
+     "year": 2022,
+     "page": 16
+    },
+    {
+     "id": "2022-p007-c03",
+     "year": 2022,
+     "page": 7
+    },
+    {
+     "id": "2022-p016-c01",
+     "year": 2022,
+     "page": 16
+    },
+    {
+     "id": "2022-p007-c02",
+     "year": 2022,
+     "page": 7
+    },
+    {
+     "id": "2022-p015-c01",
+     "year": 2022,
+     "page": 15
+    },
+    {
+     "id": "2023-p017-c00",
+     "year": 2023,
+     "page": 17
+    },
+    {
+     "id": "2023-p016-c00",
+     "year": 2023,
+     "page": 16
+    },
+    {
+     "id": "2023-p135-c01",
+     "year": 2023,
+     "page": 135
+    },
+    {
+     "id": "2023-p120-c00",
+     "year": 2023,
+     "page": 120
+    },
+    {
+     "id": "2023-p056-c00",
+     "year": 2023,
+     "page": 56
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 5683,
+    "completion_tokens": 278,
+    "calls": 2
+   },
+   "cost_cny": 0.007237,
+   "elapsed_sec": 2.47
+  },
+  {
+   "id": 3,
+   "type": "fact",
+   "question": "2022年茅台系列酒（其他系列酒）的营业收入是多少？毛利率多少？",
+   "gold_answer": "其他系列酒营业收入15,938,647,070.77元，毛利率77.22%（2022年报P16：\"其他系列酒 15,938,647,070.77 26.55 … 77.22\"）",
+   "source": "2022年报 P16",
+   "answer": "2022年茅台其他系列酒（系列酒）的营业收入为 **15,938,647,070.77 元**，毛利率为 **77.22%**（营业成本 3,630,302,426.92 元，收入同比增长 26.55%，毛利率比上年增加 3.53 个百分点）。 [来源: 2022年报 P9；2022年报 P16]",
+   "standalone": "2022年茅台系列酒（其他系列酒）的营业收入是多少？毛利率多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2022年报 P9",
+    "2022年报 P16"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2022-p009-c00",
+     "year": 2022,
+     "page": 9
+    },
+    {
+     "id": "2022-p016-c01",
+     "year": 2022,
+     "page": 16
+    },
+    {
+     "id": "2022-p008-c03",
+     "year": 2022,
+     "page": 8
+    },
+    {
+     "id": "2022-p009-c01",
+     "year": 2022,
+     "page": 9
+    },
+    {
+     "id": "2022-p016-c02",
+     "year": 2022,
+     "page": 16
+    },
+    {
+     "id": "metric:series_revenue:2022",
+     "year": 2022,
+     "page": 9
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 4090,
+    "completion_tokens": 188,
+    "calls": 2
+   },
+   "cost_cny": 0.005157,
+   "elapsed_sec": 1.52
+  },
+  {
+   "id": 4,
+   "type": "fact",
+   "question": "2022年茅台酒基酒的设计产能是多少吨？",
+   "gold_answer": "42,742.50吨（2022年报P14：\"茅台酒制酒车间 42,742.50 56,810.44\"，设计产能42,742.50吨）",
+   "source": "2022年报 P14",
+   "answer": "1. 2022年茅台酒制酒车间的设计产能为42,742.50吨。 [来源: 2022年报 P14]",
+   "standalone": "2022年茅台酒基酒的设计产能是多少吨？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2022年报 P14"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2022年茅台酒制酒车间的设计产能为42,742.50吨。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "42,742.50"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2022-p014-c00",
+     "year": 2022,
+     "page": 14
+    },
+    {
+     "id": "2022-p014-c01",
+     "year": 2022,
+     "page": 14
+    },
+    {
+     "id": "2022-p015-c00",
+     "year": 2022,
+     "page": 15
+    },
+    {
+     "id": "2022-p029-c03",
+     "year": 2022,
+     "page": 29
+    },
+    {
+     "id": "2022-p014-c02",
+     "year": 2022,
+     "page": 14
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1683,
+    "completion_tokens": 64,
+    "calls": 1
+   },
+   "cost_cny": 0.002065,
+   "elapsed_sec": 1.27
+  },
+  {
+   "id": 5,
+   "type": "fact",
+   "question": "2022年末茅台在职员工一共有多少人？",
+   "gold_answer": "在职员工的数量合计31,413人（2022年报P30：\"在职员工的数量合计 31,413\"）",
+   "source": "2022年报 P30",
+   "answer": "1. 2022年末茅台在职员工的数量合计为31,413人。 [来源: 2022年报 P30]",
+   "standalone": "2022年末茅台在职员工一共有多少人？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2022年报 P30"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2022年末茅台在职员工的数量合计为31,413人。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "31,413"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2022-p030-c02",
+     "year": 2022,
+     "page": 30
+    },
+    {
+     "id": "2022-p120-c01",
+     "year": 2022,
+     "page": 120
+    },
+    {
+     "id": "2022-p025-c02",
+     "year": 2022,
+     "page": 25
+    },
+    {
+     "id": "2022-p025-c00",
+     "year": 2022,
+     "page": 25
+    },
+    {
+     "id": "2022-p042-c03",
+     "year": 2022,
+     "page": 42
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1728,
+    "completion_tokens": 57,
+    "calls": 1
+   },
+   "cost_cny": 0.002083,
+   "elapsed_sec": 1.21
+  },
+  {
+   "id": 6,
+   "type": "fact",
+   "question": "茅台2023年营业总收入是多少？",
+   "gold_answer": "营业总收入1,505.60亿元，同比增长18.04%（2023年报P8：\"实现营业总收入 1,505.60 亿元，同比增长 18.04%\"）",
+   "source": "2023年报 P8",
+   "answer": "1. 2023年营业总收入为150,560,330,316.45元。 [来源: 2023年报 P63]\n2. 2023年营业总收入为1,505.60亿元，同比增长18.04%。 [来源: 2023年报 P8]",
+   "standalone": "茅台2023年营业总收入是多少？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2023年报 P63",
+    "2023年报 P8"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2023年营业总收入为150,560,330,316.45元。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "150,560,330,316.45"
+     ],
+     "kind": "extract"
+    },
+    {
+     "text": "2023年营业总收入为1,505.60亿元，同比增长18.04%。",
+     "evidence": [
+      "E4"
+     ],
+     "numbers": [
+      "1,505.60",
+      "18.04"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2023-p063-c00",
+     "year": 2023,
+     "page": 63
+    },
+    {
+     "id": "2023-p056-c00",
+     "year": 2023,
+     "page": 56
+    },
+    {
+     "id": "2023-p020-c01",
+     "year": 2023,
+     "page": 20
+    },
+    {
+     "id": "2023-p008-c00",
+     "year": 2023,
+     "page": 8
+    },
+    {
+     "id": "2023-p141-c02",
+     "year": 2023,
+     "page": 141
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1888,
+    "completion_tokens": 118,
+    "calls": 1
+   },
+   "cost_cny": 0.002513,
+   "elapsed_sec": 1.0
+  },
+  {
+   "id": 7,
+   "type": "fact",
+   "question": "2023年度茅台的分红方案是每10股派多少现金红利？",
+   "gold_answer": "每10股派发现金红利308.76元（含税）（2023年报P2：\"向全体股东每10股派发现金红利308.76元（含税）\"）",
+   "source": "2023年报 P2",
+   "answer": "1. 2023年度利润分配预案为每10股派发现金红利308.76元（含税）。 [来源: 2023年报 P2]",
+   "standalone": "2023年度茅台的分红方案是每10股派多少现金红利？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2023年报 P2"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2023年度利润分配预案为每10股派发现金红利308.76元（含税）。",
+     "evidence": [
+      "E5"
+     ],
+     "numbers": [
+      "308.76"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2023-p033-c02",
+     "year": 2023,
+     "page": 33
+    },
+    {
+     "id": "2023-p075-c04",
+     "year": 2023,
+     "page": 75
+    },
+    {
+     "id": "2023-p075-c03",
+     "year": 2023,
+     "page": 75
+    },
+    {
+     "id": "2023-p033-c01",
+     "year": 2023,
+     "page": 33
+    },
+    {
+     "id": "2023-p002-c00",
+     "year": 2023,
+     "page": 2
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1805,
+    "completion_tokens": 65,
+    "calls": 1
+   },
+   "cost_cny": 0.002199,
+   "elapsed_sec": 0.93
+  },
+  {
+   "id": 8,
+   "type": "fact",
+   "question": "2023年i茅台数字营销平台的线上销售收入是多少？",
+   "gold_answer": "\"i茅台\"数字营销平台本期销售收入2,237,432.35万元，同比增长88.29%，毛利率96.09%（2023年报P17线上销售情况表）",
+   "source": "2023年报 P17",
+   "answer": "1. 2023年“i茅台”数字营销平台线上销售收入为2,237,432.35万元。 [来源: 2023年报 P17]\n\n（部分内容未通过自动核对，请以原文为准。）",
+   "standalone": "2023年i茅台数字营销平台的线上销售收入是多少？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": true,
+   "citations": [
+    "2023年报 P17"
+   ],
+   "violations": [
+    "claim 1 的数字在证据中找不到：['2,237,432.35万元']"
+   ],
+   "claims": [
+    {
+     "text": "2023年“i茅台”数字营销平台线上销售收入为2,237,432.35万元。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "2,237,432.35"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2023-p017-c00",
+     "year": 2023,
+     "page": 17
+    },
+    {
+     "id": "2023-p016-c00",
+     "year": 2023,
+     "page": 16
+    },
+    {
+     "id": "2023-p120-c00",
+     "year": 2023,
+     "page": 120
+    },
+    {
+     "id": "2023-p135-c01",
+     "year": 2023,
+     "page": 135
+    },
+    {
+     "id": "2023-p135-c02",
+     "year": 2023,
+     "page": 135
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 3849,
+    "completion_tokens": 138,
+    "calls": 2
+   },
+   "cost_cny": 0.004687,
+   "elapsed_sec": 1.69
+  },
+  {
+   "id": 9,
+   "type": "fact",
+   "question": "2023年茅台酒的产量和销量分别是多少吨？",
+   "gold_answer": "茅台酒产量57,204.11吨，销量42,109.50吨（2023年报P15产品情况表：\"茅台酒 57,204.11 0.69 42,109.50 11.10\"）",
+   "source": "2023年报 P15",
+   "answer": "2023年茅台酒：\n- 产量：57,204.11 吨（同比 +0.69%） [来源: 2023年报 P15]- 销量：42,109.50 吨（同比 +11.10%） [来源: 2023年报 P15]",
+   "standalone": "2023年茅台酒的产量和销量分别是多少吨？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2023年报 P15"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "metric:moutai_volume:2023",
+     "year": 2023,
+     "page": 15
+    },
+    {
+     "id": "2023-p015-c01",
+     "year": 2023,
+     "page": 15
+    },
+    {
+     "id": "2023-p014-c01",
+     "year": 2023,
+     "page": 14
+    },
+    {
+     "id": "2023-p015-c00",
+     "year": 2023,
+     "page": 15
+    },
+    {
+     "id": "2023-p014-c02",
+     "year": 2023,
+     "page": 14
+    },
+    {
+     "id": "2023-p010-c00",
+     "year": 2023,
+     "page": 10
+    }
+   ],
+   "calls": 3,
+   "usage": {
+    "prompt_tokens": 5608,
+    "completion_tokens": 224,
+    "calls": 3
+   },
+   "cost_cny": 0.006927,
+   "elapsed_sec": 2.62
+  },
+  {
+   "id": 10,
+   "type": "fact",
+   "question": "2023年茅台的销售费用是多少？比上一年涨了多少？",
+   "gold_answer": "销售费用4,648,613,585.82元，同比增加40.96%（2023年报P8利润表科目变动分析表）",
+   "source": "2023年报 P8",
+   "answer": "经核对，两个数字均由片段中的销售费用数据计算得出，并非抄录或单位错误。修正后的完整回答如下：\n2023年茅台销售费用为 **4,648,613,585.82 元**，2022年为 **3,297,724,190.94 元**。 [来源: 2023年报 P110；2023年报 P11；2023年报 P63]增长额：4,648,613,585.82 − 3,297,724,190.94 = **1,350,889,394.88 元（计算得出）**，增幅约 **40.96%（计算得出）**。 [来源: 2023年报 P110；2023年报 P11；2023年报 P63]年报说明销售费用同比增加主要是本期广告及市场拓展费用增加（广告宣传及市场拓展费用由 **2,887,804,740.39 元**增至 **3,640,663,233.92 元**）。 [来源: 2023年报 P110]",
+   "standalone": "2023年茅台的销售费用是多少？比上一年涨了多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2023年报 P110",
+    "2023年报 P11",
+    "2023年报 P63"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2022-p101-c01",
+     "year": 2022,
+     "page": 101
+    },
+    {
+     "id": "2022-p008-c01",
+     "year": 2022,
+     "page": 8
+    },
+    {
+     "id": "2022-p010-c00",
+     "year": 2022,
+     "page": 10
+    },
+    {
+     "id": "2022-p060-c01",
+     "year": 2022,
+     "page": 60
+    },
+    {
+     "id": "2022-p101-c00",
+     "year": 2022,
+     "page": 101
+    },
+    {
+     "id": "2023-p110-c00",
+     "year": 2023,
+     "page": 110
+    },
+    {
+     "id": "2023-p011-c00",
+     "year": 2023,
+     "page": 11
+    },
+    {
+     "id": "2023-p110-c01",
+     "year": 2023,
+     "page": 110
+    },
+    {
+     "id": "2023-p009-c00",
+     "year": 2023,
+     "page": 9
+    },
+    {
+     "id": "2023-p063-c01",
+     "year": 2023,
+     "page": 63
+    }
+   ],
+   "calls": 3,
+   "usage": {
+    "prompt_tokens": 9239,
+    "completion_tokens": 1093,
+    "calls": 3
+   },
+   "cost_cny": 0.014496,
+   "elapsed_sec": 6.71
+  },
+  {
+   "id": 11,
+   "type": "fact",
+   "question": "2023年末茅台在职员工总数是多少人？",
+   "gold_answer": "在职员工的数量合计33,302人（2023年报P32：\"在职员工的数量合计 33,302\"）",
+   "source": "2023年报 P32",
+   "answer": "1. 2023年末茅台在职员工的数量合计为33,302人。 [来源: 2023年报 P32]",
+   "standalone": "2023年末茅台在职员工总数是多少人？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2023年报 P32"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2023年末茅台在职员工的数量合计为33,302人。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "33,302"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2023-p032-c01",
+     "year": 2023,
+     "page": 32
+    },
+    {
+     "id": "2023-p032-c00",
+     "year": 2023,
+     "page": 32
+    },
+    {
+     "id": "2023-p029-c02",
+     "year": 2023,
+     "page": 29
+    },
+    {
+     "id": "2023-p013-c03",
+     "year": 2023,
+     "page": 13
+    },
+    {
+     "id": "2023-p024-c01",
+     "year": 2023,
+     "page": 24
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1808,
+    "completion_tokens": 57,
+    "calls": 1
+   },
+   "cost_cny": 0.002168,
+   "elapsed_sec": 0.99
+  },
+  {
+   "id": 12,
+   "type": "fact",
+   "question": "茅台1935这款产品2023年卖得怎么样？",
+   "gold_answer": "茅台1935上市仅两年成为营收百亿级大单品（2023年报P8：\"茅台 1935 造就\"行业奇迹\"，上市仅两年成为营收百亿级大单品\"）",
+   "source": "2023年报 P8",
+   "answer": "1. 茅台1935上市仅两年成为营收百亿级大单品，造就“行业奇迹”。 [来源: 2023年报 P8]\n2. 茅台1935酒属于其他系列酒，该档次2023年销售收入2,062,992.96万元，同比增长29.43%。 [来源: 2023年报 P15]",
+   "standalone": "茅台1935这款产品2023年卖得怎么样？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2023年报 P8",
+    "2023年报 P15"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "茅台1935上市仅两年成为营收百亿级大单品，造就“行业奇迹”。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [],
+     "kind": "extract"
+    },
+    {
+     "text": "茅台1935酒属于其他系列酒，该档次2023年销售收入2,062,992.96万元，同比增长29.43%。",
+     "evidence": [
+      "E2"
+     ],
+     "numbers": [
+      "2,062,992.96",
+      "29.43"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2023-p008-c00",
+     "year": 2023,
+     "page": 8
+    },
+    {
+     "id": "2023-p015-c01",
+     "year": 2023,
+     "page": 15
+    },
+    {
+     "id": "2023-p007-c01",
+     "year": 2023,
+     "page": 7
+    },
+    {
+     "id": "2023-p029-c00",
+     "year": 2023,
+     "page": 29
+    },
+    {
+     "id": "2023-p029-c01",
+     "year": 2023,
+     "page": 29
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1929,
+    "completion_tokens": 123,
+    "calls": 1
+   },
+   "cost_cny": 0.002578,
+   "elapsed_sec": 1.12
+  },
+  {
+   "id": 13,
+   "type": "fact",
+   "question": "茅台2024年营业总收入是多少？",
+   "gold_answer": "营业总收入1,741.44亿元，同比增长15.66%（2024年报P8：\"实现营业总收入1,741.44 亿元，同比增长 15.66%\"）",
+   "source": "2024年报 P8",
+   "answer": "1. 2024年营业总收入为174,144,069,958.25元。 [来源: 2024年报 P63]",
+   "standalone": "茅台2024年营业总收入是多少？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2024年报 P63"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2024年营业总收入为174,144,069,958.25元。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "174,144,069,958.25"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p063-c00",
+     "year": 2024,
+     "page": 63
+    },
+    {
+     "id": "2024-p056-c00",
+     "year": 2024,
+     "page": 56
+    },
+    {
+     "id": "2024-p021-c01",
+     "year": 2024,
+     "page": 21
+    },
+    {
+     "id": "2024-p141-c00",
+     "year": 2024,
+     "page": 141
+    },
+    {
+     "id": "2024-p008-c04",
+     "year": 2024,
+     "page": 8
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1655,
+    "completion_tokens": 66,
+    "calls": 1
+   },
+   "cost_cny": 0.002044,
+   "elapsed_sec": 0.96
+  },
+  {
+   "id": 14,
+   "type": "fact",
+   "question": "2024年贵州茅台归属于上市公司股东的净利润是多少？",
+   "gold_answer": "86,228,146,421.62元（2024年报P5主要会计数据表）",
+   "source": "2024年报 P5",
+   "answer": "1. 2024年贵州茅台归属于上市公司股东的净利润为86,228,146,421.62元。 [来源: 2024年报 P5]",
+   "standalone": "2024年贵州茅台归属于上市公司股东的净利润是多少？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2024年报 P5"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2024年贵州茅台归属于上市公司股东的净利润为86,228,146,421.62元。",
+     "evidence": [
+      "E4"
+     ],
+     "numbers": [
+      "86,228,146,421.62"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p006-c00",
+     "year": 2024,
+     "page": 6
+    },
+    {
+     "id": "2024-p035-c00",
+     "year": 2024,
+     "page": 35
+    },
+    {
+     "id": "2024-p121-c03",
+     "year": 2024,
+     "page": 121
+    },
+    {
+     "id": "2024-p005-c00",
+     "year": 2024,
+     "page": 5
+    },
+    {
+     "id": "2024-p074-c00",
+     "year": 2024,
+     "page": 74
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1677,
+    "completion_tokens": 70,
+    "calls": 1
+   },
+   "cost_cny": 0.002084,
+   "elapsed_sec": 0.81
+  },
+  {
+   "id": 15,
+   "type": "fact",
+   "question": "2024年度茅台的利润分配预案是每10股派多少现金红利？",
+   "gold_answer": "每10股派发现金红利276.24元（含税）（2024年报P2：\"向全体股东每10股派发现金红利276.24元（含税）\"）",
+   "source": "2024年报 P2",
+   "answer": "1. 公司2024年年度利润分配预案为向全体股东每10股派发现金红利276.24元（含税）。 [来源: 2024年报 P2；2024年报 P34]",
+   "standalone": "2024年度茅台的利润分配预案是每10股派多少现金红利？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2024年报 P2",
+    "2024年报 P34"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "公司2024年年度利润分配预案为向全体股东每10股派发现金红利276.24元（含税）。",
+     "evidence": [
+      "E2",
+      "E3"
+     ],
+     "numbers": [
+      "276.24"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p034-c01",
+     "year": 2024,
+     "page": 34
+    },
+    {
+     "id": "2024-p002-c00",
+     "year": 2024,
+     "page": 2
+    },
+    {
+     "id": "2024-p034-c02",
+     "year": 2024,
+     "page": 34
+    },
+    {
+     "id": "2024-p034-c00",
+     "year": 2024,
+     "page": 34
+    },
+    {
+     "id": "2024-p002-c01",
+     "year": 2024,
+     "page": 2
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1709,
+    "completion_tokens": 74,
+    "calls": 1
+   },
+   "cost_cny": 0.002135,
+   "elapsed_sec": 1.52
+  },
+  {
+   "id": 16,
+   "type": "fact",
+   "question": "2024年末茅台国内经销商有多少家？当年有什么增减变化？",
+   "gold_answer": "报告期末国内经销商2,143个，报告期内增加67个、减少4个，增加的是酱香系列酒的经销商（2024年报P16经销商情况表及情况说明）",
+   "source": "2024年报 P16",
+   "answer": "2024年末，茅台国内经销商数量为 **2,143 个**。 [来源: 2024年报 P16]报告期内，国内经销商**增加 67 个、减少 4 个**； [来源: 2024年报 P16]年报说明，增加的是酱香系列酒的经销商。作为参考，国外经销商期末为 104 个，报告期内增加 2 个。 [来源: 2024年报 P16]",
+   "standalone": "2024年末茅台国内经销商有多少家？当年有什么增减变化？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2024年报 P16"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "metric:domestic_dealers:2024",
+     "year": 2024,
+     "page": 16
+    },
+    {
+     "id": "2024-p016-c01",
+     "year": 2024,
+     "page": 16
+    },
+    {
+     "id": "2024-p016-c00",
+     "year": 2024,
+     "page": 16
+    },
+    {
+     "id": "2024-p013-c03",
+     "year": 2024,
+     "page": 13
+    },
+    {
+     "id": "2024-p009-c02",
+     "year": 2024,
+     "page": 9
+    },
+    {
+     "id": "2024-p013-c04",
+     "year": 2024,
+     "page": 13
+    }
+   ],
+   "calls": 3,
+   "usage": {
+    "prompt_tokens": 5490,
+    "completion_tokens": 196,
+    "calls": 3
+   },
+   "cost_cny": 0.006682,
+   "elapsed_sec": 2.82
+  },
+  {
+   "id": 17,
+   "type": "fact",
+   "question": "2024年茅台酒的毛利率是多少？",
+   "gold_answer": "94.06%（2024年报P9主营业务分产品情况表：\"茅台酒 145,928,075,955.31 15.28 … 94.06\"）",
+   "source": "2024年报 P9",
+   "answer": "1. 2024年茅台酒的毛利率为94.06%。 [来源: 2024年报 P9；2024年报 P16]",
+   "standalone": "2024年茅台酒的毛利率是多少？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2024年报 P9",
+    "2024年报 P16"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2024年茅台酒的毛利率为94.06%。",
+     "evidence": [
+      "E1",
+      "E2"
+     ],
+     "numbers": [
+      "94.06"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p009-c01",
+     "year": 2024,
+     "page": 9
+    },
+    {
+     "id": "2024-p016-c02",
+     "year": 2024,
+     "page": 16
+    },
+    {
+     "id": "2024-p016-c01",
+     "year": 2024,
+     "page": 16
+    },
+    {
+     "id": "2024-p009-c00",
+     "year": 2024,
+     "page": 9
+    },
+    {
+     "id": "2024-p056-c00",
+     "year": 2024,
+     "page": 56
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1778,
+    "completion_tokens": 58,
+    "calls": 1
+   },
+   "cost_cny": 0.002141,
+   "elapsed_sec": 1.05
+  },
+  {
+   "id": 18,
+   "type": "fact",
+   "question": "2024年茅台酒基酒设计产能是多少？有新增产能吗？",
+   "gold_answer": "2024年茅台酒基酒设计产能为44,595.00吨，同比新增基酒产能1,800.00吨，新增产能于2024年10月投产（2024年报P14）",
+   "source": "2024年报 P14",
+   "answer": "2024年茅台酒基酒设计产能为 **44,595.00 吨**，同比新增基酒产能 **1,800.00 吨**； [来源: 2024年报 P14]新增产能于2024年10月投产，由于茅台酒的生产工艺特点，将在2025年释放。 [来源: 2024年报 P14]（同期系列酒基酒设计产能为52,460.00吨，同比新增8,000.00吨，2024年11月投产，也将在2025年释放。 [来源: 2024年报 P14]）\n",
+   "standalone": "2024年茅台酒基酒设计产能是多少？有新增产能吗？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2024年报 P14"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p014-c01",
+     "year": 2024,
+     "page": 14
+    },
+    {
+     "id": "2024-p014-c00",
+     "year": 2024,
+     "page": 14
+    },
+    {
+     "id": "2024-p014-c02",
+     "year": 2024,
+     "page": 14
+    },
+    {
+     "id": "2024-p015-c00",
+     "year": 2024,
+     "page": 15
+    },
+    {
+     "id": "2024-p015-c01",
+     "year": 2024,
+     "page": 15
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 4052,
+    "completion_tokens": 170,
+    "calls": 2
+   },
+   "cost_cny": 0.00504,
+   "elapsed_sec": 1.99
+  },
+  {
+   "id": 19,
+   "type": "fact",
+   "question": "2024年末茅台在职员工总数是多少人？",
+   "gold_answer": "在职员工的数量合计34,750人（2024年报P33：\"在职员工的数量合计 34,750\"）",
+   "source": "2024年报 P33",
+   "answer": "1. 2024年末茅台在职员工的数量合计为34,750人。 [来源: 2024年报 P33]",
+   "standalone": "2024年末茅台在职员工总数是多少人？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2024年报 P33"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2024年末茅台在职员工的数量合计为34,750人。",
+     "evidence": [
+      "E2"
+     ],
+     "numbers": [
+      "34,750"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p033-c00",
+     "year": 2024,
+     "page": 33
+    },
+    {
+     "id": "2024-p033-c01",
+     "year": 2024,
+     "page": 33
+    },
+    {
+     "id": "2024-p030-c02",
+     "year": 2024,
+     "page": 30
+    },
+    {
+     "id": "2024-p030-c01",
+     "year": 2024,
+     "page": 30
+    },
+    {
+     "id": "2024-p028-c02",
+     "year": 2024,
+     "page": 28
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1799,
+    "completion_tokens": 57,
+    "calls": 1
+   },
+   "cost_cny": 0.002159,
+   "elapsed_sec": 0.83
+  },
+  {
+   "id": 20,
+   "type": "fact",
+   "question": "2024年茅台前五大客户的销售集中度怎么样？",
+   "gold_answer": "前五名客户销售额1,964,793.93万元，占年度销售总额11.52%（2024年报P10主要销售客户情况）",
+   "source": "2024年报 P10",
+   "answer": "1. 2024年前五名客户销售额为1,964,793.93万元，占年度销售总额11.52%。 [来源: 2024年报 P10]\n2. 前五名客户销售额中关联方销售额为656,041.77万元，占年度销售总额3.85%。 [来源: 2024年报 P10]",
+   "standalone": "2024年茅台前五大客户的销售集中度怎么样？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2024年报 P10"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2024年前五名客户销售额为1,964,793.93万元，占年度销售总额11.52%。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "1,964,793.93",
+      "11.52"
+     ],
+     "kind": "extract"
+    },
+    {
+     "text": "前五名客户销售额中关联方销售额为656,041.77万元，占年度销售总额3.85%。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "656,041.77",
+      "3.85"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p010-c02",
+     "year": 2024,
+     "page": 10
+    },
+    {
+     "id": "2024-p007-c02",
+     "year": 2024,
+     "page": 7
+    },
+    {
+     "id": "2024-p021-c00",
+     "year": 2024,
+     "page": 21
+    },
+    {
+     "id": "2024-p030-c02",
+     "year": 2024,
+     "page": 30
+    },
+    {
+     "id": "2024-p030-c01",
+     "year": 2024,
+     "page": 30
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1822,
+    "completion_tokens": 136,
+    "calls": 1
+   },
+   "cost_cny": 0.00252,
+   "elapsed_sec": 0.92
+  },
+  {
+   "id": 21,
+   "type": "fact",
+   "question": "2024年末茅台的普通股股东总数是多少户？",
+   "gold_answer": "截至报告期末普通股股东总数207,894户（2024年报P50：\"截至报告期末普通股股东总数(户) 207,894\"）",
+   "source": "2024年报 P50",
+   "answer": "1. 截至报告期末普通股股东总数为207,894户。 [来源: 2024年报 P50]",
+   "standalone": "2024年末茅台的普通股股东总数是多少户？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2024年报 P50"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "截至报告期末普通股股东总数为207,894户。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "207,894"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p050-c00",
+     "year": 2024,
+     "page": 50
+    },
+    {
+     "id": "2024-p024-c00",
+     "year": 2024,
+     "page": 24
+    },
+    {
+     "id": "2024-p030-c02",
+     "year": 2024,
+     "page": 30
+    },
+    {
+     "id": "2024-p029-c01",
+     "year": 2024,
+     "page": 29
+    },
+    {
+     "id": "2024-p005-c01",
+     "year": 2024,
+     "page": 5
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1869,
+    "completion_tokens": 56,
+    "calls": 1
+   },
+   "cost_cny": 0.002229,
+   "elapsed_sec": 1.1
+  },
+  {
+   "id": 22,
+   "type": "fact",
+   "question": "茅台2024年支付给会计师事务所的审计费用是多少？",
+   "gold_answer": "2024年度财务审计费用为125万元，内部控制审计费用为41万元（2024年报P41聘任、解聘会计师事务所情况）",
+   "source": "2024年报 P41",
+   "answer": "1. 2024年度财务审计费用为125万元。 [来源: 2024年报 P41]\n2. 2024年度内部控制审计费用为41万元。 [来源: 2024年报 P41]",
+   "standalone": "茅台2024年支付给会计师事务所的审计费用是多少？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2024年报 P41"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2024年度财务审计费用为125万元。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "125"
+     ],
+     "kind": "extract"
+    },
+    {
+     "text": "2024年度内部控制审计费用为41万元。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "41"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p041-c01",
+     "year": 2024,
+     "page": 41
+    },
+    {
+     "id": "2024-p041-c00",
+     "year": 2024,
+     "page": 41
+    },
+    {
+     "id": "2024-p055-c00",
+     "year": 2024,
+     "page": 55
+    },
+    {
+     "id": "2024-p058-c01",
+     "year": 2024,
+     "page": 58
+    },
+    {
+     "id": "2024-p005-c00",
+     "year": 2024,
+     "page": 5
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1732,
+    "completion_tokens": 86,
+    "calls": 1
+   },
+   "cost_cny": 0.002211,
+   "elapsed_sec": 1.18
+  },
+  {
+   "id": 23,
+   "type": "fact",
+   "question": "茅台2025年营业收入是多少？",
+   "gold_answer": "营业收入168,838,102,514.79元，比上年同期减少1.21%（2025年报P6主要会计数据表）",
+   "source": "2025年报 P6",
+   "answer": "1. 2025年度贵州茅台公司的营业收入为人民币16,883,810.25万元。 [来源: 2025年报 P54]\n2. 2025年度合并利润表列示营业收入为168,838,102,514.79元。 [来源: 2025年报 P61]",
+   "standalone": "茅台2025年营业收入是多少？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2025年报 P54",
+    "2025年报 P61"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2025年度贵州茅台公司的营业收入为人民币16,883,810.25万元。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "16,883,810.25"
+     ],
+     "kind": "extract"
+    },
+    {
+     "text": "2025年度合并利润表列示营业收入为168,838,102,514.79元。",
+     "evidence": [
+      "E5"
+     ],
+     "numbers": [
+      "168,838,102,514.79"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2025-p054-c00",
+     "year": 2025,
+     "page": 54
+    },
+    {
+     "id": "2025-p012-c00",
+     "year": 2025,
+     "page": 12
+    },
+    {
+     "id": "2025-p010-c01",
+     "year": 2025,
+     "page": 10
+    },
+    {
+     "id": "2025-p129-c01",
+     "year": 2025,
+     "page": 129
+    },
+    {
+     "id": "2025-p061-c00",
+     "year": 2025,
+     "page": 61
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1942,
+    "completion_tokens": 119,
+    "calls": 1
+   },
+   "cost_cny": 0.002575,
+   "elapsed_sec": 1.43
+  },
+  {
+   "id": 24,
+   "type": "fact",
+   "question": "2025年贵州茅台归属于上市公司股东的净利润是多少？",
+   "gold_answer": "82,320,067,101.68元，比上年同期减少4.53%（2025年报P6主要会计数据表）",
+   "source": "2025年报 P6",
+   "answer": "1. 2025年贵州茅台归属于上市公司股东的净利润为82,320,067,101.68元。 [来源: 2025年报 P6]",
+   "standalone": "2025年贵州茅台归属于上市公司股东的净利润是多少？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2025年报 P6"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2025年贵州茅台归属于上市公司股东的净利润为82,320,067,101.68元。",
+     "evidence": [
+      "E3"
+     ],
+     "numbers": [
+      "82,320,067,101.68"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2025-p007-c00",
+     "year": 2025,
+     "page": 7
+    },
+    {
+     "id": "2025-p033-c01",
+     "year": 2025,
+     "page": 33
+    },
+    {
+     "id": "2025-p006-c00",
+     "year": 2025,
+     "page": 6
+    },
+    {
+     "id": "2025-p006-c01",
+     "year": 2025,
+     "page": 6
+    },
+    {
+     "id": "2025-p072-c00",
+     "year": 2025,
+     "page": 72
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1963,
+    "completion_tokens": 70,
+    "calls": 1
+   },
+   "cost_cny": 0.002389,
+   "elapsed_sec": 1.11
+  },
+  {
+   "id": 25,
+   "type": "fact",
+   "question": "2025年度茅台的分红预案是每股派多少现金红利？",
+   "gold_answer": "每股派发现金红利27.993元（含税）（2025年报P2：\"2025年年度利润分配拟向全体股东每股派发现金红利27.993元（含税）\"）",
+   "source": "2025年报 P2",
+   "answer": "1. 2025年年度利润分配拟向全体股东每股派发现金红利27.993元（含税）。 [来源: 2025年报 P2]",
+   "standalone": "2025年度茅台的分红预案是每股派多少现金红利？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2025年报 P2"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2025年年度利润分配拟向全体股东每股派发现金红利27.993元（含税）。",
+     "evidence": [
+      "E2"
+     ],
+     "numbers": [
+      "27.993"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2025-p033-c01",
+     "year": 2025,
+     "page": 33
+    },
+    {
+     "id": "2025-p002-c00",
+     "year": 2025,
+     "page": 2
+    },
+    {
+     "id": "2025-p033-c02",
+     "year": 2025,
+     "page": 33
+    },
+    {
+     "id": "2025-p033-c00",
+     "year": 2025,
+     "page": 33
+    },
+    {
+     "id": "2025-p032-c02",
+     "year": 2025,
+     "page": 32
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1686,
+    "completion_tokens": 66,
+    "calls": 1
+   },
+   "cost_cny": 0.002077,
+   "elapsed_sec": 0.89
+  },
+  {
+   "id": 26,
+   "type": "fact",
+   "question": "2025年末茅台国内经销商有多少家？当年是怎么变化的？",
+   "gold_answer": "报告期末国内经销商2,353个，报告期内增加233个、减少23个，国内增加的均为酱香系列酒经销商（2025年报P17经销商情况表及情况说明）",
+   "source": "2025年报 P17",
+   "answer": "2025年末，茅台国内经销商数量为 **2,353 个**。 [来源: 2025年报 P17]当年国内经销商增加 233 个、减少 23 个，净增 210 个（计算得出：233 − 23 = 210）。 [来源: 2025年报 P17]年报说明，本期国内增加的经销商均为酱香系列酒经销商。作为参照，国外经销商报告期末为 126 个，当年增加 23 个、减少 1 个。 [来源: 2025年报 P17]",
+   "standalone": "2025年末茅台国内经销商有多少家？当年是怎么变化的？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2025年报 P17"
+   ],
+   "violations": [
+    "数字在检索证据中找不到：210"
+   ],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "metric:domestic_dealers:2025",
+     "year": 2025,
+     "page": 17
+    },
+    {
+     "id": "2025-p017-c01",
+     "year": 2025,
+     "page": 17
+    },
+    {
+     "id": "2025-p010-c02",
+     "year": 2025,
+     "page": 10
+    },
+    {
+     "id": "2025-p017-c00",
+     "year": 2025,
+     "page": 17
+    },
+    {
+     "id": "2025-p010-c01",
+     "year": 2025,
+     "page": 10
+    },
+    {
+     "id": "2025-p008-c02",
+     "year": 2025,
+     "page": 8
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 4289,
+    "completion_tokens": 208,
+    "calls": 2
+   },
+   "cost_cny": 0.005454,
+   "elapsed_sec": 2.45
+  },
+  {
+   "id": 27,
+   "type": "fact",
+   "question": "2025年茅台酒基酒设计产能达到多少吨？",
+   "gold_answer": "46,395.00吨（2025年报P15：\"2025 年茅台酒基酒设计产能为 46,395.00 吨\"）",
+   "source": "2025年报 P15",
+   "answer": "1. 2025年茅台酒基酒设计产能为46,395.00吨。 [来源: 2025年报 P15]",
+   "standalone": "2025年茅台酒基酒设计产能达到多少吨？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2025年报 P15"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2025年茅台酒基酒设计产能为46,395.00吨。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "46,395.00"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2025-p015-c00",
+     "year": 2025,
+     "page": 15
+    },
+    {
+     "id": "2025-p015-c01",
+     "year": 2025,
+     "page": 15
+    },
+    {
+     "id": "2025-p016-c00",
+     "year": 2025,
+     "page": 16
+    },
+    {
+     "id": "2025-p016-c01",
+     "year": 2025,
+     "page": 16
+    },
+    {
+     "id": "2025-p054-c00",
+     "year": 2025,
+     "page": 54
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1995,
+    "completion_tokens": 62,
+    "calls": 1
+   },
+   "cost_cny": 0.002389,
+   "elapsed_sec": 1.19
+  },
+  {
+   "id": 28,
+   "type": "fact",
+   "question": "2025年茅台酒的销售收入和毛利率分别是多少？",
+   "gold_answer": "茅台酒营业收入146,499,906,480.49元，毛利率93.53%（2025年报P10主营业务分产品情况表）",
+   "source": "2025年报 P10",
+   "answer": "2025年茅台酒：\n- 销售收入（营业收入）：146,499,906,480.49 元 [来源: 2025年报 P10；2025年报 P18]- 毛利率：93.53%（比上年减少 0.53 个百分点） [来源: 2025年报 P10]",
+   "standalone": "2025年茅台酒的销售收入和毛利率分别是多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2025年报 P10",
+    "2025年报 P18"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "metric:moutai_revenue:2025",
+     "year": 2025,
+     "page": 10
+    },
+    {
+     "id": "2025-p010-c01",
+     "year": 2025,
+     "page": 10
+    },
+    {
+     "id": "2025-p018-c00",
+     "year": 2025,
+     "page": 18
+    },
+    {
+     "id": "2025-p010-c00",
+     "year": 2025,
+     "page": 10
+    },
+    {
+     "id": "2025-p017-c01",
+     "year": 2025,
+     "page": 17
+    },
+    {
+     "id": "2025-p010-c02",
+     "year": 2025,
+     "page": 10
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 4345,
+    "completion_tokens": 160,
+    "calls": 2
+   },
+   "cost_cny": 0.005309,
+   "elapsed_sec": 2.6
+  },
+  {
+   "id": 29,
+   "type": "fact",
+   "question": "2025年末茅台在职员工一共有多少人？",
+   "gold_answer": "在职员工合计34,992人（2025年报P32员工专业构成表：\"合计 34,992\"）",
+   "source": "2025年报 P32",
+   "answer": "1. 2025年末母公司在职员工的数量为33,504人。 [来源: 2025年报 P31]\n2. 2025年末主要子公司在职员工的数量为1,488人。 [来源: 2025年报 P31]\n3. 2025年末在职员工的数量合计为34,992人。 [来源: 2025年报 P31]",
+   "standalone": "2025年末茅台在职员工一共有多少人？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2025年报 P31"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2025年末母公司在职员工的数量为33,504人。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "33,504"
+     ],
+     "kind": "extract"
+    },
+    {
+     "text": "2025年末主要子公司在职员工的数量为1,488人。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "1,488"
+     ],
+     "kind": "extract"
+    },
+    {
+     "text": "2025年末在职员工的数量合计为34,992人。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "34,992"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2025-p031-c02",
+     "year": 2025,
+     "page": 31
+    },
+    {
+     "id": "2025-p001-c00",
+     "year": 2025,
+     "page": 1
+    },
+    {
+     "id": "2025-p042-c06",
+     "year": 2025,
+     "page": 42
+    },
+    {
+     "id": "2025-p031-c01",
+     "year": 2025,
+     "page": 31
+    },
+    {
+     "id": "2025-p015-c00",
+     "year": 2025,
+     "page": 15
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1542,
+    "completion_tokens": 139,
+    "calls": 1
+   },
+   "cost_cny": 0.002234,
+   "elapsed_sec": 0.79
+  },
+  {
+   "id": 30,
+   "type": "fact",
+   "question": "2025年茅台劳务外包支付的报酬总额是多少？",
+   "gold_answer": "5.95亿元（含税）（2025年报P32：\"2025 年，公司劳务外包支付的报酬总额 5.95 亿元（含税）\"）",
+   "source": "2025年报 P32",
+   "answer": "1. 2025年，公司劳务外包支付的报酬总额5.95亿元（含税）。 [来源: 2025年报 P32]",
+   "standalone": "2025年茅台劳务外包支付的报酬总额是多少？",
+   "refused": false,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [
+    "2025年报 P32"
+   ],
+   "violations": [],
+   "claims": [
+    {
+     "text": "2025年，公司劳务外包支付的报酬总额5.95亿元（含税）。",
+     "evidence": [
+      "E1"
+     ],
+     "numbers": [
+      "5.95"
+     ],
+     "kind": "extract"
+    }
+   ],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2025-p032-c01",
+     "year": 2025,
+     "page": 32
+    },
+    {
+     "id": "2025-p040-c01",
+     "year": 2025,
+     "page": 40
+    },
+    {
+     "id": "2025-p040-c06",
+     "year": 2025,
+     "page": 40
+    },
+    {
+     "id": "2025-p040-c07",
+     "year": 2025,
+     "page": 40
+    },
+    {
+     "id": "2025-p040-c02",
+     "year": 2025,
+     "page": 40
+    }
+   ],
+   "calls": 1,
+   "usage": {
+    "prompt_tokens": 1992,
+    "completion_tokens": 61,
+    "calls": 1
+   },
+   "cost_cny": 0.002381,
+   "elapsed_sec": 1.13
+  },
+  {
+   "id": 31,
+   "type": "cross_page",
+   "question": "2024年茅台通过i茅台数字营销平台实现的销售收入是多少？直销渠道整体收入又是多少？",
+   "gold_answer": "i茅台数字营销平台本期销售收入2,002,366.62万元，同比下降10.51%（2024年报P16）；直销渠道营业收入74,843,327,030.79元（2024年报P9主营业务分销售模式情况表）",
+   "source": "2024年报 P9、P16",
+   "answer": "2024年，贵州茅台通过“i茅台”数字营销平台实现的销售收入为 **2,002,366.62 万元**（上期为 2,237,432.35 万元，同比下降 10.51%，毛利率 94.50%）； [来源: 2024年报 P16]直销渠道整体营业收入为 **74,843,327,030.79 元**。 [来源: 2024年报 P9]",
+   "standalone": "2024年茅台通过i茅台数字营销平台实现的销售收入是多少？直销渠道整体收入又是多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2024年报 P16",
+    "2024年报 P9"
+   ],
+   "violations": [
+    "数字在检索证据中找不到：2,002,366.62 万元",
+    "数字在检索证据中找不到：2,237,432.35 万元",
+    "数字在检索证据中找不到：10.51%"
+   ],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p016-c01",
+     "year": 2024,
+     "page": 16
+    },
+    {
+     "id": "2024-p120-c00",
+     "year": 2024,
+     "page": 120
+    },
+    {
+     "id": "2024-p134-c00",
+     "year": 2024,
+     "page": 134
+    },
+    {
+     "id": "2024-p015-c02",
+     "year": 2024,
+     "page": 15
+    },
+    {
+     "id": "2024-p044-c02",
+     "year": 2024,
+     "page": 44
+    },
+    {
+     "id": "metric:direct_revenue:2024",
+     "year": 2024,
+     "page": 9
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 4115,
+    "completion_tokens": 198,
+    "calls": 2
+   },
+   "cost_cny": 0.005226,
+   "elapsed_sec": 2.46
+  },
+  {
+   "id": 32,
+   "type": "cross_page",
+   "question": "2024年茅台酒类产品整体销量是多少？其中系列酒销量是多少？",
+   "gold_answer": "2024年酒类整体销售量83,332.76吨（2024年报P10产销量情况分析表）；其他系列酒销量36,919.81吨，同比增长18.47%（2024年报P15产品情况表）",
+   "source": "2024年报 P10、P15",
+   "answer": "2024年茅台酒销量为 46,412.95 吨，系列酒销量为 36,919.81 吨。 [来源: 2024年报 P15]酒类产品整体销量合计：46,412.95 + 36,919.81 = 83,332.76 吨（计算得出）。 [来源: 2024年报 P15]",
+   "standalone": "2024年茅台酒类产品整体销量是多少？其中系列酒销量是多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2024年报 P15"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "metric:moutai_volume:2024",
+     "year": 2024,
+     "page": 15
+    },
+    {
+     "id": "metric:series_volume:2024",
+     "year": 2024,
+     "page": 15
+    }
+   ],
+   "calls": 3,
+   "usage": {
+    "prompt_tokens": 2971,
+    "completion_tokens": 569,
+    "calls": 3
+   },
+   "cost_cny": 0.005588,
+   "elapsed_sec": 5.31
+  },
+  {
+   "id": 33,
+   "type": "cross_page",
+   "question": "2024年茅台酒的产量是多少吨？年末成品酒库存还有多少？",
+   "gold_answer": "茅台酒产量56,271.99吨（2024年报P15产品情况表）；期末成品酒库存量17,760.00吨（2024年报P14产品期末库存量表）",
+   "source": "2024年报 P14、P15",
+   "answer": "2024年茅台酒产量为 **56,271.99 吨**（同比 -1.63%）； [来源: 2024年报 P15]年末成品酒库存量为 **17,760.00 吨**（含酱香系列酒，另有半成品酒/含基础酒 292,248.02 吨）。 [来源: 2024年报 P14]",
+   "standalone": "2024年茅台酒的产量是多少吨？年末成品酒库存还有多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2024年报 P15",
+    "2024年报 P14"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p014-c02",
+     "year": 2024,
+     "page": 14
+    },
+    {
+     "id": "2024-p014-c01",
+     "year": 2024,
+     "page": 14
+    },
+    {
+     "id": "2024-p015-c00",
+     "year": 2024,
+     "page": 15
+    },
+    {
+     "id": "2024-p099-c02",
+     "year": 2024,
+     "page": 99
+    },
+    {
+     "id": "2024-p102-c00",
+     "year": 2024,
+     "page": 102
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 3952,
+    "completion_tokens": 186,
+    "calls": 2
+   },
+   "cost_cny": 0.005001,
+   "elapsed_sec": 1.94
+  },
+  {
+   "id": 34,
+   "type": "cross_page",
+   "question": "贵州茅台酒销售有限公司和贵州茅台酱香酒营销有限公司2024年的净利润分别是多少？",
+   "gold_answer": "贵州茅台酒销售有限公司净利润4,852,174.60万元；贵州茅台酱香酒营销有限公司净利润762,484.23万元（2024年报P20主要控股参股公司分析表）",
+   "source": "2024年报 P20",
+   "answer": "根据2024年报，贵州茅台酒销售有限公司2024年净利润为4,852,174.60万元（即约485.22亿元（计算得出））；但年报“重要非全资子公司的主要财务信息”中仅列示了贵州茅台酒销售有限公司的数据，未披露贵州茅台酱香酒营销有限公司的净利润，因此该公司的净利润根据年报内容无法回答。",
+   "standalone": "贵州茅台酒销售有限公司和贵州茅台酱香酒营销有限公司2024年的净利润分别是多少？",
+   "refused": true,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [],
+   "violations": [
+    "数字在检索证据中找不到：4,852,174.60万元",
+    "数字在检索证据中找不到：（计算得出）"
+   ],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p121-c03",
+     "year": 2024,
+     "page": 121
+    },
+    {
+     "id": "2024-p121-c02",
+     "year": 2024,
+     "page": 121
+    },
+    {
+     "id": "2024-p126-c00",
+     "year": 2024,
+     "page": 126
+    },
+    {
+     "id": "2024-p129-c00",
+     "year": 2024,
+     "page": 129
+    },
+    {
+     "id": "2024-p045-c04",
+     "year": 2024,
+     "page": 45
+    },
+    {
+     "id": "2024-p013-c01",
+     "year": 2024,
+     "page": 13
+    },
+    {
+     "id": "2024-p045-c02",
+     "year": 2024,
+     "page": 45
+    },
+    {
+     "id": "2024-p132-c01",
+     "year": 2024,
+     "page": 132
+    },
+    {
+     "id": "2024-p121-c00",
+     "year": 2024,
+     "page": 121
+    },
+    {
+     "id": "2024-p121-c01",
+     "year": 2024,
+     "page": 121
+    }
+   ],
+   "calls": 4,
+   "usage": {
+    "prompt_tokens": 13891,
+    "completion_tokens": 695,
+    "calls": 4
+   },
+   "cost_cny": 0.017755,
+   "elapsed_sec": 5.33
+  },
+  {
+   "id": 35,
+   "type": "cross_page",
+   "question": "2024年末茅台的存货余额是多少？其中半成品酒（含基础酒）库存有多少吨？",
+   "gold_answer": "存货54,343,285,157.47元，占总资产比例18.18%（2024年报P13资产及负债状况表）；半成品酒（含基础酒）292,248.02吨（2024年报P14产品期末库存量表）",
+   "source": "2024年报 P13、P14",
+   "answer": "2024年末，茅台存货情况如下：\n- **存货余额（账面余额）**：54,344,569,142.30 元； [来源: 2024年报 P93；2024年报 P59]扣除存货跌价准备 1,283,984.83 元后，账面价值为 54,343,285,157.47 元。 [来源: 2024年报 P93]- **半成品酒（含基础酒）库存量**：292,248.02 吨； [来源: 2024年报 P14]同期成品酒库存量为 17,760.00 吨。 [来源: 2024年报 P14]",
+   "standalone": "2024年末茅台的存货余额是多少？其中半成品酒（含基础酒）库存有多少吨？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2024年报 P93",
+    "2024年报 P59",
+    "2024年报 P14"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p093-c00",
+     "year": 2024,
+     "page": 93
+    },
+    {
+     "id": "2024-p093-c01",
+     "year": 2024,
+     "page": 93
+    },
+    {
+     "id": "2024-p079-c00",
+     "year": 2024,
+     "page": 79
+    },
+    {
+     "id": "2024-p092-c02",
+     "year": 2024,
+     "page": 92
+    },
+    {
+     "id": "2024-p059-c00",
+     "year": 2024,
+     "page": 59
+    },
+    {
+     "id": "2024-p014-c02",
+     "year": 2024,
+     "page": 14
+    },
+    {
+     "id": "2024-p014-c01",
+     "year": 2024,
+     "page": 14
+    },
+    {
+     "id": "2024-p015-c00",
+     "year": 2024,
+     "page": 15
+    },
+    {
+     "id": "2024-p014-c00",
+     "year": 2024,
+     "page": 14
+    },
+    {
+     "id": "2024-p099-c02",
+     "year": 2024,
+     "page": 99
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 5403,
+    "completion_tokens": 229,
+    "calls": 2
+   },
+   "cost_cny": 0.00673,
+   "elapsed_sec": 2.2
+  },
+  {
+   "id": 36,
+   "type": "cross_page",
+   "question": "茅台2023年归母净利润是多少？当年批发代理渠道的销售收入是多少？",
+   "gold_answer": "归母净利润747.34亿元，同比增长19.16%（2023年报P8）；批发代理渠道本期销售收入7,998,611.94万元（2023年报P16销售渠道表）",
+   "source": "2023年报 P8、P16",
+   "answer": "2023年贵州茅台：\n- **归属于上市公司股东的净利润**：74,734,071,550.75 元（约747.34亿元（计算得出）） [来源: 2023年报 P5]- **批发代理渠道销售收入**：7,998,611.94 万元（即 79,986,119,397.90 元，约799.86亿元（计算得出）） [来源: 2023年报 P16；2023年报 P17]补充：同期直销渠道销售收入为 6,723,287.69 万元 。 [来源: 2023年报 P16；2023年报 P17]",
+   "standalone": "茅台2023年归母净利润是多少？当年批发代理渠道的销售收入是多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2023年报 P5",
+    "2023年报 P16",
+    "2023年报 P17"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "metric:net_profit:2023",
+     "year": 2023,
+     "page": 5
+    },
+    {
+     "id": "2023-p016-c00",
+     "year": 2023,
+     "page": 16
+    },
+    {
+     "id": "2023-p016-c01",
+     "year": 2023,
+     "page": 16
+    },
+    {
+     "id": "2023-p007-c02",
+     "year": 2023,
+     "page": 7
+    },
+    {
+     "id": "2023-p017-c01",
+     "year": 2023,
+     "page": 17
+    },
+    {
+     "id": "2023-p142-c00",
+     "year": 2023,
+     "page": 142
+    }
+   ],
+   "calls": 3,
+   "usage": {
+    "prompt_tokens": 6101,
+    "completion_tokens": 916,
+    "calls": 3
+   },
+   "cost_cny": 0.0104,
+   "elapsed_sec": 6.78
+  },
+  {
+   "id": 37,
+   "type": "cross_page",
+   "question": "2022年茅台归属于上市公司股东的净利润是多少？年末国内经销商有多少家？",
+   "gold_answer": "归母净利润627.16亿元，同比增长19.55%（2022年报P7）；报告期末国内经销商2,084个（2022年报P16经销商情况表）",
+   "source": "2022年报 P7、P16",
+   "answer": "2022年贵州茅台归属于上市公司股东的净利润为 62,716,443,738.27 元； [来源: 2022年报 P5]年末国内经销商数量为 2,084 个。 [来源: 2022年报 P16]",
+   "standalone": "2022年茅台归属于上市公司股东的净利润是多少？年末国内经销商有多少家？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2022年报 P5",
+    "2022年报 P16"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "metric:net_profit:2022",
+     "year": 2022,
+     "page": 5
+    },
+    {
+     "id": "metric:domestic_dealers:2022",
+     "year": 2022,
+     "page": 16
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 2648,
+    "completion_tokens": 156,
+    "calls": 2
+   },
+   "cost_cny": 0.003485,
+   "elapsed_sec": 2.35
+  },
+  {
+   "id": 38,
+   "type": "cross_page",
+   "question": "2022年茅台直销渠道和批发代理渠道的收入各是多少？",
+   "gold_answer": "直销49,378,737,661.60元，批发代理74,393,594,687.11元（2022年报P16按销售渠道划分的主营业务构成表）",
+   "source": "2022年报 P16",
+   "answer": "2022年，贵州茅台直销渠道营业收入为 49,378,737,661.60 元，批发代理渠道营业收入为 74,393,594,687.11 元。 [来源: 2022年报 P9]",
+   "standalone": "2022年茅台直销渠道和批发代理渠道的收入各是多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2022年报 P9"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "metric:direct_revenue:2022",
+     "year": 2022,
+     "page": 9
+    },
+    {
+     "id": "metric:wholesale_revenue:2022",
+     "year": 2022,
+     "page": 9
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 2652,
+    "completion_tokens": 158,
+    "calls": 2
+   },
+   "cost_cny": 0.003497,
+   "elapsed_sec": 2.16
+  },
+  {
+   "id": 39,
+   "type": "cross_page",
+   "question": "2025年茅台系列酒实现多少收入？i茅台平台当年销售收入是多少？",
+   "gold_answer": "其他系列酒营业收入22,274,678,707.16元，比上年减少9.76%（2025年报P10主营业务分产品情况表）；i茅台本期销售收入1,303,141.15万元，同比下降34.92%（2025年报P17线上销售情况表）",
+   "source": "2025年报 P10、P17",
+   "answer": "2025年：\n- **茅台系列酒（其他系列酒）营业收入**：22,274,678,707.16 元（约 222.75 亿元（计算得出）） [来源: 2025年报 P10]- **“i 茅台”数字营销平台销售收入**：1,303,141.15 万元（约 130.31 亿元（计算得出）），上期为 2,002,366.62 万元，同比下降 34.92%，毛利率 94.47% [来源: 2025年报 P17]",
+   "standalone": "2025年茅台系列酒实现多少收入？i茅台平台当年销售收入是多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2025年报 P10",
+    "2025年报 P17"
+   ],
+   "violations": [
+    "数字在检索证据中找不到：34.92%"
+   ],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "metric:series_revenue:2025",
+     "year": 2025,
+     "page": 10
+    },
+    {
+     "id": "2025-p017-c01",
+     "year": 2025,
+     "page": 17
+    },
+    {
+     "id": "2025-p017-c00",
+     "year": 2025,
+     "page": 17
+    },
+    {
+     "id": "2025-p118-c02",
+     "year": 2025,
+     "page": 118
+    },
+    {
+     "id": "2025-p118-c03",
+     "year": 2025,
+     "page": 118
+    },
+    {
+     "id": "2025-p017-c02",
+     "year": 2025,
+     "page": 17
+    }
+   ],
+   "calls": 3,
+   "usage": {
+    "prompt_tokens": 5658,
+    "completion_tokens": 948,
+    "calls": 3
+   },
+   "cost_cny": 0.010064,
+   "elapsed_sec": 6.55
+  },
+  {
+   "id": 40,
+   "type": "cross_page",
+   "question": "2025年茅台国内和国外市场的销售收入各是多少？各占多大比例？",
+   "gold_answer": "国内销售收入16,392,444.29万元，占比97.13%；国外销售收入485,014.23万元，占比2.87%（2025年报P17区域情况表）",
+   "source": "2025年报 P17",
+   "answer": "2025年，公司主营业务按地区划分的销售收入及占比情况如下（单位：万元）：\n| 区域 | 本期销售收入 | 本期占比 |\n|---|---|---|\n| 国内 | 16,392,444.29 | 97.13% | [来源: 2025年报 P17]| 国外 | 485,014.23 | 2.87% | [来源: 2025年报 P17]也就是说，国内销售收入为 16,392,444.29 万元（约1,639.24亿元，计算得出），占97.13%； [来源: 2025年报 P17]国外销售收入为 485,014.23 万元（约48.50亿元，计算得出），占2.87%。 [来源: 2025年报 P17]补充：在主营业务分地区情况表中，国内营业收入为 163,924,442,864.97 元，国外营业收入为 4,850,142,322.68 元，与上述数据一致； [来源: 2025年报 P17；2025年报 P10；2025年报 P107]国外收入同比下降6.52%。",
+   "standalone": "2025年茅台国内和国外市场的销售收入各是多少？各占多大比例？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2025年报 P17",
+    "2025年报 P10",
+    "2025年报 P107"
+   ],
+   "violations": [
+    "数字在检索证据中找不到：6.52%"
+   ],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2025-p017-c00",
+     "year": 2025,
+     "page": 17
+    },
+    {
+     "id": "2025-p017-c01",
+     "year": 2025,
+     "page": 17
+    },
+    {
+     "id": "2025-p010-c01",
+     "year": 2025,
+     "page": 10
+    },
+    {
+     "id": "2025-p010-c02",
+     "year": 2025,
+     "page": 10
+    },
+    {
+     "id": "2025-p107-c02",
+     "year": 2025,
+     "page": 107
+    },
+    {
+     "id": "2025-p018-c01",
+     "year": 2025,
+     "page": 18
+    },
+    {
+     "id": "2025-p107-c01",
+     "year": 2025,
+     "page": 107
+    },
+    {
+     "id": "2025-p141-c02",
+     "year": 2025,
+     "page": 141
+    }
+   ],
+   "calls": 3,
+   "usage": {
+    "prompt_tokens": 8474,
+    "completion_tokens": 1117,
+    "calls": 3
+   },
+   "cost_cny": 0.013783,
+   "elapsed_sec": 6.64
+  },
+  {
+   "id": 41,
+   "type": "cross_year",
+   "question": "茅台2025年和2023年直销渠道的收入分别是多少？",
+   "gold_answer": "2025年直销营业收入84,543,031,854.63元（2025年报P10主营业务分销售模式情况表）；2023年直销营业收入67,232,876,883.14元（2023年报P17按销售渠道划分的主营业务构成表）",
+   "source": "2025年报 P10；2023年报 P17",
+   "answer": "2025年直销渠道收入为 8,454,303.19 万元（即 845.43 亿元（计算得出）），2023年直销渠道收入为 6,723,287.69 万元（即 672.33 亿元（计算得出））。 [来源: 2023年报 P16；2023年报 P17；2025年报 P17]",
+   "standalone": "茅台2025年和2023年直销渠道的收入分别是多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2023年报 P16",
+    "2023年报 P17",
+    "2025年报 P17"
+   ],
+   "violations": [
+    "数字在检索证据中找不到：8,454,303.19 万元"
+   ],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2023-p016-c00",
+     "year": 2023,
+     "page": 16
+    },
+    {
+     "id": "2023-p016-c01",
+     "year": 2023,
+     "page": 16
+    },
+    {
+     "id": "2023-p007-c02",
+     "year": 2023,
+     "page": 7
+    },
+    {
+     "id": "2023-p017-c01",
+     "year": 2023,
+     "page": 17
+    },
+    {
+     "id": "2023-p142-c00",
+     "year": 2023,
+     "page": 142
+    },
+    {
+     "id": "2025-p017-c00",
+     "year": 2025,
+     "page": 17
+    },
+    {
+     "id": "2025-p107-c02",
+     "year": 2025,
+     "page": 107
+    },
+    {
+     "id": "2025-p141-c02",
+     "year": 2025,
+     "page": 141
+    },
+    {
+     "id": "2025-p008-c02",
+     "year": 2025,
+     "page": 8
+    },
+    {
+     "id": "2025-p010-c02",
+     "year": 2025,
+     "page": 10
+    }
+   ],
+   "calls": 3,
+   "usage": {
+    "prompt_tokens": 8781,
+    "completion_tokens": 630,
+    "calls": 3
+   },
+   "cost_cny": 0.012036,
+   "elapsed_sec": 5.58
+  },
+  {
+   "id": 42,
+   "type": "cross_year",
+   "question": "2024年和2023年茅台系列酒（其他系列酒）的营业收入分别是多少？",
+   "gold_answer": "2024年其他系列酒营业收入24,683,762,096.71元（2024年报P9主营业务分产品情况表）；2023年其他系列酒营业收入20,629,929,589.15元（2023年报P17按产品档次划分的主营业务构成表）",
+   "source": "2024年报 P9；2023年报 P17",
+   "answer": "2024年茅台其他系列酒营业收入为 24,683,762,096.71 元（约246.84亿元（计算得出）），2023年为 20,629,929,589.15 元（约206.30亿元（计算得出））。 [来源: 2023年报 P17；2023年报 P109；2024年报 P16]2024年同比增长19.65%。 [来源: 2024年报 P16；2024年报 P9]",
+   "standalone": "2024年和2023年茅台系列酒（其他系列酒）的营业收入分别是多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2023年报 P17",
+    "2023年报 P109",
+    "2024年报 P16",
+    "2024年报 P9"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2023-p141-c02",
+     "year": 2023,
+     "page": 141
+    },
+    {
+     "id": "2023-p017-c00",
+     "year": 2023,
+     "page": 17
+    },
+    {
+     "id": "2023-p109-c00",
+     "year": 2023,
+     "page": 109
+    },
+    {
+     "id": "2023-p056-c00",
+     "year": 2023,
+     "page": 56
+    },
+    {
+     "id": "2023-p014-c01",
+     "year": 2023,
+     "page": 14
+    },
+    {
+     "id": "2024-p016-c02",
+     "year": 2024,
+     "page": 16
+    },
+    {
+     "id": "2024-p009-c01",
+     "year": 2024,
+     "page": 9
+    },
+    {
+     "id": "2024-p108-c02",
+     "year": 2024,
+     "page": 108
+    },
+    {
+     "id": "2024-p141-c01",
+     "year": 2024,
+     "page": 141
+    },
+    {
+     "id": "2024-p016-c01",
+     "year": 2024,
+     "page": 16
+    }
+   ],
+   "calls": 3,
+   "usage": {
+    "prompt_tokens": 9018,
+    "completion_tokens": 695,
+    "calls": 3
+   },
+   "cost_cny": 0.012565,
+   "elapsed_sec": 4.92
+  },
+  {
+   "id": 43,
+   "type": "cross_year",
+   "question": "茅台2025年和2022年经营活动产生的现金流量净额分别是多少？",
+   "gold_answer": "2025年经营活动产生的现金流量净额61,522,204,989.35元（2025年报P6主要会计数据表）；2022年经营活动产生的现金流量净额36,698,595,830.03元（2022年报P5近三年主要会计数据表）",
+   "source": "2025年报 P6；2022年报 P5",
+   "answer": "茅台经营活动产生的现金流量净额：\n- 2022年：36,698,595,830.03 元 [来源: 2022年报 P5]- 2025年：61,522,204,989.35 元 [来源: 2025年报 P6]2025年较2022年增加 61,522,204,989.35 − 36,698,595,830.03 = 24,823,609,159.32 元（计算得出），增幅 67.64%（计算得出）。 [来源: 2022年报 P5；2025年报 P6]",
+   "standalone": "茅台2025年和2022年经营活动产生的现金流量净额分别是多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2022年报 P5",
+    "2025年报 P6"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "metric:operating_cash_flow:2022",
+     "year": 2022,
+     "page": 5
+    },
+    {
+     "id": "metric:operating_cash_flow:2025",
+     "year": 2025,
+     "page": 6
+    },
+    {
+     "id": "metric:operating_cash_flow:compare:2022-2025",
+     "year": 2025,
+     "page": 6
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 2693,
+    "completion_tokens": 179,
+    "calls": 2
+   },
+   "cost_cny": 0.003631,
+   "elapsed_sec": 2.56
+  },
+  {
+   "id": 44,
+   "type": "cross_year",
+   "question": "茅台2025年末和2024年末的总资产分别是多少？",
+   "gold_answer": "2025年末总资产303,834,844,021.44元（2025年报P6主要会计数据表）；2024年末总资产298,944,579,918.70元（2024年报P5主要会计数据表）",
+   "source": "2025年报 P6；2024年报 P5",
+   "answer": "2024年末总资产为 298,944,579,918.70 元，2025年末总资产为 303,834,844,021.44 元； [来源: 2025年报 P6]两年相比增加 4,890,264,102.74 元（计算得出），增幅 1.64%（计算得出）。 [来源: 2025年报 P6]",
+   "standalone": "茅台2025年末和2024年末的总资产分别是多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2025年报 P6"
+   ],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "metric:total_assets:2024",
+     "year": 2024,
+     "page": 5
+    },
+    {
+     "id": "metric:total_assets:2025",
+     "year": 2025,
+     "page": 6
+    },
+    {
+     "id": "metric:total_assets:compare:2024-2025",
+     "year": 2025,
+     "page": 6
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 2677,
+    "completion_tokens": 144,
+    "calls": 2
+   },
+   "cost_cny": 0.003464,
+   "elapsed_sec": 1.86
+  },
+  {
+   "id": 45,
+   "type": "cross_year",
+   "question": "子公司贵州茅台酒销售有限公司2023年和2022年的净利润分别是多少？",
+   "gold_answer": "2023年净利润4,259,628.69万元（2023年报P19主要控股参股公司分析表）；2022年净利润3,626,162.73万元（2022年报P17主要控股参股公司分析表）",
+   "source": "2023年报 P19；2022年报 P17",
+   "answer": "**贵州茅台酒销售有限公司净利润：**\n- **2023年：4,259,628.69 万元**（本期发生额）\n- **2022年：3,626,162.73 万元**（2022年报“主要控股参股公司分析”及重要非全资子公司财务信息中列示的本期净利润） [来源: 2022年报 P110；2022年报 P17]补充说明：2023年报在列示该子公司“上期发生额”时，2022年净利润记为 3,626,157.15 万元，与2022年报披露的 3,626,162.73 万元存在 5.58 万元的尾差（计算得出：3,626,162.73 − 3,626,157.15 = 5.58 万元），引用时以各年年报自身披露口径为准。 [来源: 2022年报 P110；2022年报 P17]",
+   "standalone": "子公司贵州茅台酒销售有限公司2023年和2022年的净利润分别是多少？",
+   "refused": false,
+   "route": "agent",
+   "structured": false,
+   "degraded": false,
+   "citations": [
+    "2022年报 P110",
+    "2022年报 P17"
+   ],
+   "violations": [
+    "数字在检索证据中找不到：4,259,628.69 万元",
+    "数字在检索证据中找不到：5.58 万元"
+   ],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2022-p110-c00",
+     "year": 2022,
+     "page": 110
+    },
+    {
+     "id": "2022-p017-c01",
+     "year": 2022,
+     "page": 17
+    },
+    {
+     "id": "2022-p118-c00",
+     "year": 2022,
+     "page": 118
+    },
+    {
+     "id": "2022-p043-c03",
+     "year": 2022,
+     "page": 43
+    },
+    {
+     "id": "2022-p043-c02",
+     "year": 2022,
+     "page": 43
+    },
+    {
+     "id": "2023-p134-c01",
+     "year": 2023,
+     "page": 134
+    },
+    {
+     "id": "2023-p133-c01",
+     "year": 2023,
+     "page": 133
+    },
+    {
+     "id": "2023-p130-c00",
+     "year": 2023,
+     "page": 130
+    },
+    {
+     "id": "2023-p123-c00",
+     "year": 2023,
+     "page": 123
+    },
+    {
+     "id": "2023-p135-c01",
+     "year": 2023,
+     "page": 135
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 5637,
+    "completion_tokens": 261,
+    "calls": 2
+   },
+   "cost_cny": 0.007115,
+   "elapsed_sec": 2.28
+  },
+  {
+   "id": 46,
+   "type": "no_answer",
+   "question": "五粮液2024年的营业收入是多少？",
+   "gold_answer": "年报中无此信息",
+   "source": "2024年报 P20",
+   "answer": "根据年报内容无法回答该问题。",
+   "standalone": "五粮液2024年的营业收入是多少？",
+   "refused": true,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p056-c00",
+     "year": 2024,
+     "page": 56
+    },
+    {
+     "id": "2024-p141-c01",
+     "year": 2024,
+     "page": 141
+    },
+    {
+     "id": "2024-p021-c01",
+     "year": 2024,
+     "page": 21
+    },
+    {
+     "id": "2024-p108-c02",
+     "year": 2024,
+     "page": 108
+    },
+    {
+     "id": "2024-p009-c00",
+     "year": 2024,
+     "page": 9
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 5267,
+    "completion_tokens": 30,
+    "calls": 2
+   },
+   "cost_cny": 0.005737,
+   "elapsed_sec": 1.63
+  },
+  {
+   "id": 47,
+   "type": "no_answer",
+   "question": "茅台2024年海外经销商的具体名单有哪些？",
+   "gold_answer": "年报中无此信息",
+   "source": "2024年报 P16",
+   "answer": "根据年报内容无法回答该问题。",
+   "standalone": "茅台2024年海外经销商的具体名单有哪些？",
+   "refused": true,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p016-c01",
+     "year": 2024,
+     "page": 16
+    },
+    {
+     "id": "2024-p030-c02",
+     "year": 2024,
+     "page": 30
+    },
+    {
+     "id": "2024-p120-c00",
+     "year": 2024,
+     "page": 120
+    },
+    {
+     "id": "2024-p013-c03",
+     "year": 2024,
+     "page": 13
+    },
+    {
+     "id": "2024-p030-c01",
+     "year": 2024,
+     "page": 30
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 5522,
+    "completion_tokens": 30,
+    "calls": 2
+   },
+   "cost_cny": 0.006009,
+   "elapsed_sec": 1.7
+  },
+  {
+   "id": 48,
+   "type": "no_answer",
+   "question": "飞天茅台2024年的出厂价是多少元一瓶？",
+   "gold_answer": "年报中无此信息",
+   "source": "2024年报 P9",
+   "answer": "根据年报内容无法回答该问题。",
+   "standalone": "飞天茅台2024年的出厂价是多少元一瓶？",
+   "refused": true,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p030-c02",
+     "year": 2024,
+     "page": 30
+    },
+    {
+     "id": "2024-p030-c01",
+     "year": 2024,
+     "page": 30
+    },
+    {
+     "id": "2024-p030-c00",
+     "year": 2024,
+     "page": 30
+    },
+    {
+     "id": "2024-p029-c02",
+     "year": 2024,
+     "page": 29
+    },
+    {
+     "id": "2024-p120-c00",
+     "year": 2024,
+     "page": 120
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 5199,
+    "completion_tokens": 30,
+    "calls": 2
+   },
+   "cost_cny": 0.005665,
+   "elapsed_sec": 1.49
+  },
+  {
+   "id": 49,
+   "type": "no_answer",
+   "question": "茅台2024年员工的平均工资是多少？",
+   "gold_answer": "年报中无此信息",
+   "source": "2024年报 P33",
+   "answer": "根据年报内容无法回答该问题。",
+   "standalone": "茅台2024年员工的平均工资是多少？",
+   "refused": true,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p032-c02",
+     "year": 2024,
+     "page": 32
+    },
+    {
+     "id": "2024-p033-c00",
+     "year": 2024,
+     "page": 33
+    },
+    {
+     "id": "2024-p026-c00",
+     "year": 2024,
+     "page": 26
+    },
+    {
+     "id": "2024-p030-c02",
+     "year": 2024,
+     "page": 30
+    },
+    {
+     "id": "2024-p033-c01",
+     "year": 2024,
+     "page": 33
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 5585,
+    "completion_tokens": 30,
+    "calls": 2
+   },
+   "cost_cny": 0.006076,
+   "elapsed_sec": 1.3
+  },
+  {
+   "id": 50,
+   "type": "no_answer",
+   "question": "2024年茅台在四川省有多少家经销商？",
+   "gold_answer": "年报中无此信息",
+   "source": "2024年报 P16",
+   "answer": "根据年报内容无法回答该问题。",
+   "standalone": "2024年茅台在四川省有多少家经销商？",
+   "refused": true,
+   "route": "direct",
+   "structured": true,
+   "degraded": false,
+   "citations": [],
+   "violations": [],
+   "claims": [],
+   "calc_note": "",
+   "hits": [
+    {
+     "id": "2024-p016-c01",
+     "year": 2024,
+     "page": 16
+    },
+    {
+     "id": "2024-p030-c02",
+     "year": 2024,
+     "page": 30
+    },
+    {
+     "id": "2024-p013-c03",
+     "year": 2024,
+     "page": 13
+    },
+    {
+     "id": "2024-p030-c01",
+     "year": 2024,
+     "page": 30
+    },
+    {
+     "id": "2024-p006-c01",
+     "year": 2024,
+     "page": 6
+    }
+   ],
+   "calls": 2,
+   "usage": {
+    "prompt_tokens": 5226,
+    "completion_tokens": 30,
+    "calls": 2
+   },
+   "cost_cny": 0.005693,
+   "elapsed_sec": 1.47
+  }
+ ]
+}

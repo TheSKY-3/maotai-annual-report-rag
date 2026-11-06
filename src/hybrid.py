@@ -1,4 +1,4 @@
-"""E2/E3 检索策略：混合检索（BM25+向量 RRF 融合）与查询年份/页码识别。
+"""E2/E3 检索策略：混合检索（BM25+向量归一化加权融合）与查询年份/页码识别。
 
 设计动机来自基线 badcase：
   1. 纯向量对"精确词"（i茅台、酱香型、专表数字）不敏感 -> BM25 关键词路；
@@ -18,7 +18,38 @@ from src.store import VectorStore
 
 YEAR_RE = re.compile(r"(20\d{2})\s*年")
 PAGE_RE = re.compile(r"[PpＰ]\s*(\d{1,3})|第\s*(\d{1,3})\s*页")
-RRF_K = 60
+RRF_K = 60  # 旧 RRF 融合参数，保留供历史实验脚本引用
+CAND_DEPTH = 50  # 每路粗召回深度
+FUSION_ALPHA = 0.5  # 向量路权重（1-alpha 为 BM25 路）
+
+
+def _minmax(x: np.ndarray) -> np.ndarray:
+    """把一路分数压到 [0,1]；全相等时返回全 0。"""
+    lo, hi = float(x.min()), float(x.max())
+    if hi <= lo:
+        return np.zeros_like(x)
+    return (x - lo) / (hi - lo)
+
+
+def fuse_candidates(vec_scores: np.ndarray, bm_scores: np.ndarray,
+                    depth: int = CAND_DEPTH,
+                    alpha: float = FUSION_ALPHA) -> list[tuple[int, float]]:
+    """对两路候选做归一化加权融合，返回 (本地下标, 融合分) 降序。
+
+    为什么不再用 RRF：金标块常在 BM25 路排第 1-3，但排在向量路 top50
+    之外，RRF 只给它单路分 1/(60+rank)；同时被两路都召回的平庸块拿
+    双路分，前 5 名反而把它挤掉（q11/14/19/24 的漏页机制）。把两路
+    分数先各自 min-max 归一化再加权，单路强信号就不会被双路弱信号淹
+    没。这里只在两路 top-depth 的并集上排名，避免长尾噪声。
+    """
+    v_norm = _minmax(np.asarray(vec_scores, dtype=float))
+    b_norm = _minmax(np.asarray(bm_scores, dtype=float))
+    v_top = np.argsort(-vec_scores)[:depth]
+    b_top = np.argsort(-bm_scores)[:depth]
+    cand = {int(i) for i in v_top} | {int(i) for i in b_top}
+    scored = [(i, alpha * float(v_norm[i]) + (1.0 - alpha) * float(b_norm[i]))
+              for i in cand]
+    return sorted(scored, key=lambda item: -item[1])
 
 
 def detect_years(query: str) -> list[int]:
@@ -33,7 +64,7 @@ def detect_page(query: str) -> int | None:
 
 
 class HybridRetriever:
-    """BM25 + 向量双路召回，RRF 融合；可按问题中的年份过滤。"""
+    """BM25 + 向量双路召回，归一化加权融合；可按问题中的年份过滤。"""
 
     def __init__(self, chunks_file, index_file, embed_model,
                  use_bm25: bool = True, use_year_filter: bool = True):
@@ -92,47 +123,32 @@ class HybridRetriever:
 
         q_emb = np.asarray(self.embed_model.encode(
             [query], normalize_embeddings=True))
-        idx = self.store.search(q_emb, top_k=50, year=year)  # 先粗召回
-        if not idx:
+        vec_idx, vec_scores = self.store.score_all(q_emb, year=year)
+        if len(vec_idx) == 0:
             return []
 
         if not self.use_bm25:
-            return [{"id": h.id, "text": h.text, "year": h.year,
-                     "page": h.page, "score": h.score} for h in idx[:top_k]]
+            order = np.argsort(-vec_scores)[:top_k]
+            return [{"id": self.chunks[int(vec_idx[i])]["id"],
+                     "text": self.chunks[int(vec_idx[i])]["text"],
+                     "year": self.chunks[int(vec_idx[i])]["year"],
+                     "page": self.chunks[int(vec_idx[i])]["page"],
+                     "score": float(vec_scores[i])}
+                    for i in order]
 
-        # 向量路排名
-        vec_rank = {h.id: r for r, h in enumerate(idx, start=1)}
-        # BM25 路（仅在该年份子集上；year 可能是集合）
-        allow = year if isinstance(year, (set, frozenset)) else (
-            None if year is None else {year})
-        pos = [i for i, c in enumerate(self.chunks)
-               if allow is None or c["year"] in allow]
+        # BM25 分数先算全量，再按年份子集取对应位置（与向量路同一
+        # 子集，两路归一化才有可比性）。
         tokens = list(jieba.cut_for_search(query))
-        bm_scores = self.bm25.get_scores(tokens)
-        bm_sorted = sorted(pos, key=lambda i: -bm_scores[i])
-        bm_rank = {self.chunks[i]["id"]: r
-                   for r, i in enumerate(bm_sorted[:50], start=1)}
+        bm_scores = self.bm25.get_scores(tokens)[vec_idx]
 
-        # RRF 融合
-        all_ids = list(dict.fromkeys(list(vec_rank) + list(bm_rank)))
-        fused = sorted(
-            all_ids,
-            key=lambda cid: -(1.0 / (RRF_K + vec_rank.get(cid, 10 ** 9))
-                              + 1.0 / (RRF_K + bm_rank.get(cid, 10 ** 9))),
-        )
-        by_id = {h.id: h for h in idx}
-        chunk_by_id = {c["id"]: c for c in self.chunks}
+        fused = fuse_candidates(vec_scores, bm_scores,
+                                depth=CAND_DEPTH, alpha=FUSION_ALPHA)
         out = []
-        for cid in fused[:top_k]:
-            h = by_id.get(cid)
-            c = chunk_by_id[cid]
-            out.append({
-                "id": cid,
-                "text": (h.text if h else c["text"]),
-                "year": c["year"], "page": c["page"],
-                "score": (1.0 / (RRF_K + vec_rank.get(cid, 10 ** 9))
-                          + 1.0 / (RRF_K + bm_rank.get(cid, 10 ** 9))),
-            })
+        for local, score in fused[:top_k]:
+            c = self.chunks[int(vec_idx[local])]
+            out.append({"id": c["id"], "text": c["text"],
+                        "year": c["year"], "page": c["page"],
+                        "score": float(score)})
         return out
 
 

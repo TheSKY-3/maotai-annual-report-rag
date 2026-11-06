@@ -18,10 +18,10 @@ import os
 import re
 import sys
 
-from openai import OpenAI
+from openai import BadRequestError, OpenAI
 
 from src import claims as structured_claims
-from src import numeric, usage
+from src import metric_tools, numeric, usage
 from src.config import GEN_MODEL, OLLAMA_BASE_URL, RETRY_TOP_K, TOP_K, YEARS
 from src.hybrid import detect_years
 from src.pipeline import get_page_reader, get_search
@@ -141,8 +141,11 @@ def rewrite_followup(client: OpenAI, model: str, history: list[dict],
 
 
 def build_context(hits: list[dict]) -> str:
+    def source(h: dict) -> str:
+        # 指标汇总这类合成片段可能由多页构成，用显式 source 覆盖单页标签。
+        return str(h.get("source") or f"{h['year']}年报 P{h['page']}")
     return "\n\n".join(
-        f"[片段{i + 1} | 来源: {h['year']}年报 P{h['page']}]\n{h['text']}"
+        f"[片段{i + 1} | 来源: {source(h)}]\n{h['text']}"
         for i, h in enumerate(hits)
     )
 
@@ -377,14 +380,15 @@ AGENT_MAX_ROUNDS = 4
 AGENT_SYSTEM_PROMPT = """你是贵州茅台年报问答助手，可以通过工具查询 2022–2025 年报。
 
 工作方式：
-1. 单一年份的问题用 search_reports 检索；
-2. 跨年份比较（“A年和B年分别是多少”“增长了多少”）必须用 compare_years，确保每个年份的证据都拿到；
-3. 用户给出页码（如 P6、第6页）时用 page_direct 直读该页；
-4. 最多 4 轮工具调用，证据足够后立即停止调用并作答。
+1. 标准财务/运营指标（营收、净利润、ROE、EPS、销量、经销商、员工等）先用 lookup_metric 按年份查；跨年比较用 compare_metric，它们直接返回指标值和年报页；
+2. 其它单一年份的问题用 search_reports 检索；
+3. 跨年份比较非标准指标（“A年和B年分别是多少”“增长了多少”）必须用 compare_years，确保每个年份的证据都拿到；
+4. 用户给出页码（如 P6、第6页）时用 page_direct 直读该页；
+5. 最多 4 轮工具调用，证据足够后立即停止调用并作答。
 
 作答要求：
 1. 只依据工具返回的片段作答，回答末尾标注出处，格式如：[来源: 2024年报 P8]。可以引用多个片段。
-2. 数字必须与片段中完全一致，不要换算；若由片段数字计算得出（如相减求增长额），在该数字后注明“（计算得出）”。
+2. 数字必须与片段中完全一致，不要换算；若由片段数字计算得出（如相减求增长额），写出算式并在结果后注明“（计算得出）”，例如“46,412.95 + 36,919.81 = 83,332.76 吨（计算得出）”。
 3. 若工具返回的片段都不足以回答，只回答“根据年报内容无法回答该问题”，不要编造，也不要标注来源。"""
 
 
@@ -416,13 +420,32 @@ AGENT_TOOLS = [
     _tool_schema(
         "compare_years",
         "跨年对比专用：把同一指标在多个年份分别检索后合并返回，保证每个年份"
-        "的证据都在场。凡涉及两个及以上年份的比较都用它。",
+        "的证据都在场。非标准指标、或检索召回不稳时使用。",
         {"query": {"type": "string",
                    "description": "指标关键词，如“经营活动产生的现金流量净额”"},
          "years": {"type": "array",
                    "items": {"type": "integer", "enum": YEARS},
                    "description": "要对比的年份列表"}},
         ["query", "years"]),
+    _tool_schema(
+        "lookup_metric",
+        "查询标准财务/运营指标在某一年的值及年报页。支持营收、净利润、扣非"
+        "净利润、经营现金流、净资产、总资产、股本、EPS、ROE、茅台酒/系列酒"
+        "收入与销量、直销/批发收入、经销商、员工等。year 省略时返回全部年份。",
+        {"metric": {"type": "string",
+                    "description": "标准指标名，如“营业总收入”“扣非净利润”"},
+         "year": {**_AGENT_YEARS, "description": "限定年份，可选"}},
+        ["metric"]),
+    _tool_schema(
+        "compare_metric",
+        "跨年比较标准指标：返回各年值并给出增减额和增幅（均标注“计算得出”）。"
+        "metric 同上；years 省略时比较全部年份。",
+        {"metric": {"type": "string",
+                    "description": "标准指标名，如“营业总收入”“归母净利润”"},
+         "years": {"type": "array",
+                   "items": {"type": "integer", "enum": YEARS},
+                   "description": "要对比的年份列表，可选"}},
+        ["metric"]),
 ]
 
 
@@ -475,6 +498,24 @@ def _exec_tool(name: str, args: dict, search_fn, page_fn,
         for y in years:
             merged.extend(search_fn(query, top_k=TOP_K, year=y))
         return merged
+    if name == "lookup_metric":
+        metric = str(args.get("metric") or "").strip()
+        if not metric:
+            return []
+        year = locked_year if locked_year is not None \
+            else _valid_year(args.get("year"))
+        return metric_tools.lookup_metric(metric, year)
+    if name == "compare_metric":
+        metric = str(args.get("metric") or "").strip()
+        if not metric:
+            return []
+        years = [locked_year] if locked_year is not None else []
+        if not years:
+            for y in args.get("years") or []:
+                y = _valid_year(y)
+                if y is not None and y not in years:
+                    years.append(y)
+        return metric_tools.compare_metric(metric, years or None)
     return []
 
 
@@ -640,10 +681,23 @@ def answer_auto_stream(client: OpenAI, search_fn, question: str, model: str,
         collected = []
         kwargs = dict(model=model,
                       messages=[{"role": "user", "content": prompt}],
-                      temperature=0.1, stream=True)
+                      temperature=0.1, stream=True,
+                      stream_options={"include_usage": True})
         if max_tokens:
             kwargs["max_tokens"] = max_tokens
-        for chunk in client.chat.completions.create(**kwargs):
+        try:
+            stream = client.chat.completions.create(**kwargs)
+        except BadRequestError:
+            # 兼容不支持 stream_options 的 OpenAI 兼容端点：去掉后重试一次。
+            kwargs.pop("stream_options", None)
+            stream = client.chat.completions.create(**kwargs)
+        for chunk in stream:
+            u = getattr(chunk, "usage", None)
+            if u is not None:
+                usage.record(
+                    prompt_tokens=int(getattr(u, "prompt_tokens", 0) or 0),
+                    completion_tokens=int(
+                        getattr(u, "completion_tokens", 0) or 0))
             if chunk.choices:
                 d = chunk.choices[0].delta.content
                 if d:

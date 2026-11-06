@@ -34,6 +34,20 @@ class VectorStore:
         assert len(ids) == len(self.chunks), "向量与切块数量不一致"
         self.pos = {cid: i for i, cid in enumerate(ids)}
 
+    def score_all(self, query_emb: np.ndarray,
+                  year: int | set[int] | None = None
+                  ) -> tuple[np.ndarray, np.ndarray]:
+        """返回 (chunk 下标数组, 与查询的余弦分数数组)；年份可选。"""
+        if year is None:
+            idx = np.arange(len(self.chunks))
+        else:
+            allow = year if isinstance(year, (set, frozenset)) else {year}
+            idx = np.array([i for i, c in enumerate(self.chunks)
+                            if c["year"] in allow])
+        if len(idx) == 0:
+            return idx, np.array([])
+        return idx, self.embs[idx] @ query_emb[0]
+
     def search(self, query_emb: np.ndarray, top_k: int = 5,
                year: int | set[int] | None = None) -> list[Hit]:
         """query_emb: 归一化后的查询向量；year 可选，限定检索年份（单个或集合）。"""

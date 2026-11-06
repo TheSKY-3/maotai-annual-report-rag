@@ -4,7 +4,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src import claims
+from src import claims, numeric
+
+
+def test_percent_and_plain_are_same_value():
+    assert numeric.find_number("15.71%", ["同比增长 15.71"])
+    assert numeric.find_number("15.71", ["同比增长 15.71%"])
+    assert not numeric.find_number("15.71%", ["同比增长 16.00"])
 
 
 def make_hits():
@@ -199,6 +205,75 @@ def test_validate_uses_full_page_map():
     assert bad_without and not bad_with
 
 
+def test_generate_calc_requires_component_evidence():
+    ev = claims.build_evidence([
+        {"id": "a", "year": 2024, "page": 8,
+         "text": "营收 200 元，成本 150 元"}])
+    payload = json.dumps({
+        "refused": False,
+        "claims": [{"text": "毛利 50 元", "evidence": ["E1"],
+                    "numbers": ["50"]}],
+        "calculation": {"expr": "200-150", "value": "50",
+                        "evidence": ["E1"]}}, ensure_ascii=False)
+    ans = claims.generate(FakeClient([payload]), "m", "毛利多少", ev)
+    assert ans.violations == []
+    assert "2024年报 P8" in ans.citations
+    assert ans.claims[0]["kind"] == "calculation"
+    assert "计算过程" in ans.text
+    assert "2024年报 P8" in ans.text.split("计算过程")[1]
+
+
+def test_generate_calc_missing_evidence_flags_violation():
+    ev = claims.build_evidence([
+        {"id": "a", "year": 2024, "page": 8,
+         "text": "营收 200 元，成本 150 元"}])
+    payload = json.dumps({
+        "refused": False,
+        "claims": [{"text": "毛利 50 元", "evidence": ["E1"],
+                    "numbers": ["50"]}],
+        "calculation": {"expr": "200-150", "value": "50"}}, ensure_ascii=False)
+    ans = claims.generate(FakeClient([payload]), "m", "毛利多少", ev,
+                          repair=False)
+    assert any("没有 evidence" in v for v in ans.violations)
+
+
+def test_attribute_calc_only_sentence_gets_component_pages():
+    hits = [
+        {"id": "a", "year": 2025, "page": 65,
+         "text": "经营活动产生的现金流量净额为 61,522,204,989.35 元"},
+        {"id": "b", "year": 2022, "page": 62,
+         "text": "经营活动产生的现金流量净额为 36,698,595,830.03 元"},
+    ]
+    text = ("2025 年净额为 61,522,204,989.35 元。"
+            "2022 年净额为 36,698,595,830.03 元。"
+            "两年相比增加 24,823,609,159.32 元（计算得出）。")
+    out, cites, missing = claims.attribute_text(
+        text, hits, skip={"2022", "2025"})
+    tail = out.split("两年相比")[1]
+    assert "2025年报 P65" in tail and "2022年报 P62" in tail
+    assert missing == []
+    assert set(cites) == {"2025年报 P65", "2022年报 P62"}
+
+
+def test_attribute_flags_unsourced_calc_sentence():
+    hits = [{"id": "a", "year": 2025, "page": 65,
+             "text": "经营活动产生的现金流量净额为 61,522,204,989.35 元"}]
+    out, cites, missing = claims.attribute_text(
+        "同比增长 67.64%（计算得出）。", hits)
+    assert cites == [] and "（计算得出）" in missing
+    assert "[来源" not in out
+
+
+def test_attribute_calc_unit_conversion_gets_page():
+    hits = [{"id": "a", "year": 2024, "page": 129,
+             "text": "净利润为 4,852,174.60 万元"}]
+    text = "净利润为 4,852,174.60 万元。折合约 485.22 亿元（计算得出）。"
+    out, cites, missing = claims.attribute_text(text, hits)
+    tail = out.split("折合")[1]
+    assert "2024年报 P129" in tail
+    assert missing == []
+
+
 def test_attribute_uses_full_page_map():
     hits = [{"id": "a", "year": 2022, "page": 7,
              "text": "2022年营业总收入 1,275.54 亿元"}]
@@ -206,3 +281,18 @@ def test_attribute_uses_full_page_map():
     out, cites, missing = claims.attribute_text(
         "同比增长 16.53%。", hits, pages=pm)
     assert cites == ["2022年报 P7"] and missing == []
+
+
+def test_attribute_cites_all_tied_pages():
+    # 同一数字同时出现在管理讨论页和财务报表附注时，两页都算出处；
+    # 只取字典序更大的 P63 会漏掉人工金标常选的 P8。
+    hits = [
+        {"id": "a", "year": 2023, "page": 8,
+         "text": "销售费用 4,648,613,585.82 元"},
+        {"id": "b", "year": 2023, "page": 63,
+         "text": "销售费用 4,648,613,585.82 元"},
+    ]
+    out, cites, missing = claims.attribute_text(
+        "2023年销售费用为 4,648,613,585.82 元。", hits, skip={"2023"})
+    assert cites == ["2023年报 P8", "2023年报 P63"]
+    assert missing == []

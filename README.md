@@ -181,7 +181,7 @@ python -m streamlit run src/app.py
 python scripts/build_contextual_chunks.py
 
 # 5. 复现评测
-python scripts/ci_retrieval_gate.py                    # 检索层·生产管线（应显示 hit@5 76%，低于 74% 报错）
+python scripts/ci_retrieval_gate.py                    # 检索层·生产管线（应显示 hit@5 86%，低于 84% 报错）
 python scripts/evaluate_retrieval.py                   # 检索层·E1 基线对照（历史实验口径 30%）
 python scripts/evaluate_answers.py --name final_local  # 答案层（本地模型）
 ```
@@ -211,6 +211,42 @@ curl -X POST localhost:8000/ask -H "Content-Type: application/json" \
 curl -N -X POST localhost:8000/ask/stream -H "Content-Type: application/json" \
   -d '{"question": "2024年末国内经销商有多少家？"}'
 ```
+
+#### 健康检查与可观测性
+
+`GET /ready` 是给容器/负载均衡用的就绪探针（判断服务能不能接流量）。
+它不加载嵌入模型，只检查索引文件、年份覆盖、坏行与模型配置，返回：
+
+```json
+{
+  "status": "ready",
+  "loaded": false,
+  "index": {"kind": "contextual", "chunks": 1761, "years": [2022, 2023, 2024, 2025],
+            "missing_years": [], "chunks_file_info": {"exists": true, "bytes": 2102680}},
+  "embedding": {"model": "BAAI/bge-small-zh-v1.5", "local_files": true},
+  "model": "deepseek-flash", "backend": "cloud", "api_key_configured": true,
+  "reasons": []
+}
+```
+
+- `ready`：索引完整；`degraded`：能回答但退到基线索引或年份不全；
+  `not_ready`：缺文件/零块，返回 HTTP 503，`reasons` 里写清缺什么。
+- `/health` 是轻量存活检查，保留 `index`/`index_status` 摘要。
+- `/ask` 响应新增 `request_id`、`usage`（prompt/completion tokens 与调用次数）、
+  `cost_cny`（按 DeepSeek 高峰/非高峰单价估算）、`latency_ms`；流式 `done`
+  事件的 `meta` 含同样字段，响应头带 `X-Request-ID`。
+- 每次问答只输出一条 JSON 日志到 stderr（`event=ask`），含 request_id、
+  耗时、token、成本、路由、拒答/降级与出处数量，可直接接 Loki/CloudWatch：
+
+```json
+{"event":"ask","status":200,"request_id":"…","latency_ms":6710,
+ "prompt_tokens":1868,"completion_tokens":66,"calls":1,
+ "cost_cny":0.002271,"cost_peak":false,"route":"direct",
+ "structured":true,"refused":false,"sources":5,"citations":1}
+```
+
+成本是估算值（不是账单）：按 DeepSeek 官方单价与当前时段计算，便于在
+压测/评测时设预算上限；真实账单以服务商为准。
 
 ### 也可以做成 MCP 工具，接进 Claude Desktop / Cursor
 
@@ -244,14 +280,14 @@ curl -N -X POST localhost:8000/ask/stream -H "Content-Type: application/json" \
 自建 50 题评测集（30 事实题 / 10 跨页题 / 5 跨年对比 / 5 无答案题），
 检索是否命中出处页由程序判定，全部数字可复现（脚本在 `scripts/`，
 原始结果在 `results/`）。每一步改进都有对照实验；**每次推送 GitHub
-都会自动免费复跑检索层评测**（`eval-gate` 工作流，hit@5 低于 74% 直接
+都会自动免费复跑检索层评测**（`eval-gate` 工作流，hit@5 低于 84% 直接
 失败亮红灯），防止改动悄悄打漏水位：
 
 <div align="center">
 <img src="docs/screenshots/ci_gate.png" width="720" alt="eval-gate 评测回归工作流"/>
 </div>
 
-### 检索层：出处页命中率 hit@5 从 30% 提升到 66%（旧口径；修正口径 34%→76%，下同）
+### 检索层：出处页命中率 hit@5 从 30% 提升到 86%（旧口径；修正口径 34%→86%）
 
 | 实验 | 改动 | hit@5 | 增益 |
 |---|---|---|---|
@@ -261,15 +297,30 @@ curl -N -X POST localhost:8000/ask/stream -H "Content-Type: application/json" \
 | E3 | bge-reranker 精排 | 62% | +6pp，代价约 2 秒/次 |
 | E5 | 语境增强索引：大模型给每块写"说明书" | **66%** | +4pp，取代精排，建库约 3 元 |
 | E7 | 表格感知解析：pdfplumber 键值句线性化 | 58% | ❌ 不敌语境句（详见报告） |
+| B1 | min-max 融合（CAND_DEPTH=50, α=0.5）+ 年份过滤 | **86%** | +10pp（对 E5 修正口径 76%） |
 
 > **口径说明（2026-11-06）**：金标出处里“2024年报 P9、P16”这类写法原先只解析出第一页，
 > 修正后同一批实验的 hit@5 整体上移（基线 30%→**34%**，E5 66%→**76%**，跨页题 40%→90%）。
 > 上表保留旧口径以对应历史报告；修正后的全量数值、逐题对账与复现脚本见
-> [review/phase_a_metrics.md](review/phase_a_metrics.md)。CI 阈值已同步调到 74%。
+> [review/phase_a_metrics.md](review/phase_a_metrics.md)。CI 阈值已同步调到 84%。
+> B1 的 α=0.5 是在同一套 50 题 gold 上扫出来的，86% 不是留出集数字；
+> 留出集评测与 B2/B3/B4 的完整结果见
+> [review/phase_b_outcome.md](review/phase_b_outcome.md)。
 
 <div align="center">
 <img src="report/figures/fig_experiments.png" width="720" alt="检索策略对比"/>
 </div>
+
+### B 组：出处、指标工具与可观测性（2026-11-06）
+
+- **B1 检索**：`CAND_DEPTH=50`、min-max 融合 `α=0.5` 后 hit@5 **86%**；q11/q14/q19/q24 全部命中 gold 页（rank 1/4/1/3），假拒答 **1/45**。q45 仍 MISS，且 top-5 有同页重复块。α 是在同一套 50 题上扫出的，86% 不是留出集数字。
+- **B2 出处**：agent 路径 `cite_any` 3 次都是 **20/23=86.96%**，精确率 **63.35%**（A 阶段 57.5%，配对口径不完全相同）；假拒答 4.35%。表层收益来自逐页归属、年份不当数字锚点、表格“单位：万元”还原。
+- **B3 指标**：`data/metrics.json` 共 **21 个口径×4 年=84 个值**，84/84 能在所标页找到；“营业总收入”与“营业收入”已拆开，跨年对比汇总带各年 `source`。真实 agent 跨年题 1/1 正确。
+- **B4 重复评测**：同配置 3 次，agent `cite_any` 稳定 86.96%，`answer_correct` 56.5%–60.9%（均值 57.97%，95% CI 51.73–64.21）；**150 题冻结留出集与双人盲评是人工标注工作，尚未完成**，不能把 3 次 run 当成 B4 全部。
+- **B5 可观测性**：`/ready`、`usage`/`cost`/`request_id`、一请求一条 `event=ask` JSON 日志均已真实 HTTP 验证，详见上文[健康检查与可观测性](#健康检查与可观测性)。
+
+完整数字、逐题对账、复现命令与残余风险见
+[review/phase_b_outcome.md](review/phase_b_outcome.md)。
 
 ### 答案层：拒答自动重试 + 数字接地校验
 

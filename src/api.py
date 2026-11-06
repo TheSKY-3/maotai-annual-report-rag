@@ -10,22 +10,33 @@
   1. 请求里带 api_key → 用云端 DeepSeek；
   2. 否则按环境变量：RAG_BASE_URL（自定义 OpenAI 兼容端点）→
      DEEPSEEK_API_KEY（云端 DeepSeek）→ 都没有则本机 Ollama。
+
+可观测性:
+  GET  /ready  索引与模型配置探测（缺文件/退基线时给出原因）
+  POST /ask    响应含 usage/cost_cny/latency_ms/request_id；
+               每次请求输出一条 JSON 日志（event=ask）。
 """
 from __future__ import annotations
 
 import json
+import logging
 import os
+import time
+import uuid
+from datetime import datetime, timezone
 from typing import Literal
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from openai import OpenAI
+from starlette.concurrency import run_in_threadpool
 from pydantic import BaseModel, Field
 
+from src import cost, usage
 from src.config import (DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, GEN_MODEL,
                         OLLAMA_BASE_URL, YEARS)
-from src.pipeline import get_search
+from src.pipeline import get_search, index_status
 from src.ask import answer_auto, answer_auto_stream
 
 app = FastAPI(
@@ -43,6 +54,15 @@ app.add_middleware(
 
 _search_fn = None
 
+# 单条 JSON 日志；用独立 handler 避免 uvicorn 的前缀破坏 JSON 行。
+_LOGGER = logging.getLogger("rag.api")
+if not _LOGGER.handlers:
+    _handler = logging.StreamHandler()
+    _handler.setFormatter(logging.Formatter("%(message)s"))
+    _LOGGER.addHandler(_handler)
+_LOGGER.setLevel(logging.INFO)
+_LOGGER.propagate = False
+
 
 def _get_search():
     """惰性加载检索器（BGE + 索引，首次约几秒，之后复用）。"""
@@ -50,6 +70,67 @@ def _get_search():
     if _search_fn is None:
         _search_fn = get_search()
     return _search_fn
+
+
+def _default_backend() -> tuple[str, str, bool]:
+    """返回 (backend, model, key_configured)，不泄露 Key 本身。"""
+    if os.environ.get("RAG_BASE_URL"):
+        return ("custom", os.environ.get("RAG_MODEL", GEN_MODEL),
+                bool(os.environ.get("RAG_API_KEY")))
+    if os.environ.get("DEEPSEEK_API_KEY"):
+        return ("cloud", os.environ.get("RAG_MODEL", DEEPSEEK_MODEL), True)
+    return ("ollama", os.environ.get("RAG_MODEL", GEN_MODEL), False)
+
+
+def _request_usage(bucket: dict | None) -> dict:
+    return usage.copy(bucket)
+
+
+def _cost(bucket: dict) -> tuple[float, bool]:
+    peak = cost.is_peak()
+    return (cost.estimate_cny(bucket["prompt_tokens"],
+                              bucket["completion_tokens"], peak=peak),
+            peak)
+
+
+def _log_ask(*, request_id: str, status: int | str, started: float,
+             model: str, meta: dict | None = None,
+             bucket: dict | None = None, error: str | None = None,
+             year: int | None = None, agent: bool = False,
+             question_chars: int = 0) -> None:
+    """输出一条 JSON 请求日志；任何分支都只调用一次。"""
+    u = _request_usage(bucket)
+    cost_cny, peak = _cost(u)
+    payload = {
+        "event": "ask",
+        "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "request_id": request_id,
+        "status": status,
+        "model": model,
+        "year": year,
+        "agent_requested": agent,
+        "question_chars": question_chars,
+        "latency_ms": int((time.perf_counter() - started) * 1000),
+        "prompt_tokens": u["prompt_tokens"],
+        "completion_tokens": u["completion_tokens"],
+        "calls": u["calls"],
+        "cost_cny": cost_cny,
+        "cost_peak": peak,
+    }
+    if meta is not None:
+        payload.update({
+            "route": meta.get("route"),
+            "structured": bool(meta.get("structured")),
+            "refused": bool(meta.get("refused")),
+            "degraded": bool(meta.get("degraded")),
+            "sources": len(meta.get("sources") or []),
+            "citations": len(meta.get("citations") or []),
+            "violations": len(meta.get("violations") or []),
+            "steps": len(meta.get("steps") or []),
+        })
+    if error:
+        payload["error"] = error
+    _LOGGER.info(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
 
 
 class Message(BaseModel):
@@ -106,6 +187,11 @@ class AskResponse(BaseModel):
         default=[], description="未通过的校验项（引用越界/数字不在所引页）")
     degraded: bool = Field(
         default=False, description="部分内容未通过自动核对")
+    request_id: str = Field(default="", description="请求 id，与 JSON 日志对应")
+    usage: dict = Field(
+        default_factory=dict, description="本次请求 token 用量")
+    cost_cny: float = Field(default=0.0, description="本次请求估算成本（元）")
+    latency_ms: int = Field(default=0, description="本次请求耗时（毫秒）")
 
 
 def _resolve(api_key: str | None, model: str | None) -> tuple[OpenAI, str]:
@@ -131,8 +217,23 @@ def root() -> dict:
 
 @app.get("/health")
 def health() -> dict:
-    return {"status": "ok", "years": YEARS,
-            "model": os.environ.get("RAG_MODEL", DEEPSEEK_MODEL)}
+    info = index_status()
+    backend, model, key_configured = _default_backend()
+    return {"status": "ok", "years": YEARS, "model": model,
+            "backend": backend, "api_key_configured": key_configured,
+            "index": info["index"]["kind"], "index_status": info["status"],
+            "retriever_loaded": info["loaded"]}
+
+
+@app.get("/ready")
+def ready() -> JSONResponse:
+    """就绪探测：索引文件/年份覆盖/模型配置；不可用返回 503 并带原因。"""
+    info = index_status()
+    backend, model, key_configured = _default_backend()
+    info.update({"model": model, "backend": backend,
+                 "api_key_configured": key_configured})
+    status_code = 200 if info["status"] in ("ready", "degraded") else 503
+    return JSONResponse(info, status_code=status_code)
 
 
 @app.post("/ask", response_model=AskResponse)
@@ -140,16 +241,38 @@ def ask(req: AskRequest) -> AskResponse:
     if req.year is not None and req.year not in YEARS:
         raise HTTPException(400, f"year 仅支持 {YEARS}")
     client, model = _resolve(req.api_key, req.model)
+    request_id = uuid.uuid4().hex[:12]
+    started = time.perf_counter()
+    bucket = None
     try:
-        meta = answer_auto(
-            client, _get_search(), req.question, model,
-            search_kwargs={"year": req.year} if req.year is not None else None,
-            history=[m.model_dump() for m in req.history],
-            force_agent=req.agent,
-        )
+        with usage.collect() as bucket:
+            meta = answer_auto(
+                client, _get_search(), req.question, model,
+                search_kwargs={"year": req.year} if req.year is not None else None,
+                history=[m.model_dump() for m in req.history],
+                force_agent=req.agent,
+            )
     except Exception as e:  # noqa: BLE001
+        _log_ask(request_id=request_id, status=502, started=started,
+                 model=model, bucket=bucket, error=str(e),
+                 year=req.year, agent=req.agent,
+                 question_chars=len(req.question))
         raise HTTPException(502, f"生成失败：{e}") from e
-    return AskResponse(model=model, **meta)
+
+    u = _request_usage(bucket)
+    cost_cny, _ = _cost(u)
+    data = dict(meta)
+    data.update({
+        "request_id": request_id,
+        "usage": u,
+        "cost_cny": cost_cny,
+        "latency_ms": int((time.perf_counter() - started) * 1000),
+    })
+    _log_ask(request_id=request_id, status=200, started=started,
+             model=model, meta=data, bucket=bucket,
+             year=req.year, agent=req.agent,
+             question_chars=len(req.question))
+    return AskResponse(model=model, **data)
 
 
 @app.post("/ask/stream")
@@ -166,21 +289,74 @@ def ask_stream(req: AskRequest) -> StreamingResponse:
     if req.year is not None and req.year not in YEARS:
         raise HTTPException(400, f"year 仅支持 {YEARS}")
     client, model = _resolve(req.api_key, req.model)
+    request_id = uuid.uuid4().hex[:12]
+    started = time.perf_counter()
 
-    def sse():
+    def _next_event(it):
+        """取下一个事件；StopIteration 不能跨线程边界，转成 None。"""
         try:
-            for ev in answer_auto_stream(
+            return next(it)
+        except StopIteration:
+            return None
+
+    async def sse():
+        # 必须是 async 生成器：usage.collect() 的 ContextVar 要在事件循环
+        # 的 Context 里设置，随后每次 next() 在线程池执行时会复制该
+        # Context。若用同步生成器，每个 next() 都从异步 Context 复制，
+        # 生成器里设置的桶在 yield 后就丢了，usage 会恒为 0。
+        bucket = None
+        logged = False
+        try:
+            with usage.collect() as bucket:
+                it = answer_auto_stream(
                     client, _get_search(), req.question, model,
                     search_kwargs={"year": req.year}
                     if req.year is not None else None,
                     history=[m.model_dump() for m in req.history],
-                    force_agent=req.agent):
-                yield (f"event: {ev['type']}\n"
-                       f"data: {json.dumps(ev, ensure_ascii=False)}\n\n")
+                    force_agent=req.agent)
+                while True:
+                    ev = await run_in_threadpool(_next_event, it)
+                    if ev is None:
+                        break
+                    if ev.get("type") == "done":
+                        meta = dict(ev.get("meta") or {})
+                        u = _request_usage(bucket)
+                        cost_cny, _ = _cost(u)
+                        meta.update({
+                            "request_id": request_id,
+                            "usage": u,
+                            "cost_cny": cost_cny,
+                            "latency_ms": int(
+                                (time.perf_counter() - started) * 1000),
+                        })
+                        ev = {**ev, "meta": meta}
+                        _log_ask(request_id=request_id, status=200,
+                                 started=started, model=model, meta=meta,
+                                 bucket=bucket, year=req.year,
+                                 agent=req.agent,
+                                 question_chars=len(req.question))
+                        logged = True
+                    yield (f"event: {ev['type']}\n"
+                           f"data: {json.dumps(ev, ensure_ascii=False)}\n\n")
         except Exception as e:  # noqa: BLE001
+            if not logged:
+                _log_ask(request_id=request_id, status="error",
+                         started=started, model=model, bucket=bucket,
+                         error=str(e), year=req.year, agent=req.agent,
+                         question_chars=len(req.question))
+                logged = True
             yield (f"event: error\n"
                    f"data: {json.dumps({'message': str(e)}, ensure_ascii=False)}\n\n")
+        finally:
+            # 客户端在 done 前断开时生成器被关闭，except 接不到 GeneratorExit，
+            # 用 finally 补一条 aborted 日志，保证“一请求一日志”。
+            if not logged:
+                _log_ask(request_id=request_id, status="aborted",
+                         started=started, model=model, bucket=bucket,
+                         error="client disconnected", year=req.year,
+                         agent=req.agent, question_chars=len(req.question))
 
     return StreamingResponse(
         sse(), media_type="text/event-stream",
-        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no",
+                 "X-Request-ID": request_id})
