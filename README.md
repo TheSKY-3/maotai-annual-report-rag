@@ -284,7 +284,7 @@ curl -N -X POST localhost:8000/ask/stream -H "Content-Type: application/json" \
 失败亮红灯），防止改动悄悄打漏水位：
 
 <div align="center">
-<img src="docs/screenshots/ci_gate.png" width="720" alt="eval-gate 评测回归工作流"/>
+<a href="https://github.com/TheSKY-3/maotai-annual-report-rag/actions/runs/42233681733"><img src="docs/screenshots/ci_gate.png" width="720" alt="eval-gate 的 retrieval job 在 GitHub Actions 上通过"/></a>
 </div>
 
 ### 检索层：出处页命中率 hit@5 从 30% 提升到 86%（旧口径；修正口径 34%→86%）
