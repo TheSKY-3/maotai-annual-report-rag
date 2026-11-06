@@ -20,6 +20,8 @@ import sys
 
 from openai import OpenAI
 
+from src import claims as structured_claims
+from src import numeric, usage
 from src.config import GEN_MODEL, OLLAMA_BASE_URL, RETRY_TOP_K, TOP_K, YEARS
 from src.hybrid import detect_years
 from src.pipeline import get_page_reader, get_search
@@ -120,6 +122,7 @@ def rewrite_followup(client: OpenAI, model: str, history: list[dict],
         resp = client.chat.completions.create(
             model=model, messages=messages,
             temperature=0.0, max_tokens=900)
+        usage.record(resp)
         out = (resp.choices[0].message.content or "").strip()
         if not out:
             # 思考模式偶发未被 /no_think 关闭：配额被思考吃尽导致正文为空，
@@ -127,6 +130,7 @@ def rewrite_followup(client: OpenAI, model: str, history: list[dict],
             resp = client.chat.completions.create(
                 model=model, messages=messages,
                 temperature=0.0, max_tokens=1800)
+            usage.record(resp)
             out = (resp.choices[0].message.content or "").strip()
     except Exception:  # noqa: BLE001
         return question
@@ -149,6 +153,7 @@ def _complete(client: OpenAI, model: str, prompt: str) -> str:
         messages=[{"role": "user", "content": prompt}],
         temperature=0.1,
     )
+    usage.record(resp)
     return resp.choices[0].message.content or ""
 
 
@@ -158,6 +163,68 @@ def retry_enabled() -> bool:
 
 def grounding_enabled() -> bool:
     return os.environ.get("RAG_GROUNDING", "1") != "0"
+
+
+def structured_enabled() -> bool:
+    return os.environ.get("RAG_STRUCTURED", "1") != "0"
+
+
+def _structured_answer(client: OpenAI, search_fn, standalone: str,
+                       model: str, skw: dict
+                       ) -> tuple[structured_claims.StructuredAnswer, list[dict]]:
+    """检索 + 结构化生成；拒答时扩检索重试一次（与 E6 语义对齐）。"""
+    hits = search_fn(standalone, top_k=TOP_K, **skw)
+    ev = structured_claims.build_evidence(hits)
+    pages = structured_claims.page_map()
+    ans = structured_claims.generate(client, model, standalone, ev, pages=pages)
+    if ans.refused and retry_enabled():
+        more = search_fn(standalone, top_k=RETRY_TOP_K, **skw)
+        ans2 = structured_claims.generate(
+            client, model, standalone, structured_claims.build_evidence(more),
+            pages=pages)
+        if not ans2.refused:
+            return ans2, more
+        return ans, hits
+    return ans, hits
+
+
+def _structured_meta(question: str, standalone: str,
+                     ans: structured_claims.StructuredAnswer,
+                     hits: list[dict], route: str = "direct") -> dict:
+    meta = _meta(question, standalone, ans.text, hits, route)
+    meta.update({
+        "refused": ans.refused,
+        "structured": True,
+        "claims": ans.claims,
+        "citations": ans.citations,
+        "violations": ans.violations,
+        "degraded": ans.degraded,
+        "calc_note": ans.calc_note,
+        "calls": ans.calls,
+        "usage": ans.usage,
+    })
+    return meta
+
+
+def _agent_meta(question: str, standalone: str, text: str,
+                hits: list[dict], steps: list[dict]) -> dict:
+    """agent 自由文本逐句归属证据：出处由程序渲染，找不到的数字记违规。"""
+    attributed, cites, missing = structured_claims.attribute_text(
+        text, hits, skip={str(y) for y in YEARS},
+        pages=structured_claims.page_map())
+    seen: list[str] = []
+    for n in missing:
+        if n not in seen:
+            seen.append(n)
+    meta = _meta(question, standalone, attributed, hits, "agent", steps)
+    meta.update({
+        "structured": False,
+        "citations": cites,
+        "violations": [f"数字在检索证据中找不到：{n}" for n in seen],
+        "degraded": False,
+    })
+    return meta
+
 
 
 _NUM_RE = re.compile(r"[0-9][0-9,，]*(?:\.[0-9]+)?")
@@ -446,12 +513,14 @@ def _agent_call(client: OpenAI, model: str, messages, **kw):
     resp = client.chat.completions.create(
         model=model, messages=messages, temperature=0.1,
         max_tokens=900, extra_body={"thinking": {"type": "disabled"}}, **kw)
+    usage.record(resp)
     msg = resp.choices[0].message
     if not (msg.content or "").strip() and not msg.tool_calls:
         resp = client.chat.completions.create(
             model=model, messages=messages, temperature=0.1,
             max_tokens=1800,
             extra_body={"thinking": {"type": "disabled"}}, **kw)
+        usage.record(resp)
         msg = resp.choices[0].message
     return msg
 
@@ -520,12 +589,16 @@ def answer_auto(client: OpenAI, search_fn, question: str, model: str,
     （“那2023年呢”改写后才看得出年份）。
     """
     standalone = rewrite_followup(client, model, history or [], question)
+    skw = search_kwargs or {}
     if force_agent or needs_agent(standalone):
-        locked_year = (search_kwargs or {}).get("year")
+        locked_year = skw.get("year")
         page_fn = get_page_reader()
         text, hits, steps = _agent_loop(client, search_fn, page_fn,
                                         standalone, model, locked_year)
-        return _meta(question, standalone, text, hits, "agent", steps)
+        return _agent_meta(question, standalone, text, hits, steps)
+    if structured_enabled():
+        ans, hits = _structured_answer(client, search_fn, standalone, model, skw)
+        return _structured_meta(question, standalone, ans, hits)
     text, hits, standalone = _answer_core(client, search_fn, question, model,
                                           search_kwargs, history,
                                           standalone=standalone)
@@ -549,6 +622,16 @@ def answer_auto_stream(client: OpenAI, search_fn, question: str, model: str,
     agent 路径按工具轮次推送 status、最终答案整段返回——工具循环行为与
     评测过的 _agent_loop 完全一致，不为流式改动它（改了就得重新评测）。
     """
+    if structured_enabled():
+        yield {"type": "status", "label": "检索并核对证据中…"}
+        meta = answer_auto(client, search_fn, question, model, search_kwargs,
+                           history, force_agent)
+        yield {"type": "status",
+               "label": f"已核对 {len(meta.get('citations') or [])} 处出处"}
+        yield {"type": "delta", "text": meta["answer"]}
+        yield {"type": "done", "meta": meta}
+        return
+
     def emit(t, **kw):
         return dict(type=t, **kw)
 

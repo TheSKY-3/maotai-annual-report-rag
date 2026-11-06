@@ -1,0 +1,1162 @@
+{
+ "phase_a": {
+  "有答案题": {
+   "n": 45,
+   "answer_correct": 0.5778,
+   "cite_any": 0.6667,
+   "cite_precision": 0.624,
+   "cite_nonempty": 41,
+   "all_gold_cited": 0.5333,
+   "hit_any": 0.8,
+   "all_gold_hit": 0.6889,
+   "false_refusal": 0.0889
+  },
+  "无答案题": {
+   "n": 5,
+   "refusal_correct": 1.0
+  },
+  "cross_page": {
+   "n": 10,
+   "answer_correct": 0.4,
+   "cite_any": 0.6,
+   "cite_precision": 0.4815,
+   "cite_nonempty": 9,
+   "all_gold_cited": 0.2,
+   "hit_any": 0.9,
+   "all_gold_hit": 0.5,
+   "false_refusal": 0.0
+  },
+  "cross_year": {
+   "n": 5,
+   "answer_correct": 0.6,
+   "cite_any": 0.6,
+   "cite_precision": 0.4375,
+   "cite_nonempty": 4,
+   "all_gold_cited": 0.2,
+   "hit_any": 0.6,
+   "all_gold_hit": 0.4,
+   "false_refusal": 0.4
+  },
+  "fact": {
+   "n": 30,
+   "answer_correct": 0.6333,
+   "cite_any": 0.7,
+   "cite_precision": 0.6964,
+   "cite_nonempty": 28,
+   "all_gold_cited": 0.7,
+   "hit_any": 0.8,
+   "all_gold_hit": 0.8,
+   "false_refusal": 0.0667
+  }
+ },
+ "e9_baseline": {
+  "有答案题": {
+   "n": 45,
+   "answer_correct": 0.5778,
+   "cite_any": 0.7333,
+   "cite_precision": 0.6008,
+   "cite_nonempty": 43,
+   "all_gold_cited": 0.6,
+   "hit_any": 0.8,
+   "all_gold_hit": 0.6889,
+   "false_refusal": 0.0889
+  },
+  "无答案题": {
+   "n": 5,
+   "refusal_correct": 1.0
+  },
+  "cross_page": {
+   "n": 10,
+   "answer_correct": 0.5,
+   "cite_any": 0.9,
+   "cite_precision": 0.5167,
+   "cite_nonempty": 10,
+   "all_gold_cited": 0.4,
+   "hit_any": 0.9,
+   "all_gold_hit": 0.5,
+   "false_refusal": 0.1
+  },
+  "cross_year": {
+   "n": 5,
+   "answer_correct": 0.8,
+   "cite_any": 0.6,
+   "cite_precision": 0.4167,
+   "cite_nonempty": 4,
+   "all_gold_cited": 0.4,
+   "hit_any": 0.6,
+   "all_gold_hit": 0.4,
+   "false_refusal": 0.2
+  },
+  "fact": {
+   "n": 30,
+   "answer_correct": 0.5667,
+   "cite_any": 0.7,
+   "cite_precision": 0.6552,
+   "cite_nonempty": 29,
+   "all_gold_cited": 0.7,
+   "hit_any": 0.8,
+   "all_gold_hit": 0.8,
+   "false_refusal": 0.0667
+  }
+ },
+ "phase_a_extra": {
+  "n": 50,
+  "with_violations": 15,
+  "cite_violations": 0,
+  "num_violations": 15,
+  "structured_rows": 27,
+  "agent_rows": 23,
+  "cost_cny": 0.2916
+ },
+ "rows": [
+  {
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 1,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2022年报 P7"
+   ],
+   "cost_cny": 0.002129
+  },
+  {
+   "num_hit": 7,
+   "num_total": 7,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 2,
+   "type": "fact",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [
+    "数字在检索证据中找不到：95.26%",
+    "数字在检索证据中找不到：2,237,432.35万元",
+    "数字在检索证据中找不到：88.29%",
+    "数字在检索证据中找不到：96.09%"
+   ],
+   "citations": [
+    "2022年报 P7"
+   ],
+   "cost_cny": 0.006272
+  },
+  {
+   "num_hit": 6,
+   "num_total": 7,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": 0.0,
+   "all_gold_cited": false,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 3,
+   "type": "fact",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [
+    "数字在检索证据中找不到：77.22%",
+    "数字在检索证据中找不到：26.55%"
+   ],
+   "citations": [
+    "2022年报 P9"
+   ],
+   "cost_cny": 0.004003
+  },
+  {
+   "num_hit": 5,
+   "num_total": 6,
+   "answer_correct": false,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 4,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2022年报 P14"
+   ],
+   "cost_cny": 0.002399
+  },
+  {
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 5,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2022年报 P30"
+   ],
+   "cost_cny": 0.005823
+  },
+  {
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 6,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2023年报 P8"
+   ],
+   "cost_cny": 0.002279
+  },
+  {
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 7,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2023年报 P2"
+   ],
+   "cost_cny": 0.002188
+  },
+  {
+   "num_hit": 3,
+   "num_total": 5,
+   "answer_correct": false,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 8,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [
+    "claim 1 的数字在证据中找不到：['2,237,432.35万元']"
+   ],
+   "citations": [
+    "2023年报 P17"
+   ],
+   "cost_cny": 0.004642
+  },
+  {
+   "num_hit": 8,
+   "num_total": 8,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 9,
+   "type": "fact",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [
+    "数字在检索证据中找不到：0.69%",
+    "数字在检索证据中找不到：11.10%"
+   ],
+   "citations": [
+    "2023年报 P15"
+   ],
+   "cost_cny": 0.004156
+  },
+  {
+   "num_hit": 2,
+   "num_total": 3,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": 0.0,
+   "all_gold_cited": false,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 10,
+   "type": "fact",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [],
+   "citations": [
+    "2023年报 P110"
+   ],
+   "cost_cny": 0.011283
+  },
+  {
+   "num_hit": 0,
+   "num_total": 4,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": null,
+   "all_gold_cited": false,
+   "hit_any": false,
+   "all_gold_hit": false,
+   "false_refusal": true,
+   "id": 11,
+   "type": "fact",
+   "route": "direct",
+   "refused": true,
+   "structured": true,
+   "violations": [],
+   "citations": [],
+   "cost_cny": 0.005799
+  },
+  {
+   "num_hit": 3,
+   "num_total": 3,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 0.5,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 12,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [
+    "claim 3 的数字在证据中找不到：['2,062,992.96万元', '29.43%']"
+   ],
+   "citations": [
+    "2023年报 P8",
+    "2023年报 P15"
+   ],
+   "cost_cny": 0.005607
+  },
+  {
+   "num_hit": 1,
+   "num_total": 5,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": 0.0,
+   "all_gold_cited": false,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 13,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2024年报 P56"
+   ],
+   "cost_cny": 0.002023
+  },
+  {
+   "num_hit": 2,
+   "num_total": 2,
+   "answer_correct": true,
+   "cite_any": false,
+   "cite_precision": 0.0,
+   "all_gold_cited": false,
+   "hit_any": false,
+   "all_gold_hit": false,
+   "false_refusal": false,
+   "id": 14,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2024年报 P35"
+   ],
+   "cost_cny": 0.009281
+  },
+  {
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 0.5,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 15,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2024年报 P2",
+    "2024年报 P34"
+   ],
+   "cost_cny": 0.002091
+  },
+  {
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 16,
+   "type": "fact",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [],
+   "citations": [
+    "2024年报 P16"
+   ],
+   "cost_cny": 0.004134
+  },
+  {
+   "num_hit": 3,
+   "num_total": 5,
+   "answer_correct": false,
+   "cite_any": true,
+   "cite_precision": 0.5,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 17,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [
+    "claim 1 的数字在证据中找不到：['94.06%']"
+   ],
+   "citations": [
+    "2024年报 P16",
+    "2024年报 P9"
+   ],
+   "cost_cny": 0.00445
+  },
+  {
+   "num_hit": 7,
+   "num_total": 7,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 18,
+   "type": "fact",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [],
+   "citations": [
+    "2024年报 P14"
+   ],
+   "cost_cny": 0.004275
+  },
+  {
+   "num_hit": 0,
+   "num_total": 4,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": null,
+   "all_gold_cited": false,
+   "hit_any": false,
+   "all_gold_hit": false,
+   "false_refusal": true,
+   "id": 19,
+   "type": "fact",
+   "route": "direct",
+   "refused": true,
+   "structured": true,
+   "violations": [],
+   "citations": [],
+   "cost_cny": 0.006069
+  },
+  {
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 20,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2024年报 P10"
+   ],
+   "cost_cny": 0.005223
+  },
+  {
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 21,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2024年报 P50"
+   ],
+   "cost_cny": 0.002215
+  },
+  {
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 22,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2024年报 P41"
+   ],
+   "cost_cny": 0.0022
+  },
+  {
+   "num_hit": 1,
+   "num_total": 3,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": 0.0,
+   "all_gold_cited": false,
+   "hit_any": false,
+   "all_gold_hit": false,
+   "false_refusal": false,
+   "id": 23,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2025年报 P54"
+   ],
+   "cost_cny": 0.002373
+  },
+  {
+   "num_hit": 2,
+   "num_total": 3,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": 0.0,
+   "all_gold_cited": false,
+   "hit_any": false,
+   "all_gold_hit": false,
+   "false_refusal": false,
+   "id": 24,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2025年报 P33"
+   ],
+   "cost_cny": 0.00609
+  },
+  {
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 25,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2025年报 P2"
+   ],
+   "cost_cny": 0.002059
+  },
+  {
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 26,
+   "type": "fact",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [],
+   "citations": [
+    "2025年报 P17"
+   ],
+   "cost_cny": 0.007939
+  },
+  {
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 27,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2025年报 P15"
+   ],
+   "cost_cny": 0.002371
+  },
+  {
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 28,
+   "type": "fact",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [
+    "数字在检索证据中找不到：93.53%"
+   ],
+   "citations": [
+    "2025年报 P10"
+   ],
+   "cost_cny": 0.004188
+  },
+  {
+   "num_hit": 3,
+   "num_total": 4,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": 0.0,
+   "all_gold_cited": false,
+   "hit_any": false,
+   "all_gold_hit": false,
+   "false_refusal": false,
+   "id": 29,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2025年报 P31"
+   ],
+   "cost_cny": 0.005678
+  },
+  {
+   "num_hit": 5,
+   "num_total": 5,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 30,
+   "type": "fact",
+   "route": "direct",
+   "refused": false,
+   "structured": true,
+   "violations": [],
+   "citations": [
+    "2025年报 P32"
+   ],
+   "cost_cny": 0.002363
+  },
+  {
+   "num_hit": 6,
+   "num_total": 6,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 0.3333333333333333,
+   "all_gold_cited": false,
+   "hit_any": true,
+   "all_gold_hit": false,
+   "false_refusal": false,
+   "id": 31,
+   "type": "cross_page",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [
+    "数字在检索证据中找不到：2,237,432.35 万元",
+    "数字在检索证据中找不到：10.51%",
+    "数字在检索证据中找不到：94.50%",
+    "数字在检索证据中找不到：6,723,287.69 万元",
+    "数字在检索证据中找不到：95.33%"
+   ],
+   "citations": [
+    "2024年报 P8",
+    "2024年报 P16",
+    "2024年报 P17"
+   ],
+   "cost_cny": 0.006025
+  },
+  {
+   "num_hit": 8,
+   "num_total": 8,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": false,
+   "hit_any": true,
+   "all_gold_hit": false,
+   "false_refusal": false,
+   "id": 32,
+   "type": "cross_page",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [
+    "数字在检索证据中找不到：10.22%",
+    "数字在检索证据中找不到：18.47%",
+    "数字在检索证据中找不到：83,332.76"
+   ],
+   "citations": [
+    "2024年报 P15"
+   ],
+   "cost_cny": 0.008386
+  },
+  {
+   "num_hit": 6,
+   "num_total": 6,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 33,
+   "type": "cross_page",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [
+    "数字在检索证据中找不到：-1.63%"
+   ],
+   "citations": [
+    "2024年报 P15",
+    "2024年报 P14"
+   ],
+   "cost_cny": 0.005658
+  },
+  {
+   "num_hit": 3,
+   "num_total": 4,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": null,
+   "all_gold_cited": false,
+   "hit_any": false,
+   "all_gold_hit": false,
+   "false_refusal": false,
+   "id": 34,
+   "type": "cross_page",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [
+    "数字在检索证据中找不到：4,852,174.60万元"
+   ],
+   "citations": [],
+   "cost_cny": 0.017157
+  },
+  {
+   "num_hit": 5,
+   "num_total": 7,
+   "answer_correct": false,
+   "cite_any": true,
+   "cite_precision": 0.5,
+   "all_gold_cited": false,
+   "hit_any": true,
+   "all_gold_hit": false,
+   "false_refusal": false,
+   "id": 35,
+   "type": "cross_page",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [],
+   "citations": [
+    "2024年报 P93",
+    "2024年报 P14"
+   ],
+   "cost_cny": 0.006095
+  },
+  {
+   "num_hit": 4,
+   "num_total": 6,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": 0.0,
+   "all_gold_cited": false,
+   "hit_any": true,
+   "all_gold_hit": false,
+   "false_refusal": false,
+   "id": 36,
+   "type": "cross_page",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [],
+   "citations": [
+    "2023年报 P64",
+    "2023年报 P17"
+   ],
+   "cost_cny": 0.013372
+  },
+  {
+   "num_hit": 5,
+   "num_total": 6,
+   "answer_correct": false,
+   "cite_any": true,
+   "cite_precision": 0.5,
+   "all_gold_cited": false,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 37,
+   "type": "cross_page",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [],
+   "citations": [
+    "2022年报 P59",
+    "2022年报 P16"
+   ],
+   "cost_cny": 0.01223
+  },
+  {
+   "num_hit": 4,
+   "num_total": 4,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 38,
+   "type": "cross_page",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [],
+   "citations": [
+    "2022年报 P16"
+   ],
+   "cost_cny": 0.004036
+  },
+  {
+   "num_hit": 4,
+   "num_total": 8,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": 0.0,
+   "all_gold_cited": false,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 39,
+   "type": "cross_page",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [
+    "数字在检索证据中找不到：1,303,141.15 万元",
+    "数字在检索证据中找不到：130.31亿元"
+   ],
+   "citations": [
+    "2025年报 P18"
+   ],
+   "cost_cny": 0.01356
+  },
+  {
+   "num_hit": 5,
+   "num_total": 6,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": 0.0,
+   "all_gold_cited": false,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 40,
+   "type": "cross_page",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [
+    "数字在检索证据中找不到：97.13%",
+    "数字在检索证据中找不到：2.87%",
+    "数字在检索证据中找不到：91.21%",
+    "数字在检索证据中找不到：91.69%"
+   ],
+   "citations": [
+    "2025年报 P10"
+   ],
+   "cost_cny": 0.004427
+  },
+  {
+   "num_hit": 8,
+   "num_total": 8,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 1.0,
+   "all_gold_cited": true,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 41,
+   "type": "cross_year",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [],
+   "citations": [
+    "2025年报 P10",
+    "2023年报 P17"
+   ],
+   "cost_cny": 0.012491
+  },
+  {
+   "num_hit": 7,
+   "num_total": 7,
+   "answer_correct": true,
+   "cite_any": true,
+   "cite_precision": 0.5,
+   "all_gold_cited": false,
+   "hit_any": true,
+   "all_gold_hit": true,
+   "false_refusal": false,
+   "id": 42,
+   "type": "cross_year",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [
+    "数字在检索证据中找不到：19.65%"
+   ],
+   "citations": [
+    "2024年报 P16",
+    "2023年报 P17"
+   ],
+   "cost_cny": 0.005796
+  },
+  {
+   "num_hit": 6,
+   "num_total": 6,
+   "answer_correct": true,
+   "cite_any": false,
+   "cite_precision": 0.0,
+   "all_gold_cited": false,
+   "hit_any": false,
+   "all_gold_hit": false,
+   "false_refusal": false,
+   "id": 43,
+   "type": "cross_year",
+   "route": "agent",
+   "refused": false,
+   "structured": false,
+   "violations": [
+    "数字在检索证据中找不到：24,823,609,159.32"
+   ],
+   "citations": [
+    "2025年报 P65",
+    "2022年报 P62"
+   ],
+   "cost_cny": 0.011332
+  },
+  {
+   "num_hit": 5,
+   "num_total": 6,
+   "answer_correct": false,
+   "cite_any": true,
+   "cite_precision": 0.25,
+   "all_gold_cited": false,
+   "hit_any": true,
+   "all_gold_hit": false,
+   "false_refusal": true,
+   "id": 44,
+   "type": "cross_year",
+   "route": "agent",
+   "refused": true,
+   "structured": false,
+   "violations": [],
+   "citations": [
+    "2024年报 P59"
+   ],
+   "cost_cny": 0.005396
+  },
+  {
+   "num_hit": 0,
+   "num_total": 8,
+   "answer_correct": false,
+   "cite_any": false,
+   "cite_precision": null,
+   "all_gold_cited": false,
+   "hit_any": false,
+   "all_gold_hit": false,
+   "false_refusal": true,
+   "id": 45,
+   "type": "cross_year",
+   "route": "agent",
+   "refused": true,
+   "structured": false,
+   "violations": [],
+   "citations": [],
+   "cost_cny": 0.005543
+  },
+  {
+   "refusal_correct": true,
+   "id": 46,
+   "type": "no_answer",
+   "route": "direct",
+   "refused": true,
+   "structured": true,
+   "violations": [],
+   "citations": [],
+   "cost_cny": 0.005721
+  },
+  {
+   "refusal_correct": true,
+   "id": 47,
+   "type": "no_answer",
+   "route": "direct",
+   "refused": true,
+   "structured": true,
+   "violations": [],
+   "citations": [],
+   "cost_cny": 0.005484
+  },
+  {
+   "refusal_correct": true,
+   "id": 48,
+   "type": "no_answer",
+   "route": "direct",
+   "refused": true,
+   "structured": true,
+   "violations": [],
+   "citations": [],
+   "cost_cny": 0.005978
+  },
+  {
+   "refusal_correct": true,
+   "id": 49,
+   "type": "no_answer",
+   "route": "direct",
+   "refused": true,
+   "structured": true,
+   "violations": [],
+   "citations": [],
+   "cost_cny": 0.005728
+  },
+  {
+   "refusal_correct": true,
+   "id": 50,
+   "type": "no_answer",
+   "route": "direct",
+   "refused": true,
+   "structured": true,
+   "violations": [],
+   "citations": [],
+   "cost_cny": 0.005582
+  }
+ ]
+}

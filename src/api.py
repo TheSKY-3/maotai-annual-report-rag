@@ -98,6 +98,14 @@ class AskResponse(BaseModel):
                        description="回答路径：direct=直通检索，agent=工具调用循环")
     steps: list[Step] = Field(
         default=[], description="agent 路径的工具调用轨迹")
+    structured: bool = Field(
+        default=False, description="是否走结构化答案（claims+证据 id）")
+    citations: list[str] = Field(
+        default=[], description="程序渲染并校验过的出处")
+    violations: list[str] = Field(
+        default=[], description="未通过的校验项（引用越界/数字不在所引页）")
+    degraded: bool = Field(
+        default=False, description="部分内容未通过自动核对")
 
 
 def _resolve(api_key: str | None, model: str | None) -> tuple[OpenAI, str]:

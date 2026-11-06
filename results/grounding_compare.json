@@ -1,0 +1,58 @@
+{
+ "e9": {
+  "direct": {
+   "n": 22,
+   "bad_row_rate": 0.0909,
+   "bad_nums": 2,
+   "nums_total": 26,
+   "nums_per_answer_median": 1.0,
+   "cited_rows": 21,
+   "cite_bad_rows": 1
+  },
+  "agent": {
+   "n": 23,
+   "bad_row_rate": 0.5217,
+   "bad_nums": 21,
+   "nums_total": 86,
+   "nums_per_answer_median": 4,
+   "cited_rows": 22,
+   "cite_bad_rows": 1
+  },
+  "overall": {
+   "n": 45,
+   "bad_row_rate": 0.3111,
+   "bad_nums": 23,
+   "nums_total": 112,
+   "cited_rows": 43,
+   "cite_bad_rows": 2
+  }
+ },
+ "phase_a": {
+  "direct": {
+   "n": 22,
+   "bad_row_rate": 0.2727,
+   "bad_nums": 8,
+   "nums_total": 62,
+   "nums_per_answer_median": 2.0,
+   "cited_rows": 20,
+   "cite_bad_rows": 0
+  },
+  "agent": {
+   "n": 23,
+   "bad_row_rate": 0.5217,
+   "bad_nums": 27,
+   "nums_total": 100,
+   "nums_per_answer_median": 4,
+   "cited_rows": 21,
+   "cite_bad_rows": 0
+  },
+  "overall": {
+   "n": 45,
+   "bad_row_rate": 0.4,
+   "bad_nums": 35,
+   "nums_total": 162,
+   "cited_rows": 41,
+   "cite_bad_rows": 0
+  }
+ }
+}
