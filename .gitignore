@@ -19,6 +19,7 @@ data/chunks/*
 !data/chunks/contextual.jsonl
 
 # 评测与构建产物
+results/ci_retrieval_run.json
 report/*.pdf
 report/_build/
 *.aux
@@ -35,3 +36,6 @@ report/_build/
 # 交接文件（不入库）
 HANDOFF.md
 .handoff/
+# 评审过程的临时脚本与中间输出（仅供本地复算，不入库）
+review/_lead/
+review/_recalc/

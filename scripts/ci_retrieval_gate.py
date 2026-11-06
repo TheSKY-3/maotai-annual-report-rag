@@ -1,9 +1,13 @@
 """CI 检索层回归 gate：生产检索 hit@5 低于阈值则退出非零（GitHub Actions 用）。
 
 每次 push 免费复跑检索层评测（纯本地计算，无 API 成本），防止改动悄悄
-打漏检索水位。生产基线 66%（E5 语境增强索引，已随仓库分发），阈值放宽
-2pp 容忍环境抖动。结果摘要写入 $GITHUB_STEP_SUMMARY，Actions 运行页
-直接可见；逐题明细存 results/ci_retrieval.json 随 artifact 上传。
+打漏检索水位。阈值 0.74 = 修正口径基线 76%（金标页码解析修复后，E5 语境
+增强索引）− 2pp 容忍；旧阈值 0.64 是按漏页的 66% 定的，修复后会放过约
+12pp 的静默回退。
+
+默认只读：结果只打印到 stdout / $GITHUB_STEP_SUMMARY；只有显式设置
+CI_RETRIEVAL_OUT 时才写逐题明细（CI 里写临时文件随 artifact 上传），
+避免本地跑一次就改写仓库里 tracked 的 results 文件。
 
 本地复现:
   .venv/Scripts/python.exe scripts/ci_retrieval_gate.py
@@ -17,17 +21,25 @@ PROJECT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT))
 
 from src.config import GOLD_FILE, RESULTS_DIR  # noqa: E402
-from src.evalcore import run_eval, save_and_print  # noqa: E402
+from src.evalcore import run_eval  # noqa: E402
 from src.pipeline import get_search  # noqa: E402
 
-THRESHOLD = 0.64  # 生产 0.66 - 2pp 容忍
+THRESHOLD = 0.74  # 修正口径生产 0.76 - 2pp 容忍
 
 
 def main() -> None:
     questions = [json.loads(l) for l in
                  open(GOLD_FILE, encoding="utf-8") if l.strip()]
     rows, summary = run_eval(get_search(), questions, 5)
-    save_and_print("ci_retrieval", rows, summary)
+
+    out = os.environ.get("CI_RETRIEVAL_OUT")
+    if out:  # 只在显式指定时落盘，默认不改写仓库文件
+        path = Path(out)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps({"summary": summary, "rows": rows},
+                                   ensure_ascii=False, indent=1),
+                        encoding="utf-8")
+        print(f"[ci_retrieval] -> {path}")
 
     hit = summary["overall"]["page_hit@k"]
     ok = hit >= THRESHOLD

@@ -1,0 +1,9851 @@
+{
+ "schema": "phase_a_rescore/v1",
+ "generated_at": "2026-11-06 13:55:10 +0800",
+ "generated_by": "scripts/rescore_offline.py",
+ "gold_source": "data/gold/questions.jsonl",
+ "definition": {
+  "hit_at_k_any": "top-k 中至少一块来自 gold 页（旧口径，宽松）",
+  "hit_at_k_all": "top-k 覆盖 gold 的全部页（严格）",
+  "mrr": "第一块命中 gold 页的排名倒数",
+  "page_prec_at_k": "top-k 中命中 gold 页的比例",
+  "cite_any": "回答引用页与 gold 页有交集（旧口径，多引必中）",
+  "cite_precision": "回答引用页中落在 gold 页的比例；无引用记 null",
+  "answer_correct": "gold_answer 的全部数字串都出现在回答里（沿用原定义）",
+  "refusal_correct": "无答案题是否明确拒答",
+  "old": "修复前口径：优先取落盘字段，未落盘字段用旧正则按同一公式重算",
+  "new": "修正口径：用修复后的 src.evalcore.parse_sources 重新解析 gold"
+ },
+ "checks": {
+  "gold_pages_mismatch": 0,
+  "page_hit_mismatch": 0,
+  "cite_mismatch": 0,
+  "answer_mismatch": 0
+ },
+ "affected_questions": [
+  {
+   "id": 31,
+   "type": "cross_page",
+   "source": "2024年报 P9、P16",
+   "old": [
+    [
+     2024,
+     9
+    ]
+   ],
+   "new": [
+    [
+     2024,
+     9
+    ],
+    [
+     2024,
+     16
+    ]
+   ]
+  },
+  {
+   "id": 32,
+   "type": "cross_page",
+   "source": "2024年报 P10、P15",
+   "old": [
+    [
+     2024,
+     10
+    ]
+   ],
+   "new": [
+    [
+     2024,
+     10
+    ],
+    [
+     2024,
+     15
+    ]
+   ]
+  },
+  {
+   "id": 33,
+   "type": "cross_page",
+   "source": "2024年报 P14、P15",
+   "old": [
+    [
+     2024,
+     14
+    ]
+   ],
+   "new": [
+    [
+     2024,
+     14
+    ],
+    [
+     2024,
+     15
+    ]
+   ]
+  },
+  {
+   "id": 35,
+   "type": "cross_page",
+   "source": "2024年报 P13、P14",
+   "old": [
+    [
+     2024,
+     13
+    ]
+   ],
+   "new": [
+    [
+     2024,
+     13
+    ],
+    [
+     2024,
+     14
+    ]
+   ]
+  },
+  {
+   "id": 36,
+   "type": "cross_page",
+   "source": "2023年报 P8、P16",
+   "old": [
+    [
+     2023,
+     8
+    ]
+   ],
+   "new": [
+    [
+     2023,
+     8
+    ],
+    [
+     2023,
+     16
+    ]
+   ]
+  },
+  {
+   "id": 37,
+   "type": "cross_page",
+   "source": "2022年报 P7、P16",
+   "old": [
+    [
+     2022,
+     7
+    ]
+   ],
+   "new": [
+    [
+     2022,
+     7
+    ],
+    [
+     2022,
+     16
+    ]
+   ]
+  },
+  {
+   "id": 39,
+   "type": "cross_page",
+   "source": "2025年报 P10、P17",
+   "old": [
+    [
+     2025,
+     10
+    ]
+   ],
+   "new": [
+    [
+     2025,
+     10
+    ],
+    [
+     2025,
+     17
+    ]
+   ]
+  }
+ ],
+ "files": [
+  {
+   "file": "agentic_cloud_answers.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.6222,
+     "old_n": 45,
+     "new": 0.7333,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.5476,
+     "old_n": 42,
+     "new": 0.6008,
+     "new_n": 43
+    },
+    "answer_correct": {
+     "old": 0.5778,
+     "old_n": 45,
+     "new": 0.5778,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.9,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.2333,
+      "old_n": 10,
+      "new": 0.5167,
+      "new_n": 10
+     },
+     "answer_correct": {
+      "old": 0.5,
+      "old_n": 10,
+      "new": 0.5,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.4167,
+      "old_n": 4,
+      "new": 0.4167,
+      "new_n": 4
+     },
+     "answer_correct": {
+      "old": 0.8,
+      "old_n": 5,
+      "new": 0.8,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.7,
+      "old_n": 30,
+      "new": 0.7,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.6786,
+      "old_n": 28,
+      "new": 0.6552,
+      "new_n": 29
+     },
+     "answer_correct": {
+      "old": 0.5667,
+      "old_n": 30,
+      "new": 0.5667,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": {
+    "note": "证据块 id（hit_ids）的并集，agent 多轮检索拼接而成，不是单次 top-5 排名，故不计入 hit@5",
+    "evidence_pool_hit_any": {
+     "old": 0.7111,
+     "new": 0.8,
+     "n": 45
+    },
+    "evidence_pool_hit_all": {
+     "old": 0.6889,
+     "new": 0.6889,
+     "n": 45
+    }
+   },
+   "agreement": {
+    "stored": 45,
+    "eq_old": 45,
+    "eq_new": 40
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "agentic_cloud_faithfulness.json",
+   "kind": "unsupported",
+   "tier": "partial",
+   "k": 5,
+   "n_rows": 41,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {},
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "hit_at_k_all": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "mrr": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "page_prec_at_k": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_precision": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "answer_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "refusal_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）"
+   },
+   "warnings": []
+  },
+  {
+   "file": "baseline_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.3,
+     "old_n": 50,
+     "new": 0.34,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.28,
+     "old_n": 50,
+     "new": 0.24,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.1773,
+     "old_n": 50,
+     "new": 0.2073,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.06,
+     "old_n": 50,
+     "new": 0.068,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.5,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.1,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.25,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.06,
+      "old_n": 10,
+      "new": 0.1,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.04,
+      "old_n": 5,
+      "new": 0.04,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.3667,
+      "old_n": 30,
+      "new": 0.3667,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.3667,
+      "old_n": 30,
+      "new": 0.3667,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.1789,
+      "old_n": 30,
+      "new": 0.1789,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.0733,
+      "old_n": 30,
+      "new": 0.0733,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 48
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "ci_retrieval_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.66,
+     "old_n": 50,
+     "new": 0.76,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.6,
+     "old_n": 50,
+     "new": 0.6,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.438,
+     "old_n": 50,
+     "new": 0.5247,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.136,
+     "old_n": 50,
+     "new": 0.164,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.9,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.35,
+      "old_n": 10,
+      "new": 0.7833,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.08,
+      "old_n": 10,
+      "new": 0.22,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.8,
+      "old_n": 5,
+      "new": 0.8,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.2167,
+      "old_n": 5,
+      "new": 0.2167,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.7667,
+      "old_n": 30,
+      "new": 0.7667,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.7667,
+      "old_n": 30,
+      "new": 0.7667,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.5272,
+      "old_n": 30,
+      "new": 0.5272,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.1533,
+      "old_n": 30,
+      "new": 0.1533,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.3,
+      "old_n": 5,
+      "new": 0.3,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.08,
+      "old_n": 5,
+      "new": 0.08,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 45
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E1_baseline_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.3,
+     "old_n": 50,
+     "new": 0.34,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.28,
+     "old_n": 50,
+     "new": 0.24,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.1773,
+     "old_n": 50,
+     "new": 0.2073,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.06,
+     "old_n": 50,
+     "new": 0.068,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.5,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.1,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.25,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.06,
+      "old_n": 10,
+      "new": 0.1,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.04,
+      "old_n": 5,
+      "new": 0.04,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.3667,
+      "old_n": 30,
+      "new": 0.3667,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.3667,
+      "old_n": 30,
+      "new": 0.3667,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.1789,
+      "old_n": 30,
+      "new": 0.1789,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.0733,
+      "old_n": 30,
+      "new": 0.0733,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 48
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E1_small_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.22,
+     "old_n": 50,
+     "new": 0.24,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.2,
+     "old_n": 50,
+     "new": 0.18,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.1157,
+     "old_n": 50,
+     "new": 0.1207,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.044,
+     "old_n": 50,
+     "new": 0.048,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.2,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.0,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.0333,
+      "old_n": 10,
+      "new": 0.0583,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.02,
+      "old_n": 10,
+      "new": 0.04,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.04,
+      "old_n": 5,
+      "new": 0.04,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.04,
+      "old_n": 5,
+      "new": 0.04,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.3,
+      "old_n": 30,
+      "new": 0.3,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.3,
+      "old_n": 30,
+      "new": 0.3,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.175,
+      "old_n": 30,
+      "new": 0.175,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.06,
+      "old_n": 30,
+      "new": 0.06,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 49
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E1_structured_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.26,
+     "old_n": 50,
+     "new": 0.3,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.24,
+     "old_n": 50,
+     "new": 0.22,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.139,
+     "old_n": 50,
+     "new": 0.1657,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.052,
+     "old_n": 50,
+     "new": 0.06,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.3,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.0,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.2333,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.02,
+      "old_n": 10,
+      "new": 0.06,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.05,
+      "old_n": 5,
+      "new": 0.05,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.04,
+      "old_n": 5,
+      "new": 0.04,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.3667,
+      "old_n": 30,
+      "new": 0.3667,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.3667,
+      "old_n": 30,
+      "new": 0.3667,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.19,
+      "old_n": 30,
+      "new": 0.19,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.0733,
+      "old_n": 30,
+      "new": 0.0733,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 48
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E2_hybrid_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.42,
+     "old_n": 50,
+     "new": 0.5,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.38,
+     "old_n": 50,
+     "new": 0.36,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.2377,
+     "old_n": 50,
+     "new": 0.2883,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.084,
+     "old_n": 50,
+     "new": 0.104,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.7,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.2,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.5533,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.06,
+      "old_n": 10,
+      "new": 0.16,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.1667,
+      "old_n": 5,
+      "new": 0.1667,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.08,
+      "old_n": 5,
+      "new": 0.08,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.5333,
+      "old_n": 30,
+      "new": 0.5333,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.5333,
+      "old_n": 30,
+      "new": 0.5333,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.2683,
+      "old_n": 30,
+      "new": 0.2683,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.1067,
+      "old_n": 30,
+      "new": 0.1067,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 46
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E2_hybrid_year_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.56,
+     "old_n": 50,
+     "new": 0.64,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.54,
+     "old_n": 50,
+     "new": 0.54,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.4157,
+     "old_n": 50,
+     "new": 0.4947,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.116,
+     "old_n": 50,
+     "new": 0.144,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.5,
+      "old_n": 10,
+      "new": 0.9,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.5,
+      "old_n": 10,
+      "new": 0.5,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.3583,
+      "old_n": 10,
+      "new": 0.7533,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.24,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.12,
+      "old_n": 5,
+      "new": 0.12,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.6667,
+      "old_n": 30,
+      "new": 0.6667,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.6667,
+      "old_n": 30,
+      "new": 0.6667,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.4956,
+      "old_n": 30,
+      "new": 0.4956,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.1333,
+      "old_n": 30,
+      "new": 0.1333,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.0667,
+      "old_n": 5,
+      "new": 0.0667,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.04,
+      "old_n": 5,
+      "new": 0.04,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 46
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E2_pure_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.3,
+     "old_n": 50,
+     "new": 0.34,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.28,
+     "old_n": 50,
+     "new": 0.24,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.1773,
+     "old_n": 50,
+     "new": 0.2073,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.06,
+     "old_n": 50,
+     "new": 0.068,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.5,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.1,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.25,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.06,
+      "old_n": 10,
+      "new": 0.1,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.04,
+      "old_n": 5,
+      "new": 0.04,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.3667,
+      "old_n": 30,
+      "new": 0.3667,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.3667,
+      "old_n": 30,
+      "new": 0.3667,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.1789,
+      "old_n": 30,
+      "new": 0.1789,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.0733,
+      "old_n": 30,
+      "new": 0.0733,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 48
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E2_year_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.46,
+     "old_n": 50,
+     "new": 0.56,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.44,
+     "old_n": 50,
+     "new": 0.44,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.3147,
+     "old_n": 50,
+     "new": 0.3827,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.092,
+     "old_n": 50,
+     "new": 0.12,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.9,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.35,
+      "old_n": 10,
+      "new": 0.69,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.08,
+      "old_n": 10,
+      "new": 0.22,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.04,
+      "old_n": 5,
+      "new": 0.04,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.6,
+      "old_n": 30,
+      "new": 0.6,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.6,
+      "old_n": 30,
+      "new": 0.6,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.3744,
+      "old_n": 30,
+      "new": 0.3744,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.12,
+      "old_n": 30,
+      "new": 0.12,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 45
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E3_rerank_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.62,
+     "old_n": 50,
+     "new": 0.7,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.62,
+     "old_n": 50,
+     "new": 0.6,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.4257,
+     "old_n": 50,
+     "new": 0.4957,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.132,
+     "old_n": 50,
+     "new": 0.156,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.5,
+      "old_n": 10,
+      "new": 0.9,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.5,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.45,
+      "old_n": 10,
+      "new": 0.8,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.22,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.3,
+      "old_n": 5,
+      "new": 0.3,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.16,
+      "old_n": 5,
+      "new": 0.16,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.7667,
+      "old_n": 30,
+      "new": 0.7667,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.7667,
+      "old_n": 30,
+      "new": 0.7667,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.5011,
+      "old_n": 30,
+      "new": 0.5011,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.1533,
+      "old_n": 30,
+      "new": 0.1533,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.05,
+      "old_n": 5,
+      "new": 0.05,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.04,
+      "old_n": 5,
+      "new": 0.04,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 46
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E4_local_answers.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.5333,
+     "old_n": 45,
+     "new": 0.6222,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.5341,
+     "old_n": 44,
+     "new": 0.6136,
+     "new_n": 44
+    },
+    "answer_correct": {
+     "old": 0.2444,
+     "old_n": 45,
+     "new": 0.2444,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.8,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.35,
+      "old_n": 10,
+      "new": 0.7,
+      "new_n": 10
+     },
+     "answer_correct": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.1,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "answer_correct": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6,
+      "old_n": 30,
+      "new": 0.6,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.6207,
+      "old_n": 29,
+      "new": 0.6207,
+      "new_n": 29
+     },
+     "answer_correct": {
+      "old": 0.3,
+      "old_n": 30,
+      "new": 0.3,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 45,
+    "eq_old": 45,
+    "eq_new": 41
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E5_hybrid_year_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.66,
+     "old_n": 50,
+     "new": 0.76,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.6,
+     "old_n": 50,
+     "new": 0.6,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.438,
+     "old_n": 50,
+     "new": 0.5247,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.136,
+     "old_n": 50,
+     "new": 0.164,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.9,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.35,
+      "old_n": 10,
+      "new": 0.7833,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.08,
+      "old_n": 10,
+      "new": 0.22,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.8,
+      "old_n": 5,
+      "new": 0.8,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.2167,
+      "old_n": 5,
+      "new": 0.2167,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.7667,
+      "old_n": 30,
+      "new": 0.7667,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.7667,
+      "old_n": 30,
+      "new": 0.7667,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.5272,
+      "old_n": 30,
+      "new": 0.5272,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.1533,
+      "old_n": 30,
+      "new": 0.1533,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.3,
+      "old_n": 5,
+      "new": 0.3,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.08,
+      "old_n": 5,
+      "new": 0.08,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 45
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E5_rerank_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.64,
+     "old_n": 50,
+     "new": 0.72,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.6,
+     "old_n": 50,
+     "new": 0.58,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.4407,
+     "old_n": 50,
+     "new": 0.4957,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.132,
+     "old_n": 50,
+     "new": 0.156,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.5,
+      "old_n": 10,
+      "new": 0.9,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.5,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.4333,
+      "old_n": 10,
+      "new": 0.7083,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.22,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.2667,
+      "old_n": 5,
+      "new": 0.2667,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.16,
+      "old_n": 5,
+      "new": 0.16,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.7667,
+      "old_n": 30,
+      "new": 0.7667,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.7667,
+      "old_n": 30,
+      "new": 0.7667,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.5289,
+      "old_n": 30,
+      "new": 0.5289,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.1533,
+      "old_n": 30,
+      "new": 0.1533,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.1,
+      "old_n": 5,
+      "new": 0.1,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.04,
+      "old_n": 5,
+      "new": 0.04,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 46
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E7_table_hybrid_year_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.48,
+     "old_n": 50,
+     "new": 0.56,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.44,
+     "old_n": 50,
+     "new": 0.44,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.3973,
+     "old_n": 50,
+     "new": 0.448,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.096,
+     "old_n": 50,
+     "new": 0.12,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.8,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.3333,
+      "old_n": 10,
+      "new": 0.5867,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.08,
+      "old_n": 10,
+      "new": 0.2,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.14,
+      "old_n": 5,
+      "new": 0.14,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.08,
+      "old_n": 5,
+      "new": 0.08,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.6,
+      "old_n": 30,
+      "new": 0.6,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.6,
+      "old_n": 30,
+      "new": 0.6,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.5278,
+      "old_n": 30,
+      "new": 0.5278,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.12,
+      "old_n": 30,
+      "new": 0.12,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 46
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E7b_tableplus_hybrid_year_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.58,
+     "old_n": 50,
+     "new": 0.66,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.52,
+     "old_n": 50,
+     "new": 0.52,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.4213,
+     "old_n": 50,
+     "new": 0.5023,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.116,
+     "old_n": 50,
+     "new": 0.144,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.5,
+      "old_n": 10,
+      "new": 0.9,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.5,
+      "old_n": 10,
+      "new": 0.5,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.3533,
+      "old_n": 10,
+      "new": 0.7583,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.24,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.0,
+      "old_n": 5,
+      "new": 0.0,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.3067,
+      "old_n": 5,
+      "new": 0.3067,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.12,
+      "old_n": 5,
+      "new": 0.12,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.6667,
+      "old_n": 30,
+      "new": 0.6667,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.6667,
+      "old_n": 30,
+      "new": 0.6667,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.5222,
+      "old_n": 30,
+      "new": 0.5222,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.1333,
+      "old_n": 30,
+      "new": 0.1333,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.0667,
+      "old_n": 5,
+      "new": 0.0667,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.04,
+      "old_n": 5,
+      "new": 0.04,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 46
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "E7c_ctx_table_hybrid_year_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.52,
+     "old_n": 50,
+     "new": 0.6,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.5,
+     "old_n": 50,
+     "new": 0.5,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.3873,
+     "old_n": 50,
+     "new": 0.4767,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.108,
+     "old_n": 50,
+     "new": 0.136,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.5,
+      "old_n": 10,
+      "new": 0.9,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.5,
+      "old_n": 10,
+      "new": 0.5,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.3033,
+      "old_n": 10,
+      "new": 0.75,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.24,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.15,
+      "old_n": 5,
+      "new": 0.15,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.12,
+      "old_n": 5,
+      "new": 0.12,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.5667,
+      "old_n": 30,
+      "new": 0.5667,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.5667,
+      "old_n": 30,
+      "new": 0.5667,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.475,
+      "old_n": 30,
+      "new": 0.475,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.1133,
+      "old_n": 30,
+      "new": 0.1133,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.2667,
+      "old_n": 5,
+      "new": 0.2667,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.08,
+      "old_n": 5,
+      "new": 0.08,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 46
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "final_cloud_answers.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.5556,
+     "old_n": 45,
+     "new": 0.6,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.7031,
+     "old_n": 32,
+     "new": 0.7656,
+     "new_n": 32
+    },
+    "answer_correct": {
+     "old": 0.4,
+     "old_n": 45,
+     "new": 0.4,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.6,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.5833,
+      "old_n": 6,
+      "new": 0.9167,
+      "new_n": 6
+     },
+     "answer_correct": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.3,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.75,
+      "old_n": 2,
+      "new": 0.75,
+      "new_n": 2
+     },
+     "answer_correct": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6333,
+      "old_n": 30,
+      "new": 0.6333,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.7292,
+      "old_n": 24,
+      "new": 0.7292,
+      "new_n": 24
+     },
+     "answer_correct": {
+      "old": 0.4333,
+      "old_n": 30,
+      "new": 0.4333,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 45,
+    "eq_old": 45,
+    "eq_new": 43
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "final_e5_cloud_answers.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.5111,
+     "old_n": 45,
+     "new": 0.5778,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.7333,
+     "old_n": 30,
+     "new": 0.8333,
+     "new_n": 30
+    },
+    "answer_correct": {
+     "old": 0.3556,
+     "old_n": 45,
+     "new": 0.3556,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.2,
+      "old_n": 10,
+      "new": 0.5,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.3,
+      "old_n": 5,
+      "new": 0.9,
+      "new_n": 5
+     },
+     "answer_correct": {
+      "old": 0.2,
+      "old_n": 10,
+      "new": 0.2,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.5,
+      "old_n": 3,
+      "new": 0.5,
+      "new_n": 3
+     },
+     "answer_correct": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6333,
+      "old_n": 30,
+      "new": 0.6333,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.8636,
+      "old_n": 22,
+      "new": 0.8636,
+      "new_n": 22
+     },
+     "answer_correct": {
+      "old": 0.4333,
+      "old_n": 30,
+      "new": 0.4333,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 45,
+    "eq_old": 45,
+    "eq_new": 42
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "final_e5_local_answers.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.5111,
+     "old_n": 45,
+     "new": 0.5778,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.5488,
+     "old_n": 41,
+     "new": 0.6341,
+     "new_n": 41
+    },
+    "answer_correct": {
+     "old": 0.3333,
+     "old_n": 45,
+     "new": 0.3333,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.6,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.25,
+      "old_n": 10,
+      "new": 0.6,
+      "new_n": 10
+     },
+     "answer_correct": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.1,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "answer_correct": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6,
+      "old_n": 30,
+      "new": 0.6,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.6923,
+      "old_n": 26,
+      "new": 0.6923,
+      "new_n": 26
+     },
+     "answer_correct": {
+      "old": 0.4333,
+      "old_n": 30,
+      "new": 0.4333,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 45,
+    "eq_old": 45,
+    "eq_new": 42
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "final_e6_cloud_answers.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.6222,
+     "old_n": 45,
+     "new": 0.6889,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.5426,
+     "old_n": 43,
+     "new": 0.6318,
+     "new_n": 43
+    },
+    "answer_correct": {
+     "old": 0.4222,
+     "old_n": 45,
+     "new": 0.4222,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.5,
+      "old_n": 10,
+      "new": 0.8,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.2833,
+      "old_n": 10,
+      "new": 0.6667,
+      "new_n": 10
+     },
+     "answer_correct": {
+      "old": 0.2,
+      "old_n": 10,
+      "new": 0.2,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.5,
+      "old_n": 4,
+      "new": 0.5,
+      "new_n": 4
+     },
+     "answer_correct": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6667,
+      "old_n": 30,
+      "new": 0.6667,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.6379,
+      "old_n": 29,
+      "new": 0.6379,
+      "new_n": 29
+     },
+     "answer_correct": {
+      "old": 0.5,
+      "old_n": 30,
+      "new": 0.5,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 45,
+    "eq_old": 45,
+    "eq_new": 42
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "final_e6_local_answers.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.5111,
+     "old_n": 45,
+     "new": 0.5778,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.5488,
+     "old_n": 41,
+     "new": 0.6341,
+     "new_n": 41
+    },
+    "answer_correct": {
+     "old": 0.3778,
+     "old_n": 45,
+     "new": 0.3778,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.6,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.2778,
+      "old_n": 9,
+      "new": 0.6667,
+      "new_n": 9
+     },
+     "answer_correct": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.1,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.25,
+      "old_n": 4,
+      "new": 0.25,
+      "new_n": 4
+     },
+     "answer_correct": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6333,
+      "old_n": 30,
+      "new": 0.6333,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.6786,
+      "old_n": 28,
+      "new": 0.6786,
+      "new_n": 28
+     },
+     "answer_correct": {
+      "old": 0.4667,
+      "old_n": 30,
+      "new": 0.4667,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 45,
+    "eq_old": 45,
+    "eq_new": 42
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "final_e8_cloud_answers.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.6,
+     "old_n": 45,
+     "new": 0.6667,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.5349,
+     "old_n": 43,
+     "new": 0.6163,
+     "new_n": 43
+    },
+    "answer_correct": {
+     "old": 0.4222,
+     "old_n": 45,
+     "new": 0.4222,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.7,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.25,
+      "old_n": 10,
+      "new": 0.6,
+      "new_n": 10
+     },
+     "answer_correct": {
+      "old": 0.2,
+      "old_n": 10,
+      "new": 0.2,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.5,
+      "old_n": 4,
+      "new": 0.5,
+      "new_n": 4
+     },
+     "answer_correct": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6667,
+      "old_n": 30,
+      "new": 0.6667,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.6379,
+      "old_n": 29,
+      "new": 0.6379,
+      "new_n": 29
+     },
+     "answer_correct": {
+      "old": 0.5,
+      "old_n": 30,
+      "new": 0.5,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 45,
+    "eq_old": 45,
+    "eq_new": 42
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "final_e8_local_answers.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.5111,
+     "old_n": 45,
+     "new": 0.5778,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.5357,
+     "old_n": 42,
+     "new": 0.619,
+     "new_n": 42
+    },
+    "answer_correct": {
+     "old": 0.3778,
+     "old_n": 45,
+     "new": 0.3778,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.6,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.2778,
+      "old_n": 9,
+      "new": 0.6667,
+      "new_n": 9
+     },
+     "answer_correct": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.1,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "answer_correct": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6333,
+      "old_n": 30,
+      "new": 0.6333,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.6786,
+      "old_n": 28,
+      "new": 0.6786,
+      "new_n": 28
+     },
+     "answer_correct": {
+      "old": 0.4667,
+      "old_n": 30,
+      "new": 0.4667,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 45,
+    "eq_old": 45,
+    "eq_new": 42
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "final_local_answers.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.5111,
+     "old_n": 45,
+     "new": 0.6,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.5114,
+     "old_n": 44,
+     "new": 0.5909,
+     "new_n": 44
+    },
+    "answer_correct": {
+     "old": 0.2667,
+     "old_n": 45,
+     "new": 0.2667,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.8,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.35,
+      "old_n": 10,
+      "new": 0.7,
+      "new_n": 10
+     },
+     "answer_correct": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.1,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "answer_correct": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6,
+      "old_n": 30,
+      "new": 0.6,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.6207,
+      "old_n": 29,
+      "new": 0.6207,
+      "new_n": 29
+     },
+     "answer_correct": {
+      "old": 0.3,
+      "old_n": 30,
+      "new": 0.3,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 45,
+    "eq_old": 45,
+    "eq_new": 41
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_score.json",
+   "kind": "unsupported",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {},
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "hit_at_k_all": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "mrr": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "page_prec_at_k": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_precision": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "answer_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "refusal_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_score_v2.json",
+   "kind": "unsupported",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {},
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "hit_at_k_all": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "mrr": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "page_prec_at_k": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_precision": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "answer_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "refusal_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_score_v3.json",
+   "kind": "unsupported",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {},
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "hit_at_k_all": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "mrr": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "page_prec_at_k": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_precision": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "answer_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "refusal_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_score_v4.json",
+   "kind": "unsupported",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {},
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "hit_at_k_all": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "mrr": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "page_prec_at_k": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_precision": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "answer_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "refusal_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_score_v6.json",
+   "kind": "unsupported",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {},
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "hit_at_k_all": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "mrr": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "page_prec_at_k": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_precision": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "answer_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "refusal_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_score_v7.json",
+   "kind": "unsupported",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {},
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "hit_at_k_all": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "mrr": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "page_prec_at_k": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_any": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "cite_precision": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "answer_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）",
+    "refusal_correct": "该结果文件无逐题证据（既无 got_pages 也无 answer 字段）"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_structured.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.5778,
+     "old_n": 45,
+     "new": 0.6667,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.561,
+     "old_n": 41,
+     "new": 0.624,
+     "new_n": 41
+    },
+    "answer_correct": {
+     "old": 0.5778,
+     "old_n": 45,
+     "new": 0.5778,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.2,
+      "old_n": 10,
+      "new": 0.6,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.1667,
+      "old_n": 9,
+      "new": 0.4815,
+      "new_n": 9
+     },
+     "answer_correct": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.5,
+      "old_n": 4,
+      "new": 0.4375,
+      "new_n": 4
+     },
+     "answer_correct": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.7,
+      "old_n": 30,
+      "new": 0.7,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.6964,
+      "old_n": 28,
+      "new": 0.6964,
+      "new_n": 28
+     },
+     "answer_correct": {
+      "old": 0.6333,
+      "old_n": 30,
+      "new": 0.6333,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_v2.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.5778,
+     "old_n": 45,
+     "new": 0.6444,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.5366,
+     "old_n": 41,
+     "new": 0.5915,
+     "new_n": 41
+    },
+    "answer_correct": {
+     "old": 0.5556,
+     "old_n": 45,
+     "new": 0.5556,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.6,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.2778,
+      "old_n": 9,
+      "new": 0.5556,
+      "new_n": 9
+     },
+     "answer_correct": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.3,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.375,
+      "old_n": 4,
+      "new": 0.3125,
+      "new_n": 4
+     },
+     "answer_correct": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6667,
+      "old_n": 30,
+      "new": 0.6667,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.6429,
+      "old_n": 28,
+      "new": 0.6429,
+      "new_n": 28
+     },
+     "answer_correct": {
+      "old": 0.6333,
+      "old_n": 30,
+      "new": 0.6333,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_v3.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.6,
+     "old_n": 45,
+     "new": 0.6889,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.6098,
+     "old_n": 41,
+     "new": 0.6768,
+     "new_n": 41
+    },
+    "answer_correct": {
+     "old": 0.5556,
+     "old_n": 45,
+     "new": 0.5556,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.7,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.2778,
+      "old_n": 9,
+      "new": 0.6111,
+      "new_n": 9
+     },
+     "answer_correct": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.3,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.625,
+      "old_n": 4,
+      "new": 0.5625,
+      "new_n": 4
+     },
+     "answer_correct": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.7,
+      "old_n": 30,
+      "new": 0.7,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.7143,
+      "old_n": 28,
+      "new": 0.7143,
+      "new_n": 28
+     },
+     "answer_correct": {
+      "old": 0.6333,
+      "old_n": 30,
+      "new": 0.6333,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_v4.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.6,
+     "old_n": 45,
+     "new": 0.6667,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.5875,
+     "old_n": 40,
+     "new": 0.6438,
+     "new_n": 40
+    },
+    "answer_correct": {
+     "old": 0.5778,
+     "old_n": 45,
+     "new": 0.5778,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.6,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.1667,
+      "old_n": 9,
+      "new": 0.4444,
+      "new_n": 9
+     },
+     "answer_correct": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.5,
+      "old_n": 4,
+      "new": 0.4375,
+      "new_n": 4
+     },
+     "answer_correct": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.7,
+      "old_n": 30,
+      "new": 0.7,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.7407,
+      "old_n": 27,
+      "new": 0.7407,
+      "new_n": 27
+     },
+     "answer_correct": {
+      "old": 0.6333,
+      "old_n": 30,
+      "new": 0.6333,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_v5.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.5333,
+     "old_n": 45,
+     "new": 0.6,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.525,
+     "old_n": 40,
+     "new": 0.5875,
+     "new_n": 40
+    },
+    "answer_correct": {
+     "old": 0.5111,
+     "old_n": 45,
+     "new": 0.5111,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.1,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.0556,
+      "old_n": 9,
+      "new": 0.3333,
+      "new_n": 9
+     },
+     "answer_correct": {
+      "old": 0.2,
+      "old_n": 10,
+      "new": 0.2,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.375,
+      "old_n": 4,
+      "new": 0.375,
+      "new_n": 4
+     },
+     "answer_correct": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.7,
+      "old_n": 30,
+      "new": 0.7,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.7037,
+      "old_n": 27,
+      "new": 0.7037,
+      "new_n": 27
+     },
+     "answer_correct": {
+      "old": 0.6333,
+      "old_n": 30,
+      "new": 0.6333,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_v6.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.5778,
+     "old_n": 45,
+     "new": 0.6667,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.561,
+     "old_n": 41,
+     "new": 0.624,
+     "new_n": 41
+    },
+    "answer_correct": {
+     "old": 0.5778,
+     "old_n": 45,
+     "new": 0.5778,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.2,
+      "old_n": 10,
+      "new": 0.6,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.1667,
+      "old_n": 9,
+      "new": 0.4815,
+      "new_n": 9
+     },
+     "answer_correct": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.5,
+      "old_n": 4,
+      "new": 0.4375,
+      "new_n": 4
+     },
+     "answer_correct": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.7,
+      "old_n": 30,
+      "new": 0.7,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.6964,
+      "old_n": 28,
+      "new": 0.6964,
+      "new_n": 28
+     },
+     "answer_correct": {
+      "old": 0.6333,
+      "old_n": 30,
+      "new": 0.6333,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "phase_a_v7.json",
+   "kind": "answers",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 0.5778,
+     "old_n": 45,
+     "new": 0.6667,
+     "new_n": 45
+    },
+    "cite_precision": {
+     "old": 0.561,
+     "old_n": 41,
+     "new": 0.6301,
+     "new_n": 41
+    },
+    "answer_correct": {
+     "old": 0.5556,
+     "old_n": 45,
+     "new": 0.5556,
+     "new_n": 45
+    },
+    "refusal_correct": {
+     "old": 1.0,
+     "old_n": 5,
+     "new": 1.0,
+     "new_n": 5
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.2,
+      "old_n": 10,
+      "new": 0.6,
+      "new_n": 10
+     },
+     "cite_precision": {
+      "old": 0.1667,
+      "old_n": 9,
+      "new": 0.4815,
+      "new_n": 9
+     },
+     "answer_correct": {
+      "old": 0.3,
+      "old_n": 10,
+      "new": 0.3,
+      "new_n": 10
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "cite_precision": {
+      "old": 0.5,
+      "old_n": 4,
+      "new": 0.5,
+      "new_n": 4
+     },
+     "answer_correct": {
+      "old": 0.6,
+      "old_n": 5,
+      "new": 0.6,
+      "new_n": 5
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 0.7,
+      "old_n": 30,
+      "new": 0.7,
+      "new_n": 30
+     },
+     "cite_precision": {
+      "old": 0.6964,
+      "old_n": 28,
+      "new": 0.6964,
+      "new_n": 28
+     },
+     "answer_correct": {
+      "old": 0.6333,
+      "old_n": 30,
+      "new": 0.6333,
+      "new_n": 30
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": 1.0,
+      "old_n": 5,
+      "new": 1.0,
+      "new_n": 5
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 0,
+    "eq_old": 0,
+    "eq_new": 0
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  },
+  {
+   "file": "prod_hybrid_post_agentic_retrieval.json",
+   "kind": "retrieval",
+   "tier": "full",
+   "k": 5,
+   "n_rows": 50,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": 0.66,
+     "old_n": 50,
+     "new": 0.76,
+     "new_n": 50
+    },
+    "hit_at_k_all": {
+     "old": 0.6,
+     "old_n": 50,
+     "new": 0.6,
+     "new_n": 50
+    },
+    "mrr": {
+     "old": 0.438,
+     "old_n": 50,
+     "new": 0.5247,
+     "new_n": 50
+    },
+    "page_prec_at_k": {
+     "old": 0.136,
+     "old_n": 50,
+     "new": 0.164,
+     "new_n": 50
+    },
+    "cite_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_precision": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "answer_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "cross_page": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.9,
+      "new_n": 10
+     },
+     "hit_at_k_all": {
+      "old": 0.4,
+      "old_n": 10,
+      "new": 0.4,
+      "new_n": 10
+     },
+     "mrr": {
+      "old": 0.35,
+      "old_n": 10,
+      "new": 0.7833,
+      "new_n": 10
+     },
+     "page_prec_at_k": {
+      "old": 0.08,
+      "old_n": 10,
+      "new": 0.22,
+      "new_n": 10
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "cross_year": {
+     "hit_at_k_any": {
+      "old": 0.8,
+      "old_n": 5,
+      "new": 0.8,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.2167,
+      "old_n": 5,
+      "new": 0.2167,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.2,
+      "old_n": 5,
+      "new": 0.2,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "fact": {
+     "hit_at_k_any": {
+      "old": 0.7667,
+      "old_n": 30,
+      "new": 0.7667,
+      "new_n": 30
+     },
+     "hit_at_k_all": {
+      "old": 0.7667,
+      "old_n": 30,
+      "new": 0.7667,
+      "new_n": 30
+     },
+     "mrr": {
+      "old": 0.5272,
+      "old_n": 30,
+      "new": 0.5272,
+      "new_n": 30
+     },
+     "page_prec_at_k": {
+      "old": 0.1533,
+      "old_n": 30,
+      "new": 0.1533,
+      "new_n": 30
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    },
+    "no_answer": {
+     "hit_at_k_any": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "hit_at_k_all": {
+      "old": 0.4,
+      "old_n": 5,
+      "new": 0.4,
+      "new_n": 5
+     },
+     "mrr": {
+      "old": 0.3,
+      "old_n": 5,
+      "new": 0.3,
+      "new_n": 5
+     },
+     "page_prec_at_k": {
+      "old": 0.08,
+      "old_n": 5,
+      "new": 0.08,
+      "new_n": 5
+     },
+     "cite_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_precision": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "answer_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 50,
+    "eq_old": 50,
+    "eq_new": 45
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "cite_any": "检索层 run 没有回答文本，无引用可解析",
+    "cite_precision": "检索层 run 没有回答文本，无引用可解析",
+    "answer_correct": "检索层 run 不生成答案",
+    "refusal_correct": "检索层 run 不生成答案"
+   },
+   "warnings": []
+  },
+  {
+   "file": "smoke_cloud_answers.json",
+   "kind": "answers",
+   "tier": "partial",
+   "k": 5,
+   "n_rows": 3,
+   "metrics": {
+    "hit_at_k_any": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "hit_at_k_all": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "mrr": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "page_prec_at_k": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    },
+    "cite_any": {
+     "old": 1.0,
+     "old_n": 3,
+     "new": 1.0,
+     "new_n": 3
+    },
+    "cite_precision": {
+     "old": 0.8333,
+     "old_n": 3,
+     "new": 0.8333,
+     "new_n": 3
+    },
+    "answer_correct": {
+     "old": 0.3333,
+     "old_n": 3,
+     "new": 0.3333,
+     "new_n": 3
+    },
+    "refusal_correct": {
+     "old": null,
+     "old_n": 0,
+     "new": null,
+     "new_n": 0
+    }
+   },
+   "by_type": {
+    "fact": {
+     "hit_at_k_any": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "hit_at_k_all": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "mrr": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "page_prec_at_k": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     },
+     "cite_any": {
+      "old": 1.0,
+      "old_n": 3,
+      "new": 1.0,
+      "new_n": 3
+     },
+     "cite_precision": {
+      "old": 0.8333,
+      "old_n": 3,
+      "new": 0.8333,
+      "new_n": 3
+     },
+     "answer_correct": {
+      "old": 0.3333,
+      "old_n": 3,
+      "new": 0.3333,
+      "new_n": 3
+     },
+     "refusal_correct": {
+      "old": null,
+      "old_n": 0,
+      "new": null,
+      "new_n": 0
+     }
+    }
+   },
+   "extra": null,
+   "agreement": {
+    "stored": 3,
+    "eq_old": 3,
+    "eq_new": 3
+   },
+   "post_fix_suspected": false,
+   "unavailable": {
+    "hit_at_k_any": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "hit_at_k_all": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 top-k 命中",
+    "mrr": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算排名",
+    "page_prec_at_k": "答案层 run 未落盘逐题召回页（无 got_pages），无法重算 page_prec"
+   },
+   "warnings": []
+  }
+ ]
+}

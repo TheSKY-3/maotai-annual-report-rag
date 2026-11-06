@@ -23,6 +23,7 @@ sys.path.insert(0, str(PROJECT))
 
 from src.ask import REFUSE_RE, answer_auto, answer_question  # noqa: E402
 from src.config import GOLD_FILE, RESULTS_DIR  # noqa: E402
+from src.evalcore import parse_sources  # noqa: E402
 from src.pipeline import get_search  # noqa: E402
 from src.config import OLLAMA_BASE_URL  # noqa: E402
 
@@ -38,13 +39,17 @@ def gold_numbers(text: str) -> list[str]:
 
 
 def cited_pages(answer: str) -> set[tuple[int, int]]:
-    return {(int(y), int(p))
-            for y, p in re.findall(r"(\d{4})年报\s*P(\d+)", answer)}
+    r"""回答里引用到的 (年,页)。
+
+    解析统一走 evalcore.parse_sources：同一年份段内的多个页码共用该年份，
+    旧正则 r"(\d{4})年报\s*P(\d+)" 会把 "[来源: 2024年报 P9、P16]" 的 P16 丢掉。
+    """
+    return set(parse_sources(answer))
 
 
 def gold_pages_of(source: str) -> set[tuple[int, int]]:
-    return {(int(y), int(p))
-            for y, p in re.findall(r"(\d{4})年报\s*P(\d+)", source)}
+    """gold 出处里的 (年,页)；与 evalcore 解析口径保持一致。"""
+    return set(parse_sources(source))
 
 
 def main() -> None:

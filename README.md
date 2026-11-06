@@ -181,7 +181,7 @@ python -m streamlit run src/app.py
 python scripts/build_contextual_chunks.py
 
 # 5. 复现评测
-python scripts/ci_retrieval_gate.py                    # 检索层·生产管线（应显示 hit@5 66%，低于 64% 报错）
+python scripts/ci_retrieval_gate.py                    # 检索层·生产管线（应显示 hit@5 76%，低于 74% 报错）
 python scripts/evaluate_retrieval.py                   # 检索层·E1 基线对照（历史实验口径 30%）
 python scripts/evaluate_answers.py --name final_local  # 答案层（本地模型）
 ```
@@ -244,14 +244,14 @@ curl -N -X POST localhost:8000/ask/stream -H "Content-Type: application/json" \
 自建 50 题评测集（30 事实题 / 10 跨页题 / 5 跨年对比 / 5 无答案题），
 检索是否命中出处页由程序判定，全部数字可复现（脚本在 `scripts/`，
 原始结果在 `results/`）。每一步改进都有对照实验；**每次推送 GitHub
-都会自动免费复跑检索层评测**（`eval-gate` 工作流，hit@5 低于 64% 直接
+都会自动免费复跑检索层评测**（`eval-gate` 工作流，hit@5 低于 74% 直接
 失败亮红灯），防止改动悄悄打漏水位：
 
 <div align="center">
 <img src="docs/screenshots/ci_gate.png" width="720" alt="eval-gate 评测回归工作流"/>
 </div>
 
-### 检索层：出处页命中率 hit@5 从 30% 提升到 66%
+### 检索层：出处页命中率 hit@5 从 30% 提升到 66%（旧口径；修正口径 34%→76%，下同）
 
 | 实验 | 改动 | hit@5 | 增益 |
 |---|---|---|---|
@@ -261,6 +261,11 @@ curl -N -X POST localhost:8000/ask/stream -H "Content-Type: application/json" \
 | E3 | bge-reranker 精排 | 62% | +6pp，代价约 2 秒/次 |
 | E5 | 语境增强索引：大模型给每块写"说明书" | **66%** | +4pp，取代精排，建库约 3 元 |
 | E7 | 表格感知解析：pdfplumber 键值句线性化 | 58% | ❌ 不敌语境句（详见报告） |
+
+> **口径说明（2026-11-06）**：金标出处里“2024年报 P9、P16”这类写法原先只解析出第一页，
+> 修正后同一批实验的 hit@5 整体上移（基线 30%→**34%**，E5 66%→**76%**，跨页题 40%→90%）。
+> 上表保留旧口径以对应历史报告；修正后的全量数值、逐题对账与复现脚本见
+> [review/phase_a_metrics.md](review/phase_a_metrics.md)。CI 阈值已同步调到 74%。
 
 <div align="center">
 <img src="report/figures/fig_experiments.png" width="720" alt="检索策略对比"/>

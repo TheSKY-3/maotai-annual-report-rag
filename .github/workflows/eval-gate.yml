@@ -1,7 +1,7 @@
 name: eval-gate
 
 # 评测回归 gate：每次推送自动免费复跑检索层评测（纯本地计算，无 API 成本），
-# hit@5 低于 64%（生产 66% - 2pp 容忍）即失败，防止改动悄悄打漏检索水位。
+# hit@5 低于 74%（修正口径生产 76% - 2pp 容忍）即失败，防止改动悄悄打漏检索水位。
 # 答案层评测消耗云端 API（约 ¥1/次），只在手动触发且配置了密钥时运行。
 
 on:
@@ -39,6 +39,8 @@ jobs:
           key: hf-bge-small-zh-v1.5
 
       - name: 检索层评测 gate（50 题黄金集）
+        env:
+          CI_RETRIEVAL_OUT: results/ci_retrieval_run.json
         run: python scripts/ci_retrieval_gate.py
 
       - name: 上传逐题明细
@@ -46,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: retrieval-results
-          path: results/ci_retrieval_retrieval.json
+          path: results/ci_retrieval_run.json
 
   answers:
     # 仅手动勾选 run_answers 时运行：云端 API 有真实成本，密钥存仓库 Secrets
