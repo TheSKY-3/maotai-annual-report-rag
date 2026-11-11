@@ -21,7 +21,7 @@ import sys
 from openai import BadRequestError, OpenAI
 
 from src import claims as structured_claims
-from src import metric_tools, numeric, usage
+from src import metric_tools, numeric, report_scope, usage
 from src.config import GEN_MODEL, OLLAMA_BASE_URL, RETRY_TOP_K, TOP_K, YEARS
 from src.hybrid import detect_years
 from src.pipeline import get_page_reader, get_search
@@ -32,6 +32,7 @@ PROMPT_TEMPLATE = """你是贵州茅台年报问答助手。请仅根据下面�
 1. 回答末尾标注出处，格式如：[来源: 2024年报 P8]。可以引用多个片段。
 2. 如果片段中没有足够信息，只回答"根据年报内容无法回答该问题"，不要编造，也不要标注来源。
 3. 数字必须与片段中完全一致，不要自行计算或换算。
+4. 财务数据默认合并报表口径、优先正文经营情况披露：标注“母公司报表”的片段，除非问题明确问母公司，否则不用其数字；标注“报表附注”的片段与正文数字不一致时，优先正文。
 
 --- 年报片段 ---
 {context}
@@ -48,6 +49,7 @@ RETRY_PROMPT_TEMPLATE = """你是贵州茅台年报问答助手。请仅根据�
 2. 回答末尾标注出处，格式如：[来源: 2024年报 P8]。可以引用多个片段。
 3. 如果所有片段确实都与问题无关，请仍回答"根据年报内容无法回答该问题"，不要编造。
 4. 数字必须与片段中完全一致，不要自行计算或换算。
+5. 财务数据默认合并报表口径、优先正文经营情况披露：标注“母公司报表”的片段，除非问题明确问母公司，否则不用其数字；标注“报表附注”的片段与正文数字不一致时，优先正文。
 
 --- 年报片段 ---
 {context}
@@ -144,10 +146,29 @@ def build_context(hits: list[dict]) -> str:
     def source(h: dict) -> str:
         # 指标汇总这类合成片段可能由多页构成，用显式 source 覆盖单页标签。
         return str(h.get("source") or f"{h['year']}年报 P{h['page']}")
-    return "\n\n".join(
-        f"[片段{i + 1} | 来源: {source(h)}]\n{h['text']}"
-        for i, h in enumerate(hits)
-    )
+    parts = []
+    for i, h in enumerate(hits):
+        head = f"[片段{i + 1} | 来源: {source(h)}"
+        # 单页检索片段才打口径标签；合成片段（显式 source、跨多页）跳过。
+        if not h.get("source"):
+            tag = report_scope.scope_tag(
+                report_scope.page_scope(h["year"], h["page"]))
+            if tag:
+                head += f" | {tag}"
+        parts.append(f"{head}]\n{h['text']}")
+    return "\n\n".join(parts)
+
+
+def _scoped_search(search_fn, question: str):
+    """包装检索函数：默认合并口径，硬剔母公司报表证据块。
+
+    在证据进入任何构建器（build_context / claims.build_evidence）之前过滤，
+    故对直答、结构化、agent 各路径一致生效。问题明确问母公司时不过滤；
+    页码直达走 page_fn，不经此包装，用户显式意图不受影响。
+    """
+    def wrapped(query, **kw):
+        return report_scope.filter_default_scope(search_fn(query, **kw), question)
+    return wrapped
 
 
 def _complete(client: OpenAI, model: str, prompt: str) -> str:
@@ -303,6 +324,7 @@ def _answer_core(client: OpenAI, search_fn, question: str, model: str,
     skw = search_kwargs or {}
     standalone = standalone or rewrite_followup(
         client, model, history or [], question)
+    search_fn = _scoped_search(search_fn, standalone)
     hits = search_fn(standalone, top_k=TOP_K, **skw)
     text = _complete(client, model,
                      PROMPT_TEMPLATE.format(context=build_context(hits),
@@ -389,7 +411,8 @@ AGENT_SYSTEM_PROMPT = """你是贵州茅台年报问答助手，可以通过工�
 作答要求：
 1. 只依据工具返回的片段作答，回答末尾标注出处，格式如：[来源: 2024年报 P8]。可以引用多个片段。
 2. 数字必须与片段中完全一致，不要换算；若由片段数字计算得出（如相减求增长额），写出算式并在结果后注明“（计算得出）”，例如“46,412.95 + 36,919.81 = 83,332.76 吨（计算得出）”。
-3. 若工具返回的片段都不足以回答，只回答“根据年报内容无法回答该问题”，不要编造，也不要标注来源。"""
+3. 若工具返回的片段都不足以回答，只回答“根据年报内容无法回答该问题”，不要编造，也不要标注来源。
+4. 财务数据默认合并报表口径、优先正文经营情况披露：标注“母公司报表”的片段，除非问题明确问母公司，否则不用其数字；标注“报表附注”的片段与正文数字不一致时，优先正文。"""
 
 
 def _tool_schema(name: str, description: str, properties: dict,
@@ -630,6 +653,7 @@ def answer_auto(client: OpenAI, search_fn, question: str, model: str,
     （“那2023年呢”改写后才看得出年份）。
     """
     standalone = rewrite_followup(client, model, history or [], question)
+    search_fn = _scoped_search(search_fn, standalone)
     skw = search_kwargs or {}
     if force_agent or needs_agent(standalone):
         locked_year = skw.get("year")
@@ -706,6 +730,7 @@ def answer_auto_stream(client: OpenAI, search_fn, question: str, model: str,
         return "".join(collected)
 
     standalone = rewrite_followup(client, model, history or [], question)
+    search_fn = _scoped_search(search_fn, standalone)
 
     # ---- agent 路径：轮次状态 + 整段答案 ----
     if force_agent or needs_agent(standalone):

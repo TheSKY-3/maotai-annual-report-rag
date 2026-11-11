@@ -150,3 +150,37 @@ RAG_MODEL=deepseek-flash RAG_API_KEY=<.env 里的 Key> \
 .venv/Scripts/python.exe scripts/build_holdout.py --check   # 校验，应 problems=0
 .venv/Scripts/python.exe scripts/eval_holdout.py            # 评测+对比表
 ```
+
+## 轴1口径修复：默认合并报表（2026-11-11）
+
+留出集暴露的 id169（合并 vs 母公司混淆）已修。根因核实：证据里同时有
+合并数（P12 正文 4,678,712,053.56）与母公司数（P68 母公司现金流量表
+4,660,307,532.89），模型偏挑"看起来更权威"的母公司报表，**软提示压不住**
+（实测放着首条合并数不用、偏挑末条母公司数）。
+
+修法（靠约束不靠提示）：
+- 新增 `src/report_scope.py`：按整页原文判口径——行首"母公司XX表"表头判
+  母公司报表，编号≥20 的 note 表头判附注（正文经营情况子节编号小，不误判），
+  其余默认合并正文。
+- 入口包装检索（`src/ask.py` `_scoped_search`）：问题未明确问母公司时，硬剔
+  母公司报表证据块，对直答/结构化/agent 各路径一致生效；页码直达不受影响。
+
+验证（全量 150 题真跑 + 离线对比，`results/holdout_scope_answers.json`）：
+- **id169 确定性修好**（母公司 P68 被剔，改用合并 P12）。
+- **拒答仍 15/15（100%）、跨年 15/15、0 API 错误**；113 单元测试全过（含 20 新）。
+- 修正口径答对率 91.11% 持平：id169 +1，id185 因 agent 工具路由波动 -1
+  （两轮均无母公司页，过滤对其为空操作；带过滤重跑即恢复答对 Q1），**无过滤
+  导致的回退**。
+
+id170（直销营收）经查为**真口径歧义，不强修**：附注 P108 直销含其他业务
+（酒店/冰淇淋），正文 P17 仅主营；问"营业收入"全口径附注数更贴合，gold 选
+主营可商榷。强行"正文优先附注"可能修错并回退他题。
+
+复现：
+```bash
+.venv/Scripts/python.exe -m pytest tests/test_report_scope.py   # 20 测试
+NO_PROXY="localhost,127.0.0.1" RAG_BASE_URL=https://api.deepseek.com/v1 \
+RAG_MODEL=deepseek-flash RAG_API_KEY=<.env Key> \
+.venv/Scripts/python.exe scripts/evaluate_answers.py --router \
+  --gold data/gold/holdout.jsonl --name holdout_scope
+```
