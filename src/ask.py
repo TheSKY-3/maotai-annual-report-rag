@@ -33,6 +33,7 @@ PROMPT_TEMPLATE = """你是贵州茅台年报问答助手。请仅根据下面�
 2. 如果片段中没有足够信息，只回答"根据年报内容无法回答该问题"，不要编造，也不要标注来源。
 3. 数字必须与片段中完全一致，不要自行计算或换算。
 4. 财务数据默认合并报表口径、优先正文经营情况披露：标注“母公司报表”的片段，除非问题明确问母公司，否则不用其数字；标注“报表附注”的片段与正文数字不一致时，优先正文。
+5. 表格的“合计”“小计”“总计”行通常在表格末行，是各分项的汇总值；问到合计/总额/共计时，取该行数字作答，不要因分项已列出就拒答合计。
 
 --- 年报片段 ---
 {context}
@@ -50,6 +51,7 @@ RETRY_PROMPT_TEMPLATE = """你是贵州茅台年报问答助手。请仅根据�
 3. 如果所有片段确实都与问题无关，请仍回答"根据年报内容无法回答该问题"，不要编造。
 4. 数字必须与片段中完全一致，不要自行计算或换算。
 5. 财务数据默认合并报表口径、优先正文经营情况披露：标注“母公司报表”的片段，除非问题明确问母公司，否则不用其数字；标注“报表附注”的片段与正文数字不一致时，优先正文。
+6. 表格的“合计”“小计”“总计”行通常在表格末行，是各分项的汇总值；问到合计/总额/共计时，取该行数字作答，不要因分项已列出就拒答合计。
 
 --- 年报片段 ---
 {context}
@@ -198,11 +200,13 @@ def _structured_answer(client: OpenAI, search_fn, standalone: str,
                        ) -> tuple[structured_claims.StructuredAnswer, list[dict]]:
     """检索 + 结构化生成；拒答时扩检索重试一次（与 E6 语义对齐）。"""
     hits = search_fn(standalone, top_k=TOP_K, **skw)
+    hits = hits + structured_claims.adjacent_page_hits(hits)
     ev = structured_claims.build_evidence(hits)
     pages = structured_claims.page_map()
     ans = structured_claims.generate(client, model, standalone, ev, pages=pages)
     if ans.refused and retry_enabled():
         more = search_fn(standalone, top_k=RETRY_TOP_K, **skw)
+        more = more + structured_claims.adjacent_page_hits(more)
         ans2 = structured_claims.generate(
             client, model, standalone, structured_claims.build_evidence(more),
             pages=pages)
@@ -412,7 +416,8 @@ AGENT_SYSTEM_PROMPT = """你是贵州茅台年报问答助手，可以通过工�
 1. 只依据工具返回的片段作答，回答末尾标注出处，格式如：[来源: 2024年报 P8]。可以引用多个片段。
 2. 数字必须与片段中完全一致，不要换算；若由片段数字计算得出（如相减求增长额），写出算式并在结果后注明“（计算得出）”，例如“46,412.95 + 36,919.81 = 83,332.76 吨（计算得出）”。
 3. 若工具返回的片段都不足以回答，只回答“根据年报内容无法回答该问题”，不要编造，也不要标注来源。
-4. 财务数据默认合并报表口径、优先正文经营情况披露：标注“母公司报表”的片段，除非问题明确问母公司，否则不用其数字；标注“报表附注”的片段与正文数字不一致时，优先正文。"""
+4. 财务数据默认合并报表口径、优先正文经营情况披露：标注“母公司报表”的片段，除非问题明确问母公司，否则不用其数字；标注“报表附注”的片段与正文数字不一致时，优先正文。
+5. 表格的“合计”“小计”“总计”行通常在表格末行，是各分项的汇总值；问到合计/总额/共计时，取该行数字作答，不要因分项已列出就拒答合计。"""
 
 
 def _tool_schema(name: str, description: str, properties: dict,

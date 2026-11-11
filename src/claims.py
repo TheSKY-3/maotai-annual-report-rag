@@ -40,7 +40,8 @@ JSON 结构：
 4. 片段不足以回答时输出 {"refused": true, "claims": [], "calculation": null}；
 5. 不要写“[来源: …]”，出处由程序按 evidence 渲染；
 6. 只输出 JSON，不要解释、不要 Markdown 代码块；
-7. 问题里有多个问点时，每个问点至少给一条 claim（宁可多一条，不要漏问）。"""
+7. 问题里有多个问点时，每个问点至少给一条 claim（宁可多一条，不要漏问）。
+8. 表格的“合计”“小计”“总计”行通常在表格末行，是各分项的汇总值；问到合计/总额/共计时，取该行数字作答，不要因分项已列出就拒答合计。"""
 
 STRUCTURED_RETRY_SUFFIX = """
 
@@ -131,6 +132,27 @@ def build_evidence(hits: list[dict]) -> list[Evidence]:
 
 def build_evidence_text(evidence: list[Evidence]) -> str:
     return "\n\n".join(f"[{e.eid}] {e.citation}\n{e.text}" for e in evidence)
+
+
+def adjacent_page_hits(hits: list[dict]) -> list[dict]:
+    """为每个命中页补上下一页（P+1）整页原文，跨页表格才读得全。
+
+    只增强答案层证据，不改检索命中（hit@5 不受影响）；下一页已在命中里
+    或整页映射中不存在则跳过；只补 P+1，不连锁补 P+2。
+    """
+    pages = {(int(h["year"]), int(h["page"])) for h in hits}
+    pm = page_map()
+    out: list[dict] = []
+    for year, page in sorted(pages):
+        nxt = page + 1
+        if (year, nxt) in pages:
+            continue
+        text = pm.get(f"{year}年报 P{nxt}")
+        if not text:
+            continue
+        out.append({"id": f"{year}-p{nxt:03d}-adj", "year": year,
+                    "page": nxt, "text": text.strip(), "score": 0.0})
+    return out
 
 
 def _parse_json(raw: str) -> dict | None:
