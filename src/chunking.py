@@ -9,6 +9,10 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+# 页脚形如“26 / 143”（本页页码 / 总页数）；只删这种行，不能见“/”就删——
+# 表格空单元格也用“/”，合计行“合计 / / / … 680.93 /”会被误删（轴2病根）。
+_FOOTER_RE = re.compile(r"^\s*(\d+)\s*/\s*\d+\s*$")
+
 
 @dataclass
 class Chunk:
@@ -28,6 +32,12 @@ def load_pages(extracted_dir: Path, year: int) -> list[tuple[int, str]]:
     return pages
 
 
+def _is_page_footer(line: str, page_no: int) -> bool:
+    """只认“本页页码 / 总页数”页脚（如 26 / 143），不误删含“/”的表格行。"""
+    m = _FOOTER_RE.match(line)
+    return bool(m) and int(m.group(1)) == page_no
+
+
 def chunk_fixed(
     pages: list[tuple[int, str]],
     year: int,
@@ -45,7 +55,7 @@ def chunk_fixed(
         # 去掉页脚行（如 "13 / 143"）与页眉（首行含"年度报告"的行）
         body = "\n".join(
             line for line in text.splitlines()
-            if "/" not in line and "年度报告" not in line
+            if "年度报告" not in line and not _is_page_footer(line, page_no)
         ).strip()
         if len(body) < min_len:
             continue
