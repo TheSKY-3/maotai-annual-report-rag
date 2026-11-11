@@ -132,18 +132,21 @@
 <img src="docs/screenshots/refusal.png" width="720" alt="拒答示意"/>
 </div>
 
+### ⚖️ 财务口径硬约束（不靠提示词求模型自觉）
+
+- **默认合并报表**：问题没明确问"母公司"时，直接在证据层剔除母公司报表块，
+  模型没得选。实测软提示压不住模型对"母公司表更权威"的偏好，硬过滤才确定性
+  修好口径混淆题。
+- **合计行保真**：切块去页脚只删"页码/总页数"那一行，保留表格空单元格"/"与
+  合计行；问"合计/总额/共计"不再因合计行被误删而假拒答。
+- **折旧/摊销核对资产类别**：固定资产、使用权资产、投资性房地产等各有
+  "累计折旧/本期增加/计提"，强制核对表头资产类别，防止跨类别取数。
+
 ## 系统架构
 
-<div align="center">
-<img src="report/figures/fig_pipeline.png" width="720" alt="RAG 工作流程"/>
-
-*先查资料，再回答：离线建库做一次，在线问答每次提问*
-
-</div>
-
-下面这张是**当前架构的可渲染版本**（GitHub 直接渲染 mermaid；只画稳定结构，
-不带会随重建变化的块数/水位数字——带实时数字的交互看板在本地
-`docs/dashboard.html`，体积大、可再生，不入库）：
+*先查资料，再回答：离线建库做一次，在线问答每次提问。下图为当前架构（GitHub
+直接渲染 mermaid，只画稳定结构；带实时数字的交互看板在本地 `docs/dashboard.html`，
+可再生、不入库）。*
 
 ```mermaid
 flowchart TB
@@ -245,8 +248,8 @@ curl -N -X POST localhost:8000/ask/stream -H "Content-Type: application/json" \
 {
   "status": "ready",
   "loaded": false,
-  "index": {"kind": "contextual", "chunks": 1761, "years": [2022, 2023, 2024, 2025],
-            "missing_years": [], "chunks_file_info": {"exists": true, "bytes": 2102680}},
+  "index": {"kind": "contextual", "chunks": 1778, "years": [2022, 2023, 2024, 2025],
+            "missing_years": [], "chunks_file_info": {"exists": true}},
   "embedding": {"model": "BAAI/bge-small-zh-v1.5", "local_files": true},
   "model": "deepseek-flash", "backend": "cloud", "api_key_configured": true,
   "reasons": []
@@ -430,15 +433,18 @@ python scripts/stat_significance.py \
 **答案层**（150 题 DeepSeek-Flash 全跑通，0 错误）：
 
 - **无答案题拒答正确率 100%（15/15）**，3 倍样本复现调参集 100%，零编造。
-- 完整答案率：原始打分 67.4%，修正打分口径后 **91.1%**（调参集同口径
-  66.7%）。修正的是 `gold_numbers` 把出处引文里的表格数字/页码误当必答
-  数字的偏差——对两套题同样重打，双口径并列，未单方面美化。
-- 修正口径下仍错的 12 题：6 题检索未送达、2 题合并/母公司口径混淆、
-  3 题"合计"行假拒答、1 题出题没锚定年份。**瓶颈在检索与少数口径问题，
-  不是生成端编造。**
+- 完整答案率：原始打分 67.4%，修正打分口径后 **91.9%**（124/135，重建索引 +
+  折旧修复后最新复跑 `holdout_v3`；调参集同口径 66.7%）。修正的是 `gold_numbers`
+  把出处引文里的表格数字/页码误当必答数字的偏差——对两套题同样重打，双口径并列，
+  未单方面美化。
+- 修正口径下仍错的 11 题：6 题检索未送达、2 题正文 vs 附注真歧义（决定不强修）、
+  3 题生成端/跑间波动。**"合计"行假拒答（3 题）与折旧指标混淆（id190）已修复**；
+  瓶颈仍在检索送达，不是生成端编造。逐题归因见
+  [review/holdout_outcome.md](review/holdout_outcome.md)。
 
-逐题明细 `results/holdout_retrieval.json`、`results/holdout_cloud_answers.json`、
-`results/holdout_answer_rescore.json`；完整报告与复现命令见
+逐题明细 `results/holdout_retrieval.json`、`results/holdout_v2_answers.json`（重建后）、
+`results/holdout_v3_answers.json`（折旧修复后）、`results/holdout_answer_rescore.json`；
+完整报告与复现命令见
 [review/holdout_outcome.md](review/holdout_outcome.md)。
 
 ## 仓库结构
