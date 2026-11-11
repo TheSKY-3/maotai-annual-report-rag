@@ -50,6 +50,16 @@ jobs:
           name: retrieval-results
           path: results/ci_retrieval_run.json
 
+      - name: 留出集检索复跑（150 题冻结集，纯本地免费）
+        run: python scripts/eval_holdout.py
+
+      - name: 上传留出集逐题明细
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: holdout-retrieval-results
+          path: results/holdout_retrieval.json
+
   answers:
     # 仅手动勾选 run_answers 时运行：云端 API 有真实成本，密钥存仓库 Secrets
     if: github.event_name == 'workflow_dispatch' && inputs.run_answers

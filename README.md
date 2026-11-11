@@ -303,8 +303,10 @@ curl -N -X POST localhost:8000/ask/stream -H "Content-Type: application/json" \
 > 修正后同一批实验的 hit@5 整体上移（基线 30%→**34%**，E5 66%→**76%**，跨页题 40%→90%）。
 > 上表保留旧口径以对应历史报告；修正后的全量数值、逐题对账与复现脚本见
 > [review/phase_a_metrics.md](review/phase_a_metrics.md)。CI 阈值已同步调到 84%。
-> B1 的 α=0.5 是在同一套 50 题 gold 上扫出来的，86% 不是留出集数字；
-> 留出集评测与 B2/B3/B4 的完整结果见
+> B1 的 α=0.5 是在同一套 50 题 gold 上扫出来的，86% 不是留出集数字。
+> **150 题冻结留出集复测：检索 hit@5 77.3%（有答案题 84.4%），86% 含约 9pp
+> 调参溢价**；答案层与逐题归因见下文[留出集验证](#留出集验证2026-11-11)与
+> [review/holdout_outcome.md](review/holdout_outcome.md)。B2/B3/B4 见
 > [review/phase_b_outcome.md](review/phase_b_outcome.md)。
 
 <div align="center">
@@ -316,7 +318,7 @@ curl -N -X POST localhost:8000/ask/stream -H "Content-Type: application/json" \
 - **B1 检索**：`CAND_DEPTH=50`、min-max 融合 `α=0.5` 后 hit@5 **86%**；q11/q14/q19/q24 全部命中 gold 页（rank 1/4/1/3），假拒答 **1/45**。q45 仍 MISS，且 top-5 有同页重复块。α 是在同一套 50 题上扫出的，86% 不是留出集数字。
 - **B2 出处**：agent 路径 `cite_any` 3 次都是 **20/23=86.96%**，精确率 **63.35%**（A 阶段 57.5%，配对口径不完全相同）；假拒答 4.35%。表层收益来自逐页归属、年份不当数字锚点、表格“单位：万元”还原。
 - **B3 指标**：`data/metrics.json` 共 **21 个口径×4 年=84 个值**，84/84 能在所标页找到；“营业总收入”与“营业收入”已拆开，跨年对比汇总带各年 `source`。真实 agent 跨年题 1/1 正确。
-- **B4 重复评测**：同配置 3 次，agent `cite_any` 稳定 86.96%，`answer_correct` 56.5%–60.9%（均值 57.97%，95% CI 51.73–64.21）；**150 题冻结留出集与双人盲评是人工标注工作，尚未完成**，不能把 3 次 run 当成 B4 全部。
+- **B4 重复评测**：同配置 3 次，agent `cite_any` 稳定 86.96%，`answer_correct` 56.5%–60.9%（均值 57.97%，95% CI 51.73–64.21）；150 题冻结留出集已于 2026-11-11 完成（见下文[留出集验证](#留出集验证2026-11-11)），双人盲评仍未做。
 - **B5 可观测性**：`/ready`、`usage`/`cost`/`request_id`、一请求一条 `event=ask` JSON 日志均已真实 HTTP 验证，详见上文[健康检查与可观测性](#健康检查与可观测性)。
 
 完整数字、逐题对账、复现命令与残余风险见
@@ -381,6 +383,40 @@ python scripts/stat_significance.py \
 
 结果文件：`results/agentic_cloud_faithfulness.json`。
 
+### 留出集验证（2026-11-11）
+
+86% 是在同一套 50 题上扫参得到的，会不会"考前知道考题"？为此造了
+**150 题从未参与调参的冻结留出集**（90 事实 / 30 跨页 / 15 跨年 / 15 无答案）：
+调参集用过的 32 个出处页全部排除，答案数字按原文 verbatim，程序校验
+（数字须在所标页原文出现 + 查重 + 页级隔离）一次通过，SHA256 冻结
+（`data/gold/holdout_manifest.json`），此后不在其上调整任何参数。
+
+**检索层**（纯本地复跑生产管线，`scripts/eval_holdout.py`）：
+
+| 题型 | 调参 50 题 | 留出 150 题 |
+|---|---|---|
+| 整体 hit@5 | 86.0% | **77.3%** |
+| 事实题 | 90.0% | 83.3% |
+| 跨页题 | 90.0% | 90.0% |
+| 跨年题 | 80.0% | 80.0% |
+
+86% 含约 9pp 调参溢价，可外推水平约 77%（有答案题 84.4%）；跨页/跨年
+零回退，说明结构化检索改进是真实的。
+
+**答案层**（150 题 DeepSeek-Flash 全跑通，0 错误）：
+
+- **无答案题拒答正确率 100%（15/15）**，3 倍样本复现调参集 100%，零编造。
+- 完整答案率：原始打分 67.4%，修正打分口径后 **91.1%**（调参集同口径
+  66.7%）。修正的是 `gold_numbers` 把出处引文里的表格数字/页码误当必答
+  数字的偏差——对两套题同样重打，双口径并列，未单方面美化。
+- 修正口径下仍错的 12 题：6 题检索未送达、2 题合并/母公司口径混淆、
+  3 题"合计"行假拒答、1 题出题没锚定年份。**瓶颈在检索与少数口径问题，
+  不是生成端编造。**
+
+逐题明细 `results/holdout_retrieval.json`、`results/holdout_cloud_answers.json`、
+`results/holdout_answer_rescore.json`；完整报告与复现命令见
+[review/holdout_outcome.md](review/holdout_outcome.md)。
+
 ## 仓库结构
 
 ```
@@ -388,7 +424,7 @@ src/          核心代码：切块/索引/混合检索/语境增强/问答（�
               Streamlit 界面/FastAPI 服务/MCP server
 scripts/      下载、建索引、评测（答案层/忠实度）、画图等一次性脚本
 docker/       容器入口脚本（Dockerfile 与 docker-compose.yml 在根目录）
-data/gold/    50 题黄金评测集（问题+标准答案+出处页码）
+data/gold/    50 题黄金评测集 + 150 题冻结留出集（问题+标准答案+出处页码）
 results/      全部评测结果 JSON（每个数字都出自这里）
 report/       通俗中文技术报告（LaTeX 源码 + 图表）
 docs/         界面截图
