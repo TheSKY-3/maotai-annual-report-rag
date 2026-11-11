@@ -39,3 +39,7 @@ HANDOFF.md
 # 评审过程的临时脚本与中间输出（仅供本地复算，不入库）
 review/_lead/
 review/_recalc/
+
+# 本地实时看板（脚本可再生、体积大，不入库；架构图以 README mermaid 为准）
+docs/dashboard.html
+scripts/assets/mermaid.min.js
