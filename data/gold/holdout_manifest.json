@@ -1,0 +1,13 @@
+{
+ "file": "holdout.jsonl",
+ "sha256": "2ec04827fb5b576e5284ac0e3b420a50aeda92834e80e13241b1dbe65a1723c3",
+ "n": 150,
+ "types": {
+  "cross_page": 30,
+  "cross_year": 15,
+  "fact": 90,
+  "no_answer": 15
+ },
+ "generator": "Qoder agent 对话内直接出题，程序校验（零 API 成本）",
+ "frozen_at": "2026-11-11"
+}
