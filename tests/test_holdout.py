@@ -62,6 +62,27 @@ def test_missing_page_file_is_reported():
     assert bh.missing_numbers(q, {}) == ["627.16"]
 
 
+# ------------------------------------------------- clean_answer 嵌套括号
+def test_clean_answer_nested_parens_in_quote():
+    """引文里套（1）小括号时，整段出处仍须剥掉，只留答案本体数字。"""
+    gold = '1,720,448,637.98元（2024年报P98："（1）计提 1,432,232,428.64 1,720,448,637.98"）'
+    assert bh.clean_answer(gold).strip() == "1,720,448,637.98元"
+
+
+def test_clean_answer_keeps_body_between_two_citations():
+    """跨页题两处出处夹着两段本体，剥出处后两段数字都要保住。"""
+    gold = "归母净利17,244,968,587.32元（2022年报P6），利润总额87,701,489,748.18元（2022年报P59）"
+    cleaned = bh.clean_answer(gold)
+    assert "17,244,968,587.32" in cleaned
+    assert "87,701,489,748.18" in cleaned
+    assert "年报" not in cleaned
+
+
+def test_clean_answer_keeps_non_citation_parens():
+    """（含税）不含"年报"，是答案本体的一部分，不能误删。"""
+    assert "（含税）" in bh.clean_answer("308.76元（含税）")
+
+
 # ------------------------------------------------------------- no_answer
 def test_no_answer_format():
     ok = {"type": "no_answer", "gold_answer": "年报中无此信息"}

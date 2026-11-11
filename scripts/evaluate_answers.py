@@ -58,6 +58,8 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=0, help="只跑前 N 题（调试用）")
     parser.add_argument("--router", action="store_true",
                         help="走 answer_auto 路由（跨年/跨页题进 agent 工具循环）")
+    parser.add_argument("--gold", default=None,
+                        help="题目文件路径（默认 config.GOLD_FILE；留出集传 data/gold/holdout.jsonl）")
     args = parser.parse_args()
 
     from openai import OpenAI
@@ -67,8 +69,9 @@ def main() -> None:
                     api_key=os.environ.get("RAG_API_KEY", "ollama"))
     search_fn = get_search()
 
+    gold_file = Path(args.gold) if args.gold else GOLD_FILE
     questions = [json.loads(l) for l in
-                 open(GOLD_FILE, encoding="utf-8") if l.strip()]
+                 open(gold_file, encoding="utf-8") if l.strip()]
     if args.limit:
         questions = questions[: args.limit]
 

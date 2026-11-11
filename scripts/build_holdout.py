@@ -36,11 +36,36 @@ def norm(s: str) -> str:
 
 
 def clean_answer(ans: str) -> str:
-    """去掉出处标注，只留答案本体（沿用 verify_gold_answers.py 口径）。"""
-    ans = re.sub(r"[（(][^（）()]*年报[^（）()]*[）)]", "", ans)
-    ans = re.sub(r"\d{4}年报", "", ans)
-    ans = re.sub(r"P\d+", "", ans)
-    return ans
+    """去掉出处标注，只留答案本体。
+
+    出处块是含"年报"的括号段；引文里可能再套（1）/（含基础酒）等小括号，
+    旧正则 [^（）()]* 遇到嵌套就整段匹配失败，引文里的表格数字会残留。
+    这里按括号配平扫描：深度 0 遇到开括号就找配对闭括号，块内含"年报"则
+    整段丢弃，否则原样保留（如"（含税）"）。
+    """
+    out = []
+    i, n = 0, len(ans)
+    while i < n:
+        ch = ans[i]
+        if ch in "（(":
+            depth, j = 1, i + 1
+            while j < n and depth:
+                if ans[j] in "（(":
+                    depth += 1
+                elif ans[j] in "）)":
+                    depth -= 1
+                j += 1
+            block = ans[i:j]
+            if "年报" not in block:
+                out.append(block)
+            i = j
+        else:
+            out.append(ch)
+            i += 1
+    text = "".join(out)
+    text = re.sub(r"\d{4}\s*年报", "", text)
+    text = re.sub(r"P\d+", "", text)
+    return text
 
 
 def number_tokens(text: str) -> list[str]:
