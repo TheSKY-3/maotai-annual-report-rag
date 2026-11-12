@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
 
 # 金额单位（元为基准）
-_MONEY = {
+MONEY_UNITS = {
     "万亿元": Decimal("1e12"),
     "亿元": Decimal("1e8"),
     "百万元": Decimal("1e6"),
@@ -24,7 +24,7 @@ _MONEY = {
     "千": Decimal("1e3"),
     "元": Decimal("1"),
 }
-_UNITS = "|".join(sorted(_MONEY, key=len, reverse=True))
+_UNITS = "|".join(sorted(MONEY_UNITS, key=len, reverse=True))
 
 TOKEN_RE = re.compile(
     r"(?<![\d.])"
@@ -70,7 +70,7 @@ def iter_numbers(text: str) -> list[Num]:
         if unit in ("%", "％"):
             kind, value = "percent", v / Decimal(100)
         elif unit:
-            kind, value = "money", v * _MONEY[unit]
+            kind, value = "money", v * MONEY_UNITS[unit]
         else:
             kind, value = "plain", v
         out.append(Num(m.group(0).strip(), value, kind, unit,
@@ -112,7 +112,7 @@ _DECL_UNIT_RE = re.compile(
     r"单位\s*[:：]\s*(万亿元|亿元|百万元|千万元|千元|万元|亿|万|千|元)")
 
 
-def _declared_unit(text: str) -> str | None:
+def declared_unit(text: str) -> str | None:
     """页面上唯一的“单位：X”声明；同页出现多种单位时不猜。"""
     units = {m.group(1) for m in _DECL_UNIT_RE.finditer(text)}
     return next(iter(units)) if len(units) == 1 else None
@@ -127,12 +127,12 @@ def find_number(raw: str, texts: list[str],
         # 年报表格常在表头写“单位：万元”，单元格里只写 3,626,162.73。
         # 回答写“3,626,162.73 万元”时，裸数字要按表头单位还原后再比，
         # 否则每个表格金额都会被误报成“证据中找不到”。
-        declared = _declared_unit(t) if target.kind == "money" else None
+        declared = declared_unit(t) if target.kind == "money" else None
         for n in iter_numbers(t):
             if same_value(target, n, rel_tol):
                 return True
             if declared and n.kind == "plain" and not n.unit:
-                if _close(target.value, n.value * _MONEY[declared], rel_tol):
+                if _close(target.value, n.value * MONEY_UNITS[declared], rel_tol):
                     return True
     return False
 

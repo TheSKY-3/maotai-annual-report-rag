@@ -1,0 +1,6617 @@
+{
+ "summary": {
+  "answers": 130,
+  "numbers": 369,
+  "located": 333,
+  "ambiguous": 22,
+  "locate_rate": 0.9024
+ },
+ "entries": [
+  {
+   "number": "10",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 6,
+   "boxes": [
+    [
+     480.58,
+     216.62095999999997,
+     491.13999999999993,
+     227.18096000000003
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id101_2022p6_10.png",
+   "id": 101,
+   "question": "茅台2022年第四季度营业收入是多少？"
+  },
+  {
+   "number": "12",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 6,
+   "boxes": [
+    [
+     494.5,
+     216.62095999999997,
+     505.05999999999995,
+     227.18096000000003
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id101_2022p6_12.png",
+   "id": 101,
+   "question": "茅台2022年第四季度营业收入是多少？"
+  },
+  {
+   "number": "36,939,611,012.94元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 6,
+   "boxes": [
+    [
+     463.9,
+     230.42095999999992,
+     542.7515199999999,
+     240.98095999999998
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id101_2022p6_36_939_611_012.94元.png",
+   "id": 101,
+   "question": "茅台2022年第四季度营业收入是多少？"
+  },
+  {
+   "number": "17,244,968,587.32元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 6,
+   "boxes": [
+    [
+     187.46,
+     251.30095999999992,
+     266.31152,
+     261.86096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id102_2022p6_17_244_968_587.32元.png",
+   "id": 102,
+   "question": "2022年第一季度归属于上市公司股东的净利润有多少？"
+  },
+  {
+   "number": "-75,428,959.45元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 126,
+   "boxes": [
+    [
+     424.75,
+     521.9509599999999,
+     488.71384,
+     532.51096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id103_2022p126_-75_428_959.45元.png",
+   "id": 103,
+   "question": "茅台2022年非经常性损益合计是多少？"
+  },
+  {
+   "number": "3,297,724,190.94 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 101,
+   "boxes": [
+    [
+     315.07,
+     379.97095999999993,
+     388.75767999999994,
+     390.53095999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id104_2022p101_3_297_724_190.94_元.png",
+   "id": 104,
+   "question": "2022年销售费用比上年增长了百分之多少？"
+  },
+  {
+   "number": "2,737,369,434.78 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 101,
+   "boxes": [
+    [
+     458.02,
+     379.97095999999993,
+     531.70768,
+     390.53095999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id104_2022p101_2_737_369_434.78_元.png",
+   "id": 104,
+   "question": "2022年销售费用比上年增长了百分之多少？"
+  },
+  {
+   "number": "3,297,724,190.94",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 101,
+   "boxes": [
+    [
+     315.07,
+     379.97095999999993,
+     388.75767999999994,
+     390.53095999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id104_2022p101_3_297_724_190.94.png",
+   "id": 104,
+   "question": "2022年销售费用比上年增长了百分之多少？"
+  },
+  {
+   "number": "2,737,369,434.78",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 101,
+   "boxes": [
+    [
+     458.02,
+     379.97095999999993,
+     531.70768,
+     390.53095999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id104_2022p101_2_737_369_434.78.png",
+   "id": 104,
+   "question": "2022年销售费用比上年增长了百分之多少？"
+  },
+  {
+   "number": "560,354,756.16 元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 104,
+   "question": "2022年销售费用比上年增长了百分之多少？"
+  },
+  {
+   "number": "560,354,756.16",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 104,
+   "question": "2022年销售费用比上年增长了百分之多少？"
+  },
+  {
+   "number": "20.47%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 8,
+   "boxes": [
+    [
+     507.46,
+     238.22096,
+     531.2199999999999,
+     248.78096000000005
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id104_2022p8_20.47_.png",
+   "id": 104,
+   "question": "2022年销售费用比上年增长了百分之多少？"
+  },
+  {
+   "number": "135,185,680.40元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 8,
+   "boxes": [
+    [
+     274.01,
+     280.61096,
+     339.77768,
+     291.17096000000004
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id105_2022p8_135_185_680.40元.png",
+   "id": 105,
+   "question": "2022年研发费用同比增幅是多少？"
+  },
+  {
+   "number": "61,923,213.59元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 8,
+   "boxes": [
+    [
+     378.55,
+     280.61096,
+     439.03767999999997,
+     291.17096000000004
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id105_2022p8_61_923_213.59元.png",
+   "id": 105,
+   "question": "2022年研发费用同比增幅是多少？"
+  },
+  {
+   "number": "118.31%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 8,
+   "boxes": [
+    [
+     502.66,
+     280.61096,
+     531.2248,
+     291.17096000000004
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id105_2022p8_118.31_.png",
+   "id": 105,
+   "question": "2022年研发费用同比增幅是多少？"
+  },
+  {
+   "number": "94.19%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     344.23,
+     119.30095999999992,
+     367.99,
+     129.86095999999998
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id106_2022p9_94.19_.png",
+   "id": 106,
+   "question": "2022年茅台酒的毛利率是多少？"
+  },
+  {
+   "number": "4,239,579,487.12 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     166.7,
+     230.78095999999994,
+     240.38768,
+     241.34096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id107_2022p9_4_239_579_487.12_元.png",
+   "id": 107,
+   "question": "2022年国外市场营业收入同比增长多少？"
+  },
+  {
+   "number": "61.91%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     386.83,
+     230.78095999999994,
+     410.59,
+     241.34096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id107_2022p9_61.91_.png",
+   "id": 107,
+   "question": "2022年国外市场营业收入同比增长多少？"
+  },
+  {
+   "number": "92.04%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     344.23,
+     230.78095999999994,
+     367.99,
+     241.34096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id107_2022p9_92.04_.png",
+   "id": 107,
+   "question": "2022年国外市场营业收入同比增长多少？"
+  },
+  {
+   "number": "1.27",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     489.34,
+     231.86095999999998,
+     507.70383999999996,
+     242.42096000000004
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id107_2022p9_1.27.png",
+   "id": 107,
+   "question": "2022年国外市场营业收入同比增长多少？"
+  },
+  {
+   "number": "49,378,737,661.60元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     161.54,
+     328.13095999999996,
+     240.39151999999999,
+     338.69095999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id108_2022p9_49_378_737_661.60元.png",
+   "id": 108,
+   "question": "2022年直销模式的营业收入是多少元？"
+  },
+  {
+   "number": "276,623.17",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     314.69,
+     429.41095999999993,
+     362.09384,
+     439.97095999999993
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id109_2022p9_276_623.17.png",
+   "id": 109,
+   "question": "2022年酒类的库存量是多少吨？"
+  },
+  {
+   "number": "11.44%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 10,
+   "boxes": [
+    [
+     362.95,
+     259.97096,
+     395.38647999999995,
+     270.53096000000005
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id110_2022p10_11.44_.png",
+   "id": 110,
+   "question": "2022年前五名客户销售额占年度销售总额的比重是多少？"
+  },
+  {
+   "number": "558,970,226.76元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 10,
+   "boxes": [
+    [
+     465.94,
+     532.51096,
+     531.70768,
+     543.07096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id111_2022p10_558_970_226.76元.png",
+   "id": 111,
+   "question": "茅台2022年研发投入合计多少元？"
+  },
+  {
+   "number": "72",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 10,
+   "boxes": [
+    [
+     523.54,
+     706.7809599999999,
+     534.0999999999999,
+     717.34096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id112_2022p10_72.png",
+   "id": 112,
+   "question": "2022年研发人员里博士研究生有几人？"
+  },
+  {
+   "number": "62,043,324,506.36元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 11,
+   "boxes": [
+    [
+     285.41,
+     477.6709599999999,
+     364.26152,
+     488.2309599999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id113_2022p11_62_043_324_506.36元.png",
+   "id": 113,
+   "question": "2022年支付的各项税费现金是多少？"
+  },
+  {
+   "number": "58,274,318,733.23元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 54,
+   "boxes": [
+    [
+     352.87,
+     429.2909599999999,
+     431.72152,
+     439.85095999999993
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id114_2022p54_58_274_318_733.23元.png",
+   "id": 114,
+   "question": "2022年末货币资金有多少？"
+  },
+  {
+   "number": "38,824,374,236.24元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 86,
+   "boxes": [
+    [
+     269.21,
+     654.3639999999999,
+     336.746,
+     663.3639999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id115_2022p86_38_824_374_236.24元.png",
+   "id": 115,
+   "question": "2022年末存货的账面价值是多少？"
+  },
+  {
+   "number": "254,364,804,995.25元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 13,
+   "boxes": [
+    [
+     166.94,
+     397.99399999999997,
+     238.913,
+     406.99399999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id116_2022p13_254_364_804_995.25元.png",
+   "id": 116,
+   "question": "茅台2022年末总资产规模多大？"
+  },
+  {
+   "number": "290,243.05万元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 15,
+   "boxes": [
+    [
+     242.69,
+     454.51095999999995,
+     290.09384,
+     465.07095999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id117_2022p15_290_243.05万元.png",
+   "id": 117,
+   "question": "2022年包装材料的采购金额是多少万元？"
+  },
+  {
+   "number": "11,186.57",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 15,
+   "boxes": [
+    [
+     406.51,
+     667.3009599999999,
+     448.63383999999996,
+     677.86096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id118_2022p15_11_186.57.png",
+   "id": 118,
+   "question": "2022年直销渠道卖了多少吨酒？"
+  },
+  {
+   "number": "15%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 19,
+   "boxes": [
+    [
+     333.91,
+     149.66095999999993,
+     353.02648,
+     160.22096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id119_2022p19_15_.png",
+   "id": 119,
+   "question": "2022年年报里提出的2023年营业总收入增长目标是多少？"
+  },
+  {
+   "number": "71.09亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 19,
+   "boxes": [
+    [
+     463.54,
+     148.8689599999999,
+     510.94,
+     160.22096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id119_2022p19_71.09亿元.png",
+   "id": 119,
+   "question": "2022年年报里提出的2023年营业总收入增长目标是多少？"
+  },
+  {
+   "number": "31,413",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 30,
+   "boxes": [
+    [
+     502.66,
+     682.5409599999999,
+     531.7,
+     693.10096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id120_2022p30_31_413.png",
+   "id": 120,
+   "question": "2022年末茅台在职员工总数是多少？"
+  },
+  {
+   "number": "38,108.29万元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 34,
+   "boxes": [
+    [
+     489.58,
+     138.98095999999998,
+     531.7038399999999,
+     149.54096000000004
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id121_2022p34_38_108.29万元.png",
+   "id": 121,
+   "question": "2022年投入的环保资金是多少万元？"
+  },
+  {
+   "number": "6,396.05万元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 122,
+   "question": "2022年乡村振兴项目总投入多少万元？"
+  },
+  {
+   "number": "2,887,804,740.39元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 101,
+   "boxes": [
+    [
+     315.07,
+     324.1709599999999,
+     388.75767999999994,
+     334.7309599999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id123_2022p101_2_887_804_740.39元.png",
+   "id": 123,
+   "question": "2022年广告宣传及市场拓展费用花了多少？"
+  },
+  {
+   "number": "17,244,968,587.32 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 6,
+   "boxes": [
+    [
+     187.46,
+     251.30095999999992,
+     266.31152,
+     261.86096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id124_2022p6_17_244_968_587.32_元.png",
+   "id": 124,
+   "question": "2022年第一季度归母净利润和全年利润总额分别是多少？"
+  },
+  {
+   "number": "172.45亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 124,
+   "question": "2022年第一季度归母净利润和全年利润总额分别是多少？"
+  },
+  {
+   "number": "87,701,489,748.18 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 59,
+   "boxes": [
+    [
+     352.15,
+     401.21095999999994,
+     431.00151999999997,
+     411.77095999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id124_2022p59_87_701_489_748.18_元.png",
+   "id": 124,
+   "question": "2022年第一季度归母净利润和全年利润总额分别是多少？"
+  },
+  {
+   "number": "877.01亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 124,
+   "question": "2022年第一季度归母净利润和全年利润总额分别是多少？"
+  },
+  {
+   "number": "49,378,737,661.60 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     161.54,
+     328.13095999999996,
+     240.39151999999999,
+     338.69095999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id125_2022p9_49_378_737_661.60_元.png",
+   "id": 125,
+   "question": "2022年直销渠道的营业收入是多少元？销售量是多少吨？"
+  },
+  {
+   "number": "493.79亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 125,
+   "question": "2022年直销渠道的营业收入是多少元？销售量是多少吨？"
+  },
+  {
+   "number": "11,186.57",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 15,
+   "boxes": [
+    [
+     406.51,
+     667.3009599999999,
+     448.63383999999996,
+     677.86096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id125_2022p15_11_186.57.png",
+   "id": 125,
+   "question": "2022年直销渠道的营业收入是多少元？销售量是多少吨？"
+  },
+  {
+   "number": "558,970,226.76 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 10,
+   "boxes": [
+    [
+     465.94,
+     532.51096,
+     531.70768,
+     543.07096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id126_2022p10_558_970_226.76_元.png",
+   "id": 126,
+   "question": "2022年研发投入合计多少元？30岁以下的研发人员有多少人？"
+  },
+  {
+   "number": "368,433,594.16 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 10,
+   "boxes": [
+    [
+     465.94,
+     504.31095999999997,
+     531.70768,
+     514.87096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id126_2022p10_368_433_594.16_元.png",
+   "id": 126,
+   "question": "2022年研发投入合计多少元？30岁以下的研发人员有多少人？"
+  },
+  {
+   "number": "190,536,632.60 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 10,
+   "boxes": [
+    [
+     465.94,
+     518.4709599999999,
+     531.70768,
+     529.0309599999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id126_2022p10_190_536_632.60_元.png",
+   "id": 126,
+   "question": "2022年研发投入合计多少元？30岁以下的研发人员有多少人？"
+  },
+  {
+   "number": "0.45%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 10,
+   "boxes": [
+    [
+     513.22,
+     546.6709599999999,
+     531.6999999999999,
+     557.2309599999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id126_2022p10_0.45_.png",
+   "id": 126,
+   "question": "2022年研发投入合计多少元？30岁以下的研发人员有多少人？"
+  },
+  {
+   "number": "30",
+   "located": true,
+   "ambiguous": true,
+   "year": 2022,
+   "page": 11,
+   "boxes": [
+    [
+     87.384,
+     120.86095999999998,
+     97.944,
+     131.42096000000004
+    ],
+    [
+     87.384,
+     120.86095999999998,
+     97.944,
+     131.42096000000004
+    ],
+    [
+     87.384,
+     135.02095999999995,
+     97.944,
+     145.58096
+    ],
+    [
+     87.384,
+     135.02095999999995,
+     97.944,
+     145.58096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id126_2022p11_30.png",
+   "id": 126,
+   "question": "2022年研发投入合计多少元？30岁以下的研发人员有多少人？"
+  },
+  {
+   "number": "159",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 11,
+   "boxes": [
+    [
+     518.38,
+     120.62095999999997,
+     534.2199999999999,
+     131.18096000000003
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id126_2022p11_159.png",
+   "id": 126,
+   "question": "2022年研发投入合计多少元？30岁以下的研发人员有多少人？"
+  },
+  {
+   "number": "761",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 10,
+   "boxes": [
+    [
+     518.38,
+     650.26096,
+     534.2199999999999,
+     660.82096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id126_2022p10_761.png",
+   "id": 126,
+   "question": "2022年研发投入合计多少元？30岁以下的研发人员有多少人？"
+  },
+  {
+   "number": "58,274,318,733.23 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 12,
+   "boxes": [
+    [
+     171.38,
+     602.2539999999999,
+     238.916,
+     611.2539999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id127_2022p12_58_274_318_733.23_元.png",
+   "id": 127,
+   "question": "2022年末货币资金和总资产分别是多少？"
+  },
+  {
+   "number": "22.91%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 12,
+   "boxes": [
+    [
+     260.21,
+     602.2539999999999,
+     280.532,
+     611.2539999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id127_2022p12_22.91_.png",
+   "id": 127,
+   "question": "2022年末货币资金和总资产分别是多少？"
+  },
+  {
+   "number": "254,364,804,995.25 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 5,
+   "boxes": [
+    [
+     191.57,
+     438.07095999999996,
+     275.70151999999996,
+     448.63095999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id127_2022p5_254_364_804_995.25_元.png",
+   "id": 127,
+   "question": "2022年末货币资金和总资产分别是多少？"
+  },
+  {
+   "number": "38,108.29 万元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 34,
+   "boxes": [
+    [
+     489.58,
+     138.98095999999998,
+     531.7038399999999,
+     149.54096000000004
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id128_2022p34_38_108.29_万元.png",
+   "id": 128,
+   "question": "2022年环保资金投入多少万元？核定的COD排放总量是多少吨？"
+  },
+  {
+   "number": "60.1",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 35,
+   "boxes": [
+    [
+     227.67656,
+     267.65095999999994,
+     246.0404,
+     278.21096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id128_2022p35_60.1.png",
+   "id": 128,
+   "question": "2022年环保资金投入多少万元？核定的COD排放总量是多少吨？"
+  },
+  {
+   "number": "6.01",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 35,
+   "boxes": [
+    [
+     295.25,
+     267.65095999999994,
+     313.61384,
+     278.21096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id128_2022p35_6.01.png",
+   "id": 128,
+   "question": "2022年环保资金投入多少万元？核定的COD排放总量是多少吨？"
+  },
+  {
+   "number": "203.87",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 35,
+   "boxes": [
+    [
+     383.71,
+     267.65095999999994,
+     412.63383999999996,
+     278.21096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id128_2022p35_203.87.png",
+   "id": 128,
+   "question": "2022年环保资金投入多少万元？核定的COD排放总量是多少吨？"
+  },
+  {
+   "number": "1",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 48,
+   "boxes": [
+    [
+     89.904,
+     712.5889599999999,
+     95.184,
+     723.14896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id129_2022p48_1.png",
+   "id": 129,
+   "question": "截至2023年3月29日控股股东方面合计增持了多少股？茅台集团持有贵州银行多少比例的股份？"
+  },
+  {
+   "number": "3",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 48,
+   "boxes": [
+    [
+     119.66,
+     550.0309599999999,
+     124.94,
+     560.59096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id129_2022p48_3.png",
+   "id": 129,
+   "question": "截至2023年3月29日控股股东方面合计增持了多少股？茅台集团持有贵州银行多少比例的股份？"
+  },
+  {
+   "number": "29",
+   "located": true,
+   "ambiguous": true,
+   "year": 2022,
+   "page": 48,
+   "boxes": [
+    [
+     238.73,
+     536.4709599999999,
+     249.29,
+     547.0309599999999
+    ],
+    [
+     234.65,
+     550.0309599999999,
+     245.21,
+     560.59096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id129_2022p48_29.png",
+   "id": 129,
+   "question": "截至2023年3月29日控股股东方面合计增持了多少股？茅台集团持有贵州银行多少比例的股份？"
+  },
+  {
+   "number": "840,514",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 48,
+   "boxes": [
+    [
+     325.27,
+     563.7109599999999,
+     359.47383999999994,
+     574.27096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id129_2022p48_840_514.png",
+   "id": 129,
+   "question": "截至2023年3月29日控股股东方面合计增持了多少股？茅台集团持有贵州银行多少比例的股份？"
+  },
+  {
+   "number": "0.0669%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 48,
+   "boxes": [
+    [
+     462.58,
+     563.7109599999999,
+     500.30031999999994,
+     574.27096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id129_2022p48_0.0669_.png",
+   "id": 129,
+   "question": "截至2023年3月29日控股股东方面合计增持了多少股？茅台集团持有贵州银行多少比例的股份？"
+  },
+  {
+   "number": "2",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 49,
+   "boxes": [
+    [
+     89.904,
+     246.66895999999997,
+     95.184,
+     257.22896000000003
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id129_2022p49_2.png",
+   "id": 129,
+   "question": "截至2023年3月29日控股股东方面合计增持了多少股？茅台集团持有贵州银行多少比例的股份？"
+  },
+  {
+   "number": "12%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 49,
+   "boxes": [
+    [
+     429.19,
+     203.0609599999999,
+     448.54648,
+     213.62095999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id129_2022p49_12_.png",
+   "id": 129,
+   "question": "截至2023年3月29日控股股东方面合计增持了多少股？茅台集团持有贵州银行多少比例的股份？"
+  },
+  {
+   "number": "1,570,075,010.07 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 97,
+   "boxes": [
+    [
+     303.77,
+     150.02095999999995,
+     377.45768,
+     160.58096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id130_2022p97_1_570_075_010.07_元.png",
+   "id": 130,
+   "question": "2022年末应交消费税余额和2022年全年消费税发生额各是多少？"
+  },
+  {
+   "number": "4,123,882,929.27 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 97,
+   "boxes": [
+    [
+     458.02,
+     150.02095999999995,
+     531.70768,
+     160.58096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id130_2022p97_4_123_882_929.27_元.png",
+   "id": 130,
+   "question": "2022年末应交消费税余额和2022年全年消费税发生额各是多少？"
+  },
+  {
+   "number": "14,628,644,881.34 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 101,
+   "boxes": [
+    [
+     299.09,
+     78.24095999999997,
+     377.94151999999997,
+     88.80096000000003
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id130_2022p101_14_628_644_881.34_元.png",
+   "id": 130,
+   "question": "2022年末应交消费税余额和2022年全年消费税发生额各是多少？"
+  },
+  {
+   "number": "12,056,605,155.34 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 101,
+   "boxes": [
+    [
+     452.86,
+     78.24095999999997,
+     531.71152,
+     88.80096000000003
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id130_2022p101_12_056_605_155.34_元.png",
+   "id": 130,
+   "question": "2022年末应交消费税余额和2022年全年消费税发生额各是多少？"
+  },
+  {
+   "number": "1",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 8,
+   "boxes": [
+    [
+     89.904,
+     165.42895999999996,
+     95.184,
+     175.98896000000002
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id131_2022p8_1.png",
+   "id": 131,
+   "question": "2022年销售费用同比增长多少？2022年报对2023年营业总收入的增长目标是多少？"
+  },
+  {
+   "number": "3,297,724,190.94 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 8,
+   "boxes": [
+    [
+     266.09,
+     238.22096,
+     339.7776799999999,
+     248.78096000000005
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id131_2022p8_3_297_724_190.94_元.png",
+   "id": 131,
+   "question": "2022年销售费用同比增长多少？2022年报对2023年营业总收入的增长目标是多少？"
+  },
+  {
+   "number": "2,737,369,434.78 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 8,
+   "boxes": [
+    [
+     365.35,
+     238.22096,
+     439.03768,
+     248.78096000000005
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id131_2022p8_2_737_369_434.78_元.png",
+   "id": 131,
+   "question": "2022年销售费用同比增长多少？2022年报对2023年营业总收入的增长目标是多少？"
+  },
+  {
+   "number": "20.47%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 8,
+   "boxes": [
+    [
+     507.46,
+     238.22096,
+     531.2199999999999,
+     248.78096000000005
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id131_2022p8_20.47_.png",
+   "id": 131,
+   "question": "2022年销售费用同比增长多少？2022年报对2023年营业总收入的增长目标是多少？"
+  },
+  {
+   "number": "2",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 8,
+   "boxes": [
+    [
+     89.904,
+     570.35896,
+     95.184,
+     580.91896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id131_2022p8_2.png",
+   "id": 131,
+   "question": "2022年销售费用同比增长多少？2022年报对2023年营业总收入的增长目标是多少？"
+  },
+  {
+   "number": "15%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 19,
+   "boxes": [
+    [
+     333.91,
+     149.66095999999993,
+     353.02648,
+     160.22096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id131_2022p19_15_.png",
+   "id": 131,
+   "question": "2022年销售费用同比增长多少？2022年报对2023年营业总收入的增长目标是多少？"
+  },
+  {
+   "number": "71.09 亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 19,
+   "boxes": [
+    [
+     463.54,
+     148.8689599999999,
+     510.94,
+     160.22096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id131_2022p19_71.09_亿元.png",
+   "id": 131,
+   "question": "2022年销售费用同比增长多少？2022年报对2023年营业总收入的增长目标是多少？"
+  },
+  {
+   "number": "147,693,604,994.14元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 63,
+   "boxes": [
+    [
+     325.87,
+     250.8689599999999,
+     420.56152,
+     261.42895999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id132_2023p63_147_693_604_994.14元.png",
+   "id": 132,
+   "question": "2023年茅台营业收入是多少？"
+  },
+  {
+   "number": "74,734,071,550.75元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 5,
+   "boxes": [
+    [
+     101.66,
+     261.70364000000006,
+     169.72664,
+     269.74364
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id133_2023p5_74_734_071_550.75元.png",
+   "id": 133,
+   "question": "2023年归属于上市公司股东的净利润有多少？"
+  },
+  {
+   "number": "59.49元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 5,
+   "boxes": [
+    [
+     249.77,
+     603.2389599999999,
+     276.16999999999996,
+     613.79896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id134_2023p5_59.49元.png",
+   "id": 134,
+   "question": "茅台2023年基本每股收益是多少？"
+  },
+  {
+   "number": "34.19%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 5,
+   "boxes": [
+    [
+     249.77,
+     666.02896,
+     276.16999999999996,
+     676.5889599999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id135_2023p5_34.19_.png",
+   "id": 135,
+   "question": "2023年加权平均净资产收益率是多少？"
+  },
+  {
+   "number": "64",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 7,
+   "boxes": [
+    [
+     229.25,
+     565.79896,
+     239.69,
+     576.35896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id136_2023p7_64.png",
+   "id": 136,
+   "question": "2023年茅台营销网络覆盖多少个国家和地区？"
+  },
+  {
+   "number": "20,629,929,589.15元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 109,
+   "boxes": [
+    [
+     264.29,
+     190.9889599999999,
+     353.70152,
+     201.54895999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id137_2023p109_20_629_929_589.15元.png",
+   "id": 137,
+   "question": "2023年其他系列酒的营业收入是多少？"
+  },
+  {
+   "number": "67,232,876,883.14 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 9,
+   "boxes": [
+    [
+     148.1,
+     737.3049599999999,
+     237.51152,
+     747.86496
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id138_2023p9_67_232_876_883.14_元.png",
+   "id": 138,
+   "question": "2023年直销渠道营业收入同比增长多少？"
+  },
+  {
+   "number": "672.33亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 138,
+   "question": "2023年直销渠道营业收入同比增长多少？"
+  },
+  {
+   "number": "36.16%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 9,
+   "boxes": [
+    [
+     405.55,
+     737.3049599999999,
+     431.95,
+     747.86496
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id138_2023p9_36.16_.png",
+   "id": 138,
+   "question": "2023年直销渠道营业收入同比增长多少？"
+  },
+  {
+   "number": "67,232,876,883.14",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 9,
+   "boxes": [
+    [
+     148.1,
+     737.3049599999999,
+     237.51152,
+     747.86496
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id138_2023p9_67_232_876_883.14.png",
+   "id": 138,
+   "question": "2023年直销渠道营业收入同比增长多少？"
+  },
+  {
+   "number": "49,378,737,661.60",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 16,
+   "boxes": [
+    [
+     175.94,
+     678.82096,
+     254.79152000000002,
+     689.38096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id138_2022p16_49_378_737_661.60.png",
+   "id": 138,
+   "question": "2023年直销渠道营业收入同比增长多少？"
+  },
+  {
+   "number": "17,854,139,221.54 元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 138,
+   "question": "2023年直销渠道营业收入同比增长多少？"
+  },
+  {
+   "number": "178.54亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 138,
+   "question": "2023年直销渠道营业收入同比增长多少？"
+  },
+  {
+   "number": "100,141.15",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 10,
+   "boxes": [
+    [
+     197.81,
+     180.06895999999995,
+     250.49,
+     190.62896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id139_2023p10_100_141.15.png",
+   "id": 139,
+   "question": "2023年酒类生产量是多少吨？"
+  },
+  {
+   "number": "73,274.04",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 10,
+   "boxes": [
+    [
+     261.17,
+     180.06895999999995,
+     308.57384,
+     190.62896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id140_2023p10_73_274.04.png",
+   "id": 140,
+   "question": "2023年酒类销售量多少吨？"
+  },
+  {
+   "number": "36.45%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 11,
+   "boxes": [
+    [
+     370.87,
+     213.90895999999987,
+     402.30999999999995,
+     224.46895999999992
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id141_2023p11_36.45_.png",
+   "id": 141,
+   "question": "2023年前五名供应商采购额占年度采购总额的比例？"
+  },
+  {
+   "number": "4,648,613,585.82元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 11,
+   "boxes": [
+    [
+     176.78,
+     356.13896,
+     274.13,
+     366.69896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id142_2023p11_4_648_613_585.82元.png",
+   "id": 142,
+   "question": "2023年销售费用是多少元？"
+  },
+  {
+   "number": "621,507,535.87元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 11,
+   "boxes": [
+    [
+     452.5,
+     502.79895999999997,
+     526.18768,
+     513.35896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id143_2023p11_621_507_535.87元.png",
+   "id": 143,
+   "question": "2023年研发投入合计多少？"
+  },
+  {
+   "number": "800",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 11,
+   "boxes": [
+    [
+     518.5,
+     606.11896,
+     534.3399999999999,
+     616.67896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id144_2023p11_800.png",
+   "id": 144,
+   "question": "2023年公司研发人员有多少名？"
+  },
+  {
+   "number": "69,070,136,376.12元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 87,
+   "boxes": [
+    [
+     280.85,
+     670.2289599999999,
+     370.26152,
+     680.78896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id145_2023p87_69_070_136_376.12元.png",
+   "id": 145,
+   "question": "2023年末货币资金是多少？"
+  },
+  {
+   "number": "10",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 146,
+   "question": "2023年末应收账款比上期末增长了百分之多少？"
+  },
+  {
+   "number": "62,181,941.03 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 89,
+   "boxes": [
+    [
+     101.42,
+     575.1836799999999,
+     143.54000000000002,
+     581.6636799999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id146_2023p89_62_181_941.03_元.png",
+   "id": 146,
+   "question": "2023年末应收账款比上期末增长了百分之多少？"
+  },
+  {
+   "number": "23,619,117.01 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 89,
+   "boxes": [
+    [
+     307.01,
+     575.1836799999999,
+     349.13,
+     581.6636799999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id146_2023p89_23_619_117.01_元.png",
+   "id": 146,
+   "question": "2023年末应收账款比上期末增长了百分之多少？"
+  },
+  {
+   "number": "62,181,941.03",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 89,
+   "boxes": [
+    [
+     101.42,
+     575.1836799999999,
+     143.54000000000002,
+     581.6636799999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id146_2023p89_62_181_941.03.png",
+   "id": 146,
+   "question": "2023年末应收账款比上期末增长了百分之多少？"
+  },
+  {
+   "number": "23,619,117.01",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 89,
+   "boxes": [
+    [
+     307.01,
+     575.1836799999999,
+     349.13,
+     581.6636799999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id146_2023p89_23_619_117.01.png",
+   "id": 146,
+   "question": "2023年末应收账款比上期末增长了百分之多少？"
+  },
+  {
+   "number": "38,562,824.02 元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 146,
+   "question": "2023年末应收账款比上期末增长了百分之多少？"
+  },
+  {
+   "number": "38,562,824.02",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 146,
+   "question": "2023年末应收账款比上期末增长了百分之多少？"
+  },
+  {
+   "number": "163.27%",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 146,
+   "question": "2023年末应收账款比上期末增长了百分之多少？"
+  },
+  {
+   "number": "61.79亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 20,
+   "boxes": [
+    [
+     471.22,
+     375.69896,
+     521.14384,
+     386.25896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id147_2023p20_61.79亿元.png",
+   "id": 147,
+   "question": "2023年年报提出的2024年固定资产投资目标是多少？"
+  },
+  {
+   "number": "15%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 20,
+   "boxes": [
+    [
+     342.19,
+     375.69896,
+     358.03,
+     386.25896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id147_2023p20_15_.png",
+   "id": 147,
+   "question": "2023年年报提出的2024年固定资产投资目标是多少？"
+  },
+  {
+   "number": "3",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 29,
+   "boxes": [
+    [
+     520.66,
+     680.66896,
+     525.9399999999999,
+     691.2289599999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id148_2023p29_3.png",
+   "id": 148,
+   "question": "2023年度公司召开了几次股东大会？审议通过多少项议案？"
+  },
+  {
+   "number": "17",
+   "located": true,
+   "ambiguous": true,
+   "year": 2023,
+   "page": 29,
+   "boxes": [
+    [
+     252.17,
+     133.26895999999988,
+     262.60999999999996,
+     143.82895999999994
+    ],
+    [
+     331.51,
+     188.22895999999992,
+     347.23384,
+     198.78895999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id148_2023p29_17.png",
+   "id": 148,
+   "question": "2023年度公司召开了几次股东大会？审议通过多少项议案？"
+  },
+  {
+   "number": "42",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 22,
+   "boxes": [
+    [
+     312.17,
+     254.82895999999994,
+     322.61,
+     265.38896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id149_2023p22_42.png",
+   "id": 149,
+   "question": "2023年公司披露了多少份临时公告？"
+  },
+  {
+   "number": "4",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 22,
+   "boxes": [
+    [
+     312.17,
+     254.82895999999994,
+     317.45,
+     265.38896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id149_2023p22_4.png",
+   "id": 149,
+   "question": "2023年公司披露了多少份临时公告？"
+  },
+  {
+   "number": "10",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 2,
+   "boxes": [
+    [
+     494.74,
+     334.65896,
+     505.29999999999995,
+     345.21896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id150_2023p2_10.png",
+   "id": 150,
+   "question": "2023年度利润分配每10股派发现金红利多少元？"
+  },
+  {
+   "number": "308.76元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 2,
+   "boxes": [
+    [
+     137.42,
+     352.65896,
+     179.54,
+     363.21896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id150_2023p2_308.76元.png",
+   "id": 150,
+   "question": "2023年度利润分配每10股派发现金红利多少元？"
+  },
+  {
+   "number": "565.5亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 8,
+   "boxes": [
+    [
+     471.46,
+     492.35895999999997,
+     521.38,
+     502.91895999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id151_2023p8_565.5亿元.png",
+   "id": 151,
+   "question": "2023年度现金分红金额合计多少？"
+  },
+  {
+   "number": "2,409,693.12万元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 44,
+   "boxes": [
+    [
+     271.25,
+     77.68895999999995,
+     357.91,
+     88.24896000000001
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id152_2023p44_2_409_693.12万元.png",
+   "id": 152,
+   "question": "2023年末公司在贵州银行的存款余额是多少？"
+  },
+  {
+   "number": "54.07%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 51,
+   "boxes": [
+    [
+     363.07,
+     154.6289599999999,
+     389.46999999999997,
+     165.18895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id153_2023p51_54.07_.png",
+   "id": 153,
+   "question": "2023年末茅台集团持有上市公司多少比例的股份？"
+  },
+  {
+   "number": "474,608,713.10元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 108,
+   "boxes": [
+    [
+     160.1,
+     170.72899999999993,
+     223.1,
+     179.72899999999993
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id154_2023p108_474_608_713.10元.png",
+   "id": 154,
+   "question": "2023年其他业务收入是多少？"
+  },
+  {
+   "number": "74,734,071,550.75 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 5,
+   "boxes": [
+    [
+     101.66,
+     261.70364000000006,
+     169.72664,
+     269.74364
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id155_2023p5_74_734_071_550.75_元.png",
+   "id": 155,
+   "question": "2023年归母净利润和年度现金分红金额分别是多少？"
+  },
+  {
+   "number": "10",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 2,
+   "boxes": [
+    [
+     494.74,
+     334.65896,
+     505.29999999999995,
+     345.21896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id155_2023p2_10.png",
+   "id": 155,
+   "question": "2023年归母净利润和年度现金分红金额分别是多少？"
+  },
+  {
+   "number": "308.76元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 2,
+   "boxes": [
+    [
+     137.42,
+     352.65896,
+     179.54,
+     363.21896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id155_2023p2_308.76元.png",
+   "id": 155,
+   "question": "2023年归母净利润和年度现金分红金额分别是多少？"
+  },
+  {
+   "number": "125,619.78万",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 5,
+   "boxes": [
+    [
+     105.74,
+     446.88363999999996,
+     169.73839999999998,
+     454.92364
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id155_2023p5_125_619.78万.png",
+   "id": 155,
+   "question": "2023年归母净利润和年度现金分红金额分别是多少？"
+  },
+  {
+   "number": "38,786,363,272.80 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 2,
+   "boxes": [
+    [
+     179.42,
+     370.65896,
+     279.29,
+     381.21896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id155_2023p2_38_786_363_272.80_元.png",
+   "id": 155,
+   "question": "2023年归母净利润和年度现金分红金额分别是多少？"
+  },
+  {
+   "number": "126,589,066,691.89 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 9,
+   "boxes": [
+    [
+     142.82,
+     501.35895999999997,
+     237.51152,
+     511.91895999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id156_2023p9_126_589_066_691.89_元.png",
+   "id": 156,
+   "question": "2023年茅台酒营业收入是多少？酒类生产量是多少吨？"
+  },
+  {
+   "number": "1,265.89亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 156,
+   "question": "2023年茅台酒营业收入是多少？酒类生产量是多少吨？"
+  },
+  {
+   "number": "17.39%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 9,
+   "boxes": [
+    [
+     405.55,
+     501.35895999999997,
+     431.95,
+     511.91895999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id156_2023p9_17.39_.png",
+   "id": 156,
+   "question": "2023年茅台酒营业收入是多少？酒类生产量是多少吨？"
+  },
+  {
+   "number": "100,141.15",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 10,
+   "boxes": [
+    [
+     197.81,
+     180.06895999999995,
+     250.49,
+     190.62896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id156_2023p10_100_141.15.png",
+   "id": 156,
+   "question": "2023年茅台酒营业收入是多少？酒类生产量是多少吨？"
+  },
+  {
+   "number": "8.98%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 10,
+   "boxes": [
+    [
+     402.07,
+     180.06895999999995,
+     423.19,
+     190.62896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id156_2023p10_8.98_.png",
+   "id": 156,
+   "question": "2023年茅台酒营业收入是多少？酒类生产量是多少吨？"
+  },
+  {
+   "number": "57,204.11",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 15,
+   "boxes": [
+    [
+     143.18,
+     450.61899999999997,
+     183.76100000000002,
+     459.61899999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id156_2023p15_57_204.11.png",
+   "id": 156,
+   "question": "2023年茅台酒营业收入是多少？酒类生产量是多少吨？"
+  },
+  {
+   "number": "42,937.04",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 15,
+   "boxes": [
+    [
+     143.18,
+     491.89899999999994,
+     183.8,
+     500.89899999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id156_2023p15_42_937.04.png",
+   "id": 156,
+   "question": "2023年茅台酒营业收入是多少？酒类生产量是多少吨？"
+  },
+  {
+   "number": "800",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 11,
+   "boxes": [
+    [
+     518.5,
+     606.11896,
+     534.3399999999999,
+     616.67896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id157_2023p11_800.png",
+   "id": 157,
+   "question": "2023年研发人员总数多少？其中30岁以下的有多少人？"
+  },
+  {
+   "number": "2.40%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 11,
+   "boxes": [
+    [
+     513.22,
+     620.30896,
+     534.34,
+     630.86896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id157_2023p11_2.40_.png",
+   "id": 157,
+   "question": "2023年研发人员总数多少？其中30岁以下的有多少人？"
+  },
+  {
+   "number": "30",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 12,
+   "boxes": [
+    [
+     87.384,
+     77.68895999999995,
+     97.944,
+     88.24896000000001
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id157_2023p12_30.png",
+   "id": 157,
+   "question": "2023年研发人员总数多少？其中30岁以下的有多少人？"
+  },
+  {
+   "number": "154",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 12,
+   "boxes": [
+    [
+     518.5,
+     77.68895999999995,
+     534.3399999999999,
+     88.24896000000001
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id157_2023p12_154.png",
+   "id": 157,
+   "question": "2023年研发人员总数多少？其中30岁以下的有多少人？"
+  },
+  {
+   "number": "40",
+   "located": true,
+   "ambiguous": true,
+   "year": 2023,
+   "page": 12,
+   "boxes": [
+    [
+     103.22,
+     91.8689599999999,
+     113.78,
+     102.42895999999996
+    ],
+    [
+     103.22,
+     91.8689599999999,
+     113.78,
+     102.42895999999996
+    ],
+    [
+     87.384,
+     106.02895999999987,
+     97.944,
+     116.58895999999993
+    ],
+    [
+     87.384,
+     106.02895999999987,
+     97.944,
+     116.58895999999993
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id157_2023p12_40.png",
+   "id": 157,
+   "question": "2023年研发人员总数多少？其中30岁以下的有多少人？"
+  },
+  {
+   "number": "422",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 12,
+   "boxes": [
+    [
+     518.5,
+     91.8689599999999,
+     534.3399999999999,
+     102.42895999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id157_2023p12_422.png",
+   "id": 157,
+   "question": "2023年研发人员总数多少？其中30岁以下的有多少人？"
+  },
+  {
+   "number": "50",
+   "located": true,
+   "ambiguous": true,
+   "year": 2023,
+   "page": 11,
+   "boxes": [
+    [
+     313.25,
+     132.18895999999995,
+     328.97384,
+     142.74896
+    ],
+    [
+     323.71,
+     254.82895999999994,
+     339.54999999999995,
+     265.38896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id157_2023p11_50.png",
+   "id": 157,
+   "question": "2023年研发人员总数多少？其中30岁以下的有多少人？"
+  },
+  {
+   "number": "157",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 12,
+   "boxes": [
+    [
+     518.5,
+     106.02895999999987,
+     534.3399999999999,
+     116.58895999999993
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id157_2023p12_157.png",
+   "id": 157,
+   "question": "2023年研发人员总数多少？其中30岁以下的有多少人？"
+  },
+  {
+   "number": "60",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 12,
+   "boxes": [
+    [
+     87.384,
+     134.22895999999992,
+     97.944,
+     144.78895999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id157_2023p12_60.png",
+   "id": 157,
+   "question": "2023年研发人员总数多少？其中30岁以下的有多少人？"
+  },
+  {
+   "number": "52",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 12,
+   "boxes": [
+    [
+     523.66,
+     120.06895999999995,
+     534.2199999999999,
+     130.62896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id157_2023p12_52.png",
+   "id": 157,
+   "question": "2023年研发人员总数多少？其中30岁以下的有多少人？"
+  },
+  {
+   "number": "15",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 12,
+   "boxes": [
+    [
+     523.66,
+     134.22895999999992,
+     534.2199999999999,
+     144.78895999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id157_2023p12_15.png",
+   "id": 157,
+   "question": "2023年研发人员总数多少？其中30岁以下的有多少人？"
+  },
+  {
+   "number": "46,435,185,061.53 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 94,
+   "boxes": [
+    [
+     242.45,
+     204.21367999999995,
+     297.53000000000003,
+     210.69367999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id158_2023p94_46_435_185_061.53_元.png",
+   "id": 158,
+   "question": "2023年末存货账面价值多少？其中自制半成品余额多少？"
+  },
+  {
+   "number": "46,436,469,046.36 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 94,
+   "boxes": [
+    [
+     119.42,
+     204.21367999999995,
+     174.50000000000003,
+     210.69367999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id158_2023p94_46_436_469_046.36_元.png",
+   "id": 158,
+   "question": "2023年末存货账面价值多少？其中自制半成品余额多少？"
+  },
+  {
+   "number": "1,283,984.83 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 94,
+   "boxes": [
+    [
+     192.41,
+     177.45367999999996,
+     231.29000000000002,
+     183.93367999999998
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id158_2023p94_1_283_984.83_元.png",
+   "id": 158,
+   "question": "2023年末存货账面价值多少？其中自制半成品余额多少？"
+  },
+  {
+   "number": "18,708,022,801.32 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 94,
+   "boxes": [
+    [
+     119.42,
+     195.33367999999996,
+     174.50000000000003,
+     201.81367999999998
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id158_2023p94_18_708_022_801.32_元.png",
+   "id": 158,
+   "question": "2023年末存货账面价值多少？其中自制半成品余额多少？"
+  },
+  {
+   "number": "2,409,693.12 万元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 135,
+   "boxes": [
+    [
+     260.69,
+     441.83896,
+     347.35,
+     452.39896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id160_2023p135_2_409_693.12_万元.png",
+   "id": 160,
+   "question": "2023年末公司在贵州银行的存款余额多少？茅台集团持股比例多少？"
+  },
+  {
+   "number": "240.97 亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 160,
+   "question": "2023年末公司在贵州银行的存款余额多少？茅台集团持股比例多少？"
+  },
+  {
+   "number": "65,342.99 万元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 135,
+   "boxes": [
+    [
+     431.71,
+     441.83896,
+     502.54384000000005,
+     452.39896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id160_2023p135_65_342.99_万元.png",
+   "id": 160,
+   "question": "2023年末公司在贵州银行的存款余额多少？茅台集团持股比例多少？"
+  },
+  {
+   "number": "2",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 44,
+   "boxes": [
+    [
+     89.904,
+     239.58895999999993,
+     95.184,
+     250.14896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id160_2023p44_2.png",
+   "id": 160,
+   "question": "2023年末公司在贵州银行的存款余额多少？茅台集团持股比例多少？"
+  },
+  {
+   "number": "679,211,576",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 51,
+   "boxes": [
+    [
+     289.01,
+     154.6289599999999,
+     346.85767999999996,
+     165.18895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id160_2023p51_679_211_576.png",
+   "id": 160,
+   "question": "2023年末公司在贵州银行的存款余额多少？茅台集团持股比例多少？"
+  },
+  {
+   "number": "54.07%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 51,
+   "boxes": [
+    [
+     363.07,
+     154.6289599999999,
+     389.46999999999997,
+     165.18895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id160_2023p51_54.07_.png",
+   "id": 160,
+   "question": "2023年末公司在贵州银行的存款余额多少？茅台集团持股比例多少？"
+  },
+  {
+   "number": "12%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 135,
+   "boxes": [
+    [
+     474.22,
+     190.7489599999999,
+     484.78,
+     201.30895999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id160_2023p135_12_.png",
+   "id": 160,
+   "question": "2023年末公司在贵州银行的存款余额多少？茅台集团持股比例多少？"
+  },
+  {
+   "number": "6,949,663,893.87 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 105,
+   "boxes": [
+    [
+     265.37,
+     144.54895999999997,
+     349.50151999999997,
+     155.10896000000002
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id161_2023p105_6_949_663_893.87_元.png",
+   "id": 161,
+   "question": "2023年末应交税费合计多少？2023年全年消费税发生额多少？"
+  },
+  {
+   "number": "17,625,306,476.94 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 109,
+   "boxes": [
+    [
+     260.57,
+     704.54896,
+     349.98152,
+     715.1089599999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id161_2023p109_17_625_306_476.94_元.png",
+   "id": 161,
+   "question": "2023年末应交税费合计多少？2023年全年消费税发生额多少？"
+  },
+  {
+   "number": "474,608,713.10 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 108,
+   "boxes": [
+    [
+     160.1,
+     170.72899999999993,
+     223.1,
+     179.72899999999993
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id162_2023p108_474_608_713.10_元.png",
+   "id": 162,
+   "question": "2023年其他业务收入多少？年末已签订未履约合同对应的收入金额多少？"
+  },
+  {
+   "number": "14,125,755,802.29 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 109,
+   "boxes": [
+    [
+     63.864,
+     438.95896,
+     166.34,
+     449.51896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id162_2023p109_14_125_755_802.29_元.png",
+   "id": 162,
+   "question": "2023年其他业务收入多少？年末已签订未履约合同对应的收入金额多少？"
+  },
+  {
+   "number": "141",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 141,
+   "boxes": [
+    [
+     293.21,
+     772.146,
+     306.893,
+     781.146
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id162_2023p141_141.png",
+   "id": 162,
+   "question": "2023年其他业务收入多少？年末已签订未履约合同对应的收入金额多少？"
+  },
+  {
+   "number": "142",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 142,
+   "boxes": [
+    [
+     293.21,
+     772.146,
+     306.893,
+     781.146
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id162_2023p142_142.png",
+   "id": 162,
+   "question": "2023年其他业务收入多少？年末已签订未履约合同对应的收入金额多少？"
+  },
+  {
+   "number": "493,836,527.85 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 141,
+   "boxes": [
+    [
+     201.05,
+     551.419,
+     264.05,
+     560.419
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id162_2023p141_493_836_527.85_元.png",
+   "id": 162,
+   "question": "2023年其他业务收入多少？年末已签订未履约合同对应的收入金额多少？"
+  },
+  {
+   "number": "21,950,467.31 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 142,
+   "boxes": [
+    [
+     89.904,
+     269.2589599999999,
+     171.38,
+     279.81895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id162_2023p142_21_950_467.31_元.png",
+   "id": 162,
+   "question": "2023年其他业务收入多少？年末已签订未履约合同对应的收入金额多少？"
+  },
+  {
+   "number": "45,775,517,043.29元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 6,
+   "boxes": [
+    [
+     191.57,
+     352.19899999999996,
+     268.115,
+     361.19899999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id163_2024p6_45_775_517_043.29元.png",
+   "id": 163,
+   "question": "2024年第一季度茅台营业收入是多少？"
+  },
+  {
+   "number": "25,400,594,303.11元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 6,
+   "boxes": [
+    [
+     459.46,
+     370.19899999999996,
+     536.005,
+     379.19899999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id164_2024p6_25_400_594_303.11元.png",
+   "id": 164,
+   "question": "2024年第四季度归属于上市公司股东的净利润有多少？"
+  },
+  {
+   "number": "-12,759,555.80元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 142,
+   "boxes": [
+    [
+     336.43,
+     544.1989599999999,
+     410.11767999999995,
+     554.75896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id165_2024p142_-12_759_555.80元.png",
+   "id": 165,
+   "question": "2024年非经常性损益合计是多少？"
+  },
+  {
+   "number": "5,639,300,059.49元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     176.66,
+     184.8689599999999,
+     273.77,
+     195.42895999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id166_2024p11_5_639_300_059.49元.png",
+   "id": 166,
+   "question": "2024年销售费用是多少元？"
+  },
+  {
+   "number": "695,376,735.81元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     452.5,
+     338.37895999999995,
+     526.18768,
+     348.93895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id167_2024p11_695_376_735.81元.png",
+   "id": 167,
+   "question": "2024年研发投入合计多少？"
+  },
+  {
+   "number": "801",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     510.34,
+     443.63896,
+     526.18,
+     454.19896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id168_2024p11_801.png",
+   "id": 168,
+   "question": "2024年公司研发人员数量是多少？"
+  },
+  {
+   "number": "4,678,712,053.56元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 12,
+   "boxes": [
+    [
+     296.09,
+     293.279,
+     368.08099999999996,
+     302.279
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id169_2024p12_4_678_712_053.56元.png",
+   "id": 169,
+   "question": "2024年购建固定资产、无形资产和其他长期资产支付的现金是多少？"
+  },
+  {
+   "number": "74,911,586,867.82元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 108,
+   "boxes": [
+    [
+     290.69,
+     740.0649599999999,
+     380.10152,
+     750.62496
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id170_2024p108_74_911_586_867.82元.png",
+   "id": 170,
+   "question": "2024年直销渠道营业收入多少？"
+  },
+  {
+   "number": "5,203,847,956.32元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 108,
+   "boxes": [
+    [
+     295.97,
+     697.7089599999999,
+     380.10152,
+     708.26896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id171_2024p108_5_203_847_956.32元.png",
+   "id": 171,
+   "question": "2024年国外地区营业收入是多少？"
+  },
+  {
+   "number": "12",
+   "located": true,
+   "ambiguous": true,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     681.1,
+     173.10896000000008,
+     691.54,
+     183.66896000000008
+    ],
+    [
+     683.98,
+     213.93896000000007,
+     694.42,
+     224.49896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id173_2024p19_12.png",
+   "id": 173,
+   "question": "截至2024年末茅台金石基金累计投资金额是多少？"
+  },
+  {
+   "number": "31",
+   "located": true,
+   "ambiguous": true,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     707.38,
+     173.10896000000008,
+     717.8199999999999,
+     183.66896000000008
+    ],
+    [
+     710.5,
+     213.93896000000007,
+     721.06,
+     224.49896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id173_2024p19_31.png",
+   "id": 173,
+   "question": "截至2024年末茅台金石基金累计投资金额是多少？"
+  },
+  {
+   "number": "3",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     305.69,
+     227.61896000000007,
+     310.96999999999997,
+     238.17896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id173_2024p19_3.png",
+   "id": 173,
+   "question": "截至2024年末茅台金石基金累计投资金额是多少？"
+  },
+  {
+   "number": "1",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     77.28,
+     159.42896000000007,
+     82.56,
+     169.98896000000008
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id173_2024p19_1.png",
+   "id": 173,
+   "question": "截至2024年末茅台金石基金累计投资金额是多少？"
+  },
+  {
+   "number": "8.29亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     481.63,
+     227.61896000000007,
+     526.27384,
+     238.17896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id173_2024p19_8.29亿元.png",
+   "id": 173,
+   "question": "截至2024年末茅台金石基金累计投资金额是多少？"
+  },
+  {
+   "number": "9%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 21,
+   "boxes": [
+    [
+     346.39,
+     383.37895999999995,
+     356.95,
+     393.93895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id174_2024p21_9_.png",
+   "id": 174,
+   "question": "2024年年报提出的2025年经营目标是什么？"
+  },
+  {
+   "number": "47.11亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 21,
+   "boxes": [
+    [
+     471.34,
+     383.37895999999995,
+     521.26,
+     393.93895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id174_2024p21_47.11亿元.png",
+   "id": 174,
+   "question": "2024年年报提出的2025年经营目标是什么？"
+  },
+  {
+   "number": "680.93",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 26,
+   "boxes": [
+    [
+     687.34,
+     247.17896000000007,
+     719.02,
+     257.7389600000001
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id175_2024p26_680.93.png",
+   "id": 175,
+   "question": "2024年董事、监事和高级管理人员从公司获得的税前报酬总额合计多少？"
+  },
+  {
+   "number": "86,228,146,421.62元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 5,
+   "boxes": [
+    [
+     224.21,
+     285.1189999999999,
+     300.755,
+     294.1189999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id176_2024p5_86_228_146_421.62元.png",
+   "id": 176,
+   "question": "2024年合并报表中归属于上市公司股东的净利润是多少？"
+  },
+  {
+   "number": "190,008,934,772.95元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     436.68,
+     691.263,
+     531.0584,
+     701.713
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id177_2025p33_190_008_934_772.95元.png",
+   "id": 177,
+   "question": "最近三个会计年度累计现金分红金额是多少？"
+  },
+  {
+   "number": "7000",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 37,
+   "boxes": [
+    [
+     80.664,
+     264.81895999999995,
+     101.784,
+     275.37896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id178_2024p37_7000.png",
+   "id": 178,
+   "question": "2024年茅台本部7000t/d污水处理厂的COD排放总量是多少？"
+  },
+  {
+   "number": "14.858",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 37,
+   "boxes": [
+    [
+     181.82,
+     278.08664,
+     214.94,
+     289.12663999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id178_2024p37_14.858.png",
+   "id": 178,
+   "question": "2024年茅台本部7000t/d污水处理厂的COD排放总量是多少？"
+  },
+  {
+   "number": "300",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 51,
+   "boxes": [
+    [
+     87.144,
+     479.75896,
+     102.98400000000001,
+     490.31896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id179_2024p51_300.png",
+   "id": 179,
+   "question": "2024年末华泰柏瑞沪深300ETF持有茅台多少股？"
+  },
+  {
+   "number": "10,862,818",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 51,
+   "boxes": [
+    [
+     294.29,
+     98.70895999999993,
+     346.97384,
+     109.26895999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id179_2024p51_10_862_818.png",
+   "id": 179,
+   "question": "2024年末华泰柏瑞沪深300ETF持有茅台多少股？"
+  },
+  {
+   "number": "298,944,579,918.70元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 5,
+   "boxes": [
+    [
+     219.77,
+     434.87899999999996,
+     300.752,
+     443.87899999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id180_2024p5_298_944_579_918.70元.png",
+   "id": 180,
+   "question": "2024年末茅台资产总计是多少？"
+  },
+  {
+   "number": "23,586,531,287.83元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 93,
+   "boxes": [
+    [
+     156.74,
+     210.21367999999995,
+     211.82000000000005,
+     216.69367999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id181_2024p93_23_586_531_287.83元.png",
+   "id": 181,
+   "question": "2024年末存货中自制半成品的余额是多少？"
+  },
+  {
+   "number": "1,720,448,637.98元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 98,
+   "boxes": [
+    [
+     465.7,
+     505.37595999999996,
+     525.7264,
+     512.93596
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id182_2024p98_1_720_448_637.98元.png",
+   "id": 182,
+   "question": "2024年固定资产本期计提折旧多少？"
+  },
+  {
+   "number": "7,717,686,541.38元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 105,
+   "boxes": [
+    [
+     295.13,
+     561.83896,
+     379.26151999999996,
+     572.39896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id183_2024p105_7_717_686_541.38元.png",
+   "id": 183,
+   "question": "2024年末应交税费合计多少？"
+  },
+  {
+   "number": "4,539,419.20元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 122,
+   "boxes": [
+    [
+     312.05,
+     306.2189599999999,
+     375.17768,
+     316.77896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id184_2024p122_4_539_419.20元.png",
+   "id": 184,
+   "question": "2024年计入当期损益的政府补助是多少？"
+  },
+  {
+   "number": "45,775,517,043.29 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 6,
+   "boxes": [
+    [
+     191.57,
+     352.19899999999996,
+     268.115,
+     361.19899999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id185_2024p6_45_775_517_043.29_元.png",
+   "id": 185,
+   "question": "2024年第一季度营业收入和全年归母净利润分别是多少？"
+  },
+  {
+   "number": "86,228,146,421.62 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 108,
+   "boxes": [
+    [
+     303.05,
+     263.2589599999999,
+     392.46152,
+     273.81895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id185_2024p108_86_228_146_421.62_元.png",
+   "id": 185,
+   "question": "2024年第一季度营业收入和全年归母净利润分别是多少？"
+  },
+  {
+   "number": "695,376,735.81 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     452.5,
+     338.37895999999995,
+     526.18768,
+     348.93895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id186_2024p11_695_376_735.81_元.png",
+   "id": 186,
+   "question": "2024年研发投入合计多少？购建固定资产等长期资产支付的现金多少？"
+  },
+  {
+   "number": "593,779,816.96 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     452.5,
+     310.05895999999996,
+     526.18768,
+     320.61896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id186_2024p11_593_779_816.96_元.png",
+   "id": 186,
+   "question": "2024年研发投入合计多少？购建固定资产等长期资产支付的现金多少？"
+  },
+  {
+   "number": "101,596,918.85 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     452.5,
+     324.2189599999999,
+     526.18768,
+     334.77896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id186_2024p11_101_596_918.85_元.png",
+   "id": 186,
+   "question": "2024年研发投入合计多少？购建固定资产等长期资产支付的现金多少？"
+  },
+  {
+   "number": "0.41%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     505.06,
+     352.41895999999997,
+     526.18,
+     362.97896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id186_2024p11_0.41_.png",
+   "id": 186,
+   "question": "2024年研发投入合计多少？购建固定资产等长期资产支付的现金多少？"
+  },
+  {
+   "number": "14.61%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     499.78,
+     366.57896,
+     526.18,
+     377.13896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id186_2024p11_14.61_.png",
+   "id": 186,
+   "question": "2024年研发投入合计多少？购建固定资产等长期资产支付的现金多少？"
+  },
+  {
+   "number": "4,678,712,053.56 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 12,
+   "boxes": [
+    [
+     296.09,
+     293.279,
+     368.08099999999996,
+     302.279
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id186_2024p12_4_678_712_053.56_元.png",
+   "id": 186,
+   "question": "2024年研发投入合计多少？购建固定资产等长期资产支付的现金多少？"
+  },
+  {
+   "number": "2,619,755,888.79 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 12,
+   "boxes": [
+    [
+     388.15,
+     293.279,
+     460.14099999999996,
+     302.279
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id186_2024p12_2_619_755_888.79_元.png",
+   "id": 186,
+   "question": "2024年研发投入合计多少？购建固定资产等长期资产支付的现金多少？"
+  },
+  {
+   "number": "78.59%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 12,
+   "boxes": [
+    [
+     503.38,
+     293.279,
+     525.979,
+     302.279
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id186_2024p12_78.59_.png",
+   "id": 186,
+   "question": "2024年研发投入合计多少？购建固定资产等长期资产支付的现金多少？"
+  },
+  {
+   "number": "1",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     77.28,
+     159.42896000000007,
+     82.56,
+     169.98896000000008
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id188_2024p19_1.png",
+   "id": 188,
+   "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？"
+  },
+  {
+   "number": "12",
+   "located": true,
+   "ambiguous": true,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     681.1,
+     173.10896000000008,
+     691.54,
+     183.66896000000008
+    ],
+    [
+     683.98,
+     213.93896000000007,
+     694.42,
+     224.49896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id188_2024p19_12.png",
+   "id": 188,
+   "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？"
+  },
+  {
+   "number": "31",
+   "located": true,
+   "ambiguous": true,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     707.38,
+     173.10896000000008,
+     717.8199999999999,
+     183.66896000000008
+    ],
+    [
+     710.5,
+     213.93896000000007,
+     721.06,
+     224.49896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id188_2024p19_31.png",
+   "id": 188,
+   "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？"
+  },
+  {
+   "number": "8",
+   "located": true,
+   "ambiguous": true,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     205.94,
+     173.10896000000008,
+     211.22,
+     183.66896000000008
+    ],
+    [
+     205.94,
+     173.10896000000008,
+     211.22,
+     183.66896000000008
+    ],
+    [
+     206.54,
+     213.93896000000007,
+     211.82,
+     224.49896000000007
+    ],
+    [
+     206.54,
+     213.93896000000007,
+     211.82,
+     224.49896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id188_2024p19_8.png",
+   "id": 188,
+   "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？"
+  },
+  {
+   "number": "2",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     77.28,
+     200.37896000000006,
+     82.56,
+     210.93896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id188_2024p19_2.png",
+   "id": 188,
+   "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？"
+  },
+  {
+   "number": "25",
+   "located": true,
+   "ambiguous": true,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     376.61,
+     173.10896000000008,
+     387.05,
+     183.66896000000008
+    ],
+    [
+     378.29,
+     213.93896000000007,
+     388.84999999999997,
+     224.49896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id188_2024p19_25.png",
+   "id": 188,
+   "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？"
+  },
+  {
+   "number": "22.04亿元",
+   "located": true,
+   "ambiguous": true,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     560.35,
+     173.10896000000008,
+     610.15384,
+     183.66896000000008
+    ],
+    [
+     200.78,
+     186.69896000000006,
+     250.7,
+     197.25896000000006
+    ],
+    [
+     562.51,
+     213.93896000000007,
+     612.6699999999998,
+     224.49896000000007
+    ],
+    [
+     200.78,
+     227.61896000000007,
+     250.70383999999999,
+     238.17896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id188_2024p19_22.04亿元.png",
+   "id": 188,
+   "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？"
+  },
+  {
+   "number": "3",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     305.69,
+     227.61896000000007,
+     310.96999999999997,
+     238.17896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id188_2024p19_3.png",
+   "id": 188,
+   "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？"
+  },
+  {
+   "number": "8.29亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     481.63,
+     227.61896000000007,
+     526.27384,
+     238.17896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id188_2024p19_8.29亿元.png",
+   "id": 188,
+   "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？"
+  },
+  {
+   "number": "9%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 21,
+   "boxes": [
+    [
+     346.39,
+     383.37895999999995,
+     356.95,
+     393.93895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id188_2024p21_9_.png",
+   "id": 188,
+   "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？"
+  },
+  {
+   "number": "47.11亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 21,
+   "boxes": [
+    [
+     471.34,
+     383.37895999999995,
+     521.26,
+     393.93895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id188_2024p21_47.11亿元.png",
+   "id": 188,
+   "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？"
+  },
+  {
+   "number": "54,343,285,157.47 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 93,
+   "boxes": [
+    [
+     284.45,
+     219.09367999999995,
+     339.53000000000003,
+     225.57367999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id189_2024p93_54_343_285_157.47_元.png",
+   "id": 189,
+   "question": "2024年末存货账面价值多少？其中自制半成品多少？"
+  },
+  {
+   "number": "54,344,569,142.30 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 93,
+   "boxes": [
+    [
+     156.74,
+     219.09367999999995,
+     211.82000000000005,
+     225.57367999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id189_2024p93_54_344_569_142.30_元.png",
+   "id": 189,
+   "question": "2024年末存货账面价值多少？其中自制半成品多少？"
+  },
+  {
+   "number": "1,283,984.83 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 93,
+   "boxes": [
+    [
+     229.25,
+     192.33367999999996,
+     268.13,
+     198.81367999999998
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id189_2024p93_1_283_984.83_元.png",
+   "id": 189,
+   "question": "2024年末存货账面价值多少？其中自制半成品多少？"
+  },
+  {
+   "number": "23,586,531,287.83 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 93,
+   "boxes": [
+    [
+     156.74,
+     210.21367999999995,
+     211.82000000000005,
+     216.69367999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id189_2024p93_23_586_531_287.83_元.png",
+   "id": 189,
+   "question": "2024年末存货账面价值多少？其中自制半成品多少？"
+  },
+  {
+   "number": "1,720,448,637.98 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 98,
+   "boxes": [
+    [
+     465.7,
+     505.37595999999996,
+     525.7264,
+     512.93596
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id190_2024p98_1_720_448_637.98_元.png",
+   "id": 190,
+   "question": "2024年固定资产计提折旧多少？年末应交税费合计多少？"
+  },
+  {
+   "number": "2",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 98,
+   "boxes": [
+    [
+     110.78,
+     324.27595999999994,
+     114.56,
+     331.83596
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id190_2024p98_2.png",
+   "id": 190,
+   "question": "2024年固定资产计提折旧多少？年末应交税费合计多少？"
+  },
+  {
+   "number": "7,717,686,541.38 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 105,
+   "boxes": [
+    [
+     295.13,
+     561.83896,
+     379.26151999999996,
+     572.39896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id190_2024p105_7_717_686_541.38_元.png",
+   "id": 190,
+   "question": "2024年固定资产计提折旧多少？年末应交税费合计多少？"
+  },
+  {
+   "number": "4,305,149,270.50 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 62,
+   "boxes": [
+    [
+     323.71,
+     351.45896,
+     407.84151999999995,
+     362.01896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id190_2024p62_4_305_149_270.50_元.png",
+   "id": 190,
+   "question": "2024年固定资产计提折旧多少？年末应交税费合计多少？"
+  },
+  {
+   "number": "81.84万元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 191,
+   "question": "2024年游亚林从公司获得的税前报酬是多少？全体董监高报酬合计多少？"
+  },
+  {
+   "number": "680.93万元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 191,
+   "question": "2024年游亚林从公司获得的税前报酬是多少？全体董监高报酬合计多少？"
+  },
+  {
+   "number": "50,600,957,885.78元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 7,
+   "boxes": [
+    [
+     193.08,
+     352.19,
+     269.4544500000001,
+     361.19
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id192_2025p7_50_600_957_885.78元.png",
+   "id": 192,
+   "question": "2025年第一季度茅台营业收入是多少？"
+  },
+  {
+   "number": "26,959,446.43元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 7,
+   "boxes": [
+    [
+     275.52,
+     745.91,
+     333.89594999999974,
+     754.91
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id193_2025p7_26_959_446.43元.png",
+   "id": 193,
+   "question": "2025年非经常性损益合计是多少？"
+  },
+  {
+   "number": "66",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 8,
+   "boxes": [
+    [
+     228.959,
+     481.743,
+     239.465,
+     492.19300000000004
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id194_2025p8_66.png",
+   "id": 194,
+   "question": "2025年茅台营销网络覆盖多少个国家和地区？"
+  },
+  {
+   "number": "500",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 9,
+   "boxes": [
+    [
+     307.08,
+     342.54299999999995,
+     322.7441,
+     352.993
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id195_2025p9_500.png",
+   "id": 195,
+   "question": "Brand Finance 2025年榜单上茅台的品牌价值是多少？"
+  },
+  {
+   "number": "583.80 亿",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 195,
+   "question": "Brand Finance 2025年榜单上茅台的品牌价值是多少？"
+  },
+  {
+   "number": "650.33亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 196,
+   "question": "2025年度累计派发现金红利多少（含年度分红预案金额）？"
+  },
+  {
+   "number": "16,883,810.25万元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 54,
+   "boxes": [
+    [
+     197.4,
+     98.22199999999998,
+     289.20984999999996,
+     108.67199999999991
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id197_2025p54_16_883_810.25万元.png",
+   "id": 197,
+   "question": "2025年茅台营业收入是多少？"
+  },
+  {
+   "number": "168,838,102,514.79元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 61,
+   "boxes": [
+    [
+     331.559,
+     288.3030000000001,
+     425.93739999999997,
+     298.75300000000004
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id197_2025p61_168_838_102_514.79元.png",
+   "id": 197,
+   "question": "2025年茅台营业收入是多少？"
+  },
+  {
+   "number": "7,253,499,600.68元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 9,
+   "boxes": [
+    [
+     242.88,
+     582.0629999999999,
+     326.81929999999994,
+     592.5129999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id198_2025p9_7_253_499_600.68元.png",
+   "id": 198,
+   "question": "2025年销售费用同比增长百分之多少？"
+  },
+  {
+   "number": "5,639,300,059.49元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 9,
+   "boxes": [
+    [
+     355.2,
+     582.0629999999999,
+     439.13929999999993,
+     592.5129999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id198_2025p9_5_639_300_059.49元.png",
+   "id": 198,
+   "question": "2025年销售费用同比增长百分之多少？"
+  },
+  {
+   "number": "28.62%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 9,
+   "boxes": [
+    [
+     505.2,
+     582.0629999999999,
+     531.3032000000001,
+     592.5129999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id198_2025p9_28.62_.png",
+   "id": 198,
+   "question": "2025年销售费用同比增长百分之多少？"
+  },
+  {
+   "number": "1,704,578.78万元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 11,
+   "boxes": [
+    [
+     173.88,
+     449.822,
+     257.76985,
+     460.27200000000005
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id199_2025p11_1_704_578.78万元.png",
+   "id": 199,
+   "question": "2025年前五名客户销售额是多少万元？"
+  },
+  {
+   "number": "803,132,232.31元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 12,
+   "boxes": [
+    [
+     457.919,
+     405.90299999999996,
+     531.2989,
+     416.353
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id200_2025p12_803_132_232.31元.png",
+   "id": 200,
+   "question": "2025年研发投入合计多少元？"
+  },
+  {
+   "number": "806",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 12,
+   "boxes": [
+    [
+     515.759,
+     509.343,
+     531.4231000000001,
+     519.7930000000001
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id201_2025p12_806.png",
+   "id": 201,
+   "question": "2025年公司研发人员有多少名？"
+  },
+  {
+   "number": "51,690,610,946.50元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 56,
+   "boxes": [
+    [
+     321.12,
+     712.3820000000001,
+     410.21869999999996,
+     722.832
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id202_2025p56_51_690_610_946.50元.png",
+   "id": 202,
+   "question": "2025年末货币资金是多少？"
+  },
+  {
+   "number": "101,952,616.79元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 14,
+   "boxes": [
+    [
+     163.32,
+     715.6220000000001,
+     236.69989999999993,
+     726.072
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id203_2025p14_101_952_616.79元.png",
+   "id": 203,
+   "question": "2025年末茅台境外资产规模是多少？"
+  },
+  {
+   "number": "0.03%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 14,
+   "boxes": [
+    [
+     467.88,
+     715.6220000000001,
+     494.105,
+     726.072
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id203_2025p14_0.03_.png",
+   "id": 203,
+   "question": "2025年末茅台境外资产规模是多少？"
+  },
+  {
+   "number": "315,207.51",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 16,
+   "boxes": [
+    [
+     478.919,
+     92.46300000000008,
+     531.3004000000001,
+     102.91300000000001
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id204_2025p16_315_207.51.png",
+   "id": 204,
+   "question": "2025年末半成品酒（含基础酒）库存多少吨？"
+  },
+  {
+   "number": "58,473.16",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 16,
+   "boxes": [
+    [
+     151.68,
+     246.46899999999994,
+     192.17835000000005,
+     255.46899999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id205_2025p16_58_473.16.png",
+   "id": 205,
+   "question": "2025年茅台酒产量是多少吨？"
+  },
+  {
+   "number": "84,543,031,854.63元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 10,
+   "boxes": [
+    [
+     146.759,
+     559.202,
+     210.3577,
+     566.652
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id206_2025p10_84_543_031_854.63元.png",
+   "id": 206,
+   "question": "2025年直销渠道营业收入是多少？"
+  },
+  {
+   "number": "12",
+   "located": true,
+   "ambiguous": true,
+   "year": 2025,
+   "page": 20,
+   "boxes": [
+    [
+     670.44,
+     91.38299999999998,
+     680.8244000000001,
+     101.83300000000003
+    ],
+    [
+     673.32,
+     132.30299999999994,
+     683.7044000000001,
+     142.753
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id207_2025p20_12.png",
+   "id": 207,
+   "question": "截至2025年末茅台金石基金累计投资金额多少？"
+  },
+  {
+   "number": "31",
+   "located": true,
+   "ambiguous": true,
+   "year": 2025,
+   "page": 20,
+   "boxes": [
+    [
+     696.719,
+     91.38299999999998,
+     707.225,
+     101.83300000000003
+    ],
+    [
+     699.719,
+     132.30299999999994,
+     710.225,
+     142.753
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id207_2025p20_31.png",
+   "id": 207,
+   "question": "截至2025年末茅台金石基金累计投资金额多少？"
+  },
+  {
+   "number": "11",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 20,
+   "boxes": [
+    [
+     295.08,
+     146.70299999999997,
+     305.4644,
+     157.15300000000002
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id207_2025p20_11.png",
+   "id": 207,
+   "question": "截至2025年末茅台金石基金累计投资金额多少？"
+  },
+  {
+   "number": "2",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 20,
+   "boxes": [
+    [
+     77.28,
+     118.62199999999996,
+     82.505,
+     129.072
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id207_2025p20_2.png",
+   "id": 207,
+   "question": "截至2025年末茅台金石基金累计投资金额多少？"
+  },
+  {
+   "number": "21.43亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 20,
+   "boxes": [
+    [
+     476.28,
+     146.70299999999997,
+     525.9698500000001,
+     157.15300000000002
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id207_2025p20_21.43亿元.png",
+   "id": 207,
+   "question": "截至2025年末茅台金石基金累计投资金额多少？"
+  },
+  {
+   "number": "4,722,835.76万元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 20,
+   "boxes": [
+    [
+     711.6,
+     352.19,
+     765.5360999999998,
+     361.19
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id208_2025p20_4_722_835.76万元.png",
+   "id": 208,
+   "question": "2025年贵州茅台酒销售有限公司的净利润是多少？"
+  },
+  {
+   "number": "2",
+   "located": true,
+   "ambiguous": true,
+   "year": 2025,
+   "page": 23,
+   "boxes": [
+    [
+     163.92,
+     708.422,
+     169.14499999999998,
+     718.872
+    ],
+    [
+     110.88,
+     735.663,
+     116.10499999999999,
+     746.1129999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id209_2025p23_2.png",
+   "id": 209,
+   "question": "2025年度公司召开了几次股东会？审议通过多少项议案？"
+  },
+  {
+   "number": "15",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 23,
+   "boxes": [
+    [
+     391.32,
+     708.422,
+     401.7044,
+     718.872
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id209_2025p23_15.png",
+   "id": 209,
+   "question": "2025年度公司召开了几次股东会？审议通过多少项议案？"
+  },
+  {
+   "number": "82,320,067,101.68元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 6,
+   "boxes": [
+    [
+     232.2,
+     292.18999999999994,
+     308.57444999999984,
+     301.18999999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id210_2025p6_82_320_067_101.68元.png",
+   "id": 210,
+   "question": "2025年合并报表中归属于上市公司股东的净利润是多少？"
+  },
+  {
+   "number": "3,927,585",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 136,
+   "boxes": [
+    [
+     269.4,
+     654.663,
+     316.50169999999997,
+     665.1129999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id211_2025p136_3_927_585.png",
+   "id": 211,
+   "question": "2025年公司累计回购并注销了多少股？"
+  },
+  {
+   "number": "1,256,197,800",
+   "located": true,
+   "ambiguous": true,
+   "year": 2025,
+   "page": 47,
+   "boxes": [
+    [
+     112.44,
+     469.069,
+     170.81595000000007,
+     478.069
+    ],
+    [
+     112.44,
+     492.95,
+     170.81595000000007,
+     501.95
+    ],
+    [
+     112.44,
+     570.829,
+     170.81595000000007,
+     579.829
+    ],
+    [
+     89.88,
+     663.063,
+     157.9802,
+     673.5129999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id211_2025p47_1_256_197_800.png",
+   "id": 211,
+   "question": "2025年公司累计回购并注销了多少股？"
+  },
+  {
+   "number": "1,252,270,215",
+   "located": true,
+   "ambiguous": true,
+   "year": 2025,
+   "page": 47,
+   "boxes": [
+    [
+     438.48,
+     469.069,
+     496.8559499999998,
+     478.069
+    ],
+    [
+     438.48,
+     492.95,
+     496.8559499999998,
+     501.95
+    ],
+    [
+     438.48,
+     570.829,
+     496.8559499999998,
+     579.829
+    ],
+    [
+     205.32,
+     663.063,
+     273.42019999999997,
+     673.5129999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id211_2025p47_1_252_270_215.png",
+   "id": 211,
+   "question": "2025年公司累计回购并注销了多少股？"
+  },
+  {
+   "number": "7,697,169,830.69元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 104,
+   "boxes": [
+    [
+     293.28,
+     309.422,
+     377.09899999999993,
+     319.87199999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id212_2025p104_7_697_169_830.69元.png",
+   "id": 212,
+   "question": "2025年末应交税费合计多少？"
+  },
+  {
+   "number": "30亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 213,
+   "question": "2025年控股股东增持计划的增持金额是多少？"
+  },
+  {
+   "number": "33亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 137,
+   "boxes": [
+    [
+     218.4,
+     145.86300000000006,
+     252.48985,
+     156.313
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id213_2025p137_33亿元.png",
+   "id": 213,
+   "question": "2025年控股股东增持计划的增持金额是多少？"
+  },
+  {
+   "number": "3,000,089,293.91元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 137,
+   "boxes": [
+    [
+     236.159,
+     173.10300000000007,
+     333.25,
+     183.553
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id213_2025p137_3_000_089_293.91元.png",
+   "id": 213,
+   "question": "2025年控股股东增持计划的增持金额是多少？"
+  },
+  {
+   "number": "10",
+   "located": true,
+   "ambiguous": true,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     444.24,
+     91.38300000000004,
+     454.62440000000004,
+     101.83299999999997
+    ],
+    [
+     102.959,
+     418.743,
+     113.3434,
+     429.19300000000004
+    ],
+    [
+     244.32,
+     597.543,
+     254.825,
+     607.9929999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p33_10.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "279.93元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     499.919,
+     418.743,
+     531.3032000000001,
+     429.19300000000004
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p33_279.93元.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "35,032,568,759.73元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     442.2,
+     436.263,
+     531.2987,
+     446.713
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p33_35_032_568_759.73元.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "6,120,088,960.04元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     447.48,
+     509.2219999999999,
+     531.2990000000001,
+     519.672
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p33_6_120_088_960.04元.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "71,153,295,260.53元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     442.2,
+     526.7429999999999,
+     531.3019,
+     537.193
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p33_71_153_295_260.53元.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "86.43%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     505.2,
+     549.3029999999999,
+     531.4250000000001,
+     559.7529999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p33_86.43_.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "239.57元",
+   "located": true,
+   "ambiguous": true,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     89.88,
+     105.06299999999999,
+     134.409,
+     115.51299999999992
+    ],
+    [
+     332.759,
+     597.543,
+     376.93,
+     607.9929999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p33_239.57元.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "300.01亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "12",
+   "located": true,
+   "ambiguous": true,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     444.24,
+     118.62200000000007,
+     454.62440000000004,
+     129.072
+    ],
+    [
+     255.24,
+     611.1030000000001,
+     265.62440000000004,
+     621.553
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p33_12.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "19",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     281.4,
+     611.1030000000001,
+     291.7844,
+     621.553
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p33_19.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "3,927,585",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 136,
+   "boxes": [
+    [
+     269.4,
+     654.663,
+     316.50169999999997,
+     665.1129999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p136_3_927_585.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "5,999,985,966.95元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     447.24,
+     708.663,
+     531.0590000000001,
+     719.1129999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p33_5_999_985_966.95元.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "1,256,197,800",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 47,
+   "boxes": [
+    [
+     112.44,
+     570.829,
+     170.81595000000007,
+     579.829
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p47_1_256_197_800.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "1,252,270,215",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 47,
+   "boxes": [
+    [
+     438.48,
+     570.829,
+     496.8559499999998,
+     579.829
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p47_1_252_270_215.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "11",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     402.84,
+     570.3029999999999,
+     413.2244,
+     580.7529999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p33_11.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "28",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 33,
+   "boxes": [
+    [
+     429.12,
+     570.3029999999999,
+     439.50440000000003,
+     580.7529999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p33_28.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "87,059",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 52,
+   "boxes": [
+    [
+     245.04,
+     329.34299999999996,
+     276.42289999999997,
+     339.793
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id215_2025p52_87_059.png",
+   "id": 215,
+   "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？"
+  },
+  {
+   "number": "1,704,578.78 万元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 11,
+   "boxes": [
+    [
+     173.88,
+     449.822,
+     257.76985,
+     460.27200000000005
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id216_2025p11_1_704_578.78_万元.png",
+   "id": 216,
+   "question": "2025年前五名客户销售额多少万元？研发投入合计多少元？"
+  },
+  {
+   "number": "10.10%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 11,
+   "boxes": [
+    [
+     341.88,
+     449.822,
+     373.2629,
+     460.27200000000005
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id216_2025p11_10.10_.png",
+   "id": 216,
+   "question": "2025年前五名客户销售额多少万元？研发投入合计多少元？"
+  },
+  {
+   "number": "635,829.28 万元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 11,
+   "boxes": [
+    [
+     121.32,
+     463.503,
+     194.76985,
+     473.95300000000003
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id216_2025p11_635_829.28_万元.png",
+   "id": 216,
+   "question": "2025年前五名客户销售额多少万元？研发投入合计多少元？"
+  },
+  {
+   "number": "3.77%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 11,
+   "boxes": [
+    [
+     278.88,
+     463.503,
+     304.9832,
+     473.95300000000003
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id216_2025p11_3.77_.png",
+   "id": 216,
+   "question": "2025年前五名客户销售额多少万元？研发投入合计多少元？"
+  },
+  {
+   "number": "803,132,232.31 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 12,
+   "boxes": [
+    [
+     457.919,
+     405.90299999999996,
+     531.2989,
+     416.353
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id216_2025p12_803_132_232.31_元.png",
+   "id": 216,
+   "question": "2025年前五名客户销售额多少万元？研发投入合计多少元？"
+  },
+  {
+   "number": "674,657,764.92 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 12,
+   "boxes": [
+    [
+     457.919,
+     377.703,
+     531.2989,
+     388.153
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id216_2025p12_674_657_764.92_元.png",
+   "id": 216,
+   "question": "2025年前五名客户销售额多少万元？研发投入合计多少元？"
+  },
+  {
+   "number": "128,474,467.39 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 12,
+   "boxes": [
+    [
+     457.919,
+     391.863,
+     531.2989,
+     402.31300000000005
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id216_2025p12_128_474_467.39_元.png",
+   "id": 216,
+   "question": "2025年前五名客户销售额多少万元？研发投入合计多少元？"
+  },
+  {
+   "number": "0.48%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 12,
+   "boxes": [
+    [
+     510.48,
+     420.063,
+     531.3041000000001,
+     430.51300000000003
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id216_2025p12_0.48_.png",
+   "id": 216,
+   "question": "2025年前五名客户销售额多少万元？研发投入合计多少元？"
+  },
+  {
+   "number": "16.00%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 12,
+   "boxes": [
+    [
+     505.2,
+     434.222,
+     531.3032000000001,
+     444.672
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id216_2025p12_16.00_.png",
+   "id": 216,
+   "question": "2025年前五名客户销售额多少万元？研发投入合计多少元？"
+  },
+  {
+   "number": "58,473.16",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 16,
+   "boxes": [
+    [
+     151.68,
+     246.46899999999994,
+     192.17835000000005,
+     255.46899999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id217_2025p16_58_473.16.png",
+   "id": 217,
+   "question": "2025年茅台酒产量多少吨？直销渠道营业收入多少？"
+  },
+  {
+   "number": "3.91%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 16,
+   "boxes": [
+    [
+     211.8,
+     246.46899999999994,
+     229.73870000000002,
+     255.46899999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id217_2025p16_3.91_.png",
+   "id": 217,
+   "question": "2025年茅台酒产量多少吨？直销渠道营业收入多少？"
+  },
+  {
+   "number": "84,543,031,854.63 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 10,
+   "boxes": [
+    [
+     146.759,
+     559.202,
+     210.3577,
+     566.652
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id217_2025p10_84_543_031_854.63_元.png",
+   "id": 217,
+   "question": "2025年茅台酒产量多少吨？直销渠道营业收入多少？"
+  },
+  {
+   "number": "845.43 亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 217,
+   "question": "2025年茅台酒产量多少吨？直销渠道营业收入多少？"
+  },
+  {
+   "number": "46,395.00",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 15,
+   "boxes": [
+    [
+     346.559,
+     387.66299999999995,
+     393.6607,
+     398.113
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id217_2025p15_46_395.00.png",
+   "id": 217,
+   "question": "2025年茅台酒产量多少吨？直销渠道营业收入多少？"
+  },
+  {
+   "number": "1,800.00",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 15,
+   "boxes": [
+    [
+     467.88,
+     415.863,
+     509.702,
+     426.31300000000005
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id217_2025p15_1_800.00.png",
+   "id": 217,
+   "question": "2025年茅台酒产量多少吨？直销渠道营业收入多少？"
+  },
+  {
+   "number": "10",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 10,
+   "boxes": [
+    [
+     295.44,
+     772.658,
+     304.55339999999995,
+     781.658
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id217_2025p10_10.png",
+   "id": 217,
+   "question": "2025年茅台酒产量多少吨？直销渠道营业收入多少？"
+  },
+  {
+   "number": "2026",
+   "located": true,
+   "ambiguous": true,
+   "year": 2025,
+   "page": 15,
+   "boxes": [
+    [
+     399.359,
+     429.54299999999995,
+     420.3028,
+     439.993
+    ],
+    [
+     249.0,
+     456.78299999999996,
+     269.9438,
+     467.233
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id217_2025p15_2026.png",
+   "id": 217,
+   "question": "2025年茅台酒产量多少吨？直销渠道营业收入多少？"
+  },
+  {
+   "number": "61,427,421,796.18 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 91,
+   "boxes": [
+    [
+     271.44,
+     219.21899999999994,
+     326.52759999999984,
+     225.71899999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id218_2025p91_61_427_421_796.18_元.png",
+   "id": 218,
+   "question": "2025年末存货账面价值多少？其中自制半成品多少？"
+  },
+  {
+   "number": "61,428,705,781.01 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 91,
+   "boxes": [
+    [
+     143.759,
+     219.21899999999994,
+     198.96614999999983,
+     225.71899999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id218_2025p91_61_428_705_781.01_元.png",
+   "id": 218,
+   "question": "2025年末存货账面价值多少？其中自制半成品多少？"
+  },
+  {
+   "number": "1,283,984.83 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 91,
+   "boxes": [
+    [
+     216.72,
+     192.46000000000004,
+     255.6083499999999,
+     198.96000000000004
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id218_2025p91_1_283_984.83_元.png",
+   "id": 218,
+   "question": "2025年末存货账面价值多少？其中自制半成品多少？"
+  },
+  {
+   "number": "27,518,830,601.14 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 91,
+   "boxes": [
+    [
+     144.0,
+     210.21899999999994,
+     199.20714999999984,
+     216.71899999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id218_2025p91_27_518_830_601.14_元.png",
+   "id": 218,
+   "question": "2025年末存货账面价值多少？其中自制半成品多少？"
+  },
+  {
+   "number": "113.81 万元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 219,
+   "question": "2025年钟正强从公司获得的税前薪酬是多少？董事和高级管理人员报酬合计多少？"
+  },
+  {
+   "number": "383.94 万元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 219,
+   "question": "2025年钟正强从公司获得的税前薪酬是多少？董事和高级管理人员报酬合计多少？"
+  },
+  {
+   "number": "2021",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 219,
+   "question": "2025年钟正强从公司获得的税前薪酬是多少？董事和高级管理人员报酬合计多少？"
+  },
+  {
+   "number": "1",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 104,
+   "boxes": [
+    [
+     95.1597,
+     365.582,
+     100.3847,
+     376.03200000000004
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id220_2025p104_1.png",
+   "id": 220,
+   "question": "2025年末应交税费合计多少？控股股东增持金额多少？"
+  },
+  {
+   "number": "7,697,169,830.69 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 104,
+   "boxes": [
+    [
+     293.28,
+     309.422,
+     377.09899999999993,
+     319.87199999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id220_2025p104_7_697_169_830.69_元.png",
+   "id": 220,
+   "question": "2025年末应交税费合计多少？控股股东增持金额多少？"
+  },
+  {
+   "number": "7,717,686,541.38 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 104,
+   "boxes": [
+    [
+     447.48,
+     309.422,
+     531.2990000000001,
+     319.87199999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id220_2025p104_7_717_686_541.38_元.png",
+   "id": 220,
+   "question": "2025年末应交税费合计多少？控股股东增持金额多少？"
+  },
+  {
+   "number": "2",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 104,
+   "boxes": [
+    [
+     95.1597,
+     502.863,
+     100.3847,
+     513.3130000000001
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id220_2025p104_2.png",
+   "id": 220,
+   "question": "2025年末应交税费合计多少？控股股东增持金额多少？"
+  },
+  {
+   "number": "3,000,089,293.91 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 137,
+   "boxes": [
+    [
+     236.159,
+     173.10300000000007,
+     333.25,
+     183.553
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id220_2025p137_3_000_089_293.91_元.png",
+   "id": 220,
+   "question": "2025年末应交税费合计多少？控股股东增持金额多少？"
+  },
+  {
+   "number": "2,071,359",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 137,
+   "boxes": [
+    [
+     397.44,
+     159.543,
+     444.5417,
+     169.99299999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id220_2025p137_2_071_359.png",
+   "id": 220,
+   "question": "2025年末应交税费合计多少？控股股东增持金额多少？"
+  },
+  {
+   "number": "0.17%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 137,
+   "boxes": [
+    [
+     144.959,
+     173.10300000000007,
+     171.0622,
+     183.553
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id220_2025p137_0.17_.png",
+   "id": 220,
+   "question": "2025年末应交税费合计多少？控股股东增持金额多少？"
+  },
+  {
+   "number": "681,282,935",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 137,
+   "boxes": [
+    [
+     113.4,
+     186.663,
+     171.06109999999998,
+     197.11299999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id220_2025p137_681_282_935.png",
+   "id": 220,
+   "question": "2025年末应交税费合计多少？控股股东增持金额多少？"
+  },
+  {
+   "number": "54.40%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 137,
+   "boxes": [
+    [
+     270.959,
+     186.663,
+     302.3419,
+     197.11299999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id220_2025p137_54.40_.png",
+   "id": 220,
+   "question": "2025年末应交税费合计多少？控股股东增持金额多少？"
+  },
+  {
+   "number": "94.19%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     344.23,
+     119.30095999999992,
+     367.99,
+     129.86095999999998
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id221_2022p9_94.19_.png",
+   "id": 221,
+   "question": "2022年和2023年茅台酒的毛利率分别是多少？"
+  },
+  {
+   "number": "107,833,685,277.94 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     156.26,
+     119.30095999999992,
+     240.39151999999999,
+     129.86095999999998
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id221_2022p9_107_833_685_277.94_元.png",
+   "id": 221,
+   "question": "2022年和2023年茅台酒的毛利率分别是多少？"
+  },
+  {
+   "number": "6,265,810,909.88 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     251.69,
+     119.30095999999992,
+     325.37767999999994,
+     129.86095999999998
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id221_2022p9_6_265_810_909.88_元.png",
+   "id": 221,
+   "question": "2022年和2023年茅台酒的毛利率分别是多少？"
+  },
+  {
+   "number": "0.16",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     489.34,
+     120.38095999999996,
+     507.70383999999996,
+     130.94096000000002
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id221_2022p9_0.16.png",
+   "id": 221,
+   "question": "2022年和2023年茅台酒的毛利率分别是多少？"
+  },
+  {
+   "number": "94.12%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 9,
+   "boxes": [
+    [
+     358.39,
+     501.35895999999997,
+     384.78999999999996,
+     511.91895999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id221_2023p9_94.12_.png",
+   "id": 221,
+   "question": "2022年和2023年茅台酒的毛利率分别是多少？"
+  },
+  {
+   "number": "126,589,066,691.89 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 9,
+   "boxes": [
+    [
+     142.82,
+     501.35895999999997,
+     237.51152,
+     511.91895999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id221_2023p9_126_589_066_691.89_元.png",
+   "id": 221,
+   "question": "2022年和2023年茅台酒的毛利率分别是多少？"
+  },
+  {
+   "number": "7,445,470,669.11 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 9,
+   "boxes": [
+    [
+     253.49,
+     501.35895999999997,
+     337.62152,
+     511.91895999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id221_2023p9_7_445_470_669.11_元.png",
+   "id": 221,
+   "question": "2022年和2023年茅台酒的毛利率分别是多少？"
+  },
+  {
+   "number": "0.07",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 9,
+   "boxes": [
+    [
+     504.94,
+     716.42896,
+     526.06,
+     726.9889599999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id221_2023p9_0.07.png",
+   "id": 221,
+   "question": "2022年和2023年茅台酒的毛利率分别是多少？"
+  },
+  {
+   "number": "91,885.83",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 9,
+   "boxes": [
+    [
+     191.33,
+     429.41095999999993,
+     233.45384,
+     439.97095999999993
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id222_2022p9_91_885.83.png",
+   "id": 222,
+   "question": "2022年和2023年酒类生产量各是多少吨？"
+  },
+  {
+   "number": "100,141.15",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 10,
+   "boxes": [
+    [
+     197.81,
+     180.06895999999995,
+     250.49,
+     190.62896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id222_2023p10_100_141.15.png",
+   "id": 222,
+   "question": "2022年和2023年酒类生产量各是多少吨？"
+  },
+  {
+   "number": "8.98%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 10,
+   "boxes": [
+    [
+     402.07,
+     180.06895999999995,
+     423.19,
+     190.62896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id222_2023p10_8.98_.png",
+   "id": 222,
+   "question": "2022年和2023年酒类生产量各是多少吨？"
+  },
+  {
+   "number": "558,970,226.76 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 10,
+   "boxes": [
+    [
+     465.94,
+     532.51096,
+     531.70768,
+     543.07096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id223_2022p10_558_970_226.76_元.png",
+   "id": 223,
+   "question": "2022年和2023年研发投入合计分别是多少？"
+  },
+  {
+   "number": "621,507,535.87 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 119,
+   "boxes": [
+    [
+     307.37,
+     495.59896,
+     380.94151999999997,
+     506.15896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id223_2023p119_621_507_535.87_元.png",
+   "id": 223,
+   "question": "2022年和2023年研发投入合计分别是多少？"
+  },
+  {
+   "number": "62,537,309.11 元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 223,
+   "question": "2022年和2023年研发投入合计分别是多少？"
+  },
+  {
+   "number": "800",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 11,
+   "boxes": [
+    [
+     518.5,
+     606.11896,
+     534.3399999999999,
+     616.67896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id224_2023p11_800.png",
+   "id": 224,
+   "question": "2023年和2024年研发人员数量各是多少？"
+  },
+  {
+   "number": "2.40%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 11,
+   "boxes": [
+    [
+     513.22,
+     620.30896,
+     534.34,
+     630.86896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id224_2023p11_2.40_.png",
+   "id": 224,
+   "question": "2023年和2024年研发人员数量各是多少？"
+  },
+  {
+   "number": "801",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     510.34,
+     443.63896,
+     526.18,
+     454.19896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id224_2024p11_801.png",
+   "id": 224,
+   "question": "2023年和2024年研发人员数量各是多少？"
+  },
+  {
+   "number": "2.31%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     505.06,
+     457.79895999999997,
+     526.18,
+     468.35895999999997
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id224_2024p11_2.31_.png",
+   "id": 224,
+   "question": "2023年和2024年研发人员数量各是多少？"
+  },
+  {
+   "number": "695,376,735.81 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     452.5,
+     338.37895999999995,
+     526.18768,
+     348.93895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id225_2024p11_695_376_735.81_元.png",
+   "id": 225,
+   "question": "2024年和2025年研发投入合计分别是多少？"
+  },
+  {
+   "number": "803,132,232.31 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 118,
+   "boxes": [
+    [
+     336.0,
+     352.022,
+     409.37989999999996,
+     362.47200000000004
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id225_2025p118_803_132_232.31_元.png",
+   "id": 225,
+   "question": "2024年和2025年研发投入合计分别是多少？"
+  },
+  {
+   "number": "593,779,816.96 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     452.5,
+     310.05895999999996,
+     526.18768,
+     320.61896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id225_2024p11_593_779_816.96_元.png",
+   "id": 225,
+   "question": "2024年和2025年研发投入合计分别是多少？"
+  },
+  {
+   "number": "101,596,918.85 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 11,
+   "boxes": [
+    [
+     452.5,
+     324.2189599999999,
+     526.18768,
+     334.77896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id225_2024p11_101_596_918.85_元.png",
+   "id": 225,
+   "question": "2024年和2025年研发投入合计分别是多少？"
+  },
+  {
+   "number": "674,657,764.92 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 118,
+   "boxes": [
+    [
+     336.0,
+     366.063,
+     409.37989999999996,
+     376.51300000000003
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id225_2025p118_674_657_764.92_元.png",
+   "id": 225,
+   "question": "2024年和2025年研发投入合计分别是多少？"
+  },
+  {
+   "number": "128,474,467.39 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 118,
+   "boxes": [
+    [
+     336.0,
+     380.222,
+     409.37989999999996,
+     390.672
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id225_2025p118_128_474_467.39_元.png",
+   "id": 225,
+   "question": "2024年和2025年研发投入合计分别是多少？"
+  },
+  {
+   "number": "58,274,318,733.23 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 13,
+   "boxes": [
+    [
+     290.57,
+     430.95595999999995,
+     354.31592,
+     438.51595999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id226_2023p13_58_274_318_733.23_元.png",
+   "id": 226,
+   "question": "2022年末和2023年末货币资金各是多少？"
+  },
+  {
+   "number": "69,070,136,376.12 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 13,
+   "boxes": [
+    [
+     171.98,
+     430.95595999999995,
+     235.72592,
+     438.51595999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id226_2023p13_69_070_136_376.12_元.png",
+   "id": 226,
+   "question": "2022年末和2023年末货币资金各是多少？"
+  },
+  {
+   "number": "10,795,817,642.89 元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 226,
+   "question": "2022年末和2023年末货币资金各是多少？"
+  },
+  {
+   "number": "18.53%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 13,
+   "boxes": [
+    [
+     413.11,
+     430.95595999999995,
+     431.88148,
+     438.51595999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id226_2023p13_18.53_.png",
+   "id": 226,
+   "question": "2022年末和2023年末货币资金各是多少？"
+  },
+  {
+   "number": "21,871,446,747.14 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 98,
+   "boxes": [
+    [
+     296.33,
+     163.5089599999999,
+     385.74152,
+     174.06895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id228_2024p98_21_871_446_747.14_元.png",
+   "id": 228,
+   "question": "2024年末和2025年末固定资产账面价值各是多少？"
+  },
+  {
+   "number": "218.71亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 228,
+   "question": "2024年末和2025年末固定资产账面价值各是多少？"
+  },
+  {
+   "number": "22,488,122,304.35 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 97,
+   "boxes": [
+    [
+     298.32,
+     264.783,
+     387.41869999999994,
+     275.23299999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id228_2025p97_22_488_122_304.35_元.png",
+   "id": 228,
+   "question": "2024年末和2025年末固定资产账面价值各是多少？"
+  },
+  {
+   "number": "224.88亿元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 228,
+   "question": "2024年末和2025年末固定资产账面价值各是多少？"
+  },
+  {
+   "number": "22,488,122,304.35",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 97,
+   "boxes": [
+    [
+     298.32,
+     264.783,
+     387.41869999999994,
+     275.23299999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id228_2025p97_22_488_122_304.35.png",
+   "id": 228,
+   "question": "2024年末和2025年末固定资产账面价值各是多少？"
+  },
+  {
+   "number": "21,871,446,747.14",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 98,
+   "boxes": [
+    [
+     296.33,
+     163.5089599999999,
+     385.74152,
+     174.06895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id228_2024p98_21_871_446_747.14.png",
+   "id": 228,
+   "question": "2024年末和2025年末固定资产账面价值各是多少？"
+  },
+  {
+   "number": "616,675,557.21 元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 228,
+   "question": "2024年末和2025年末固定资产账面价值各是多少？"
+  },
+  {
+   "number": "6,896,555,423.83 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 97,
+   "boxes": [
+    [
+     303.77,
+     305.33096,
+     377.45768,
+     315.89096000000006
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id229_2022p97_6_896_555_423.83_元.png",
+   "id": 229,
+   "question": "2022年末和2023年末应交税费合计分别是多少？"
+  },
+  {
+   "number": "6,949,663,893.87 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 105,
+   "boxes": [
+    [
+     265.37,
+     144.54895999999997,
+     349.50151999999997,
+     155.10896000000002
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id229_2023p105_6_949_663_893.87_元.png",
+   "id": 229,
+   "question": "2022年末和2023年末应交税费合计分别是多少？"
+  },
+  {
+   "number": "6,949,663,893.87",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 105,
+   "boxes": [
+    [
+     265.37,
+     144.54895999999997,
+     349.50151999999997,
+     155.10896000000002
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id229_2023p105_6_949_663_893.87.png",
+   "id": 229,
+   "question": "2022年末和2023年末应交税费合计分别是多少？"
+  },
+  {
+   "number": "6,896,555,423.83",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 97,
+   "boxes": [
+    [
+     303.77,
+     305.33096,
+     377.45768,
+     315.89096000000006
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id229_2022p97_6_896_555_423.83.png",
+   "id": 229,
+   "question": "2022年末和2023年末应交税费合计分别是多少？"
+  },
+  {
+   "number": "53,108,470.04 元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 229,
+   "question": "2022年末和2023年末应交税费合计分别是多少？"
+  },
+  {
+   "number": "7,717,686,541.38 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 105,
+   "boxes": [
+    [
+     295.13,
+     561.83896,
+     379.26151999999996,
+     572.39896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id230_2024p105_7_717_686_541.38_元.png",
+   "id": 230,
+   "question": "2024年末和2025年末应交税费合计各是多少？"
+  },
+  {
+   "number": "7,697,169,830.69 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 104,
+   "boxes": [
+    [
+     293.28,
+     309.422,
+     377.09899999999993,
+     319.87199999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id230_2025p104_7_697_169_830.69_元.png",
+   "id": 230,
+   "question": "2024年末和2025年末应交税费合计各是多少？"
+  },
+  {
+   "number": "7,717,686,541.38",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 105,
+   "boxes": [
+    [
+     295.13,
+     561.83896,
+     379.26151999999996,
+     572.39896
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id230_2024p105_7_717_686_541.38.png",
+   "id": 230,
+   "question": "2024年末和2025年末应交税费合计各是多少？"
+  },
+  {
+   "number": "7,697,169,830.69",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 104,
+   "boxes": [
+    [
+     293.28,
+     309.422,
+     377.09899999999993,
+     319.87199999999996
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id230_2025p104_7_697_169_830.69.png",
+   "id": 230,
+   "question": "2024年末和2025年末应交税费合计各是多少？"
+  },
+  {
+   "number": "20,516,710.69 元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 230,
+   "question": "2024年末和2025年末应交税费合计各是多少？"
+  },
+  {
+   "number": "74,734,071,550.75 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2023,
+   "page": 5,
+   "boxes": [
+    [
+     101.66,
+     261.70364000000006,
+     169.72664,
+     269.74364
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id231_2023p5_74_734_071_550.75_元.png",
+   "id": 231,
+   "question": "2023年和2024年归属于上市公司股东的净利润分别是多少？"
+  },
+  {
+   "number": "86,228,146,421.62 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 5,
+   "boxes": [
+    [
+     224.21,
+     285.1189999999999,
+     300.755,
+     294.1189999999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id231_2024p5_86_228_146_421.62_元.png",
+   "id": 231,
+   "question": "2023年和2024年归属于上市公司股东的净利润分别是多少？"
+  },
+  {
+   "number": "11,494,074,870.87 元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 231,
+   "question": "2023年和2024年归属于上市公司股东的净利润分别是多少？"
+  },
+  {
+   "number": "15.38%",
+   "located": true,
+   "ambiguous": true,
+   "year": 2024,
+   "page": 5,
+   "boxes": [
+    [
+     411.55,
+     285.1189999999999,
+     434.15500000000003,
+     294.1189999999999
+    ],
+    [
+     424.63,
+     530.51896,
+     451.03,
+     541.07896
+    ],
+    [
+     424.63,
+     544.67896,
+     451.03,
+     555.2389599999999
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id231_2024p5_15.38_.png",
+   "id": 231,
+   "question": "2023年和2024年归属于上市公司股东的净利润分别是多少？"
+  },
+  {
+   "number": "62,716,443,738.27 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 5,
+   "boxes": [
+    [
+     196.85,
+     272.09096,
+     275.70151999999996,
+     282.65096000000005
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id232_2022p5_62_716_443_738.27_元.png",
+   "id": 232,
+   "question": "2022年和2025年归属于上市公司股东的净利润各是多少？"
+  },
+  {
+   "number": "82,320,067,101.68 元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 6,
+   "boxes": [
+    [
+     232.2,
+     292.18999999999994,
+     308.57444999999984,
+     301.18999999999994
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id232_2025p6_82_320_067_101.68_元.png",
+   "id": 232,
+   "question": "2022年和2025年归属于上市公司股东的净利润各是多少？"
+  },
+  {
+   "number": "19,603,623,363.41 元",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 232,
+   "question": "2022年和2025年归属于上市公司股东的净利润各是多少？"
+  },
+  {
+   "number": "31.26%",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 232,
+   "question": "2022年和2025年归属于上市公司股东的净利润各是多少？"
+  },
+  {
+   "number": "84,798,642",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 47,
+   "boxes": [
+    [
+     273.17,
+     492.7909599999999,
+     320.57384,
+     503.35095999999993
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id233_2022p47_84_798_642.png",
+   "id": 233,
+   "question": "2022年末和2025年末香港中央结算有限公司持有茅台股份各多少？"
+  },
+  {
+   "number": "6.75%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 47,
+   "boxes": [
+    [
+     340.27,
+     492.7909599999999,
+     358.74999999999994,
+     503.35095999999993
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id233_2022p47_6.75_.png",
+   "id": 233,
+   "question": "2022年末和2025年末香港中央结算有限公司持有茅台股份各多少？"
+  },
+  {
+   "number": "55,048,844",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 48,
+   "boxes": [
+    [
+     267.24,
+     616.863,
+     319.6214,
+     627.313
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id233_2025p48_55_048_844.png",
+   "id": 233,
+   "question": "2022年末和2025年末香港中央结算有限公司持有茅台股份各多少？"
+  },
+  {
+   "number": "4.40%",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 48,
+   "boxes": [
+    [
+     341.28,
+     616.863,
+     362.2238,
+     627.313
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id233_2025p48_4.40_.png",
+   "id": 233,
+   "question": "2022年末和2025年末香港中央结算有限公司持有茅台股份各多少？"
+  },
+  {
+   "number": "22,462,778",
+   "located": false,
+   "ambiguous": false,
+   "year": null,
+   "page": null,
+   "boxes": [],
+   "crop": null,
+   "id": 233,
+   "question": "2022年末和2025年末香港中央结算有限公司持有茅台股份各多少？"
+  },
+  {
+   "number": "3",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     305.69,
+     227.61896000000007,
+     310.96999999999997,
+     238.17896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id234_2024p19_3.png",
+   "id": 234,
+   "question": "截至2024年末和2025年末，茅台金石基金累计投资金额各是多少？"
+  },
+  {
+   "number": "1",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     77.28,
+     159.42896000000007,
+     82.56,
+     169.98896000000008
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id234_2024p19_1.png",
+   "id": 234,
+   "question": "截至2024年末和2025年末，茅台金石基金累计投资金额各是多少？"
+  },
+  {
+   "number": "8.29亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     481.63,
+     227.61896000000007,
+     526.27384,
+     238.17896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id234_2024p19_8.29亿元.png",
+   "id": 234,
+   "question": "截至2024年末和2025年末，茅台金石基金累计投资金额各是多少？"
+  },
+  {
+   "number": "11",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 20,
+   "boxes": [
+    [
+     295.08,
+     146.70299999999997,
+     305.4644,
+     157.15300000000002
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id234_2025p20_11.png",
+   "id": 234,
+   "question": "截至2024年末和2025年末，茅台金石基金累计投资金额各是多少？"
+  },
+  {
+   "number": "2",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 19,
+   "boxes": [
+    [
+     77.28,
+     200.37896000000006,
+     82.56,
+     210.93896000000007
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id234_2024p19_2.png",
+   "id": 234,
+   "question": "截至2024年末和2025年末，茅台金石基金累计投资金额各是多少？"
+  },
+  {
+   "number": "21.43亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2025,
+   "page": 20,
+   "boxes": [
+    [
+     476.28,
+     146.70299999999997,
+     525.9698500000001,
+     157.15300000000002
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id234_2025p20_21.43亿元.png",
+   "id": 234,
+   "question": "截至2024年末和2025年末，茅台金石基金累计投资金额各是多少？"
+  },
+  {
+   "number": "71.09亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2022,
+   "page": 19,
+   "boxes": [
+    [
+     463.54,
+     148.8689599999999,
+     510.94,
+     160.22096
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id235_2022p19_71.09亿元.png",
+   "id": 235,
+   "question": "2022年报提出的2023年基本建设投资目标和2024年报提出的2025年固定资产投资目标各是多少？"
+  },
+  {
+   "number": "47.11亿元",
+   "located": true,
+   "ambiguous": false,
+   "year": 2024,
+   "page": 21,
+   "boxes": [
+    [
+     471.34,
+     383.37895999999995,
+     521.26,
+     393.93895999999995
+    ]
+   ],
+   "crop": "D:\\eng_project\\rag项目\\docs\\citations\\id235_2024p21_47.11亿元.png",
+   "id": 235,
+   "question": "2022年报提出的2023年基本建设投资目标和2024年报提出的2025年固定资产投资目标各是多少？"
+  }
+ ]
+}

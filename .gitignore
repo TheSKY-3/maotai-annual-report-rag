@@ -43,3 +43,6 @@ review/_recalc/
 # 本地实时看板（脚本可再生、体积大，不入库；架构图以 README mermaid 为准）
 docs/dashboard.html
 scripts/assets/mermaid.min.js
+
+# 轴4 坐标核验高亮图（scripts/make_citation_crops.py 可再生；清单入库）
+docs/citations/

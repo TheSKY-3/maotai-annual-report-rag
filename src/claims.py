@@ -185,6 +185,22 @@ def parse_citation_pages(ref: str) -> list[tuple[int, int]]:
     return pairs
 
 
+_LIST_MARK_RE = re.compile(r"(?m)^\s*\d{1,2}[.、)]\s*")
+
+
+def citation_spec(answer: str) -> dict:
+    """答案里待坐标核验的指标数字与出处页。
+
+    剥掉出处标注（其中的年份/页码不是答案数字）与行首列举序号；
+    年份本身按接地校验同一约定跳过。
+    """
+    pages = parse_citation_pages(answer)
+    body = _LIST_MARK_RE.sub("", _CITE_RE.sub("", answer))
+    skip = {str(y) for y in YEARS}
+    numbers = [n for n in numeric.numbers_in_answer(body) if n not in skip]
+    return {"numbers": numbers, "pages": pages}
+
+
 def validate(obj: dict, evidence: list[Evidence], *,
              extra_texts: list[str] | None = None,
              check_numbers: bool = True,

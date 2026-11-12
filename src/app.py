@@ -19,10 +19,13 @@ import re
 import streamlit as st
 from openai import OpenAI
 
+from src import cite_locate, claims
 from src.ask import answer_auto, answer_auto_stream
 from src.config import (DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, GEN_MODEL,
-                        OLLAMA_BASE_URL, YEARS)
+                        OLLAMA_BASE_URL, PROJECT, YEARS)
 from src.pipeline import get_search
+
+CITE_CROP_DIR = PROJECT / "docs" / "citations" / "ui"
 
 PRESET_QUESTIONS = [
     "2024年茅台营业总收入是多少？",
@@ -337,7 +340,8 @@ def gen_followups(question: str, answer: str) -> list[str]:
         return []
 
 
-def render_sources(hits: list[dict]) -> None:
+def render_sources(hits: list[dict], answer: str | None = None) -> None:
+    spec = claims.citation_spec(answer) if answer else {"numbers": [], "pages": []}
     for i, h in enumerate(hits):
         badge = "页码直达" if h.get("direct") else (
             "⭐ 最佳匹配" if i == 0 else "")
@@ -348,6 +352,10 @@ def render_sources(hits: list[dict]) -> None:
             body = html.escape(h["text"][:600])
             st.markdown(f'<div class="mt-source-text">{body}</div>',
                         unsafe_allow_html=True)
+            crop = cite_locate.crop_for_source(h, spec, CITE_CROP_DIR)
+            if crop:
+                st.image(str(crop),
+                         caption=f"坐标核验：红框为答案引用的数字（{h['year']}年报 P{h['page']}）")
 
 
 def render_steps(steps: list[dict]) -> None:
@@ -431,7 +439,7 @@ if mode == "对话问答":
             else:
                 st.markdown(m["content"])
             if m.get("hits"):
-                render_sources(m["hits"])
+                render_sources(m["hits"], m["content"])
             if m.get("steps"):
                 render_steps(m["steps"])
             if m["role"] == "assistant" and m.get("followups"):
@@ -504,7 +512,7 @@ if mode == "对话问答":
                 answer_slot.markdown(fmt_answer(text), unsafe_allow_html=True)
             meta = box["meta"]
             hits = meta["hits"]
-            render_sources(hits)
+            render_sources(hits, text)
             render_steps(meta.get("steps"))
             with st.spinner("生成追问建议..."):
                 fus = gen_followups(question, text)
@@ -540,4 +548,4 @@ else:  # 对比模式
                     st.error(f"生成失败：{e}")
                     continue
                 st.markdown(fmt_answer(meta["answer"]), unsafe_allow_html=True)
-                render_sources(meta["hits"])
+                render_sources(meta["hits"], meta["answer"])
