@@ -152,11 +152,12 @@ export default function App() {
                     ))}
                   </ul>
                 )}
-                {m.meta?.sources.map(s => (
+                {m.meta?.sources.map((s, i) => (
                   <SourceCard
                     key={`${s.year}-${s.page}`}
                     source={s}
                     numbers={answerNumbers(m.meta!.answer)}
+                    defaultOpen={i === 0}
                   />
                 ))}
               </>

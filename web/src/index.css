@@ -94,3 +94,7 @@ header h1 { font-size: 22px; margin: 0 0 4px; }
 
 .steps { margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 12px; }
 .steps li { margin: 2px 0; font-variant-numeric: tabular-nums; }
+
+.crop-tag { margin: 8px 0 4px; font-size: 12px; font-weight: 600; color: var(--accent); }
+.crop-caption { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
+.crop-missing { margin: 8px 0 0; font-size: 12px; color: var(--muted); }

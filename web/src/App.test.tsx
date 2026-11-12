@@ -35,7 +35,7 @@ describe('App 问答主流程', () => {
     fireEvent.change(screen.getByRole('textbox'), { target: { value: '合计多少？' } })
     fireEvent.click(screen.getByRole('button', { name: /发送/ }))
     expect(await screen.findByText(/合计为680.93/)).toBeInTheDocument()
-    expect(screen.getByText(/2024年报 P26/)).toBeInTheDocument()
+    expect(screen.getByText(/出处 · 2024年报 P26/)).toBeInTheDocument()
     expect(screen.getByAltText(/坐标高亮/)).toBeInTheDocument()
     vi.unstubAllGlobals()
   })
@@ -142,6 +142,22 @@ describe('App 预设与设置', () => {
     fireEvent.change(screen.getByRole('textbox'), { target: { value: '跨年对比？' } })
     fireEvent.click(screen.getByRole('button', { name: /发送/ }))
     expect(await screen.findByText(/search_by_year/)).toBeInTheDocument()
+    vi.unstubAllGlobals()
+  })
+
+  it('两条出处时首张默认展开、第二张折叠', async () => {
+    stubFresh(answerEvents({
+      ...BASE_META,
+      sources: [{ year: 2024, page: 26 }, { year: 2024, page: 34 }],
+    }))
+    render(<App />)
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '营收多少？' } })
+    fireEvent.click(screen.getByRole('button', { name: /发送/ }))
+    await screen.findByText(/营收1,708.99亿元/)
+    const tags = screen.getAllByText('坐标核验 · 红框 = 答案引用的数字')
+    expect(tags).toHaveLength(2)
+    expect(tags[0]).toBeVisible()
+    expect(tags[1]).not.toBeVisible()
     vi.unstubAllGlobals()
   })
 
