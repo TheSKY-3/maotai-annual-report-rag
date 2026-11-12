@@ -54,4 +54,17 @@ Key 经 `.env` 注入（`set -a; . ./.env`），不落命令行；`setsid` 脱�
 
 ## 未做（后续阶段）
 
-公网暴露、鉴权/限流/压测（阶段3）、独立前后端分离前端（阶段2）、Docker 构建修复。
+公网暴露、鉴权/限流/压测（阶段3）、Docker 构建修复。
+
+## 阶段2 追加（2026-11-12）：前后端分离前端
+
+- `web/`：React + Vite + TypeScript 手搓前端（SSE 流式问答、出处卡片、坐标高亮图、
+  拒答标记、耗时/成本脚注）。14 条 vitest 组件/解析测试 + tsc + build 全绿。
+- 后端新增 `GET /cite_crop?year&page&numbers`（轴4 高亮 PNG，4 条 pytest）；
+  构建后 FastAPI 单端口交付：根路径服务 `web/dist`，API 路由优先（2 条 pytest）。
+- 验收：浏览器真问一条，流式答出 680.93、脚注 direct·1955ms·¥0.0163、7 个出处卡片；
+  展开出处坐标图真实加载 1754×72（整行横带）。隐藏视口下点按/回车不落页，
+  交互经页面内 JS 触发核验，键盘路径由组件测试覆盖。
+- 开发期：`cd web && npm run dev`（vite 代理 /ask、/cite_crop 到 8000）；
+  交付期：`npm run build` 后由 uvicorn 单端口服务。npm 缓存经
+  `npm_config_cache` 指向工作区内 `.npm-cache/`，不落 C 盘。

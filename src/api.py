@@ -28,14 +28,14 @@ from typing import Literal
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from openai import OpenAI
 from starlette.concurrency import run_in_threadpool
 from pydantic import BaseModel, Field
 
-from src import cost, usage
+from src import cite_locate, cost, usage
 from src.config import (DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, GEN_MODEL,
-                        OLLAMA_BASE_URL, YEARS)
+                        OLLAMA_BASE_URL, PROJECT, YEARS)
 from src.pipeline import get_search, index_status
 from src.ask import answer_auto, answer_auto_stream
 
@@ -210,8 +210,14 @@ def _resolve(api_key: str | None, model: str | None) -> tuple[OpenAI, str]:
     return OpenAI(base_url=OLLAMA_BASE_URL, api_key="ollama"), model or GEN_MODEL
 
 
+_SPA_DIR = PROJECT / "web" / "dist"
+
+
 @app.get("/")
-def root() -> dict:
+def root():
+    # 路由按注册顺序匹配：根路径须在此显式服务 SPA，末尾 mount 只接 assets
+    if _SPA_DIR.is_dir():
+        return FileResponse(_SPA_DIR / "index.html")
     return {"service": "茅台财报 RAG API", "docs": "/docs", "ask": "POST /ask"}
 
 
@@ -234,6 +240,23 @@ def ready() -> JSONResponse:
                  "api_key_configured": key_configured})
     status_code = 200 if info["status"] in ("ready", "degraded") else 503
     return JSONResponse(info, status_code=status_code)
+
+
+@app.get("/cite_crop")
+def cite_crop(year: int, page: int, numbers: str):
+    """轴4 坐标高亮图：该页上被引数字的整行横带 PNG，供前端出处面板展示。"""
+    if year not in YEARS:
+        raise HTTPException(400, f"year 仅支持 {YEARS}")
+    if not 1 <= page <= 600:
+        raise HTTPException(400, "page 超出范围")
+    nums = [n for n in numbers.split(",") if n.strip()]
+    if not nums or len(nums) > 40:
+        raise HTTPException(400, "numbers 须为 1-40 个逗号分隔的数字")
+    path = cite_locate.page_crop(year, page, nums,
+                                 PROJECT / "docs" / "citations" / "ui")
+    if path is None:
+        raise HTTPException(404, "该页未找到被引数字")
+    return FileResponse(path, media_type="image/png")
 
 
 @app.post("/ask", response_model=AskResponse)
@@ -360,3 +383,11 @@ def ask_stream(req: AskRequest) -> StreamingResponse:
         sse(), media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no",
                  "X-Request-ID": request_id})
+
+
+# 阶段2：单端口交付——前端静态资源挂在所有 API 路由之后（根路径见 root()）。
+# 未构建（web/dist 不存在）时保持原 JSON 根响应，开发期不受影响。
+if _SPA_DIR.is_dir():
+    from fastapi.staticfiles import StaticFiles
+
+    app.mount("/", StaticFiles(directory=_SPA_DIR, html=True), name="spa")

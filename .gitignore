@@ -46,3 +46,8 @@ scripts/assets/mermaid.min.js
 
 # 轴4 坐标核验高亮图（scripts/make_citation_crops.py 可再生；清单入库）
 docs/citations/
+
+# 阶段2 前端产物与本地 npm 缓存（不落 C 盘、不入库）
+web/node_modules/
+web/dist/
+.npm-cache/

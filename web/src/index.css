@@ -1,0 +1,61 @@
+:root {
+  --paper: #f6f4ef;
+  --card: #ffffff;
+  --ink: #23201b;
+  --muted: #8a8375;
+  --line: #e5dfd2;
+  --accent: #2f5d8a;
+  --danger: #b3261e;
+  font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+  color: var(--ink);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); }
+
+.shell { max-width: 860px; margin: 0 auto; padding: 24px 16px 96px; }
+header h1 { font-size: 22px; margin: 0 0 4px; }
+.tagline { color: var(--muted); font-size: 13px; margin: 0 0 20px; }
+
+.thread { display: flex; flex-direction: column; gap: 14px; }
+.empty { color: var(--muted); font-size: 14px; }
+.msg.user .bubble {
+  background: var(--accent); color: #fff; border-radius: 10px;
+  padding: 8px 12px; margin: 0; align-self: flex-end; max-width: 80%;
+  white-space: pre-wrap;
+}
+.msg.user { display: flex; justify-content: flex-end; }
+.msg.assistant {
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 14px;
+}
+.answer { margin: 0; white-space: pre-wrap; line-height: 1.7; font-size: 15px; }
+.status { color: var(--muted); font-size: 13px; margin: 0 0 6px; }
+.error { color: var(--danger); font-size: 14px; margin: 6px 0 0; }
+.meta { color: var(--muted); font-size: 12px; margin: 8px 0 0; font-variant-numeric: tabular-nums; }
+.badge-refused {
+  display: inline-block; background: #fdecea; color: var(--danger);
+  border: 1px solid #f5c6c0; border-radius: 4px; font-size: 12px;
+  padding: 1px 6px; margin-bottom: 6px;
+}
+
+.source-card { margin-top: 8px; border-top: 1px dashed var(--line); padding-top: 6px; }
+.source-card summary { cursor: pointer; font-size: 13px; color: var(--accent); }
+.source-crop { display: block; max-width: 100%; margin: 8px 0; border: 1px solid var(--line); }
+.source-snippet { color: var(--muted); font-size: 12px; white-space: pre-wrap; }
+
+.composer {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 16px; display: flex; gap: 8px; justify-content: center;
+}
+.composer textarea {
+  flex: 0 1 720px; resize: none; height: 44px; padding: 10px 12px;
+  border: 1px solid var(--line); border-radius: 8px; font: inherit; font-size: 14px;
+  background: var(--card);
+}
+.composer button {
+  padding: 0 18px; border: none; border-radius: 8px; background: var(--accent);
+  color: #fff; font-size: 14px; cursor: pointer;
+}
+.composer button:disabled { opacity: .45; cursor: default; }

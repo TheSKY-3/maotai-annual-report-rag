@@ -433,6 +433,17 @@ python scripts/stat_significance.py \
 复现：`scripts/make_citation_crops.py`（零 API）；逐数字明细
 `results/citation_crops.json`。
 
+### 工程闭环（2026-11-12，阶段1/2）
+
+- **阶段1 本地 Linux 部署**：WSL2 Ubuntu-24.04 原生 venv 一键起服务
+  （`scripts/start_local_linux.sh`，与 docker/start.sh 同构），/health、/ready、
+  /ask、网页四项真跑验收；不上公网。留痕见
+  [docs/deploy_local_linux.md](docs/deploy_local_linux.md)。
+- **阶段2 前后端分离前端**：`web/` 为 React + Vite + TypeScript 手搓界面，
+  消费 FastAPI 的 SSE 流式问答与 `/cite_crop` 坐标高亮接口；出处卡片展开即见
+  整行红框图。`npm run build` 后 FastAPI 单端口交付（根路径服务前端、API 优先）。
+  前端 14 条 vitest、后端新增 6 条 pytest，全绿。
+
 ### 留出集验证（2026-11-11）
 
 86% 是在同一套 50 题上扫参得到的，会不会"考前知道考题"？为此造了
