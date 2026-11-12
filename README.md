@@ -501,6 +501,9 @@ python scripts/stat_significance.py \
 ```
 src/          核心代码：切块/索引/混合检索/语境增强/问答（直通+Agent 路由）/
               Streamlit 界面/FastAPI 服务/MCP server
+web/          React 前端（Vite + TypeScript，独立 package.json）：调 FastAPI
+              的 SSE 流式问答与 /cite_crop 坐标接口；npm run build 产物 dist/
+              由后端单端口交付（根路径服务前端、/ask 等 API 优先）
 scripts/      下载、建索引、评测（答案层/忠实度）、画图等一次性脚本
 docker/       容器入口脚本（Dockerfile 与 docker-compose.yml 在根目录）
 data/gold/    50 题黄金评测集 + 150 题冻结留出集（问题+标准答案+出处页码）
@@ -508,6 +511,9 @@ results/      全部评测结果 JSON（每个数字都出自这里）
 report/       通俗中文技术报告（LaTeX 源码 + 图表）
 docs/         界面截图
 ```
+
+> 前后端**同仓不分裂**（monorepo）：`web/` 前端与 `src/` 后端靠 HTTP 接口通信、
+> 各自独立构建——「前后端分离」指代码解耦，不等于分两个仓库。
 
 ## 技术报告
 

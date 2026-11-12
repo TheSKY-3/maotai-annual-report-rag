@@ -69,4 +69,20 @@ describe('streamAsk', () => {
     await expect(streamAsk('x', () => {})).rejects.toThrow('HTTP 502')
     vi.unstubAllGlobals()
   })
+
+  it('把 opts 合并进请求体', async () => {
+    const stream = new ReadableStream({ start(c) { c.close() } })
+    const mock = vi.fn().mockResolvedValue({ ok: true, body: stream })
+    vi.stubGlobal('fetch', mock)
+    await streamAsk('q', () => {}, undefined, {
+      year: 2024, api_key: 'sk-test', agent: true,
+      history: [{ role: 'user', content: 'prev' }],
+    })
+    const body = JSON.parse(mock.mock.calls[0][1].body)
+    expect(body).toEqual({
+      question: 'q', year: 2024, api_key: 'sk-test', agent: true,
+      history: [{ role: 'user', content: 'prev' }],
+    })
+    vi.unstubAllGlobals()
+  })
 })

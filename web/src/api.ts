@@ -5,6 +5,12 @@ export interface Source {
   snippet?: string
 }
 
+export interface Step {
+  tool: string
+  args: Record<string, unknown>
+  n_hits: number
+}
+
 export interface AskMeta {
   question: string
   answer: string
@@ -15,6 +21,7 @@ export interface AskMeta {
   model: string
   latency_ms?: number
   cost_cny?: number
+  steps?: Step[]
 }
 
 export type StreamEvent =
@@ -44,15 +51,23 @@ export function parseSSE(buffer: string): { events: StreamEvent[]; rest: string 
   return { events, rest }
 }
 
+export interface AskOpts {
+  year?: number
+  api_key?: string
+  agent?: boolean
+  history?: { role: string; content: string }[]
+}
+
 export async function streamAsk(
   question: string,
   onEvent: (e: StreamEvent) => void,
   signal?: AbortSignal,
+  opts?: AskOpts,
 ): Promise<void> {
   const resp = await fetch('/ask/stream', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ question }),
+    body: JSON.stringify({ question, ...opts }),
     signal,
   })
   if (!resp.ok || !resp.body) throw new Error(`HTTP ${resp.status}`)

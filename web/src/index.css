@@ -59,3 +59,38 @@ header h1 { font-size: 22px; margin: 0 0 4px; }
   color: #fff; font-size: 14px; cursor: pointer;
 }
 .composer button:disabled { opacity: .45; cursor: default; }
+
+.toolbar { display: flex; gap: 8px; margin: 0 0 12px; }
+.toolbar button {
+  padding: 5px 12px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--card); color: var(--ink); font: inherit; font-size: 13px; cursor: pointer;
+}
+.toolbar button:disabled { opacity: .45; cursor: default; }
+
+.settings {
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 14px; margin: 0 0 16px; display: flex; flex-direction: column; gap: 10px;
+}
+.settings .field { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+.settings .field input, .settings .field select {
+  padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px;
+  font: inherit; font-size: 14px; color: var(--ink); background: var(--paper);
+}
+.settings .check { display: flex; align-items: center; gap: 6px; font-size: 14px; }
+.pill {
+  align-self: flex-start; display: inline-flex; align-items: center;
+  font-size: 12px; color: #2e7d32; background: #e8f5e9; border: 1px solid #c8e6c9;
+  border-radius: 999px; padding: 2px 10px;
+}
+.pill.off { color: var(--muted); background: var(--paper); border-color: var(--line); }
+
+.presets { display: flex; flex-direction: column; gap: 8px; }
+.preset {
+  text-align: left; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--card); color: var(--ink); font: inherit; font-size: 14px; cursor: pointer;
+}
+.preset:hover { border-color: var(--accent); color: var(--accent); }
+.preset:disabled { opacity: .45; cursor: default; }
+
+.steps { margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 12px; }
+.steps li { margin: 2px 0; font-variant-numeric: tabular-nums; }

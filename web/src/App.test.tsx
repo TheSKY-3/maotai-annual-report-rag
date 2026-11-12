@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import App from './App'
 
@@ -59,6 +59,106 @@ describe('App 问答主流程', () => {
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'x' } })
     fireEvent.click(screen.getByRole('button', { name: /发送/ }))
     expect(await screen.findByText(/生成失败：连接错误/)).toBeInTheDocument()
+    vi.unstubAllGlobals()
+  })
+})
+
+describe('App 预设与设置', () => {
+  const BASE_META = {
+    question: '营收多少？',
+    answer: '营收1,708.99亿元。',
+    refused: false,
+    sources: [{ year: 2024, page: 26 }],
+    citations: ['2024年报 P26'],
+    route: 'direct',
+    model: 'deepseek-flash',
+    latency_ms: 6500,
+    cost_cny: 0.001,
+  }
+
+  function stubFresh(events: string[]) {
+    const mock = vi.fn().mockImplementation(async () => ({
+      ok: true,
+      body: new ReadableStream({
+        start(c) {
+          for (const e of events) c.enqueue(new TextEncoder().encode(e))
+          c.close()
+        },
+      }),
+    }))
+    vi.stubGlobal('fetch', mock)
+    return mock
+  }
+
+  const answerEvents = (meta: { answer: string; [key: string]: unknown }) => [
+    `event: replace\ndata: ${JSON.stringify({ text: meta.answer })}\n\n`,
+    `event: done\ndata: ${JSON.stringify({ meta })}\n\n`,
+  ]
+
+  it('点预设问题直接发问', async () => {
+    const mock = stubFresh(answerEvents(BASE_META))
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: /2024年茅台营业总收入/ }))
+    expect(await screen.findByText('2024年茅台营业总收入是多少？')).toBeInTheDocument()
+    const body = JSON.parse(mock.mock.calls[0][1].body)
+    expect(body.question).toBe('2024年茅台营业总收入是多少？')
+    vi.unstubAllGlobals()
+  })
+
+  it('Key/年份/强制Agent 随请求发送', async () => {
+    const mock = stubFresh(answerEvents(BASE_META))
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: /设置/ }))
+    fireEvent.change(screen.getByLabelText('DeepSeek API Key'), { target: { value: 'sk-mine' } })
+    fireEvent.change(screen.getByLabelText('检索范围'), { target: { value: '2024' } })
+    fireEvent.click(screen.getByLabelText('强制 Agent'))
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '营收多少？' } })
+    fireEvent.click(screen.getByRole('button', { name: /发送/ }))
+    await waitFor(() => expect(mock).toHaveBeenCalled())
+    const body = JSON.parse(mock.mock.calls[0][1].body)
+    expect(body.api_key).toBe('sk-mine')
+    expect(body.year).toBe(2024)
+    expect(body.agent).toBe(true)
+    vi.unstubAllGlobals()
+  })
+
+  it('清空对话后回到空界面', async () => {
+    stubFresh(answerEvents(BASE_META))
+    render(<App />)
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '营收多少？' } })
+    fireEvent.click(screen.getByRole('button', { name: /发送/ }))
+    expect(await screen.findByText(/营收1,708.99亿元/)).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: /清空/ }))
+    expect(screen.queryByText(/营收1,708.99亿元/)).not.toBeInTheDocument()
+    vi.unstubAllGlobals()
+  })
+
+  it('Agent 路径渲染工具步骤', async () => {
+    stubFresh(answerEvents({
+      ...BASE_META, route: 'agent',
+      steps: [{ tool: 'search_by_year', args: { year: 2024 }, n_hits: 5 }],
+    }))
+    render(<App />)
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '跨年对比？' } })
+    fireEvent.click(screen.getByRole('button', { name: /发送/ }))
+    expect(await screen.findByText(/search_by_year/)).toBeInTheDocument()
+    vi.unstubAllGlobals()
+  })
+
+  it('第二轮带上上一轮 history', async () => {
+    const mock = stubFresh(answerEvents(BASE_META))
+    render(<App />)
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '第一问' } })
+    fireEvent.click(screen.getByRole('button', { name: /发送/ }))
+    await screen.findByText(/营收1,708.99亿元/)
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '第二问' } })
+    fireEvent.click(screen.getByRole('button', { name: /发送/ }))
+    await waitFor(() => expect(mock).toHaveBeenCalledTimes(2))
+    const body2 = JSON.parse(mock.mock.calls[1][1].body)
+    expect(body2.history).toEqual([
+      { role: 'user', content: '第一问' },
+      { role: 'assistant', content: '营收1,708.99亿元。' },
+    ])
     vi.unstubAllGlobals()
   })
 })
