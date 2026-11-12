@@ -35,6 +35,7 @@ PRESET_QUESTIONS = [
     "2025年营业总收入比2022年增长了多少？",
     "五粮液2024年的营业收入是多少？",
 ]
+CIRCLED = "①②③④⑤⑥⑦⑧⑨"
 
 FOLLOWUP_PROMPT = """根据刚才的问题和回答，提出3个用户接下来最可能想问的后续问题。
 要求：每个不超过20个字，一行一个，不要编号，不要解释，只输出3行。
@@ -47,179 +48,347 @@ FOLLOWUP_PROMPT = """根据刚才的问题和回答，提出3个用户接下来�
 st.set_page_config(page_title="茅台年报问答助手", page_icon="📑", layout="wide")
 
 # ---------------------------------------------------------------------------
-# 视觉主题：「档案纸面」—— 暖白纸底、宋体标题、墨青蓝强调、出处做成档案卡片
-# （刻意去品牌化：不使用茅台商标红与商标元素，蓝色取自金融档案文件的墨青色）
+# 视觉主题：「审计卷宗」—— 酱墨侧栏 + 暖纸正文 + 朱砂印章/酒液金强调。
+# 配色取自标的物：酱色酒液、年报纸面、审计朱砂章、墨蓝批注；数字用等宽数位。
+# （刻意去品牌化：不使用茅台商标与商标元素）
 # ---------------------------------------------------------------------------
 CSS = """
 :root {
-  --paper: #F7F5F0; --card: #FFFFFF; --wash: #F3EFE6;
-  --ink: #23201B; --muted: #8A8375; --line: #E8E2D6;
-  --accent: #2F5D8A; --accent-dark: #244B72; --accent-soft: #EDF2F8;
-  --gold: #A08339;
+  --ink: #1E150E; --ink-2: #2B1D12; --ink-line: #46331F;
+  --paper: #F4EEE1; --card: #FFFCF4; --wash: #EDE5D2;
+  --line: #DFD4BC; --text: #241B12; --muted: #857761; --muted-dark: #B9A98F;
+  --verm: #C03A1B; --verm-deep: #96290F; --verm-soft: #F8E5DC;
+  --amber: #B9862A; --amber-soft: #F4E7CB;
+  --blue: #2C5E86; --blue-soft: #E4EDF4;
+  --green: #2E7D4C; --green-soft: #E2EFE4;
+  --danger: #B3261E;
+  --serif: "Source Han Serif SC", "Noto Serif SC", "STZhongsong", "SimSun", serif;
+  --sans: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif;
 }
 .stApp, [data-testid="stApp"] {
-  background: var(--paper);
-  font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif;
-  color: var(--ink);
+  background:
+    radial-gradient(1100px 420px at 85% -80px, rgba(185, 134, 42, .10), transparent 70%),
+    radial-gradient(900px 380px at -120px 30%, rgba(192, 58, 27, .05), transparent 70%),
+    var(--paper);
+  font-family: var(--sans);
+  color: var(--text);
 }
 [data-testid="stHeader"] { background: transparent; }
 [data-testid="stAppDeployButton"], [data-testid="stToolbarActions"],
 [data-testid="stMainMenu"], [data-testid="stStatusWidget"] { display: none; }
+::selection { background: var(--verm-soft); color: var(--verm-deep); }
+* { scrollbar-width: thin; scrollbar-color: var(--amber) var(--wash); }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: var(--wash); }
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--amber), #9A6E1F);
+  border-radius: 8px; border: 2px solid var(--wash);
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--verm); }
 
-/* ---- 居中排版（聊天产品惯例的阅读宽度）---- */
+/* ---- 阅读宽度 ---- */
 [data-testid="stMainBlockContainer"],
 [data-testid="stBottomBlockContainer"] {
-  max-width: 880px; margin-left: auto; margin-right: auto;
+  max-width: 920px; margin-left: auto; margin-right: auto;
 }
 
-/* ---- 侧边栏 ---- */
+/* ---- 侧边栏：酱墨卷宗脊 ---- */
 [data-testid="stSidebar"] {
-  background: #F1EDE4; border-right: 1px solid var(--line);
+  background: linear-gradient(178deg, var(--ink-2), var(--ink) 240px);
+  border-right: 1px solid var(--ink-line);
 }
-[data-testid="stSidebar"] [data-testid="stSidebarContent"] { padding-top: 20px; }
-.mt-side-brand { display: flex; align-items: center; gap: 10px; margin: 2px 0 16px; }
+[data-testid="stSidebar"] [data-testid="stSidebarContent"] { padding-top: 22px; }
+[data-testid="stSidebar"] * { color: #EFE6D4; }
+[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p,
+[data-testid="stSidebar"] [data-testid="stWidgetLabel"] label {
+  font-size: 12px; letter-spacing: .12em; color: var(--muted-dark);
+}
+.mt-side-brand { display: flex; align-items: center; gap: 11px; margin: 2px 0 6px; }
 .mt-side-brand .seal {
-  flex: 0 0 auto; width: 34px; height: 34px; border-radius: 8px;
-  background: linear-gradient(160deg, #35618F, var(--accent-dark));
-  color: #FBF6EC; display: flex; align-items: center; justify-content: center;
-  font-family: "Source Han Serif SC", "Noto Serif SC", "STZhongsong", "SimSun", serif;
-  font-size: 19px; font-weight: 700;
-  box-shadow: inset 0 0 0 2px rgba(255, 251, 240, .30);
+  flex: 0 0 auto; width: 36px; height: 36px; border-radius: 9px;
+  background: linear-gradient(160deg, #D24A24, var(--verm-deep));
+  color: #FFF6E8; display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 20px; font-weight: 700;
+  box-shadow: inset 0 0 0 2px rgba(255, 246, 232, .32), 0 3px 10px rgba(0, 0, 0, .35);
 }
 .mt-side-brand .name {
-  font-family: "Source Han Serif SC", "Noto Serif SC", "STZhongsong", "SimSun", serif;
-  font-size: 17px; font-weight: 700; letter-spacing: .02em;
+  font-family: var(--serif); font-size: 18px; font-weight: 700;
+  letter-spacing: .04em; color: #F6EDDC;
 }
-[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {
-  font-size: 12.5px; color: var(--muted);
+.mt-side-sub { font-size: 11px; color: var(--muted-dark); letter-spacing: .18em;
+  margin: 0 0 14px; }
+.mt-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 11.5px; padding: 3px 11px; border-radius: 999px;
+  border: 1px solid var(--ink-line); background: rgba(255, 246, 232, .06);
+  color: #E9DFC9; margin: 0 0 12px;
+}
+.mt-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+  box-shadow: 0 0 0 3px rgba(46, 125, 76, .25); }
+.mt-pill.off .dot { background: var(--amber); box-shadow: 0 0 0 3px rgba(185, 134, 42, .25); }
+[data-testid="stSidebar"] [data-testid="stSegmentedControl"] {
+  background: rgba(255, 246, 232, .07); border: 1px solid var(--ink-line);
+  border-radius: 11px; padding: 3px;
+}
+[data-testid="stSidebar"] button,
+[data-testid="stSidebar"] input,
+[data-testid="stSidebar"] [data-baseweb="select"] > div {
+  background-color: rgba(255, 246, 232, .07) !important;
+  color: #F2E9D7 !important;
+}
+[data-testid="stSidebar"] [data-testid="stSegmentedControl"] button {
+  background: transparent !important; color: var(--muted-dark) !important;
+  border-radius: 8px; font-size: 12.5px;
+}
+[data-testid="stSidebar"] [data-testid="stSegmentedControl"] button[aria-checked="true"],
+[data-testid="stSidebar"] [data-testid="stSegmentedControl"] button[data-selected="true"],
+[data-testid="stSidebar"] [data-testid="stSegmentedControl"] button[kind="segmented_controlActive"] {
+  background: linear-gradient(160deg, #D24A24, var(--verm-deep)) !important;
+  color: #FFF6E8 !important;
 }
 [data-testid="stSidebar"] [data-testid="stTextInput"] input,
-[data-testid="stSidebar"] [data-testid="stSelectbox"] > div {
-  border-radius: 10px !important;
+[data-testid="stSidebar"] input,
+[data-testid="stSidebar"] [data-testid="stTextInput"] > div,
+[data-testid="stSidebar"] [data-testid="stTextInput"] > div > div {
+  background: rgba(255, 246, 232, .07) !important;
+  border: 1px solid var(--ink-line) !important;
+  color: #F2E9D7 !important; border-radius: 10px !important;
 }
+[data-testid="stSidebar"] [data-baseweb="select"] > div {
+  background: rgba(255, 246, 232, .07) !important;
+  border: 1px solid var(--ink-line) !important; border-radius: 10px !important;
+}
+[data-testid="stSidebar"] [data-baseweb="select"] div {
+  background: transparent !important;
+}
+[data-testid="stSidebar"] [data-baseweb="select"] * {
+  color: #F2E9D7 !important;
+}
+[data-testid="stSidebar"] [data-testid="stSelectbox"] > div,
+[data-testid="stSidebar"] [data-testid="stSelectbox"] > div > div,
+[data-testid="stSidebar"] [data-testid="stSelectbox"] > div > div > div {
+  background: rgba(255, 246, 232, .07) !important;
+  border: 1px solid var(--ink-line) !important;
+  color: #F2E9D7 !important; border-radius: 10px !important;
+}
+[data-testid="stSidebar"] [data-testid="stSelectbox"] * {
+  color: #F2E9D7 !important;
+}
+[data-testid="stSidebar"] [data-testid="stTextInput"] input::placeholder {
+  color: #8D7C60 !important;
+}
+[data-testid="stSidebar"] [data-testid="stCheckbox"] label p { font-size: 12.5px; }
 [data-testid="stSidebar"] [data-testid="baseButton-secondary"] {
-  border-radius: 10px; border: 1px dashed #D8D1C2;
-  background: transparent; color: var(--muted); font-size: 13px;
+  border-radius: 10px; border: 1px dashed var(--ink-line) !important;
+  background: transparent !important; color: var(--muted-dark) !important;
+  font-size: 12.5px;
 }
 [data-testid="stSidebar"] [data-testid="baseButton-secondary"]:hover {
-  border-color: var(--accent); color: var(--accent);
+  border-color: var(--amber) !important; color: var(--amber) !important;
 }
-[data-testid="stSidebar"] hr {
-  margin: 12px 0; border-color: var(--line);
+[data-testid="stSidebar"] hr { margin: 14px 0; border-color: var(--ink-line); }
+[data-testid="stSidebar"] *:focus-visible {
+  outline-color: var(--amber) !important;
 }
-.mt-side-caption { font-size: 11.5px; color: var(--muted); line-height: 1.7; }
+.mt-side-caption { font-size: 11px; color: var(--muted-dark); line-height: 1.75; }
+.mt-eyebrow-dark {
+  font-size: 11px; font-weight: 700; letter-spacing: .26em;
+  color: var(--amber); margin: 4px 0 8px;
+}
 
-/* ---- 页首：印章 + 宋体标题 + 金线 ---- */
+/* ---- 页首：朱砂印 + 宋体标题 + 金线 ---- */
 .mt-header {
-  display: flex; align-items: center; gap: 14px;
-  padding: 6px 2px 14px; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 15px;
+  padding: 8px 2px 16px; margin-bottom: 14px;
   border-bottom: 1px solid var(--line); position: relative;
 }
 .mt-header:after {
   content: ""; position: absolute; left: 2px; bottom: -1px;
-  width: 72px; height: 2px;
-  background: linear-gradient(90deg, var(--gold), transparent);
+  width: 96px; height: 3px;
+  background: linear-gradient(90deg, var(--verm), var(--amber) 60%, transparent);
 }
 .mt-seal {
-  flex: 0 0 auto; width: 46px; height: 46px; border-radius: 10px;
-  background: linear-gradient(160deg, #35618F, var(--accent-dark));
-  color: #FBF6EC; display: flex; align-items: center; justify-content: center;
-  font-family: "Source Han Serif SC", "Noto Serif SC", "STZhongsong", "SimSun", serif;
-  font-size: 27px; font-weight: 700;
-  box-shadow: inset 0 0 0 2px rgba(255, 251, 240, .30), 0 2px 5px rgba(36, 75, 114, .25);
+  flex: 0 0 auto; width: 50px; height: 50px; border-radius: 11px;
+  background: linear-gradient(160deg, #D24A24, var(--verm-deep));
+  color: #FFF6E8; display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 29px; font-weight: 700;
+  box-shadow: inset 0 0 0 2px rgba(255, 246, 232, .32), 0 4px 12px rgba(150, 41, 15, .28);
+  animation: mt-stamp .5s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+@keyframes mt-stamp {
+  from { transform: scale(1.35) rotate(-6deg); opacity: 0; }
+  to { transform: scale(1) rotate(0); opacity: 1; }
 }
 .mt-title {
-  font-family: "Source Han Serif SC", "Noto Serif SC", "STZhongsong", "SimSun", serif;
-  font-size: 26px; font-weight: 700; letter-spacing: .02em; line-height: 1.15;
+  font-family: var(--serif); font-size: 28px; font-weight: 700;
+  letter-spacing: .03em; line-height: 1.15; color: var(--text);
 }
-.mt-tagline { font-size: 12.5px; color: var(--muted); margin-top: 4px; letter-spacing: .05em; }
-.mt-tagline em { font-style: normal; color: var(--gold); padding: 0 7px; }
+.mt-tagline { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
+.mt-chip {
+  font-size: 11.5px; letter-spacing: .06em; padding: 2px 10px;
+  border-radius: 999px; border: 1px solid var(--line);
+  background: var(--card); color: var(--muted);
+}
+.mt-chip.hot { border-color: #E4B9A6; background: var(--verm-soft); color: var(--verm-deep); }
+.mt-chip.gold { border-color: #DCC28C; background: var(--amber-soft); color: #7A5714; }
 
-/* ---- 小节眉标（蓝、疏排）---- */
+/* ---- 卷宗封面带（空界面） ---- */
+.mt-cover {
+  display: flex; align-items: stretch; gap: 0; margin: 2px 0 18px;
+  border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  background: var(--card); box-shadow: 0 2px 14px rgba(30, 21, 14, .06);
+}
+.mt-cover .band {
+  flex: 0 0 8px; background: linear-gradient(var(--verm), var(--amber));
+}
+.mt-cover .body { padding: 14px 18px; }
+.mt-cover .k { font-family: var(--serif); font-size: 16px; font-weight: 700; }
+.mt-cover .v { font-size: 12px; color: var(--muted); margin-top: 5px; line-height: 1.8; }
+.mt-cover .v b { color: var(--verm-deep); font-weight: 700; }
+
+/* ---- 小节眉标 ---- */
 .mt-eyebrow {
-  font-size: 12px; font-weight: 700; letter-spacing: .22em;
-  color: var(--accent); margin: 6px 0 10px;
+  font-size: 12px; font-weight: 700; letter-spacing: .24em;
+  color: var(--verm-deep); margin: 10px 0 10px;
 }
 
 /* ---- 聊天气泡 ---- */
 [data-testid="stChatMessage"] { background: transparent; }
 [data-testid="stChatMessageContent"] {
   background: var(--card); border: 1px solid var(--line);
-  border-radius: 16px 16px 16px 4px; padding: 12px 18px;
-  box-shadow: 0 2px 12px rgba(33, 29, 24, .05);
-  font-size: 14.5px; line-height: 1.75;
+  border-radius: 16px 16px 16px 4px; padding: 14px 20px;
+  box-shadow: 0 2px 14px rgba(30, 21, 14, .06);
+  font-size: 14.5px; line-height: 1.8;
+  animation: mt-rise .35s ease both;
+}
+@keyframes mt-rise {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
   flex-direction: row-reverse;
 }
 [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"])
   [data-testid="stChatMessageContent"] {
-  background: linear-gradient(135deg, #35618F, var(--accent));
-  border: none; color: #F7F4EC;
+  background: linear-gradient(135deg, var(--ink-2), var(--ink));
+  border: 1px solid var(--ink-line); color: #F2E9D7;
   border-radius: 16px 16px 4px 16px;
-  box-shadow: 0 3px 12px rgba(36, 75, 114, .22);
+  box-shadow: 0 3px 12px rgba(30, 21, 14, .25);
 }
 [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"])
-  [data-testid="stChatMessageContent"] p { color: #F7F4EC !important; }
+  [data-testid="stChatMessageContent"] p { color: #F2E9D7 !important; }
 [data-testid="stChatMessageAvatarAssistant"] {
-  background: var(--accent); border-radius: 10px;
-  box-shadow: inset 0 0 0 2px rgba(255, 251, 240, .30);
+  background: linear-gradient(160deg, #D24A24, var(--verm-deep)); border-radius: 10px;
+  box-shadow: inset 0 0 0 2px rgba(255, 246, 232, .32);
 }
 [data-testid="stChatMessageAvatarAssistant"] span,
 [data-testid="stChatMessageAvatarAssistant"] svg {
-  color: #FBF6EC !important; fill: #FBF6EC;
+  color: #FFF6E8 !important; fill: #FFF6E8;
 }
 [data-testid="stChatMessageAvatarUser"] {
-  background: #D9D0BC; border-radius: 10px;
+  background: var(--wash); border: 1px solid var(--line); border-radius: 10px;
+}
+
+/* ---- 答案元信息条 / 拒答章 ---- */
+.mt-meta { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 8px; }
+.mt-stamp {
+  display: inline-block; margin: 2px 0 8px; padding: 4px 14px;
+  border: 2px solid var(--verm); border-radius: 6px; color: var(--verm-deep);
+  font-family: var(--serif); font-weight: 700; font-size: 14px;
+  letter-spacing: .18em; transform: rotate(-2deg);
+  background: rgba(192, 58, 27, .06);
 }
 
 /* ---- 答案里的出处标注 tag ---- */
 .mt-cite {
-  display: inline-block; background: var(--accent-soft); color: var(--accent);
-  border: 1px solid #C7D6E7; border-radius: 999px; padding: 0 10px;
+  display: inline-block; background: var(--blue-soft); color: var(--blue);
+  border: 1px solid #BFD3E2; border-radius: 999px; padding: 0 10px;
   font-size: 12.5px; font-weight: 600; margin: 1px 4px 1px 2px;
   white-space: nowrap;
 }
 
-/* ---- 出处档案卡 ---- */
+/* ---- 表格：财务数字右对齐 + 等宽数位 ---- */
+[data-testid="stMarkdownContainer"] table, [data-testid="stTable"] table {
+  border-collapse: collapse; width: 100%; font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+[data-testid="stMarkdownContainer"] th, [data-testid="stTable"] th {
+  background: var(--ink-2); color: #F2E9D7; font-weight: 600;
+  padding: 7px 12px; text-align: left; font-size: 12.5px; letter-spacing: .04em;
+}
+[data-testid="stMarkdownContainer"] td, [data-testid="stTable"] td {
+  border-bottom: 1px solid var(--line); padding: 6px 12px;
+}
+[data-testid="stMarkdownContainer"] td:not(:first-child),
+[data-testid="stTable"] td:not(:first-child) { text-align: right; }
+[data-testid="stMarkdownContainer"] tr:nth-child(even) td,
+[data-testid="stTable"] tr:nth-child(even) td { background: var(--wash); }
+
+/* ---- 证据档案卡 ---- */
 [data-testid="stExpander"] {
   background: var(--card); border: 1px solid var(--line);
-  border-left: 3px solid var(--accent); border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(33, 29, 24, .04);
-  margin-bottom: 4px; overflow: hidden;
-  transition: box-shadow .15s, border-color .15s;
+  border-left: 4px solid var(--amber); border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(30, 21, 14, .05);
+  margin-bottom: 6px; overflow: hidden;
+  transition: box-shadow .18s, border-color .18s;
 }
 [data-testid="stExpander"]:hover {
-  box-shadow: 0 3px 10px rgba(36, 75, 114, .10); border-color: #CBD9E8;
+  box-shadow: 0 4px 14px rgba(150, 41, 15, .10); border-left-color: var(--verm);
 }
 [data-testid="stExpander"] summary {
-  font-size: 13.5px; font-weight: 600; color: var(--ink);
+  font-size: 13.5px; font-weight: 600; color: var(--text);
 }
-[data-testid="stExpander"] summary:hover { color: var(--accent); }
+[data-testid="stExpander"] summary:hover { color: var(--verm-deep); }
 [data-testid="stExpanderDetails"] { font-size: 13px; }
 .mt-source-text {
-  white-space: pre-wrap; color: #4A443B; line-height: 1.8; font-size: 12.5px;
+  white-space: pre-wrap; color: #4A4034; line-height: 1.85; font-size: 12.5px;
   background: var(--paper); border: 1px dashed var(--line);
   border-radius: 8px; padding: 10px 12px; margin-top: 4px;
 }
+.mt-exhibit-tag {
+  font-size: 11px; letter-spacing: .18em; font-weight: 700;
+  color: var(--verm-deep); margin: 10px 0 4px;
+}
+[data-testid="stImage"] img {
+  border: 1px solid var(--line); border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(30, 21, 14, .10); background: #fff;
+}
+[data-testid="stCaption"] { color: var(--muted); font-size: 11.5px; }
 
-/* ---- 候选问题卡（预设/追问统一）---- */
+/* ---- Agent 轨迹 ---- */
+.mt-tool {
+  display: inline-block; font-family: Consolas, "Courier New", monospace;
+  font-size: 12px; background: var(--amber-soft); color: #7A5714;
+  border: 1px solid #DCC28C; border-radius: 6px; padding: 0 7px; margin-right: 6px;
+}
+
+/* ---- 候选问题卡（预设/追问统一） ---- */
 [data-testid="stButton"] button {
-  width: 100%; text-align: left; background: var(--card);
-  color: var(--ink); border: 1px solid var(--line); border-radius: 12px;
-  padding: 9px 14px; font-size: 13.5px; font-weight: 400;
-  transition: border-color .15s, color .15s, background .15s,
-              transform .15s, box-shadow .15s;
+  width: 100%; text-align: left; justify-content: flex-start;
+  background: var(--card);
+  color: var(--text); border: 1px solid var(--line);
+  border-left: 3px solid var(--amber); border-radius: 12px;
+  padding: 10px 15px; font-size: 13.5px; font-weight: 400;
+  transition: border-color .16s, color .16s, background .16s,
+              transform .16s, box-shadow .16s;
 }
 [data-testid="stButton"] button:hover {
-  border-color: var(--accent); color: var(--accent);
-  background: var(--accent-soft);
-  transform: translateY(-1px); box-shadow: 0 3px 10px rgba(36, 75, 114, .10);
+  border-color: #E4B9A6; border-left-color: var(--verm);
+  color: var(--verm-deep); background: var(--verm-soft);
+  transform: translateY(-2px); box-shadow: 0 5px 14px rgba(150, 41, 15, .12);
 }
 [data-testid="stButton"] button:focus-visible {
-  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(47, 93, 138, .18);
+  border-color: var(--verm); box-shadow: 0 0 0 3px rgba(192, 58, 27, .18);
 }
-[data-testid="stButton"] button p { font-size: 13.5px; }
+[data-testid="stButton"] button p {
+  font-size: 13.5px; text-align: left !important; margin: 0 !important;
+  width: 100%;
+}
+[data-testid="stButton"] button > div,
+[data-testid="stButton"] button > span {
+  justify-content: flex-start !important; text-align: left !important;
+  width: 100%;
+}
 
 /* ---- 输入框 ---- */
 [data-testid="stBottom"] {
@@ -227,22 +396,32 @@ CSS = """
 }
 [data-testid="stChatInput"] {
   border-radius: 14px; border: 1px solid var(--line);
-  background: var(--card); box-shadow: 0 2px 14px rgba(33, 29, 24, .06);
+  background: var(--card); box-shadow: 0 2px 16px rgba(30, 21, 14, .08);
 }
 [data-testid="stChatInput"]:focus-within {
-  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(47, 93, 138, .12);
+  border-color: var(--verm); box-shadow: 0 0 0 3px rgba(192, 58, 27, .13);
 }
 [data-testid="stChatInputSubmitButton"] button {
-  background: var(--accent); border-color: var(--accent); border-radius: 10px;
+  background: linear-gradient(160deg, #D24A24, var(--verm-deep));
+  border-color: var(--verm-deep); border-radius: 10px;
 }
 [data-testid="stChatInputSubmitButton"] button:hover {
-  background: var(--accent-dark); border-color: var(--accent-dark);
+  background: var(--verm-deep); border-color: var(--verm-deep);
 }
 
-/* ---- 控件标签与标题 ---- */
+/* ---- 状态/异常/控件 ---- */
+[data-testid="stStatus"] {
+  background: var(--card); border: 1px solid var(--line);
+  border-left: 4px solid var(--amber); border-radius: 12px;
+}
+[data-testid="stException"] {
+  background: var(--verm-soft); border: 1px solid #E4B9A6;
+  border-left: 4px solid var(--danger); border-radius: 12px;
+}
 [data-testid="stWidgetLabel"] p { color: var(--muted); font-size: 13px; }
-h2, h3, [data-testid="stHeading"] {
-  font-family: "Source Han Serif SC", "Noto Serif SC", "STZhongsong", "SimSun", serif;
+h2, h3, [data-testid="stHeading"] { font-family: var(--serif); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 """
 st.markdown(f"<style>{CSS}</style>", unsafe_allow_html=True)
@@ -253,7 +432,11 @@ st.markdown(
       <div class="mt-seal">档</div>
       <div>
         <div class="mt-title">茅台年报问答</div>
-        <div class="mt-tagline">贵州茅台 2022–2025 年度报告<em>·</em>答案必附原文页码出处<em>·</em>查不到就明说</div>
+        <div class="mt-tagline">
+          <span class="mt-chip gold">贵州茅台 2022–2025 年报</span>
+          <span class="mt-chip">答案必附原文页码出处</span>
+          <span class="mt-chip hot">查不到就明说</span>
+        </div>
       </div>
     </div>
     """,
@@ -291,7 +474,7 @@ def generate(question: str, year: int | None = None,
                        history=history, force_agent=force_agent)
 
 
-_CITE_TAG_RE = re.compile(r"\[来源: ([^\]]+)\]")
+_CITE_TAG_RE = re.compile(r"\[来源[:：]\s*([^\]]+)\]")
 
 
 def fmt_answer(text: str) -> str:
@@ -344,31 +527,48 @@ def render_sources(hits: list[dict], answer: str | None = None) -> None:
     spec = claims.citation_spec(answer) if answer else {"numbers": [], "pages": []}
     for i, h in enumerate(hits):
         badge = "页码直达" if h.get("direct") else (
-            "⭐ 最佳匹配" if i == 0 else "")
-        label = f"出处 {i + 1} · {h['year']}年报 第{h['page']}页"
+            "最佳匹配" if i == 0 else "")
+        label = f"证据 {i + 1} · {h['year']}年报 P{h['page']}"
         if badge:
             label += f" · {badge}"
-        with st.expander(label):
+        # 首条默认展开：坐标高亮是本产品的核验入口，不该藏在点击后面
+        with st.expander(label, expanded=(i == 0)):
             body = html.escape(h["text"][:600])
             st.markdown(f'<div class="mt-source-text">{body}</div>',
                         unsafe_allow_html=True)
             crop = cite_locate.crop_for_source(h, spec, CITE_CROP_DIR)
             if crop:
+                st.markdown('<p class="mt-exhibit-tag">坐标核验 · 红框 = 答案引用的数字</p>',
+                            unsafe_allow_html=True)
                 st.image(str(crop),
-                         caption=f"坐标核验：红框为答案引用的数字（{h['year']}年报 P{h['page']}）")
+                         caption=f"{h['year']}年报 P{h['page']} 原文横带")
 
 
 def render_steps(steps: list[dict]) -> None:
     """agent 路径的工具调用轨迹（Function Calling 过程可视化）。"""
     if not steps:
         return
-    with st.expander(f"🔧 Agent 工具调用轨迹（{len(steps)} 步）"):
+    with st.expander(f"Agent 工具调用轨迹（{len(steps)} 步）"):
         lines = []
         for i, s in enumerate(steps, start=1):
             arg_str = "、".join(f"{k}: {v}" for k, v in s["args"].items())
-            lines.append(f"**{i}. `{s['tool']}`**（{arg_str}）→ "
-                         f"取回 {s['n_hits']} 个片段")
-        st.markdown("\n\n".join(lines))
+            lines.append(f'{i}. <span class="mt-tool">{html.escape(s["tool"])}</span>'
+                         f'{html.escape(arg_str)} → 取回 {s["n_hits"]} 个片段')
+        st.markdown("<br>".join(lines), unsafe_allow_html=True)
+
+
+def render_meta(route: str | None, refused: bool, n_hits: int) -> None:
+    """答案脚注：路径徽章 + 证据数；拒答盖朱砂章。"""
+    chips = []
+    if route:
+        label = "Agent 工具链" if route == "agent" else "直通检索"
+        chips.append(f'<span class="mt-chip hot">{label}</span>')
+    chips.append(f'<span class="mt-chip">{n_hits} 处证据</span>')
+    st.markdown('<div class="mt-meta">' + "".join(chips) + "</div>",
+                unsafe_allow_html=True)
+    if refused:
+        st.markdown('<div class="mt-stamp">查无披露 · 已拒答</div>',
+                    unsafe_allow_html=True)
 
 
 def ask_followup(q: str) -> None:
@@ -390,7 +590,8 @@ if "msgs" not in st.session_state:
 with st.sidebar:
     st.markdown(
         '<div class="mt-side-brand"><div class="seal">档</div>'
-        '<div class="name">茅台年报问答</div></div>',
+        '<div class="name">茅台年报问答</div></div>'
+        '<p class="mt-side-sub">审计卷宗 · 2022–2025</p>',
         unsafe_allow_html=True)
     mode = st.segmented_control("模式", ["对话问答", "对比模式"],
                                 key="mode", default="对话问答")
@@ -403,7 +604,7 @@ with st.sidebar:
             help="所有问题都走 Function Calling 工具循环。默认关闭："
                  "只有跨年对比/页码直达题会自动启用 Agent。")
 
-    st.markdown('<p class="mt-eyebrow">生成模型</p>', unsafe_allow_html=True)
+    st.markdown('<p class="mt-eyebrow-dark">生成模型</p>', unsafe_allow_html=True)
     backend = st.segmented_control(
         "生成模型", ["云端 DeepSeek", "本地 Ollama"], key="backend",
         default="云端 DeepSeek"
@@ -411,6 +612,13 @@ with st.sidebar:
         else "本地 Ollama", label_visibility="collapsed")
     backend = backend or "云端 DeepSeek"
     if backend == "云端 DeepSeek":
+        has_key = bool((st.session_state.get("byo_key") or "").strip()
+                       or os.environ.get("DEEPSEEK_API_KEY")
+                       or os.environ.get("RAG_API_KEY"))
+        st.markdown(
+            f'<span class="mt-pill{"" if has_key else " off"}"><span class="dot"></span>'
+            f'{"DeepSeek 已连接" if has_key else "待填 Key · 当前不可用"}</span>',
+            unsafe_allow_html=True)
         st.text_input("DeepSeek API Key", type="password", key="byo_key",
                       placeholder="sk-…（留空则用环境变量）",
                       help="粘贴你自己的 DeepSeek API Key。Key 只保存在当前"
@@ -419,6 +627,8 @@ with st.sidebar:
                     'platform.deepseek.com 申请，一次问答约 ¥0.001。</p>',
                     unsafe_allow_html=True)
     else:
+        st.markdown('<span class="mt-pill"><span class="dot"></span>'
+                    '本地 Ollama · 离线零成本</span>', unsafe_allow_html=True)
         st.markdown('<p class="mt-side-caption">需要本机运行 Ollama'
                     '（qwen3:4b）。完全离线、零成本。</p>',
                     unsafe_allow_html=True)
@@ -436,6 +646,8 @@ if mode == "对话问答":
         with st.chat_message(m["role"]):
             if m["role"] == "assistant":
                 st.markdown(fmt_answer(m["content"]), unsafe_allow_html=True)
+                render_meta(m.get("route"), m.get("refused", False),
+                            len(m.get("hits") or []))
             else:
                 st.markdown(m["content"])
             if m.get("hits"):
@@ -451,14 +663,22 @@ if mode == "对话问答":
                         st.button(fu, key=f"fu_{mi}_{j}", on_click=ask_followup,
                                   args=(fu,))
 
-    # ---- 空界面：预设问题 ----
+    # ---- 空界面：卷宗封面 + 预设问题 ----
     if not st.session_state.msgs:
+        st.markdown(
+            '<div class="mt-cover"><div class="band"></div><div class="body">'
+            '<div class="k">卷宗说明</div>'
+            '<div class="v">语料：贵州茅台 2022–2025 四份年报 · <b>1,778</b> 个证据块<br>'
+            '核验：答案数字定位到原文页框并高亮 · 留出集拒答 <b>15/15</b> 零编造</div>'
+            '</div></div>',
+            unsafe_allow_html=True)
         st.markdown('<p class="mt-eyebrow">试试这些问题</p>',
                     unsafe_allow_html=True)
         for row in range(0, len(PRESET_QUESTIONS), 2):
             cols = st.columns(2)
             for ci, q in enumerate(PRESET_QUESTIONS[row:row + 2]):
-                cols[ci].button(q, key=f"preset_{row + ci}",
+                cols[ci].button(f"{CIRCLED[row + ci]} {q}",
+                                key=f"preset_{row + ci}",
                                 on_click=ask_followup, args=(q,),
                                 width="stretch")
 
@@ -509,9 +729,11 @@ if mode == "对话问答":
             status_box.update(state="complete", expanded=False)
             if "replace" in box:  # 拒答重试/接地修正给出全文：整体替换
                 text = box["replace"]
-                answer_slot.markdown(fmt_answer(text), unsafe_allow_html=True)
+            # write_stream 只渲染原始 markdown：流结束后重渲染以套用出处 pill
+            answer_slot.markdown(fmt_answer(text), unsafe_allow_html=True)
             meta = box["meta"]
             hits = meta["hits"]
+            render_meta(meta.get("route"), meta.get("refused", False), len(hits))
             render_sources(hits, text)
             render_steps(meta.get("steps"))
             with st.spinner("生成追问建议..."):
@@ -526,6 +748,7 @@ if mode == "对话问答":
                                   args=(fu,))
         st.session_state.msgs.append(
             {"role": "assistant", "content": text, "hits": hits,
+             "route": meta.get("route"), "refused": meta.get("refused", False),
              "steps": meta.get("steps"), "followups": fus})
 
 else:  # 对比模式
