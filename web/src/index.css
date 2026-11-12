@@ -91,6 +91,14 @@ header h1 { font-size: 22px; margin: 0 0 4px; }
 .preset:hover { border-color: var(--accent); color: var(--accent); }
 .preset:disabled { opacity: .45; cursor: default; }
 
+.followups { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0 0; }
+.followups-label { margin: 0; font-size: 12px; color: var(--muted); }
+.chip {
+  padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--paper); color: var(--ink); font: inherit; font-size: 13px; cursor: pointer;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+
 .trace { margin: 0 0 8px; border: 1px dashed var(--line); border-radius: 8px; padding: 4px 10px; }
 .trace summary { cursor: pointer; font-size: 12px; color: var(--muted); }
 .trace ol { margin: 6px 0 4px; padding-left: 18px; color: var(--muted); font-size: 12px; }

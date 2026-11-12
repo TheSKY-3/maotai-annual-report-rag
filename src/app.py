@@ -19,7 +19,7 @@ import re
 import streamlit as st
 from openai import OpenAI
 
-from src import cite_locate, claims
+from src import cite_locate, claims, followups
 from src.ask import answer_auto, answer_auto_stream
 from src.config import (DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, GEN_MODEL,
                         OLLAMA_BASE_URL, PROJECT, YEARS)
@@ -36,14 +36,6 @@ PRESET_QUESTIONS = [
     "五粮液2024年的营业收入是多少？",
 ]
 CIRCLED = "①②③④⑤⑥⑦⑧⑨"
-
-FOLLOWUP_PROMPT = """根据刚才的问题和回答，提出3个用户接下来最可能想问的后续问题。
-要求：每个不超过20个字，一行一个，不要编号，不要解释，只输出3行。
-
-刚才的问题：{q}
-刚才的回答：{a}
-
-/no_think"""
 
 st.set_page_config(page_title="茅台年报问答助手", page_icon="📑", layout="wide")
 
@@ -484,43 +476,9 @@ def fmt_answer(text: str) -> str:
 
 
 def gen_followups(question: str, answer: str) -> list[str]:
-    """生成 3 个追问建议；失败则返回空（不阻塞主回答）。"""
-    try:
-        client, model = _resolve_backend()
-        messages = [{"role": "user",
-                     "content": FOLLOWUP_PROMPT.format(
-                         q=question, a=answer[:400])}]
-        resp = client.chat.completions.create(
-            model=model,
-            messages=messages,
-            temperature=0.3,
-            max_tokens=900,
-        )
-        raw = resp.choices[0].message.content or ""
-        if not raw.strip():
-            # 思考模式偶发未被 /no_think 关闭：配额被思考吃尽导致正文为空，
-            # 翻倍配额重试一次（与 E5 语境句生成同源现象）
-            resp = client.chat.completions.create(
-                model=model,
-                messages=messages,
-                temperature=0.3,
-                max_tokens=1800,
-            )
-            raw = resp.choices[0].message.content or ""
-        # 模型偶尔把 3 条挤在一行：按编号标记再拆一次
-        lines = []
-        for l in raw.splitlines():
-            lines.extend(x for x in re.split(r"[0-9]+[.、)．]\s*", l) if x.strip())
-        out = []
-        for l in lines:
-            l = re.sub(r"^[0-9]+[.、)．]\s*", "", l.strip().strip("`-；;，,"))
-            if 8 <= len(l) <= 40 and not l.startswith("/") and (
-                    l.endswith("？") or re.search(r"[多少什么怎么如何哪是否]", l)):
-                out.append(l)
-        return out[:3]
-    except Exception as e:  # noqa: BLE001
-        print("[followups] 生成失败:", repr(e))
-        return []
+    """生成 3 个追问建议；实现与 API 共用 src/followups.py。"""
+    client, model = _resolve_backend()
+    return followups.gen_followups(client, model, question, answer)
 
 
 def render_sources(hits: list[dict], answer: str | None = None) -> None:

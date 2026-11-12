@@ -22,6 +22,7 @@ export interface AskMeta {
   latency_ms?: number
   cost_cny?: number
   steps?: Step[]
+  followups?: string[]
 }
 
 export type StreamEvent =

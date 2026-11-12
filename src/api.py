@@ -38,6 +38,7 @@ from src.config import (DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, GEN_MODEL,
                         OLLAMA_BASE_URL, PROJECT, YEARS)
 from src.pipeline import get_search, index_status
 from src.ask import answer_auto, answer_auto_stream
+from src.followups import gen_followups
 
 app = FastAPI(
     title="茅台财报 RAG API",
@@ -192,6 +193,8 @@ class AskResponse(BaseModel):
         default_factory=dict, description="本次请求 token 用量")
     cost_cny: float = Field(default=0.0, description="本次请求估算成本（元）")
     latency_ms: int = Field(default=0, description="本次请求耗时（毫秒）")
+    followups: list[str] = Field(
+        default=[], description="追问建议（拒答或生成失败时为空）")
 
 
 def _resolve(api_key: str | None, model: str | None) -> tuple[OpenAI, str]:
@@ -290,6 +293,7 @@ def ask(req: AskRequest, _=Depends(_guard)) -> AskResponse:
     request_id = uuid.uuid4().hex[:12]
     started = time.perf_counter()
     bucket = None
+    fus: list[str] = []
     try:
         with usage.collect() as bucket:
             meta = answer_auto(
@@ -298,6 +302,9 @@ def ask(req: AskRequest, _=Depends(_guard)) -> AskResponse:
                 history=[m.model_dump() for m in req.history],
                 force_agent=req.agent,
             )
+            # 追问建议也算这次请求的开销，必须在 collect 块内生成
+            if not meta.get("refused"):
+                fus = gen_followups(client, model, req.question, meta["answer"])
     except Exception as e:  # noqa: BLE001
         _log_ask(request_id=request_id, status=502, started=started,
                  model=model, bucket=bucket, error=str(e),
@@ -313,6 +320,7 @@ def ask(req: AskRequest, _=Depends(_guard)) -> AskResponse:
         "usage": u,
         "cost_cny": cost_cny,
         "latency_ms": int((time.perf_counter() - started) * 1000),
+        "followups": fus,
     })
     _log_ask(request_id=request_id, status=200, started=started,
              model=model, meta=data, bucket=bucket,
@@ -366,6 +374,13 @@ def ask_stream(req: AskRequest, _=Depends(_guard)) -> StreamingResponse:
                         break
                     if ev.get("type") == "done":
                         meta = dict(ev.get("meta") or {})
+                        fus = []
+                        if not meta.get("refused"):
+                            # 走线程池不堵事件循环；context 被复制，用量仍记进本桶
+                            fus = await run_in_threadpool(
+                                gen_followups, client, model, req.question,
+                                meta["answer"])
+                        meta["followups"] = fus
                         u = _request_usage(bucket)
                         cost_cny, _ = _cost(u)
                         meta.update({

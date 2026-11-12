@@ -175,6 +175,16 @@ export default function App() {
                     defaultOpen={k === 0}
                   />
                 ))}
+                {m.meta?.followups?.length && i === msgs.length - 1 ? (
+                  <div className="followups">
+                    <p className="followups-label">接着问</p>
+                    {m.meta.followups.map(f => (
+                      <button key={f} className="chip" onClick={() => void send(f)}>
+                        {f}
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
               </>
             )}
           </article>

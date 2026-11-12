@@ -263,3 +263,97 @@ describe('App 预设与设置', () => {
     vi.unstubAllGlobals()
   })
 })
+
+describe('App 追问建议', () => {
+  const FU = ['2024年净利润是多少？', '2024年分红方案是什么？']
+
+  /** 每轮返回各自的答案与追问建议。 */
+  function stubRounds(rounds: { answer: string; followups: string[] }[]) {
+    let n = 0
+    const mock = vi.fn().mockImplementation(async () => {
+      const r = rounds[Math.min(n++, rounds.length - 1)]
+      const meta = {
+        question: '营收多少？', answer: r.answer, refused: false,
+        sources: [], citations: [], route: 'direct', model: 'deepseek-flash',
+        latency_ms: 6500, cost_cny: 0.001, followups: r.followups,
+      }
+      return {
+        ok: true,
+        body: new ReadableStream({
+          start(c) {
+            const enc = new TextEncoder()
+            c.enqueue(enc.encode(
+              `event: replace\ndata: ${JSON.stringify({ text: r.answer })}\n\n`))
+            c.enqueue(enc.encode(
+              `event: done\ndata: ${JSON.stringify({ meta })}\n\n`))
+            c.close()
+          },
+        }),
+      }
+    })
+    vi.stubGlobal('fetch', mock)
+    return mock
+  }
+
+  async function ask(text: string) {
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: text } })
+    fireEvent.click(screen.getByRole('button', { name: /发送/ }))
+  }
+
+  it('答完给出「接着问」建议按钮', async () => {
+    stubRounds([{ answer: '营收1,708.99亿元。', followups: FU }])
+    render(<App />)
+    await ask('营收多少？')
+    expect(await screen.findByText('接着问')).toBeInTheDocument()
+    for (const f of FU)
+      expect(screen.getByRole('button', { name: f })).toBeInTheDocument()
+    vi.unstubAllGlobals()
+  })
+
+  it('点建议按钮直接发问并带上上一轮 history', async () => {
+    const mock = stubRounds([
+      { answer: '营收1,708.99亿元。', followups: FU },
+      { answer: '净利润862.28亿元。', followups: [] },
+    ])
+    render(<App />)
+    await ask('营收多少？')
+    fireEvent.click(await screen.findByRole('button', { name: FU[0] }))
+    await waitFor(() => expect(mock).toHaveBeenCalledTimes(2))
+    const body = JSON.parse(mock.mock.calls[1][1].body)
+    expect(body.question).toBe(FU[0])
+    expect(body.history).toEqual([
+      { role: 'user', content: '营收多少？' },
+      { role: 'assistant', content: '营收1,708.99亿元。' },
+    ])
+    vi.unstubAllGlobals()
+  })
+
+  it('只有最新一条答案下保留建议', async () => {
+    stubRounds([
+      { answer: '营收1,708.99亿元。', followups: FU },
+      { answer: '净利润862.28亿元。', followups: ['2024年毛利率是多少？'] },
+    ])
+    render(<App />)
+    await ask('营收多少？')
+    await screen.findByRole('button', { name: FU[0] })
+    await ask('净利润呢？')
+    expect(await screen.findByRole('button', { name: '2024年毛利率是多少？' }))
+      .toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: FU[0] })).toBeNull()
+    vi.unstubAllGlobals()
+  })
+
+  it('新一轮没有建议时收掉接着问', async () => {
+    stubRounds([
+      { answer: '营收1,708.99亿元。', followups: FU },
+      { answer: '年报未披露该数据。', followups: [] },
+    ])
+    render(<App />)
+    await ask('营收多少？')
+    await screen.findByRole('button', { name: FU[0] })
+    await ask('五粮液营收？')
+    await screen.findByText(/年报未披露该数据/)
+    expect(screen.queryByText('接着问')).toBeNull()
+    vi.unstubAllGlobals()
+  })
+})
