@@ -88,6 +88,14 @@ export function cropUrl(year: number, page: number, numbers: string[]): string {
   return `/cite_crop?year=${year}&page=${page}&numbers=${encodeURIComponent(numbers.join(','))}`
 }
 
+const fmtArg = (v: unknown) => (Array.isArray(v) ? `[${v.join(', ')}]` : String(v))
+
+/** 与后端 agent status 同格式：调用 tool（k: v、…），取回 N 个片段。 */
+export function stepLabel(s: Step): string {
+  const args = Object.entries(s.args).map(([k, v]) => `${k}: ${fmtArg(v)}`).join('、')
+  return `调用 ${s.tool}（${args}），取回 ${s.n_hits} 个片段`
+}
+
 const CITE_RE = /\[来源[^\]]*\]/g
 const LIST_MARK_RE = /^\s*\d{1,2}[.、)]\s*/gm
 const UNIT = '(?:万亿元|亿元|百万元|千万元|千元|万元|元|亿|万|千|%|％)?'

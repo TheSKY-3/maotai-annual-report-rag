@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { answerNumbers, cropUrl, parseSSE, streamAsk } from './api'
+import { answerNumbers, cropUrl, parseSSE, stepLabel, streamAsk } from './api'
 
 describe('parseSSE', () => {
   it('切出完整事件并保留不完整尾部', () => {
@@ -84,5 +84,15 @@ describe('streamAsk', () => {
       history: [{ role: 'user', content: 'prev' }],
     })
     vi.unstubAllGlobals()
+  })
+})
+
+describe('stepLabel', () => {
+  it('把工具步骤格式化成与后端 status 一致的行', () => {
+    expect(stepLabel({
+      tool: 'compare_metric',
+      args: { metric: '净利润', years: [2022, 2025] },
+      n_hits: 3,
+    })).toBe('调用 compare_metric（metric: 净利润、years: [2022, 2025]），取回 3 个片段')
   })
 })

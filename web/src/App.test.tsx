@@ -12,6 +12,17 @@ function stubStream(events: string[]) {
   vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, body: stream }))
 }
 
+/** 手动控流：测试可在流中途断言界面状态，再推后续事件。 */
+function stubControlled() {
+  let ctrl!: ReadableStreamDefaultController<Uint8Array>
+  const stream = new ReadableStream<Uint8Array>({ start(c) { ctrl = c } })
+  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, body: stream }))
+  return {
+    push: (e: string) => ctrl.enqueue(new TextEncoder().encode(e)),
+    end: () => ctrl.close(),
+  }
+}
+
 const DONE_META = {
   question: '合计多少？',
   answer: '合计为680.93。 [来源: 2024年报 P26]',
@@ -133,15 +144,89 @@ describe('App 预设与设置', () => {
     vi.unstubAllGlobals()
   })
 
-  it('Agent 路径渲染工具步骤', async () => {
-    stubFresh(answerEvents({
-      ...BASE_META, route: 'agent',
-      steps: [{ tool: 'search_by_year', args: { year: 2024 }, n_hits: 5 }],
-    }))
+  it('Agent 路径渲染工具调用时间线', async () => {
+    stubFresh([
+      'event: status\ndata: {"label":"调用 search_by_year（year: 2024），取回 5 个片段"}\n\n',
+      ...answerEvents({ ...BASE_META, route: 'agent' }),
+    ])
     render(<App />)
     fireEvent.change(screen.getByRole('textbox'), { target: { value: '跨年对比？' } })
     fireEvent.click(screen.getByRole('button', { name: /发送/ }))
-    expect(await screen.findByText(/search_by_year/)).toBeInTheDocument()
+    expect(await screen.findByText(/调用 search_by_year/)).toBeInTheDocument()
+    vi.unstubAllGlobals()
+  })
+
+  it('流式期间时间线展开且逐条累积，答完收起成摘要', async () => {
+    const s = stubControlled()
+    render(<App />)
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '跨年对比？' } })
+    fireEvent.click(screen.getByRole('button', { name: /发送/ }))
+    s.push('event: status\ndata: {"label":"调用 search_by_year（year: 2022），取回 5 个片段"}\n\n')
+    s.push('event: status\ndata: {"label":"调用 compare_metric（metric: 净利润），取回 3 个片段"}\n\n')
+    expect(await screen.findByText(/调用 search_by_year/)).toBeVisible()
+    expect(screen.getByText(/调用 compare_metric/)).toBeVisible()
+    s.push(`event: done\ndata: {"meta":${JSON.stringify(BASE_META)}}\n\n`)
+    s.end()
+    const summary = await screen.findByText('过程 · 2 步')
+    const box = summary.closest('details')!
+    await waitFor(() => expect(box.open).toBe(false))
+    expect(screen.getByText(/调用 search_by_year/)).not.toBeVisible()
+    fireEvent.click(summary)
+    expect(screen.getByText(/调用 compare_metric/)).toBeVisible()
+    vi.unstubAllGlobals()
+  })
+
+  it('delta 与 replace 不清掉已累积的时间线', async () => {
+    const s = stubControlled()
+    render(<App />)
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '跨年对比？' } })
+    fireEvent.click(screen.getByRole('button', { name: /发送/ }))
+    s.push('event: status\ndata: {"label":"调用 compare_years（years: 2022、2025），取回 6 个片段"}\n\n')
+    await screen.findByText(/调用 compare_years/)
+    s.push('event: delta\ndata: {"text":"增长"}\n\n')
+    s.push('event: replace\ndata: {"text":"增长 34.89%。"}\n\n')
+    s.push(`event: done\ndata: {"meta":${JSON.stringify(BASE_META)}}\n\n`)
+    s.end()
+    const summary = await screen.findByText('过程 · 1 步')
+    fireEvent.click(summary)
+    expect(screen.getByText(/调用 compare_years/)).toBeVisible()
+    vi.unstubAllGlobals()
+  })
+
+  it('答完后时间线换成结构化工具清单', async () => {
+    stubFresh([
+      'event: status\ndata: {"label":"检索并核对证据中…"}\n\n',
+      ...answerEvents({
+        ...BASE_META, route: 'agent',
+        steps: [
+          { tool: 'search_by_year', args: { year: 2022 }, n_hits: 5 },
+          { tool: 'compare_metric', args: { metric: '净利润', years: [2022, 2025] }, n_hits: 3 },
+        ],
+      }),
+    ])
+    render(<App />)
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '跨年对比？' } })
+    fireEvent.click(screen.getByRole('button', { name: /发送/ }))
+    const summary = await screen.findByText('过程 · 2 步')
+    fireEvent.click(summary)
+    expect(screen.getByText(
+      '调用 compare_metric（metric: 净利润、years: [2022, 2025]），取回 3 个片段',
+    )).toBeVisible()
+    expect(screen.queryByText('检索并核对证据中…')).toBeNull()
+    vi.unstubAllGlobals()
+  })
+
+  it('直通路径答完保留阶段状态行', async () => {
+    stubFresh([
+      'event: status\ndata: {"label":"检索年报…"}\n\n',
+      ...answerEvents({ ...BASE_META, steps: [] }),
+    ])
+    render(<App />)
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '营收多少？' } })
+    fireEvent.click(screen.getByRole('button', { name: /发送/ }))
+    const summary = await screen.findByText('过程 · 1 步')
+    fireEvent.click(summary)
+    expect(screen.getByText('检索年报…')).toBeVisible()
     vi.unstubAllGlobals()
   })
 

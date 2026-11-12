@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { answerNumbers, streamAsk, type AskMeta, type StreamEvent } from './api'
+import { answerNumbers, stepLabel, streamAsk, type AskMeta, type StreamEvent } from './api'
 import SourceCard from './components/SourceCard'
 
 interface Msg {
@@ -7,7 +7,7 @@ interface Msg {
   text: string
   meta?: AskMeta
   error?: string
-  status?: string
+  trace: string[]
 }
 
 const PRESETS = [
@@ -43,8 +43,8 @@ export default function App() {
     const ac = new AbortController()
     abortRef.current = ac
     setMsgs(prev => [...prev,
-      { role: 'user', text: q },
-      { role: 'assistant', text: '', status: '检索中…' }])
+      { role: 'user', text: q, trace: [] },
+      { role: 'assistant', text: '', trace: [] }])
     const opts = {
       year: year ?? undefined,
       api_key: apiKey.trim() || undefined,
@@ -53,19 +53,26 @@ export default function App() {
     }
     try {
       await streamAsk(q, (e: StreamEvent) => {
-        if (e.event === 'status') patchLast(m => ({ ...m, status: e.data.label }))
+        if (e.event === 'status')
+          patchLast(m => ({ ...m, trace: [...m.trace, e.data.label] }))
         else if (e.event === 'delta')
-          patchLast(m => ({ ...m, text: m.text + e.data.text, status: undefined }))
+          patchLast(m => ({ ...m, text: m.text + e.data.text }))
         else if (e.event === 'replace')
-          patchLast(m => ({ ...m, text: e.data.text, status: undefined }))
+          patchLast(m => ({ ...m, text: e.data.text }))
         else if (e.event === 'done')
-          patchLast(m => ({ ...m, meta: e.data.meta, status: undefined }))
+          patchLast(m => ({
+            ...m,
+            meta: e.data.meta,
+            trace: e.data.meta.steps?.length
+              ? e.data.meta.steps.map(stepLabel)
+              : m.trace,
+          }))
         else if (e.event === 'error')
-          patchLast(m => ({ ...m, error: e.data.message, status: undefined }))
+          patchLast(m => ({ ...m, error: e.data.message }))
       }, ac.signal, opts)
     } catch (err) {
       if (!ac.signal.aborted)
-        patchLast(m => ({ ...m, error: String(err), status: undefined }))
+        patchLast(m => ({ ...m, error: String(err) }))
     } finally {
       setBusy(false)
     }
@@ -136,7 +143,22 @@ export default function App() {
               <p className="bubble">{m.text}</p>
             ) : (
               <>
-                {m.status && <p className="status">{m.status}</p>}
+                {m.trace.length > 0 && (
+                  <details className="trace" open={busy && i === msgs.length - 1}>
+                    <summary>过程 · {m.trace.length} 步</summary>
+                    <ol>
+                      {m.trace.map((t, j) => (
+                        <li
+                          key={j}
+                          className={busy && i === msgs.length - 1
+                            && j === m.trace.length - 1 ? 'active' : undefined}
+                        >
+                          {t}
+                        </li>
+                      ))}
+                    </ol>
+                  </details>
+                )}
                 {m.meta?.refused && <span className="badge-refused">拒答</span>}
                 {m.text && <p className="answer">{m.text}</p>}
                 {m.error && <p className="error">{m.error}</p>}
@@ -145,19 +167,12 @@ export default function App() {
                     {m.meta.route} · {m.meta.latency_ms ?? '—'}ms · ¥{m.meta.cost_cny ?? '—'}
                   </p>
                 )}
-                {m.meta?.steps && m.meta.steps.length > 0 && (
-                  <ul className="steps">
-                    {m.meta.steps.map((s, j) => (
-                      <li key={j}>{s.tool} · {s.n_hits} 处</li>
-                    ))}
-                  </ul>
-                )}
-                {m.meta?.sources.map((s, i) => (
+                {m.meta?.sources.map((s, k) => (
                   <SourceCard
                     key={`${s.year}-${s.page}`}
                     source={s}
                     numbers={answerNumbers(m.meta!.answer)}
-                    defaultOpen={i === 0}
+                    defaultOpen={k === 0}
                   />
                 ))}
               </>

@@ -30,7 +30,6 @@ header h1 { font-size: 22px; margin: 0 0 4px; }
   padding: 12px 14px;
 }
 .answer { margin: 0; white-space: pre-wrap; line-height: 1.7; font-size: 15px; }
-.status { color: var(--muted); font-size: 13px; margin: 0 0 6px; }
 .error { color: var(--danger); font-size: 14px; margin: 6px 0 0; }
 .meta { color: var(--muted); font-size: 12px; margin: 8px 0 0; font-variant-numeric: tabular-nums; }
 .badge-refused {
@@ -92,8 +91,11 @@ header h1 { font-size: 22px; margin: 0 0 4px; }
 .preset:hover { border-color: var(--accent); color: var(--accent); }
 .preset:disabled { opacity: .45; cursor: default; }
 
-.steps { margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 12px; }
-.steps li { margin: 2px 0; font-variant-numeric: tabular-nums; }
+.trace { margin: 0 0 8px; border: 1px dashed var(--line); border-radius: 8px; padding: 4px 10px; }
+.trace summary { cursor: pointer; font-size: 12px; color: var(--muted); }
+.trace ol { margin: 6px 0 4px; padding-left: 18px; color: var(--muted); font-size: 12px; }
+.trace li { margin: 2px 0; font-variant-numeric: tabular-nums; }
+.trace li.active { color: var(--accent); }
 
 .crop-tag { margin: 8px 0 4px; font-size: 12px; font-weight: 600; color: var(--accent); }
 .crop-caption { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
