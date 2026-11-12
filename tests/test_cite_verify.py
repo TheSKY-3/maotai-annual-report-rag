@@ -60,3 +60,28 @@ def test_crop_for_source_without_numbers_is_none(tmp_path):
     spec = {"numbers": [], "pages": [(2024, 26)]}
     assert cite_locate.crop_for_source({"year": 2024, "page": 26}, spec,
                                        tmp_path) is None
+
+
+MANY_NUMBERS = [
+    "127,553,959,355.97 元", "172,054,171,890.91 元", "44,500,212,534.94 元",
+    "34.89%", "107,833,685,277.94", "146,499,906,480.49", "38,666,221,202.55",
+    "15,938,647,070.77", "22,274,678,707.16", "6,336,031,636.39",
+    "123,772,332,348.71", "168,774,585,187.65", "45,002,252,838.94",
+    "49,378,737,661.60", "84,543,031,854.63", "35,164,294,193.03",
+    "74,393,594,687.11", "84,231,553,333.02", "9,837,958,645.91",
+    "386.66 亿元", "63.36 亿元", "351.64 亿元", "98.38", "0.39", "-9.76", "-1.08",
+]
+
+
+def test_page_crop_filename_bounded_for_long_number_list(tmp_path):
+    # 跨年比较答案含几十个数字：拼接命名会超 Windows 260 字符路径上限
+    out = cite_locate.page_crop(2025, 61, MANY_NUMBERS, tmp_path)
+    assert out is not None and out.exists()
+    assert len(str(out)) < 200
+    assert cite_locate.page_crop(2025, 61, MANY_NUMBERS, tmp_path) == out
+
+
+def test_page_crop_cache_key_distinguishes_number_sets(tmp_path):
+    a = cite_locate.page_crop(2025, 61, MANY_NUMBERS, tmp_path)
+    b = cite_locate.page_crop(2025, 61, MANY_NUMBERS[:1], tmp_path)
+    assert a != b

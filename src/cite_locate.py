@@ -6,6 +6,7 @@
 """
 from __future__ import annotations
 
+import hashlib
 import re
 from dataclasses import dataclass
 from decimal import Decimal
@@ -169,7 +170,9 @@ def page_crop(year: int, page: int, numbers: list[str], out_dir) -> Path | None:
     boxes = [m.bbox for n in numbers for m in locate_number(year, page, n)]
     if not boxes:
         return None
-    out = Path(out_dir) / f"ui_{year}p{page}_{_safe_name('_'.join(numbers))}.png"
+    # 文件名用哈希：比较类答案含几十个数字，拼接会超 Windows 路径上限
+    digest = hashlib.sha1("_".join(numbers).encode("utf-8")).hexdigest()[:12]
+    out = Path(out_dir) / f"ui_{year}p{page}_{digest}.png"
     if out.exists():
         return out
     return render_crop(year, page, boxes, out)
