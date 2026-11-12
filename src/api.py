@@ -26,7 +26,7 @@ import uuid
 from datetime import datetime, timezone
 from typing import Literal
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from openai import OpenAI
@@ -210,6 +210,29 @@ def _resolve(api_key: str | None, model: str | None) -> tuple[OpenAI, str]:
     return OpenAI(base_url=OLLAMA_BASE_URL, api_key="ollama"), model or GEN_MODEL
 
 
+# 阶段3 公网预备护栏：未设环境变量时完全开放（本地开发行为不变）。
+# 限流为单进程内存桶；多 worker 部署需换共享存储（Redis 等），此处不做。
+RATE_BUCKETS: dict[str, list[float]] = {}
+
+
+def _guard(request: Request) -> None:
+    token = os.environ.get("RAG_API_TOKEN")
+    if token and request.headers.get("authorization") != f"Bearer {token}":
+        raise HTTPException(401, "缺少或错误的 Bearer token")
+    limit = os.environ.get("RAG_RATE_LIMIT")
+    if not limit:
+        return
+    now = time.monotonic()
+    ip = request.client.host if request.client else "?"
+    bucket = [t for t in RATE_BUCKETS.get(ip, []) if now - t < 60]
+    if len(bucket) >= int(limit):
+        raise HTTPException(
+            429, "请求过频",
+            headers={"Retry-After": str(int(60 - (now - bucket[0])) + 1)})
+    bucket.append(now)
+    RATE_BUCKETS[ip] = bucket
+
+
 _SPA_DIR = PROJECT / "web" / "dist"
 
 
@@ -243,7 +266,7 @@ def ready() -> JSONResponse:
 
 
 @app.get("/cite_crop")
-def cite_crop(year: int, page: int, numbers: str):
+def cite_crop(year: int, page: int, numbers: str, _=Depends(_guard)):
     """轴4 坐标高亮图：该页上被引数字的整行横带 PNG，供前端出处面板展示。"""
     if year not in YEARS:
         raise HTTPException(400, f"year 仅支持 {YEARS}")
@@ -260,7 +283,7 @@ def cite_crop(year: int, page: int, numbers: str):
 
 
 @app.post("/ask", response_model=AskResponse)
-def ask(req: AskRequest) -> AskResponse:
+def ask(req: AskRequest, _=Depends(_guard)) -> AskResponse:
     if req.year is not None and req.year not in YEARS:
         raise HTTPException(400, f"year 仅支持 {YEARS}")
     client, model = _resolve(req.api_key, req.model)
@@ -299,7 +322,7 @@ def ask(req: AskRequest) -> AskResponse:
 
 
 @app.post("/ask/stream")
-def ask_stream(req: AskRequest) -> StreamingResponse:
+def ask_stream(req: AskRequest, _=Depends(_guard)) -> StreamingResponse:
     """SSE 流式问答（/ask 的流式版，参数完全相同）。
 
     事件流（text/event-stream，每事件两行 event:/data:）：

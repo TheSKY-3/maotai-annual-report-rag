@@ -443,6 +443,10 @@ python scripts/stat_significance.py \
   消费 FastAPI 的 SSE 流式问答与 `/cite_crop` 坐标高亮接口；出处卡片展开即见
   整行红框图。`npm run build` 后 FastAPI 单端口交付（根路径服务前端、API 优先）。
   前端 14 条 vitest、后端新增 6 条 pytest，全绿。
+- **阶段3 公网预备护栏**：可选 Bearer 鉴权（`RAG_API_TOKEN`）与每 IP 每分钟
+  限流（`RAG_RATE_LIMIT`，429 + Retry-After），不设则本地行为不变；
+  并发压测 96 请求 / 16 并发 0 错误（p50 608ms / p95 2.8s，单 worker），
+  明细 `results/load_test.json`。仍不上公网。
 
 ### 留出集验证（2026-11-11）
 

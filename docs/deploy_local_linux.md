@@ -68,3 +68,19 @@ Key 经 `.env` 注入（`set -a; . ./.env`），不落命令行；`setsid` 脱�
 - 开发期：`cd web && npm run dev`（vite 代理 /ask、/cite_crop 到 8000）；
   交付期：`npm run build` 后由 uvicorn 单端口服务。npm 缓存经
   `npm_config_cache` 指向工作区内 `.npm-cache/`，不落 C 盘。
+
+## 阶段3 追加（2026-11-12）：公网预备护栏与压测
+
+- 可选 Bearer 鉴权：设 `RAG_API_TOKEN` 后 `/ask`、`/ask/stream`、`/cite_crop`
+  须带 `Authorization: Bearer <token>`；`/health` 保持开放供探活。
+- 可选限流：`RAG_RATE_LIMIT=N` 为每 IP 每分钟 N 次，超出 429 + `Retry-After`。
+  单进程内存桶；多 worker 部署需换共享存储（Redis 等），**未做**。
+- 两个变量都不设时行为与本地开发完全一致（7 条 pytest 覆盖）。
+- live 验收（8002 临时实例）：无 token 401、错 token 401、对 token 200×3、
+  第 4 次 429 且 `Retry-After: 60`、/health 200。
+- 压测（`scripts/load_test.py`，只打免费接口 /health + 缓存 /cite_crop）：
+  96 请求 / 16 并发 / **0 错误**，p50 608ms、p95 2805ms、p99 2870ms、10.75 rps
+  （Windows 单 worker 同步端点线程池）。明细 `results/load_test.json`。
+  /ask 压测须 `--ask N --yes`，运行前打印成本估算（默认不打，避免烧钱）。
+- 公网前仍缺：HTTPS 反向代理、共享限流存储、多 worker、以及**轮换本会话
+  曾误打印进记录的旧 DeepSeek Key**。
