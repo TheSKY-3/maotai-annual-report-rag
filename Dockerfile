@@ -21,9 +21,9 @@ RUN pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu \
 
 COPY . .
 
-# 构建期预下载嵌入模型（约 100MB），容器启动即离线可用
-RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('BAAI/bge-small-zh-v1.5')" \
- && python -c "import jieba; jieba.initialize()"
+# 模型不在构建期下载（国内网络坑）：启动时由 prepare_data.py 经 hf-mirror
+# 补齐并 sha256 校验，落在数据卷里持久化
+RUN python -c "import jieba; jieba.initialize()"
 
 EXPOSE 8000 8501
 

@@ -15,4 +15,9 @@ services:
       - "8000:8000"   # FastAPI（/docs 可交互调试）
     environment:
       - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+    volumes:
+      - maotai-data:/app/data   # 首次启动下载的模型/PDF 持久化，重建镜像不重下
     restart: unless-stopped
+
+volumes:
+  maotai-data:

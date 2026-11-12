@@ -1,0 +1,16 @@
+[Unit]
+Description=Maotai RAG FastAPI (systemd user service)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=__ROOT__
+EnvironmentFile=__ROOT__/.env
+Environment=NO_PROXY=localhost,127.0.0.1
+ExecStartPre=__VENV__/bin/python scripts/prepare_data.py
+ExecStart=__VENV__/bin/python -m uvicorn src.api:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

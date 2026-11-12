@@ -433,7 +433,7 @@ python scripts/stat_significance.py \
 复现：`scripts/make_citation_crops.py`（零 API）；逐数字明细
 `results/citation_crops.json`。
 
-### 工程闭环（2026-11-12，阶段1/2）
+### 工程闭环（2026-11-12，阶段1–4）
 
 - **阶段1 本地 Linux 部署**：WSL2 Ubuntu-24.04 原生 venv 一键起服务
   （`scripts/start_local_linux.sh`，与 docker/start.sh 同构），/health、/ready、
@@ -447,6 +447,13 @@ python scripts/stat_significance.py \
   限流（`RAG_RATE_LIMIT`，429 + Retry-After），不设则本地行为不变；
   并发压测 96 请求 / 16 并发 0 错误（p50 608ms / p95 2.8s，单 worker），
   明细 `results/load_test.json`。仍不上公网。
+- **阶段4 数据自包含 + 零 sudo 守护**：首次启动 `scripts/prepare_data.py`
+  自动备齐模型/PDF/解析文本（在线下载带重试，失败回落仓库种子，SHA256 校验），
+  索引与表格增强页随仓库分发，克隆即可跑、不依赖 Windows 盘符号链接；
+  `scripts/supervise.sh` 崩溃自动重启（kill -9 后秒级拉起复验通过）+
+  Windows 启动项冷启动复验通过（WSL 用户 systemd 总线缺失，改监督进程路线，
+  systemd 单元文件保留作真服务器备选）。17 条踩坑记录（现象/根因/处置/状态）
+  见 [docs/deploy_local_linux.md](docs/deploy_local_linux.md)。
 
 ### 留出集验证（2026-11-11）
 

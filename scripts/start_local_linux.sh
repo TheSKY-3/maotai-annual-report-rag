@@ -17,6 +17,7 @@ if [ ! -f data/index/contextual.npz ]; then
   echo "缺索引 data/index/contextual.npz（随仓库分发）；请先恢复或重建。"
   exit 1
 fi
+"$PY" scripts/prepare_data.py
 if [ -f .env ]; then set -a; . ./.env; set +a; fi
 export NO_PROXY="${NO_PROXY:-localhost,127.0.0.1}"
 mkdir -p logs

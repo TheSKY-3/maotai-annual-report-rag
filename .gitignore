@@ -10,7 +10,8 @@ __pycache__/
 data/raw_pdfs/
 data/extracted/
 data/extracted_tables/
-data/extracted_tables_plus/
+# 表格增强页随仓库分发（2.6MB；无 committed 重建脚本，口径分类器依赖）
+!data/extracted_tables_plus/
 data/db/
 data/models/
 data/index/*
@@ -51,3 +52,6 @@ docs/citations/
 web/node_modules/
 web/dist/
 .npm-cache/
+
+# Linux 运行日志与诊断脚本（supervise.sh / start_local_linux.sh 可再生）
+logs/

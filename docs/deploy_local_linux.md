@@ -84,3 +84,57 @@ Key 经 `.env` 注入（`set -a; . ./.env`），不落命令行；`setsid` 脱�
   /ask 压测须 `--ask N --yes`，运行前打印成本估算（默认不打，避免烧钱）。
 - 公网前仍缺：HTTPS 反向代理、共享限流存储、多 worker、以及**轮换本会话
   曾误打印进记录的旧 DeepSeek Key**。
+
+## 阶段4 追加（2026-11-12）：数据自包含 + 零 sudo 守护
+
+- `scripts/prepare_data.py`：缺什么补什么（模型在线下载→退避重试→离线种子
+  回退，sha256 校验；PDF/原文页复用现有脚本）；索引与 `extracted_tables_plus`
+  随仓库分发（后者 2.6MB/556 页，**仓库内无 committed 重建脚本**，故入库）。
+- 守护改道：WSL 用户级 systemd 环境性不可用（见问题 3），改用
+  `scripts/supervise.sh`（子进程退出即重启，等价 Restart=always）+ Windows
+  启动项 `Startup\maotai-rag-wsl.bat`（登录自启，删文件即取消）。
+  systemd 单元模板与安装脚本保留，供真服务器使用。
+- 验收（真跑）：`prepare_data.py --check` = missing:none；模型 sha256
+  `354763b9…` 吻合；junction 全部移除后四探活 200；`kill -9` API 子进程 →
+  supervise.log 记录重启 → health 恢复 200；`wsl --shutdown` 冷启动后执行
+  启动项 → health/web 200；`/ready` 模型路径 = 本仓库自有 data 目录。
+  **真实 Windows 注销/登录未验**（启动项以手动触发等价验证）。
+- 提交前全量复验：后端 180 条 pytest（含 prepare_data 10 条）+ 前端 14 条
+  vitest 全绿（2026-11-12）。
+
+## 问题记录（现象 / 根因 / 处置 / 状态）
+
+1. **Docker 构建期 HF 下模型国内卡死**：.dockerignore 排除 models，构建 RUN
+   现下 bge。处置：模型改启动期 prepare，Dockerfile 去构建期下载，compose
+   加数据卷。状态：已修；**容器真跑未验**（sudo blocker，见 4）。
+2. **WSL 会话结束杀后台**：nohup 不够，wsl.exe 退出即清理子进程。处置：
+   setsid 脱离会话。状态：已修已验。
+3. **WSL 用户级 systemd 总线起不来**：dbus-user-session 已装、linger=yes、
+   user@1000 active，但 /run/user/1000 无 bus socket；XDG_RUNTIME_DIR、
+   DBUS_SESSION_BUS_ADDRESS、default.target.wants 挂 dbus.socket 均无效。
+   处置：判定环境性 blocker，改道监督进程+启动项；systemd 留作真服务器。
+   状态：改道已验；systemd 未通（不再挖）。
+4. **sudo 需密码**：apt 装 docker engine / 系统级服务都要 root；密码不进
+   聊天。处置：全程零 sudo 路线。状态：约束遵守；容器路线待用户自行 sudo。
+5. **hf-mirror HEAD 瞬时失败**（LocalEntryNotFoundError，curl 根路径却 200）：
+   处置：退避重试 3 次 + HF_HUB_ETAG_TIMEOUT=60 + 离线种子回退。已修已验。
+6. **--seed 路径多套一层 data**：种子约定为仓库根（含 data/）。已修。
+7. **extracted_tables_plus 无 committed 生产脚本**：早期会话产物，新机器
+   无法重建。处置：2.6MB 随仓库分发（gitignore 加例外）。已修。
+8. **tables_plus 代表页误选 page_001**：封面无表格导致误报缺失。处置：改为
+   随仓库分发判定。已修。
+9. **退出码跨 WSL 边界被外层 shell 吃掉**（EXIT=0 假绿）+ 管道 tail 掩盖
+   退出码。处置：落盘脚本内写 exit 文件再读。已修；教训：验收必须看真实退出码。
+10. **MSYS 参数路径转换**：`/mnt/...`、`/J` 被转成 Windows 路径。处置：双斜杠
+    `//mnt`、`//J`。已修。
+11. **pkill -f 自匹配父 shell**：pattern 出现在自身命令行里把自己杀了。
+    处置：括号化 `src[.]api`。已修。
+12. **启动项 bat 中文注释被 cmd 按 GBK 解析坏**（UTF-8 + LF）。处置：纯 ASCII
+    注释 + CRLF。已修。
+13. **启动项后台 setsid 冷启动拉不起**：wsl 会话瞬退。处置：改前台最小化
+    窗口保活（`start /min wsl.exe ... supervise.sh`）。已修已验。
+14. **Git Bash curl 中文按 GBK 传**致 FastAPI 400。处置：Python 发 UTF-8 body。已修。
+15. **旧 DeepSeek Key 曾误进会话记录**（pgrep -af 打印父命令行）。处置：只用
+    端口探活；**Key 待用户轮换**。状态：未决。
+16. **限流为单进程内存桶**：多 worker 需共享存储。状态：未决（公网前）。
+17. **HTTPS 反代 / 公网部署未做**（按用户要求不上公网）。状态：未决。

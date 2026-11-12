@@ -3,13 +3,12 @@
 set -e
 cd /app
 
-if [ ! -f data/index/baseline.npz ]; then
-  echo "[启动] 首次运行：下载年报并建立检索索引（约 3-5 分钟）..."
-  python scripts/download_data.py
-  python scripts/extract_text.py
-  python scripts/build_index.py
-  echo "[启动] 索引就绪。"
+if [ ! -f data/index/contextual.npz ]; then
+  echo "[启动] 索引随仓库分发；缺失说明镜像构建上下文不完整。" >&2
+  exit 1
 fi
+echo "[启动] 检查数据自包含（模型/PDF/原文页/表格页，缺什么补什么）..."
+python scripts/prepare_data.py
 
 python -m uvicorn src.api:app --host 0.0.0.0 --port 8000 &
 exec python -m streamlit run src/app.py --server.port 8501 \
