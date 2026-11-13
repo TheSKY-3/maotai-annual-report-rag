@@ -50,7 +50,7 @@ def _wire(monkeypatch, *, refused=False, fus=FU):
 
     monkeypatch.setattr(api, "_get_search", lambda: None)
     monkeypatch.setattr(api, "_resolve",
-                        lambda key, model: (object(), "deepseek-flash"))
+                        lambda key, model, backend=None: (object(), "deepseek-flash"))
     monkeypatch.setattr(api, "answer_auto", fake_answer)
     monkeypatch.setattr(api, "answer_auto_stream", fake_stream)
     monkeypatch.setattr(api, "gen_followups", fake_followups)

@@ -3,6 +3,7 @@ export interface Source {
   page: number
   score?: number
   snippet?: string
+  direct?: boolean
 }
 
 export interface Step {
@@ -57,6 +58,7 @@ export interface AskOpts {
   api_key?: string
   agent?: boolean
   history?: { role: string; content: string }[]
+  backend?: 'cloud' | 'ollama'
 }
 
 export async function streamAsk(
@@ -112,4 +114,58 @@ export function answerNumbers(answer: string): string[] {
     if (!seen.includes(m)) seen.push(m)
   }
   return seen
+}
+
+export const YEARS = [2022, 2023, 2024, 2025]
+
+export interface ReadyInfo {
+  status: string
+  years: number[]
+  model: string
+  backend: string
+  api_key_configured: boolean
+}
+
+/** 就绪探活：失败返回 null，不阻塞界面。 */
+export async function fetchReady(): Promise<ReadyInfo | null> {
+  try {
+    const resp = await fetch('/ready')
+    return resp.ok ? await resp.json() : null
+  } catch {
+    return null
+  }
+}
+
+/** 非流式问答（对比模式两列各调一次）。 */
+export async function askOnce(
+  question: string,
+  opts?: AskOpts,
+  signal?: AbortSignal,
+): Promise<AskMeta> {
+  const resp = await fetch('/ask', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ question, ...opts }),
+    signal,
+  })
+  if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
+  return resp.json()
+}
+
+export type AnswerSegment = { type: 'text' | 'cite'; value: string }
+
+const CITE_TAG_RE = /\[来源[:：]\s*([^\]]+)\]/g
+
+/** 把答案切成文本段与出处段（与 Streamlit fmt_answer 同一正则）。 */
+export function splitCitations(text: string): AnswerSegment[] {
+  const out: AnswerSegment[] = []
+  let last = 0
+  for (const m of text.matchAll(CITE_TAG_RE)) {
+    const i = m.index ?? 0
+    if (i > last) out.push({ type: 'text', value: text.slice(last, i) })
+    out.push({ type: 'cite', value: m[1] })
+    last = i + m[0].length
+  }
+  if (last < text.length) out.push({ type: 'text', value: text.slice(last) })
+  return out
 }

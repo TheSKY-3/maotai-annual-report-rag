@@ -1,5 +1,8 @@
 import { describe, expect, it, vi } from 'vitest'
-import { answerNumbers, cropUrl, parseSSE, stepLabel, streamAsk } from './api'
+import {
+  answerNumbers, askOnce, cropUrl, fetchReady, parseSSE, splitCitations,
+  stepLabel, streamAsk,
+} from './api'
 
 describe('parseSSE', () => {
   it('切出完整事件并保留不完整尾部', () => {
@@ -94,5 +97,76 @@ describe('stepLabel', () => {
       args: { metric: '净利润', years: [2022, 2025] },
       n_hits: 3,
     })).toBe('调用 compare_metric（metric: 净利润、years: [2022, 2025]），取回 3 个片段')
+  })
+})
+
+describe('splitCitations', () => {
+  it('无出处时整段为文本', () => {
+    expect(splitCitations('营收1,708.99亿元。'))
+      .toEqual([{ type: 'text', value: '营收1,708.99亿元。' }])
+  })
+
+  it('切出出处并保留前后文本', () => {
+    expect(splitCitations('合计680.93。 [来源: 2024年报 P26] 以上。')).toEqual([
+      { type: 'text', value: '合计680.93。 ' },
+      { type: 'cite', value: '2024年报 P26' },
+      { type: 'text', value: ' 以上。' },
+    ])
+  })
+
+  it('全角冒号同样识别', () => {
+    expect(splitCitations('[来源：2024年报 P5]'))
+      .toEqual([{ type: 'cite', value: '2024年报 P5' }])
+  })
+
+  it('空文本返回空数组', () => {
+    expect(splitCitations('')).toEqual([])
+  })
+})
+
+describe('askOnce', () => {
+  it('POST /ask 合并 opts 并返回 meta', async () => {
+    const meta = { question: 'q', answer: 'a' }
+    const mock = vi.fn().mockResolvedValue({ ok: true, json: async () => meta })
+    vi.stubGlobal('fetch', mock)
+    const got = await askOnce('q', { year: 2024, backend: 'ollama' })
+    expect(mock.mock.calls[0][0]).toBe('/ask')
+    expect(JSON.parse(mock.mock.calls[0][1].body))
+      .toEqual({ question: 'q', year: 2024, backend: 'ollama' })
+    expect(got).toEqual(meta)
+    vi.unstubAllGlobals()
+  })
+
+  it('HTTP 非 200 抛错', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: false, status: 502 }))
+    await expect(askOnce('q')).rejects.toThrow('HTTP 502')
+    vi.unstubAllGlobals()
+  })
+})
+
+describe('fetchReady', () => {
+  it('返回就绪信息', async () => {
+    const ready = { backend: 'cloud', api_key_configured: true }
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => ready }))
+    expect(await fetchReady()).toEqual(ready)
+    vi.unstubAllGlobals()
+  })
+
+  it('网络失败返回 null 不抛错', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('offline')))
+    expect(await fetchReady()).toBeNull()
+    vi.unstubAllGlobals()
+  })
+})
+
+describe('streamAsk backend 选项', () => {
+  it('backend 随请求体发送', async () => {
+    const stream = new ReadableStream({ start(c) { c.close() } })
+    const mock = vi.fn().mockResolvedValue({ ok: true, body: stream })
+    vi.stubGlobal('fetch', mock)
+    await streamAsk('q', () => {}, undefined, { backend: 'ollama' })
+    expect(JSON.parse(mock.mock.calls[0][1].body))
+      .toEqual({ question: 'q', backend: 'ollama' })
+    vi.unstubAllGlobals()
   })
 })

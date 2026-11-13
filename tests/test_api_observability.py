@@ -71,7 +71,7 @@ def test_ask_returns_usage_cost_and_one_json_log(monkeypatch):
     lines = []
     monkeypatch.setattr(api, "_get_search", lambda: None)
     monkeypatch.setattr(api, "_resolve",
-                        lambda key, model: (object(), "deepseek-flash"))
+                        lambda key, model, backend=None: (object(), "deepseek-flash"))
     monkeypatch.setattr(api, "answer_auto", fake_answer_auto)
     monkeypatch.setattr(api._LOGGER, "info", lines.append)
 

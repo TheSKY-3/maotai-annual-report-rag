@@ -1,5 +1,11 @@
-import { useRef, useState } from 'react'
-import { answerNumbers, stepLabel, streamAsk, type AskMeta, type StreamEvent } from './api'
+import { useEffect, useRef, useState } from 'react'
+import {
+  answerNumbers, fetchReady, stepLabel, streamAsk,
+  type AskMeta, type ReadyInfo, type StreamEvent,
+} from './api'
+import AnswerText from './components/AnswerText'
+import CompareView from './components/CompareView'
+import Sidebar, { type Backend, type Mode } from './components/Sidebar'
 import SourceCard from './components/SourceCard'
 
 interface Msg {
@@ -18,7 +24,7 @@ const PRESETS = [
   '2025年营业总收入比2022年增长了多少？',
   '五粮液2024年的营业收入是多少？',
 ]
-const YEARS = [2022, 2023, 2024, 2025]
+const CIRCLED = Array.from({ length: 6 }, (_, i) => String.fromCharCode(0x2460 + i))
 
 export default function App() {
   const [msgs, setMsgs] = useState<Msg[]>([])
@@ -27,8 +33,20 @@ export default function App() {
   const [apiKey, setApiKey] = useState('')
   const [year, setYear] = useState<number | null>(null)
   const [forceAgent, setForceAgent] = useState(false)
-  const [showSettings, setShowSettings] = useState(false)
+  const [backend, setBackend] = useState<Backend>('cloud')
+  const [mode, setMode] = useState<Mode>('chat')
+  const [ready, setReady] = useState<ReadyInfo | null>(null)
   const abortRef = useRef<AbortController | null>(null)
+
+  useEffect(() => {
+    let live = true
+    void fetchReady().then(r => {
+      if (!live) return
+      setReady(r)
+      if (r?.backend === 'ollama') setBackend('ollama')
+    })
+    return () => { live = false }
+  }, [])
 
   const patchLast = (fn: (m: Msg) => Msg) =>
     setMsgs(prev => prev.map((m, i) => (i === prev.length - 1 ? fn(m) : m)))
@@ -47,9 +65,10 @@ export default function App() {
       { role: 'assistant', text: '', trace: [] }])
     const opts = {
       year: year ?? undefined,
-      api_key: apiKey.trim() || undefined,
+      api_key: backend === 'cloud' && apiKey.trim() ? apiKey.trim() : undefined,
       agent: forceAgent || undefined,
       history: history.length ? history : undefined,
+      backend,
     }
     try {
       await streamAsk(q, (e: StreamEvent) => {
@@ -79,133 +98,138 @@ export default function App() {
   }
 
   return (
-    <div className="shell">
-      <header>
-        <h1>茅台年报问答</h1>
-        <p className="tagline">贵州茅台 2022–2025 年报 · 答案附原文页码与坐标高亮 · 查不到就明说</p>
-      </header>
-      <div className="toolbar">
-        <button onClick={() => setShowSettings(s => !s)}>
-          {showSettings ? '收起设置' : '设置'}
-        </button>
-        <button onClick={() => setMsgs([])} disabled={busy || msgs.length === 0}>
-          清空
-        </button>
-      </div>
-      {showSettings && (
-        <div className="settings">
-          <label className="field">
-            DeepSeek API Key
-            <input
-              type="password"
-              value={apiKey}
-              placeholder="sk-…（留空则用服务端环境变量）"
-              onChange={e => setApiKey(e.target.value)}
-            />
-          </label>
-          <span className={`pill${apiKey.trim() ? '' : ' off'}`}>
-            {apiKey.trim() ? '已填 Key · 走云端 DeepSeek' : '未填 Key · 用服务端默认'}
-          </span>
-          <label className="field">
-            检索范围
-            <select
-              value={year ?? ''}
-              onChange={e => setYear(e.target.value ? Number(e.target.value) : null)}
-            >
-              <option value="">全部年份</option>
-              {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
-            </select>
-          </label>
-          <label className="check">
-            <input
-              type="checkbox"
-              checked={forceAgent}
-              onChange={e => setForceAgent(e.target.checked)}
-            />
-            强制 Agent
-          </label>
-        </div>
-      )}
-      <main className="thread">
-        {msgs.length === 0 && (
-          <div className="presets">
-            <p className="empty">问一个年报里的问题，或点下面的推荐问题：</p>
-            {PRESETS.map(p => (
-              <button key={p} className="preset" onClick={() => void send(p)} disabled={busy}>
-                {p}
-              </button>
-            ))}
-          </div>
-        )}
-        {msgs.map((m, i) => (
-          <article key={i} className={`msg ${m.role}`}>
-            {m.role === 'user' ? (
-              <p className="bubble">{m.text}</p>
-            ) : (
-              <>
-                {m.trace.length > 0 && (
-                  <details className="trace" open={busy && i === msgs.length - 1}>
-                    <summary>过程 · {m.trace.length} 步</summary>
-                    <ol>
-                      {m.trace.map((t, j) => (
-                        <li
-                          key={j}
-                          className={busy && i === msgs.length - 1
-                            && j === m.trace.length - 1 ? 'active' : undefined}
-                        >
-                          {t}
-                        </li>
-                      ))}
-                    </ol>
-                  </details>
-                )}
-                {m.meta?.refused && <span className="badge-refused">拒答</span>}
-                {m.text && <p className="answer">{m.text}</p>}
-                {m.error && <p className="error">{m.error}</p>}
-                {m.meta && (
-                  <p className="meta">
-                    {m.meta.route} · {m.meta.latency_ms ?? '—'}ms · ¥{m.meta.cost_cny ?? '—'}
-                  </p>
-                )}
-                {m.meta?.sources.map((s, k) => (
-                  <SourceCard
-                    key={`${s.year}-${s.page}`}
-                    source={s}
-                    numbers={answerNumbers(m.meta!.answer)}
-                    defaultOpen={k === 0}
-                  />
-                ))}
-                {m.meta?.followups?.length && i === msgs.length - 1 ? (
-                  <div className="followups">
-                    <p className="followups-label">接着问</p>
-                    {m.meta.followups.map(f => (
-                      <button key={f} className="chip" onClick={() => void send(f)}>
-                        {f}
+    <div className="app">
+      <Sidebar
+        mode={mode} onMode={setMode}
+        year={year} onYear={setYear}
+        backend={backend} onBackend={setBackend}
+        apiKey={apiKey} onApiKey={setApiKey}
+        forceAgent={forceAgent} onForceAgent={setForceAgent}
+        ready={ready} busy={busy}
+        canClear={msgs.length > 0} onClear={() => setMsgs([])}
+      />
+      <div className="main">
+        <div className="main-scroll">
+          <header className="page-head">
+            <p className="eyebrow">{mode === 'chat' ? '对话问答' : '双年对比'}</p>
+            <h1>年报问答 · 证据可溯</h1>
+            <p className="tagline">贵州茅台 2022–2025 年报语料 · 答案附原文页码与坐标高亮 · 查不到就明说</p>
+          </header>
+
+          {mode === 'chat' ? (
+            <main className={`thread${msgs.length === 0 ? ' empty' : ''}`}>
+              {msgs.length === 0 && (
+                <div className="empty-state">
+                  <section className="cover">
+                    <div className="cover-band" />
+                    <div className="cover-body">
+                      <p className="cover-k">语料说明</p>
+                      <p className="cover-v">语料：贵州茅台 2022–2025 四份年报 · <b>1,778</b> 个证据块</p>
+                      <p className="cover-v">核验：答案数字定位到原文页框并高亮 · 留出集拒答 <b>15/15</b> 零编造</p>
+                    </div>
+                  </section>
+                  <p className="eyebrow preset-eyebrow">试试这些问题</p>
+                  <div className="preset-grid">
+                    {PRESETS.map((p, i) => (
+                      <button
+                        key={p}
+                        className="preset"
+                        style={{ animationDelay: `${i * 70}ms` }}
+                        onClick={() => void send(p)}
+                        disabled={busy}
+                      >
+                        <span className="preset-num">{CIRCLED[i]}</span>{' '}
+                        <span>{p}</span>
                       </button>
                     ))}
                   </div>
-                ) : null}
-              </>
-            )}
-          </article>
-        ))}
-      </main>
-      <footer className="composer">
-        <textarea
-          value={input}
-          placeholder="例如：2024年茅台营业总收入是多少？"
-          onChange={e => setInput(e.target.value)}
-          onKeyDown={e => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-              e.preventDefault()
-              void send()
-            }
-          }}
-        />
-        <button onClick={() => void send()} disabled={busy || !input.trim()}>
-          发送
-        </button>
-      </footer>
+                </div>
+              )}
+              {msgs.map((m, i) => (
+                <article key={i} className={`msg ${m.role}`}>
+                  {m.role === 'user' ? (
+                    <p className="bubble">{m.text}</p>
+                  ) : (
+                    <>
+                      {m.trace.length > 0 && (
+                        <details className="trace" open={busy && i === msgs.length - 1}>
+                          <summary>过程 · {m.trace.length} 步</summary>
+                          <ol>
+                            {m.trace.map((t, j) => (
+                              <li
+                                key={j}
+                                className={busy && i === msgs.length - 1
+                                  && j === m.trace.length - 1 ? 'active' : undefined}
+                              >
+                                {t}
+                              </li>
+                            ))}
+                          </ol>
+                        </details>
+                      )}
+                      {m.meta?.refused && <span className="badge-refused">拒答</span>}
+                      {m.text && (
+                        <p className={`answer${busy && i === msgs.length - 1 && !m.meta ? ' streaming' : ''}`}>
+                          <AnswerText text={m.text} />
+                        </p>
+                      )}
+                      {m.error && <p className="error">{m.error}</p>}
+                      {m.meta && (
+                        <p className="meta">
+                          <span className={`route-tag${m.meta.route === 'agent' ? ' agent' : ''}`}>
+                            {m.meta.route === 'agent' ? 'Agent 工具循环' : '直通检索'}
+                          </span>
+                          {m.meta.latency_ms ?? '—'}ms · ¥{m.meta.cost_cny ?? '—'}
+                        </p>
+                      )}
+                      {m.meta?.sources.map((s, k) => (
+                        <SourceCard
+                          key={`${s.year}-${s.page}`}
+                          source={s}
+                          numbers={answerNumbers(m.meta!.answer)}
+                          defaultOpen={k === 0}
+                          index={k}
+                        />
+                      ))}
+                      {m.meta?.followups?.length && i === msgs.length - 1 ? (
+                        <div className="followups">
+                          <p className="followups-label">接着问</p>
+                          {m.meta.followups.map(f => (
+                            <button key={f} className="chip" onClick={() => void send(f)}>
+                              {f}
+                            </button>
+                          ))}
+                        </div>
+                      ) : null}
+                    </>
+                  )}
+                </article>
+              ))}
+            </main>
+          ) : (
+            <CompareView backend={backend} apiKey={apiKey} forceAgent={forceAgent} />
+          )}
+        </div>
+
+        {mode === 'chat' && (
+          <footer className="composer">
+            <textarea
+              value={input}
+              placeholder="例如：2024年茅台营业总收入是多少？"
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={e => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault()
+                  void send()
+                }
+              }}
+            />
+            <button onClick={() => void send()} disabled={busy || !input.trim()}>
+              发送
+            </button>
+          </footer>
+        )}
+      </div>
     </div>
   )
 }

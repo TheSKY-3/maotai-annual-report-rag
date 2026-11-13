@@ -379,7 +379,8 @@ def _meta(question: str, standalone: str, text: str, hits: list[dict],
         "sources": [
             {"year": h["year"], "page": h["page"],
              "score": round(float(h["score"]), 4),
-             "snippet": h["text"][:200]}
+             "snippet": h["text"][:200],
+             "direct": bool(h.get("direct"))}
             for h in hits
         ],
         "hits": hits,

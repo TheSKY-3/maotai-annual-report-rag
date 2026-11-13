@@ -25,7 +25,7 @@ def test_stream_done_meta_has_usage_and_one_log(monkeypatch):
     lines = []
     monkeypatch.setattr(api, "_get_search", lambda: None)
     monkeypatch.setattr(api, "_resolve",
-                        lambda key, model: (object(), "deepseek-flash"))
+                        lambda key, model, backend=None: (object(), "deepseek-flash"))
     monkeypatch.setattr(api, "answer_auto_stream", fake_stream)
     monkeypatch.setattr(api._LOGGER, "info", lines.append)
 
@@ -55,7 +55,7 @@ def test_stream_disconnect_logs_aborted(monkeypatch):
     lines = []
     monkeypatch.setattr(api, "_get_search", lambda: None)
     monkeypatch.setattr(api, "_resolve",
-                        lambda key, model: (object(), "deepseek-flash"))
+                        lambda key, model, backend=None: (object(), "deepseek-flash"))
     monkeypatch.setattr(api, "answer_auto_stream", fake_stream)
     monkeypatch.setattr(api._LOGGER, "info", lines.append)
 

@@ -153,6 +153,10 @@ class AskRequest(BaseModel):
         default=False,
         description="强制走 Agent 工具循环（默认自动路由：仅跨年对比/"
                     "页码直达题启用）")
+    backend: Literal["cloud", "ollama"] | None = Field(
+        default=None,
+        description="显式选择生成后端：cloud=云端 DeepSeek，ollama=本地；"
+                    "缺省按环境变量自动决定")
 
 
 class Source(BaseModel):
@@ -160,6 +164,7 @@ class Source(BaseModel):
     page: int
     score: float
     snippet: str
+    direct: bool = Field(default=False, description="页码直达命中（不经精排）")
 
 
 class Step(BaseModel):
@@ -197,7 +202,15 @@ class AskResponse(BaseModel):
         default=[], description="追问建议（拒答或生成失败时为空）")
 
 
-def _resolve(api_key: str | None, model: str | None) -> tuple[OpenAI, str]:
+def _resolve(api_key: str | None, model: str | None,
+             backend: str | None = None) -> tuple[OpenAI, str]:
+    if backend == "ollama":  # 界面显式选本地：无视云端 Key
+        return (OpenAI(base_url=OLLAMA_BASE_URL, api_key="ollama"),
+                model or GEN_MODEL)
+    if backend == "cloud":  # 显式选云端：与 Streamlit 侧边栏同语义
+        key = api_key or os.environ.get("DEEPSEEK_API_KEY", "") or "missing"
+        return (OpenAI(base_url=DEEPSEEK_BASE_URL, api_key=key),
+                model or os.environ.get("RAG_MODEL", DEEPSEEK_MODEL))
     env_key = os.environ.get("DEEPSEEK_API_KEY", "")
     env_base = os.environ.get("RAG_BASE_URL", "")
     if api_key:  # 请求自带 Key：强制云端 DeepSeek
@@ -289,7 +302,7 @@ def cite_crop(year: int, page: int, numbers: str, _=Depends(_guard)):
 def ask(req: AskRequest, _=Depends(_guard)) -> AskResponse:
     if req.year is not None and req.year not in YEARS:
         raise HTTPException(400, f"year 仅支持 {YEARS}")
-    client, model = _resolve(req.api_key, req.model)
+    client, model = _resolve(req.api_key, req.model, req.backend)
     request_id = uuid.uuid4().hex[:12]
     started = time.perf_counter()
     bucket = None
@@ -342,7 +355,7 @@ def ask_stream(req: AskRequest, _=Depends(_guard)) -> StreamingResponse:
     """
     if req.year is not None and req.year not in YEARS:
         raise HTTPException(400, f"year 仅支持 {YEARS}")
-    client, model = _resolve(req.api_key, req.model)
+    client, model = _resolve(req.api_key, req.model, req.backend)
     request_id = uuid.uuid4().hex[:12]
     started = time.perf_counter()
 
