@@ -7,10 +7,14 @@ const READY = {
   backend: 'cloud', api_key_configured: true,
 }
 
-/** fetch 桩按 URL 分流：/ready 返回就绪信息，其余返回流式响应。 */
+/** fetch 桩按 URL 分流：/ready 就绪信息，/conversations 空历史，其余流式响应。
+ *  /conversations 单独分流，避免占用 stubRounds 的问答轮次计数。 */
 function routed(make: () => unknown) {
   return vi.fn().mockImplementation(async (url: unknown) => {
-    if (String(url) === '/ready') return { ok: true, json: async () => READY }
+    const u = String(url)
+    if (u === '/ready') return { ok: true, json: async () => READY }
+    if (u.startsWith('/conversations'))
+      return { ok: true, json: async () => ({ conversations: [], messages: [], id: 'c1' }) }
     return make()
   })
 }
@@ -142,6 +146,8 @@ describe('App 预设与设置', () => {
     const mock = stubFresh(answerEvents(BASE_META))
     render(<App />)
     fireEvent.click(screen.getByRole('button', { name: /2024年茅台营业总收入/ }))
+    // 先等答完：空态（含同文案的预设按钮）移除后，问题文本只命中稳定的用户气泡。
+    await screen.findByText(/营收1,708.99亿元/)
     expect(await screen.findByText('2024年茅台营业总收入是多少？')).toBeInTheDocument()
     const body = JSON.parse(askCalls(mock)[0][1].body)
     expect(body.question).toBe('2024年茅台营业总收入是多少？')

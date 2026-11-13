@@ -23,10 +23,11 @@ import logging
 import os
 import time
 import uuid
+from dataclasses import asdict
 from datetime import datetime, timezone
 from typing import Literal
 
-from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi import Depends, FastAPI, HTTPException, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from openai import OpenAI
@@ -39,6 +40,7 @@ from src.config import (DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, GEN_MODEL,
 from src.pipeline import get_search, index_status
 from src.ask import answer_auto, answer_auto_stream
 from src.followups import gen_followups
+from src.conversations import SqliteConversationStore
 
 app = FastAPI(
     title="茅台财报 RAG API",
@@ -157,6 +159,8 @@ class AskRequest(BaseModel):
         default=None,
         description="显式选择生成后端：cloud=云端 DeepSeek，ollama=本地；"
                     "缺省按环境变量自动决定")
+    conversation_id: str | None = Field(
+        default=None, description="所属会话 id（带则把本轮问答落库；P1 持久化）")
 
 
 class Source(BaseModel):
@@ -249,6 +253,85 @@ def _guard(request: Request) -> None:
     RATE_BUCKETS[ip] = bucket
 
 
+# P1 会话持久化：单用户/同浏览器/匿名会话号 cookie；存储接口化，P3 换 Redis。
+SESSION_COOKIE = "maotai_session"
+_SESSION_MAX_AGE = 31536000  # 1 年
+_STORE_PATH = PROJECT / "data" / "conversations.db"
+_store = None
+
+
+def _get_store() -> SqliteConversationStore:
+    global _store
+    if _store is None:
+        _STORE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        _store = SqliteConversationStore(_STORE_PATH)
+    return _store
+
+
+def get_session(request: Request, response: Response) -> str:
+    """读匿名会话号 cookie；没有则发一个（P1 无登录，P2 换 user_id）。"""
+    sid = request.cookies.get(SESSION_COOKIE)
+    if not sid:
+        sid = uuid.uuid4().hex
+        response.set_cookie(SESSION_COOKIE, sid, max_age=_SESSION_MAX_AGE,
+                            httponly=True, samesite="lax", path="/")
+    return sid
+
+
+def _owned(conversation_id: str, sid: str) -> None:
+    if _get_store().owner(conversation_id) != sid:
+        raise HTTPException(404, "会话不存在")
+
+
+def _persist_exchange(conversation_id: str | None, question: str,
+                      answer: str, meta: dict, model: str) -> None:
+    if not conversation_id:
+        return
+    store = _get_store()
+    store.append(conversation_id, "user", question, {})
+    store.append(conversation_id, "assistant", answer, {**meta, "model": model})
+
+
+class ConversationCreate(BaseModel):
+    title: str = Field(default="", max_length=200)
+
+
+class ConversationRename(BaseModel):
+    title: str = Field(min_length=1, max_length=200)
+
+
+@app.get("/conversations")
+def list_conversations(sid: str = Depends(get_session)) -> dict:
+    return {"conversations": [asdict(c) for c in _get_store().list(sid)]}
+
+
+@app.post("/conversations")
+def create_conversation(body: ConversationCreate,
+                        sid: str = Depends(get_session)) -> dict:
+    return {"id": _get_store().create(sid, body.title)}
+
+
+@app.get("/conversations/{cid}")
+def get_conversation(cid: str, sid: str = Depends(get_session)) -> dict:
+    _owned(cid, sid)
+    return {"messages": [asdict(m) for m in _get_store().get(cid)]}
+
+
+@app.delete("/conversations/{cid}")
+def delete_conversation(cid: str, sid: str = Depends(get_session)) -> dict:
+    _owned(cid, sid)
+    _get_store().delete(cid)
+    return {"ok": True}
+
+
+@app.patch("/conversations/{cid}")
+def rename_conversation(cid: str, body: ConversationRename,
+                        sid: str = Depends(get_session)) -> dict:
+    _owned(cid, sid)
+    _get_store().rename(cid, body.title)
+    return {"ok": True}
+
+
 _SPA_DIR = PROJECT / "web" / "dist"
 
 
@@ -299,9 +382,12 @@ def cite_crop(year: int, page: int, numbers: str, _=Depends(_guard)):
 
 
 @app.post("/ask", response_model=AskResponse)
-def ask(req: AskRequest, _=Depends(_guard)) -> AskResponse:
+def ask(req: AskRequest, _=Depends(_guard),
+        sid: str = Depends(get_session)) -> AskResponse:
     if req.year is not None and req.year not in YEARS:
         raise HTTPException(400, f"year 仅支持 {YEARS}")
+    if req.conversation_id:
+        _owned(req.conversation_id, sid)
     client, model = _resolve(req.api_key, req.model, req.backend)
     request_id = uuid.uuid4().hex[:12]
     started = time.perf_counter()
@@ -339,11 +425,13 @@ def ask(req: AskRequest, _=Depends(_guard)) -> AskResponse:
              model=model, meta=data, bucket=bucket,
              year=req.year, agent=req.agent,
              question_chars=len(req.question))
+    _persist_exchange(req.conversation_id, req.question, data["answer"], data, model)
     return AskResponse(model=model, **data)
 
 
 @app.post("/ask/stream")
-def ask_stream(req: AskRequest, _=Depends(_guard)) -> StreamingResponse:
+def ask_stream(req: AskRequest, request: Request = None,
+               _=Depends(_guard)) -> StreamingResponse:
     """SSE 流式问答（/ask 的流式版，参数完全相同）。
 
     事件流（text/event-stream，每事件两行 event:/data:）：
@@ -355,6 +443,14 @@ def ask_stream(req: AskRequest, _=Depends(_guard)) -> StreamingResponse:
     """
     if req.year is not None and req.year not in YEARS:
         raise HTTPException(400, f"year 仅支持 {YEARS}")
+    sid = request.cookies.get(SESSION_COOKIE) if request is not None else None
+    set_cookie = None
+    if not sid:
+        sid = uuid.uuid4().hex
+        set_cookie = (f"{SESSION_COOKIE}={sid}; Max-Age={_SESSION_MAX_AGE}; "
+                      f"HttpOnly; SameSite=Lax; Path=/")
+    if req.conversation_id:
+        _owned(req.conversation_id, sid)
     client, model = _resolve(req.api_key, req.model, req.backend)
     request_id = uuid.uuid4().hex[:12]
     started = time.perf_counter()
@@ -404,6 +500,9 @@ def ask_stream(req: AskRequest, _=Depends(_guard)) -> StreamingResponse:
                                 (time.perf_counter() - started) * 1000),
                         })
                         ev = {**ev, "meta": meta}
+                        await run_in_threadpool(
+                            _persist_exchange, req.conversation_id,
+                            req.question, meta["answer"], meta, model)
                         _log_ask(request_id=request_id, status=200,
                                  started=started, model=model, meta=meta,
                                  bucket=bucket, year=req.year,
@@ -430,10 +529,11 @@ def ask_stream(req: AskRequest, _=Depends(_guard)) -> StreamingResponse:
                          error="client disconnected", year=req.year,
                          agent=req.agent, question_chars=len(req.question))
 
-    return StreamingResponse(
-        sse(), media_type="text/event-stream",
-        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no",
-                 "X-Request-ID": request_id})
+    headers = {"Cache-Control": "no-cache", "X-Accel-Buffering": "no",
+               "X-Request-ID": request_id}
+    if set_cookie:
+        headers["Set-Cookie"] = set_cookie
+    return StreamingResponse(sse(), media_type="text/event-stream", headers=headers)
 
 
 # 阶段2：单端口交付——前端静态资源挂在所有 API 路由之后（根路径见 root()）。

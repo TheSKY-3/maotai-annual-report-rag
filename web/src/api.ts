@@ -59,6 +59,7 @@ export interface AskOpts {
   agent?: boolean
   history?: { role: string; content: string }[]
   backend?: 'cloud' | 'ollama'
+  conversation_id?: string
 }
 
 export async function streamAsk(
@@ -176,4 +177,53 @@ export function splitCitations(text: string): AnswerSegment[] {
   }
   if (last < text.length) out.push({ type: 'text', value: text.slice(last) })
   return out
+}
+
+export interface ConversationSummary {
+  id: string
+  title: string
+  created_at: number
+  updated_at: number
+}
+
+export interface StoredMessage {
+  role: 'user' | 'assistant'
+  content: string
+  meta: Record<string, unknown>
+  created_at: number
+}
+
+const JSON_HEADERS = { 'Content-Type': 'application/json' }
+
+/** P1 会话持久化客户端；cookie 同源自动带，失败由调用方兜底。 */
+export async function listConversations(): Promise<ConversationSummary[]> {
+  const r = await fetch('/conversations')
+  if (!r.ok) throw new Error(`HTTP ${r.status}`)
+  return (await r.json()).conversations
+}
+
+export async function createConversation(title = ''): Promise<string> {
+  const r = await fetch('/conversations', {
+    method: 'POST', headers: JSON_HEADERS, body: JSON.stringify({ title }),
+  })
+  if (!r.ok) throw new Error(`HTTP ${r.status}`)
+  return (await r.json()).id
+}
+
+export async function getConversation(id: string): Promise<StoredMessage[]> {
+  const r = await fetch(`/conversations/${id}`)
+  if (!r.ok) throw new Error(`HTTP ${r.status}`)
+  return (await r.json()).messages
+}
+
+export async function deleteConversation(id: string): Promise<void> {
+  const r = await fetch(`/conversations/${id}`, { method: 'DELETE' })
+  if (!r.ok) throw new Error(`HTTP ${r.status}`)
+}
+
+export async function renameConversation(id: string, title: string): Promise<void> {
+  const r = await fetch(`/conversations/${id}`, {
+    method: 'PATCH', headers: JSON_HEADERS, body: JSON.stringify({ title }),
+  })
+  if (!r.ok) throw new Error(`HTTP ${r.status}`)
 }

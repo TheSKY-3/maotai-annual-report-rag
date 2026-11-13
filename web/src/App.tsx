@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import {
-  answerNumbers, fetchReady, stepLabel, streamAsk,
-  type AskMeta, type ReadyInfo, type StreamEvent,
+  answerNumbers, createConversation, deleteConversation, fetchReady,
+  getConversation, listConversations, stepLabel, streamAsk,
+  type AskMeta, type ConversationSummary, type ReadyInfo, type StoredMessage,
+  type StreamEvent,
 } from './api'
 import AnswerText from './components/AnswerText'
 import CompareView from './components/CompareView'
@@ -26,6 +28,12 @@ const PRESETS = [
 ]
 const CIRCLED = Array.from({ length: 6 }, (_, i) => String.fromCharCode(0x2460 + i))
 
+/** 把后端存储的消息还原成界面 Msg（助手 meta 重建出处/步骤）。 */
+function toMsg(m: StoredMessage): Msg {
+  const meta = m.role === 'assistant' ? (m.meta as unknown as AskMeta) : undefined
+  return { role: m.role, text: m.content, meta, trace: meta?.steps?.map(stepLabel) ?? [] }
+}
+
 export default function App() {
   const [msgs, setMsgs] = useState<Msg[]>([])
   const [input, setInput] = useState('')
@@ -39,6 +47,8 @@ export default function App() {
   const [collapsed, setCollapsed] = useState(() => {
     try { return localStorage.getItem('maotai.sideCollapsed') === '1' } catch { return false }
   })
+  const [conversations, setConversations] = useState<ConversationSummary[]>([])
+  const [activeId, setActiveId] = useState<string | null>(null)
   const abortRef = useRef<AbortController | null>(null)
 
   const toggleSide = () => setCollapsed(v => {
@@ -57,6 +67,57 @@ export default function App() {
     return () => { live = false }
   }, [])
 
+  // P1：挂载时恢复最近一条对话；会话 API 不可用则回退无持久化。
+  useEffect(() => {
+    let live = true
+    void (async () => {
+      try {
+        const list = await listConversations()
+        if (!live) return
+        setConversations(list)
+        if (list.length > 0) {
+          const stored = await getConversation(list[0].id)
+          if (!live) return
+          setActiveId(list[0].id)
+          setMsgs(stored.map(toMsg))
+        }
+      } catch { /* 无持久化兜底 */ }
+    })()
+    return () => { live = false }
+  }, [])
+
+  async function loadConversation(id: string) {
+    try {
+      const stored = await getConversation(id)
+      setActiveId(id)
+      setMsgs(stored.map(toMsg))
+    } catch { /* ignore */ }
+  }
+
+  function newChat() {
+    abortRef.current?.abort()
+    setActiveId(null)
+    setMsgs([])
+  }
+
+  function switchChat(id: string) {
+    if (busy) return
+    abortRef.current?.abort()
+    void loadConversation(id)
+  }
+
+  async function deleteChat(id: string) {
+    try {
+      await deleteConversation(id)
+      const list = await listConversations()
+      setConversations(list)
+      if (id === activeId) {
+        if (list.length > 0) void loadConversation(list[0].id)
+        else { setActiveId(null); setMsgs([]) }
+      }
+    } catch { /* ignore */ }
+  }
+
   const patchLast = (fn: (m: Msg) => Msg) =>
     setMsgs(prev => prev.map((m, i) => (i === prev.length - 1 ? fn(m) : m)))
 
@@ -69,6 +130,11 @@ export default function App() {
     abortRef.current?.abort()
     const ac = new AbortController()
     abortRef.current = ac
+    let cid = activeId
+    if (!cid) {
+      try { cid = await createConversation(q.slice(0, 30)); setActiveId(cid) }
+      catch { cid = null }
+    }
     setMsgs(prev => [...prev,
       { role: 'user', text: q, trace: [] },
       { role: 'assistant', text: '', trace: [] }])
@@ -78,6 +144,7 @@ export default function App() {
       agent: forceAgent || undefined,
       history: history.length ? history : undefined,
       backend,
+      conversation_id: cid ?? undefined,
     }
     try {
       await streamAsk(q, (e: StreamEvent) => {
@@ -103,6 +170,7 @@ export default function App() {
         patchLast(m => ({ ...m, error: String(err) }))
     } finally {
       setBusy(false)
+      void listConversations().then(setConversations).catch(() => {})
     }
   }
 
@@ -115,8 +183,10 @@ export default function App() {
         apiKey={apiKey} onApiKey={setApiKey}
         forceAgent={forceAgent} onForceAgent={setForceAgent}
         ready={ready} busy={busy}
-        canClear={msgs.length > 0} onClear={() => setMsgs([])}
+        canClear={msgs.length > 0} onClear={newChat}
         onCollapse={toggleSide}
+        conversations={conversations} activeId={activeId}
+        onNewChat={newChat} onSwitchChat={switchChat} onDeleteChat={deleteChat}
       />
       {collapsed && (
         <button className="side-expand" onClick={toggleSide} aria-label="展开侧栏" title="展开侧栏">»</button>

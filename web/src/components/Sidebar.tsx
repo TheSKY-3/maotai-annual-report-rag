@@ -1,11 +1,13 @@
-import { YEARS, type ReadyInfo } from '../api'
+import { YEARS, type ConversationSummary, type ReadyInfo } from '../api'
+import ConversationHistory from './ConversationHistory'
 
 export type Mode = 'chat' | 'compare'
 export type Backend = 'cloud' | 'ollama'
 
 /** 常驻侧栏：模式/年份/后端/Key/Agent/清空，全部即时生效。 */
 export default function Sidebar({ mode, onMode, year, onYear, backend, onBackend,
-  apiKey, onApiKey, forceAgent, onForceAgent, ready, busy, canClear, onClear, onCollapse }: {
+  apiKey, onApiKey, forceAgent, onForceAgent, ready, busy, canClear, onClear, onCollapse,
+  conversations, activeId, onNewChat, onSwitchChat, onDeleteChat }: {
   mode: Mode
   onMode: (m: Mode) => void
   year: number | null
@@ -21,6 +23,11 @@ export default function Sidebar({ mode, onMode, year, onYear, backend, onBackend
   canClear: boolean
   onClear: () => void
   onCollapse: () => void
+  conversations?: ConversationSummary[]
+  activeId?: string | null
+  onNewChat?: () => void
+  onSwitchChat?: (id: string) => void
+  onDeleteChat?: (id: string) => void
 }) {
   const hasKey = !!apiKey.trim() || !!ready?.api_key_configured
   return (
@@ -33,6 +40,14 @@ export default function Sidebar({ mode, onMode, year, onYear, backend, onBackend
         </div>
         <button className="side-collapse" onClick={onCollapse} aria-label="收起侧栏" title="收起侧栏">«</button>
       </div>
+
+      {conversations && (
+        <ConversationHistory
+          conversations={conversations} activeId={activeId ?? null} busy={busy}
+          onNew={onNewChat ?? (() => {})} onSwitch={onSwitchChat ?? (() => {})}
+          onDelete={onDeleteChat ?? (() => {})}
+        />
+      )}
 
       <p className="side-label">模式</p>
       <div className="seg">
