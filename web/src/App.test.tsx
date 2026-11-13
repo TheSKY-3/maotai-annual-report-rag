@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
 
 const READY = {
@@ -515,15 +515,58 @@ describe('App 双年对比', () => {
 })
 
 describe('App 品牌印记（描述性命名、不含商标字）', () => {
-  it('印章用「证」字、产品名「年报问答」，不出现「茅」与「审计卷宗」', async () => {
+  it('印章用「溯」字、产品名「年报问答」，不出现「茅」与「审计卷宗」', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => READY }))
     render(<App />)
     await act(async () => {})
-    expect(screen.getByText('证')).toHaveClass('seal')
+    expect(screen.getByText('溯')).toHaveClass('seal')
     expect(screen.getByText('年报问答')).toHaveClass('brand-name')
     expect(screen.getByText('年报问答 · 证据可溯')).toBeInTheDocument()
     expect(screen.queryByText('茅')).toBeNull()
     expect(screen.queryByText(/审计卷宗/)).toBeNull()
     vi.unstubAllGlobals()
+  })
+})
+
+describe('App 侧栏收起', () => {
+  beforeEach(() => {
+    localStorage.clear()
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => READY }))
+  })
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    localStorage.clear()
+  })
+
+  it('点收起按钮隐藏侧栏并出现展开按钮', async () => {
+    render(<App />)
+    await act(async () => {})
+    expect(screen.getByRole('button', { name: '收起侧栏' })).toBeVisible()
+    expect(screen.queryByRole('button', { name: '展开侧栏' })).toBeNull()
+    fireEvent.click(screen.getByRole('button', { name: '收起侧栏' }))
+    expect(document.querySelector('.app')).toHaveClass('side-collapsed')
+    expect(screen.getByRole('button', { name: '展开侧栏' })).toBeVisible()
+  })
+
+  it('点展开按钮恢复侧栏', async () => {
+    render(<App />)
+    await act(async () => {})
+    fireEvent.click(screen.getByRole('button', { name: '收起侧栏' }))
+    fireEvent.click(screen.getByRole('button', { name: '展开侧栏' }))
+    expect(document.querySelector('.app')).not.toHaveClass('side-collapsed')
+    expect(screen.getByRole('button', { name: '收起侧栏' })).toBeVisible()
+    expect(screen.queryByRole('button', { name: '展开侧栏' })).toBeNull()
+  })
+
+  it('收起状态写入 localStorage 并在重挂载后恢复', async () => {
+    const { unmount } = render(<App />)
+    await act(async () => {})
+    fireEvent.click(screen.getByRole('button', { name: '收起侧栏' }))
+    expect(localStorage.getItem('maotai.sideCollapsed')).toBe('1')
+    unmount()
+    render(<App />)
+    await act(async () => {})
+    expect(document.querySelector('.app')).toHaveClass('side-collapsed')
+    expect(screen.getByRole('button', { name: '展开侧栏' })).toBeVisible()
   })
 })

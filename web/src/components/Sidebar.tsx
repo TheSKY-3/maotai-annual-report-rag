@@ -5,7 +5,7 @@ export type Backend = 'cloud' | 'ollama'
 
 /** 常驻侧栏：模式/年份/后端/Key/Agent/清空，全部即时生效。 */
 export default function Sidebar({ mode, onMode, year, onYear, backend, onBackend,
-  apiKey, onApiKey, forceAgent, onForceAgent, ready, busy, canClear, onClear }: {
+  apiKey, onApiKey, forceAgent, onForceAgent, ready, busy, canClear, onClear, onCollapse }: {
   mode: Mode
   onMode: (m: Mode) => void
   year: number | null
@@ -20,16 +20,18 @@ export default function Sidebar({ mode, onMode, year, onYear, backend, onBackend
   busy: boolean
   canClear: boolean
   onClear: () => void
+  onCollapse: () => void
 }) {
   const hasKey = !!apiKey.trim() || !!ready?.api_key_configured
   return (
     <aside className="sidebar">
       <div className="brand">
-        <div className="seal">证</div>
+        <div className="seal">溯</div>
         <div>
           <div className="brand-name">年报问答</div>
           <div className="brand-sub">证据可溯 · EVIDENCE</div>
         </div>
+        <button className="side-collapse" onClick={onCollapse} aria-label="收起侧栏" title="收起侧栏">«</button>
       </div>
 
       <p className="side-label">模式</p>

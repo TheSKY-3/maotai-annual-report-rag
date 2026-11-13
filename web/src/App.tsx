@@ -36,7 +36,16 @@ export default function App() {
   const [backend, setBackend] = useState<Backend>('cloud')
   const [mode, setMode] = useState<Mode>('chat')
   const [ready, setReady] = useState<ReadyInfo | null>(null)
+  const [collapsed, setCollapsed] = useState(() => {
+    try { return localStorage.getItem('maotai.sideCollapsed') === '1' } catch { return false }
+  })
   const abortRef = useRef<AbortController | null>(null)
+
+  const toggleSide = () => setCollapsed(v => {
+    const next = !v
+    try { localStorage.setItem('maotai.sideCollapsed', next ? '1' : '0') } catch { /* 隐私模式忽略 */ }
+    return next
+  })
 
   useEffect(() => {
     let live = true
@@ -98,7 +107,7 @@ export default function App() {
   }
 
   return (
-    <div className="app">
+    <div className={`app${collapsed ? ' side-collapsed' : ''}`}>
       <Sidebar
         mode={mode} onMode={setMode}
         year={year} onYear={setYear}
@@ -107,7 +116,11 @@ export default function App() {
         forceAgent={forceAgent} onForceAgent={setForceAgent}
         ready={ready} busy={busy}
         canClear={msgs.length > 0} onClear={() => setMsgs([])}
+        onCollapse={toggleSide}
       />
+      {collapsed && (
+        <button className="side-expand" onClick={toggleSide} aria-label="展开侧栏" title="展开侧栏">»</button>
+      )}
       <div className="main">
         <div className="main-scroll">
           <header className="page-head">
