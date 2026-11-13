@@ -1,0 +1,6921 @@
+{
+ "set": "holdout",
+ "n": 150,
+ "k": 5,
+ "口径": "与 CI 门禁同一套 src.evalcore.run_eval；零 API",
+ "configs": {
+  "prod": {
+   "summary": {
+    "k": 5,
+    "overall": {
+     "n": 150,
+     "page_hit@k": 0.7733,
+     "all_gold_hit@k": 0.6733,
+     "mrr": 0.6183,
+     "page_prec@k": 0.1867
+    },
+    "cross_page": {
+     "n": 30,
+     "page_hit@k": 0.9,
+     "all_gold_hit@k": 0.4667,
+     "mrr": 0.7317,
+     "page_prec@k": 0.2733
+    },
+    "cross_year": {
+     "n": 15,
+     "page_hit@k": 0.8,
+     "all_gold_hit@k": 0.6667,
+     "mrr": 0.6444,
+     "page_prec@k": 0.2933
+    },
+    "fact": {
+     "n": 90,
+     "page_hit@k": 0.8333,
+     "all_gold_hit@k": 0.8333,
+     "mrr": 0.6659,
+     "page_prec@k": 0.1667
+    },
+    "no_answer": {
+     "n": 15,
+     "page_hit@k": 0.1333,
+     "all_gold_hit@k": 0.1333,
+     "mrr": 0.08,
+     "page_prec@k": 0.0267
+    }
+   },
+   "rows": [
+    {
+     "id": 101,
+     "type": "fact",
+     "question": "茅台2022年第四季度营业收入是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       6
+      ]
+     ],
+     "got_pages": [
+      "2022P6",
+      "2022P52",
+      "2022P125",
+      "2022P7",
+      "2022P16"
+     ]
+    },
+    {
+     "id": 102,
+     "type": "fact",
+     "question": "2022年第一季度归属于上市公司股东的净利润有多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       6
+      ]
+     ],
+     "got_pages": [
+      "2022P6",
+      "2022P5",
+      "2022P32",
+      "2022P60",
+      "2022P59"
+     ]
+    },
+    {
+     "id": 103,
+     "type": "fact",
+     "question": "茅台2022年非经常性损益合计是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       6
+      ]
+     ],
+     "got_pages": [
+      "2022P126",
+      "2022P6",
+      "2022P6",
+      "2022P126",
+      "2022P5"
+     ]
+    },
+    {
+     "id": 104,
+     "type": "fact",
+     "question": "2022年销售费用比上年增长了百分之多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       8
+      ]
+     ],
+     "got_pages": [
+      "2022P9",
+      "2022P9",
+      "2022P8",
+      "2022P8",
+      "2022P60"
+     ]
+    },
+    {
+     "id": 105,
+     "type": "fact",
+     "question": "2022年研发费用同比增幅是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       8
+      ]
+     ],
+     "got_pages": [
+      "2022P10",
+      "2022P8",
+      "2022P101",
+      "2022P8",
+      "2022P60"
+     ]
+    },
+    {
+     "id": 106,
+     "type": "fact",
+     "question": "2022年茅台酒的毛利率是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2022P9",
+      "2022P16",
+      "2022P8",
+      "2022P16",
+      "2022P8"
+     ]
+    },
+    {
+     "id": 107,
+     "type": "fact",
+     "question": "2022年国外市场营业收入同比增长多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2022P7",
+      "2022P9",
+      "2022P60",
+      "2022P7",
+      "2022P58"
+     ]
+    },
+    {
+     "id": 108,
+     "type": "fact",
+     "question": "2022年直销模式的营业收入是多少元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2022P9",
+      "2022P7",
+      "2022P9",
+      "2022P52",
+      "2022P8"
+     ]
+    },
+    {
+     "id": 109,
+     "type": "fact",
+     "question": "2022年酒类的库存量是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2022P14",
+      "2022P9",
+      "2022P14",
+      "2022P14",
+      "2022P7"
+     ]
+    },
+    {
+     "id": 110,
+     "type": "fact",
+     "question": "2022年前五名客户销售额占年度销售总额的比重是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2022P10",
+      "2022P10",
+      "2022P52",
+      "2022P9",
+      "2022P7"
+     ]
+    },
+    {
+     "id": 111,
+     "type": "fact",
+     "question": "茅台2022年研发投入合计多少元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2022P10",
+      "2022P59",
+      "2022P56",
+      "2022P27",
+      "2022P17"
+     ]
+    },
+    {
+     "id": 112,
+     "type": "fact",
+     "question": "2022年研发人员里博士研究生有几人？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2022P10",
+      "2022P10",
+      "2022P11",
+      "2022P31",
+      "2022P22"
+     ]
+    },
+    {
+     "id": 113,
+     "type": "fact",
+     "question": "2022年支付的各项税费现金是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2022P11",
+      "2022P63",
+      "2022P12",
+      "2022P62",
+      "2022P62"
+     ]
+    },
+    {
+     "id": 114,
+     "type": "fact",
+     "question": "2022年末货币资金有多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.25,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2022P54",
+      "2022P81",
+      "2022P108",
+      "2022P12",
+      "2022P56"
+     ]
+    },
+    {
+     "id": 115,
+     "type": "fact",
+     "question": "2022年末存货的账面价值是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2022P75",
+      "2022P75",
+      "2022P86",
+      "2022P86",
+      "2022P5"
+     ]
+    },
+    {
+     "id": 116,
+     "type": "fact",
+     "question": "茅台2022年末总资产规模多大？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       13
+      ]
+     ],
+     "got_pages": [
+      "2022P13",
+      "2022P5",
+      "2022P14",
+      "2022P56",
+      "2022P54"
+     ]
+    },
+    {
+     "id": 117,
+     "type": "fact",
+     "question": "2022年包装材料的采购金额是多少万元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       15
+      ]
+     ],
+     "got_pages": [
+      "2022P15",
+      "2022P10",
+      "2022P15",
+      "2022P10",
+      "2022P39"
+     ]
+    },
+    {
+     "id": 118,
+     "type": "fact",
+     "question": "2022年直销渠道卖了多少吨酒？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       15
+      ]
+     ],
+     "got_pages": [
+      "2022P15",
+      "2022P15",
+      "2022P7",
+      "2022P16",
+      "2022P14"
+     ]
+    },
+    {
+     "id": 119,
+     "type": "fact",
+     "question": "2022年年报里提出的2023年营业总收入增长目标是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       19
+      ]
+     ],
+     "got_pages": [
+      "2022P19",
+      "2023P20",
+      "2023P5",
+      "2023P63",
+      "2022P7"
+     ]
+    },
+    {
+     "id": 120,
+     "type": "fact",
+     "question": "2022年末茅台在职员工总数是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       31
+      ]
+     ],
+     "got_pages": [
+      "2022P30",
+      "2022P27",
+      "2022P51",
+      "2022P7",
+      "2022P7"
+     ]
+    },
+    {
+     "id": 121,
+     "type": "fact",
+     "question": "2022年投入的环保资金是多少万元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2022P34",
+      "2022P17",
+      "2022P35",
+      "2022P10",
+      "2022P61"
+     ]
+    },
+    {
+     "id": 122,
+     "type": "fact",
+     "question": "2022年乡村振兴项目总投入多少万元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       37
+      ]
+     ],
+     "got_pages": [
+      "2022P37",
+      "2022P17",
+      "2022P10",
+      "2022P17",
+      "2022P61"
+     ]
+    },
+    {
+     "id": 123,
+     "type": "fact",
+     "question": "2022年广告宣传及市场拓展费用花了多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       101
+      ]
+     ],
+     "got_pages": [
+      "2022P101",
+      "2022P101",
+      "2022P8",
+      "2022P106",
+      "2022P7"
+     ]
+    },
+    {
+     "id": 124,
+     "type": "cross_page",
+     "question": "2022年第一季度归母净利润和全年利润总额分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       6
+      ],
+      [
+       2022,
+       59
+      ]
+     ],
+     "got_pages": [
+      "2022P6",
+      "2022P60",
+      "2022P59",
+      "2022P59",
+      "2022P60"
+     ]
+    },
+    {
+     "id": 125,
+     "type": "cross_page",
+     "question": "2022年直销渠道的营业收入是多少元？销售量是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ],
+      [
+       2022,
+       15
+      ]
+     ],
+     "got_pages": [
+      "2022P15",
+      "2022P15",
+      "2022P9",
+      "2022P16",
+      "2022P7"
+     ]
+    },
+    {
+     "id": 126,
+     "type": "cross_page",
+     "question": "2022年研发投入合计多少元？30岁以下的研发人员有多少人？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       10
+      ],
+      [
+       2022,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2022P11",
+      "2022P10",
+      "2022P10",
+      "2022P102",
+      "2022P101"
+     ]
+    },
+    {
+     "id": 127,
+     "type": "cross_page",
+     "question": "2022年末货币资金和总资产分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       12
+      ],
+      [
+       2022,
+       13
+      ]
+     ],
+     "got_pages": [
+      "2022P12",
+      "2022P54",
+      "2022P81",
+      "2022P108",
+      "2022P13"
+     ]
+    },
+    {
+     "id": 128,
+     "type": "cross_page",
+     "question": "2022年环保资金投入多少万元？核定的COD排放总量是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       34
+      ],
+      [
+       2022,
+       35
+      ]
+     ],
+     "got_pages": [
+      "2022P34",
+      "2022P35",
+      "2022P34",
+      "2022P34",
+      "2022P36"
+     ]
+    },
+    {
+     "id": 129,
+     "type": "cross_page",
+     "question": "截至2023年3月29日控股股东方面合计增持了多少股？茅台集团持有贵州银行多少比例的股份？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       48
+      ],
+      [
+       2022,
+       49
+      ]
+     ],
+     "got_pages": [
+      "2023P52",
+      "2023P52",
+      "2023P29",
+      "2023P29",
+      "2023P51"
+     ]
+    },
+    {
+     "id": 130,
+     "type": "cross_page",
+     "question": "2022年末应交消费税余额和2022年全年消费税发生额各是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       97
+      ],
+      [
+       2022,
+       101
+      ]
+     ],
+     "got_pages": [
+      "2022P97",
+      "2022P101",
+      "2022P80",
+      "2022P64",
+      "2022P123"
+     ]
+    },
+    {
+     "id": 131,
+     "type": "cross_page",
+     "question": "2022年销售费用同比增长多少？2022年报对2023年营业总收入的增长目标是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.25,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       8
+      ],
+      [
+       2022,
+       19
+      ]
+     ],
+     "got_pages": [
+      "2022P7",
+      "2022P60",
+      "2023P11",
+      "2022P19",
+      "2023P8"
+     ]
+    },
+    {
+     "id": 132,
+     "type": "fact",
+     "question": "2023年茅台营业收入是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       5
+      ]
+     ],
+     "got_pages": [
+      "2023P56",
+      "2023P141",
+      "2023P141",
+      "2023P63",
+      "2023P13"
+     ]
+    },
+    {
+     "id": 133,
+     "type": "fact",
+     "question": "2023年归属于上市公司股东的净利润有多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       5
+      ]
+     ],
+     "got_pages": [
+      "2023P6",
+      "2023P5",
+      "2023P6",
+      "2023P5",
+      "2023P34"
+     ]
+    },
+    {
+     "id": 134,
+     "type": "fact",
+     "question": "茅台2023年基本每股收益是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       5
+      ]
+     ],
+     "got_pages": [
+      "2023P5",
+      "2023P65",
+      "2023P66",
+      "2023P5",
+      "2023P13"
+     ]
+    },
+    {
+     "id": 135,
+     "type": "fact",
+     "question": "2023年加权平均净资产收益率是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       5
+      ]
+     ],
+     "got_pages": [
+      "2023P5",
+      "2023P143",
+      "2023P5",
+      "2023P72",
+      "2023P66"
+     ]
+    },
+    {
+     "id": 136,
+     "type": "fact",
+     "question": "2023年茅台营销网络覆盖多少个国家和地区？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       7
+      ]
+     ],
+     "got_pages": [
+      "2023P7",
+      "2023P29",
+      "2023P14",
+      "2023P29",
+      "2023P3"
+     ]
+    },
+    {
+     "id": 137,
+     "type": "fact",
+     "question": "2023年其他系列酒的营业收入是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2023P141",
+      "2023P56",
+      "2023P14",
+      "2023P109",
+      "2023P17"
+     ]
+    },
+    {
+     "id": 138,
+     "type": "fact",
+     "question": "2023年直销渠道营业收入同比增长多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2023P9",
+      "2023P16",
+      "2023P8",
+      "2023P109",
+      "2023P8"
+     ]
+    },
+    {
+     "id": 139,
+     "type": "fact",
+     "question": "2023年酒类生产量是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2023P10",
+      "2023P14",
+      "2023P14",
+      "2023P15",
+      "2023P15"
+     ]
+    },
+    {
+     "id": 140,
+     "type": "fact",
+     "question": "2023年酒类销售量多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2023P10",
+      "2023P14",
+      "2023P14",
+      "2023P16",
+      "2023P16"
+     ]
+    },
+    {
+     "id": 141,
+     "type": "fact",
+     "question": "2023年前五名供应商采购额占年度采购总额的比例？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2023P11",
+      "2023P16",
+      "2023P42",
+      "2023P42",
+      "2023P7"
+     ]
+    },
+    {
+     "id": 142,
+     "type": "fact",
+     "question": "2023年销售费用是多少元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2023P11",
+      "2023P110",
+      "2023P65",
+      "2023P9",
+      "2023P110"
+     ]
+    },
+    {
+     "id": 143,
+     "type": "fact",
+     "question": "2023年研发投入合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2023P11",
+      "2023P119",
+      "2023P31",
+      "2023P120",
+      "2023P30"
+     ]
+    },
+    {
+     "id": 144,
+     "type": "fact",
+     "question": "2023年公司研发人员有多少名？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2023P30",
+      "2023P11",
+      "2023P30",
+      "2023P22",
+      "2023P11"
+     ]
+    },
+    {
+     "id": 145,
+     "type": "fact",
+     "question": "2023年末货币资金是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.25,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       13
+      ]
+     ],
+     "got_pages": [
+      "2023P87",
+      "2023P118",
+      "2023P123",
+      "2023P13",
+      "2023P88"
+     ]
+    },
+    {
+     "id": 146,
+     "type": "fact",
+     "question": "2023年末应收账款比上期末增长了百分之多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       13
+      ]
+     ],
+     "got_pages": [
+      "2023P5",
+      "2023P5",
+      "2023P90",
+      "2023P138",
+      "2023P90"
+     ]
+    },
+    {
+     "id": 147,
+     "type": "fact",
+     "question": "2023年年报提出的2024年固定资产投资目标是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       20
+      ]
+     ],
+     "got_pages": [
+      "2023P82",
+      "2024P5",
+      "2023P5",
+      "2024P34",
+      "2023P82"
+     ]
+    },
+    {
+     "id": 148,
+     "type": "fact",
+     "question": "2023年度公司召开了几次股东大会？审议通过多少项议案？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       21
+      ]
+     ],
+     "got_pages": [
+      "2023P21",
+      "2023P29",
+      "2023P30",
+      "2023P31",
+      "2023P31"
+     ]
+    },
+    {
+     "id": 149,
+     "type": "fact",
+     "question": "2023年公司披露了多少份临时公告？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       22
+      ]
+     ],
+     "got_pages": [
+      "2023P22",
+      "2023P29",
+      "2023P22",
+      "2023P28",
+      "2023P28"
+     ]
+    },
+    {
+     "id": 150,
+     "type": "fact",
+     "question": "2023年度利润分配每10股派发现金红利多少元？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2023P75",
+      "2023P2",
+      "2023P33",
+      "2023P33",
+      "2023P75"
+     ]
+    },
+    {
+     "id": 151,
+     "type": "fact",
+     "question": "2023年度现金分红金额合计多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2023P33",
+      "2023P8",
+      "2023P33",
+      "2023P68",
+      "2023P66"
+     ]
+    },
+    {
+     "id": 152,
+     "type": "fact",
+     "question": "2023年末公司在贵州银行的存款余额是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       44
+      ]
+     ],
+     "got_pages": [
+      "2023P44",
+      "2023P135",
+      "2023P72",
+      "2023P12",
+      "2023P133"
+     ]
+    },
+    {
+     "id": 153,
+     "type": "fact",
+     "question": "2023年末茅台集团持有上市公司多少比例的股份？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       51
+      ]
+     ],
+     "got_pages": [
+      "2023P52",
+      "2023P52",
+      "2023P75",
+      "2023P8",
+      "2023P122"
+     ]
+    },
+    {
+     "id": 154,
+     "type": "fact",
+     "question": "2023年其他业务收入是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       108
+      ]
+     ],
+     "got_pages": [
+      "2023P108",
+      "2023P141",
+      "2023P72",
+      "2023P141",
+      "2023P24"
+     ]
+    },
+    {
+     "id": 155,
+     "type": "cross_page",
+     "question": "2023年归母净利润和年度现金分红金额分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.25,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       5
+      ],
+      [
+       2023,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2023P8",
+      "2023P6",
+      "2023P33",
+      "2023P5",
+      "2023P33"
+     ]
+    },
+    {
+     "id": 156,
+     "type": "cross_page",
+     "question": "2023年茅台酒营业收入是多少？酒类生产量是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       9
+      ],
+      [
+       2023,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2023P14",
+      "2023P10",
+      "2023P15",
+      "2023P56",
+      "2023P15"
+     ]
+    },
+    {
+     "id": 157,
+     "type": "cross_page",
+     "question": "2023年研发人员总数多少？其中30岁以下的有多少人？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ],
+      [
+       2023,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2023P12",
+      "2023P11",
+      "2023P11",
+      "2023P32",
+      "2023P33"
+     ]
+    },
+    {
+     "id": 158,
+     "type": "cross_page",
+     "question": "2023年末存货账面价值多少？其中自制半成品余额多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       13
+      ],
+      [
+       2023,
+       94
+      ]
+     ],
+     "got_pages": [
+      "2023P94",
+      "2023P80",
+      "2023P93",
+      "2023P70",
+      "2023P72"
+     ]
+    },
+    {
+     "id": 159,
+     "type": "cross_page",
+     "question": "2023年召开了几次股东大会？全年披露了多少份临时公告？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2023,
+       21
+      ],
+      [
+       2023,
+       22
+      ]
+     ],
+     "got_pages": [
+      "2023P22",
+      "2023P22",
+      "2023P29",
+      "2023P23",
+      "2023P21"
+     ]
+    },
+    {
+     "id": 160,
+     "type": "cross_page",
+     "question": "2023年末公司在贵州银行的存款余额多少？茅台集团持股比例多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       44
+      ],
+      [
+       2023,
+       51
+      ]
+     ],
+     "got_pages": [
+      "2023P135",
+      "2023P44",
+      "2023P122",
+      "2023P133",
+      "2023P52"
+     ]
+    },
+    {
+     "id": 161,
+     "type": "cross_page",
+     "question": "2023年末应交税费合计多少？2023年全年消费税发生额多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       105
+      ],
+      [
+       2023,
+       109
+      ]
+     ],
+     "got_pages": [
+      "2023P104",
+      "2023P109",
+      "2023P72",
+      "2023P70",
+      "2023P87"
+     ]
+    },
+    {
+     "id": 162,
+     "type": "cross_page",
+     "question": "2023年其他业务收入多少？年末已签订未履约合同对应的收入金额多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2023,
+       108
+      ],
+      [
+       2023,
+       109
+      ]
+     ],
+     "got_pages": [
+      "2023P109",
+      "2023P142",
+      "2023P109",
+      "2023P108",
+      "2023P85"
+     ]
+    },
+    {
+     "id": 163,
+     "type": "fact",
+     "question": "2024年第一季度茅台营业收入是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       6
+      ]
+     ],
+     "got_pages": [
+      "2024P32",
+      "2024P6",
+      "2024P141",
+      "2024P56",
+      "2024P16"
+     ]
+    },
+    {
+     "id": 164,
+     "type": "fact",
+     "question": "2024年第四季度归属于上市公司股东的净利润有多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       6
+      ]
+     ],
+     "got_pages": [
+      "2024P6",
+      "2024P6",
+      "2024P35",
+      "2024P65",
+      "2024P5"
+     ]
+    },
+    {
+     "id": 165,
+     "type": "fact",
+     "question": "2024年非经常性损益合计是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       7
+      ]
+     ],
+     "got_pages": [
+      "2024P6",
+      "2024P142",
+      "2024P7",
+      "2024P142",
+      "2024P7"
+     ]
+    },
+    {
+     "id": 166,
+     "type": "fact",
+     "question": "2024年销售费用是多少元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.25,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2024P109",
+      "2024P8",
+      "2024P65",
+      "2024P11",
+      "2024P65"
+     ]
+    },
+    {
+     "id": 167,
+     "type": "fact",
+     "question": "2024年研发投入合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2024P11",
+      "2024P120",
+      "2024P119",
+      "2024P11",
+      "2024P119"
+     ]
+    },
+    {
+     "id": 168,
+     "type": "fact",
+     "question": "2024年公司研发人员数量是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2024P11",
+      "2024P11",
+      "2024P32",
+      "2024P26",
+      "2024P33"
+     ]
+    },
+    {
+     "id": 169,
+     "type": "fact",
+     "question": "2024年购建固定资产、无形资产和其他长期资产支付的现金是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2024P12",
+      "2024P12",
+      "2024P12",
+      "2024P68",
+      "2024P81"
+     ]
+    },
+    {
+     "id": 170,
+     "type": "fact",
+     "question": "2024年直销渠道营业收入多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       17
+      ]
+     ],
+     "got_pages": [
+      "2024P108",
+      "2024P17",
+      "2024P108",
+      "2024P141",
+      "2024P15"
+     ]
+    },
+    {
+     "id": 171,
+     "type": "fact",
+     "question": "2024年国外地区营业收入是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.2,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       17
+      ]
+     ],
+     "got_pages": [
+      "2024P141",
+      "2024P108",
+      "2024P9",
+      "2024P9",
+      "2024P17"
+     ]
+    },
+    {
+     "id": 172,
+     "type": "fact",
+     "question": "酱香型系列酒制酒技改工程及配套设施项目的总投资调整后是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       18
+      ]
+     ],
+     "got_pages": [
+      "2024P99",
+      "2022P91",
+      "2023P99",
+      "2023P101",
+      "2022P17"
+     ]
+    },
+    {
+     "id": 173,
+     "type": "fact",
+     "question": "截至2024年末茅台金石基金累计投资金额是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       19
+      ]
+     ],
+     "got_pages": [
+      "2024P19",
+      "2024P136",
+      "2024P135",
+      "2024P135",
+      "2024P96"
+     ]
+    },
+    {
+     "id": 174,
+     "type": "fact",
+     "question": "2024年年报提出的2025年经营目标是什么？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       21
+      ]
+     ],
+     "got_pages": [
+      "2025P31",
+      "2024P21",
+      "2025P64",
+      "2025P6",
+      "2025P31"
+     ]
+    },
+    {
+     "id": 175,
+     "type": "fact",
+     "question": "2024年董事、监事和高级管理人员从公司获得的税前报酬总额合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       26
+      ]
+     ],
+     "got_pages": [
+      "2024P26",
+      "2024P29",
+      "2024P25",
+      "2024P26",
+      "2024P25"
+     ]
+    },
+    {
+     "id": 176,
+     "type": "fact",
+     "question": "2024年合并报表中归属于上市公司股东的净利润是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       35
+      ]
+     ],
+     "got_pages": [
+      "2024P6",
+      "2024P35",
+      "2024P65",
+      "2024P64",
+      "2024P5"
+     ]
+    },
+    {
+     "id": 177,
+     "type": "fact",
+     "question": "最近三个会计年度累计现金分红金额是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       35
+      ]
+     ],
+     "got_pages": [
+      "2025P33",
+      "2024P35",
+      "2025P34",
+      "2023P33",
+      "2022P32"
+     ]
+    },
+    {
+     "id": 178,
+     "type": "fact",
+     "question": "2024年茅台本部7000t/d污水处理厂的COD排放总量是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       37
+      ]
+     ],
+     "got_pages": [
+      "2024P37",
+      "2024P38",
+      "2024P37",
+      "2024P39",
+      "2024P37"
+     ]
+    },
+    {
+     "id": 179,
+     "type": "fact",
+     "question": "2024年末华泰柏瑞沪深300ETF持有茅台多少股？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       51
+      ]
+     ],
+     "got_pages": [
+      "2024P51",
+      "2024P51",
+      "2024P52",
+      "2024P51",
+      "2024P24"
+     ]
+    },
+    {
+     "id": 180,
+     "type": "fact",
+     "question": "2024年末茅台资产总计是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       59
+      ]
+     ],
+     "got_pages": [
+      "2024P61",
+      "2024P5",
+      "2024P61",
+      "2024P30",
+      "2024P131"
+     ]
+    },
+    {
+     "id": 181,
+     "type": "fact",
+     "question": "2024年末存货中自制半成品的余额是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       93
+      ]
+     ],
+     "got_pages": [
+      "2024P93",
+      "2024P14",
+      "2024P79",
+      "2024P70",
+      "2024P93"
+     ]
+    },
+    {
+     "id": 182,
+     "type": "fact",
+     "question": "2024年固定资产本期计提折旧多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.25,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       98
+      ]
+     ],
+     "got_pages": [
+      "2024P80",
+      "2024P80",
+      "2024P100",
+      "2024P98",
+      "2024P98"
+     ]
+    },
+    {
+     "id": 183,
+     "type": "fact",
+     "question": "2024年末应交税费合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       105
+      ]
+     ],
+     "got_pages": [
+      "2024P105",
+      "2024P105",
+      "2024P70",
+      "2024P62",
+      "2024P5"
+     ]
+    },
+    {
+     "id": 184,
+     "type": "fact",
+     "question": "2024年计入当期损益的政府补助是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.2,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       122
+      ]
+     ],
+     "got_pages": [
+      "2024P83",
+      "2024P6",
+      "2024P6",
+      "2024P83",
+      "2024P122"
+     ]
+    },
+    {
+     "id": 185,
+     "type": "cross_page",
+     "question": "2024年第一季度营业收入和全年归母净利润分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       6
+      ],
+      [
+       2024,
+       35
+      ]
+     ],
+     "got_pages": [
+      "2024P6",
+      "2024P32",
+      "2024P6",
+      "2024P65",
+      "2024P64"
+     ]
+    },
+    {
+     "id": 186,
+     "type": "cross_page",
+     "question": "2024年研发投入合计多少？购建固定资产等长期资产支付的现金多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       11
+      ],
+      [
+       2024,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2024P80",
+      "2024P12",
+      "2024P68",
+      "2024P12",
+      "2024P81"
+     ]
+    },
+    {
+     "id": 187,
+     "type": "cross_page",
+     "question": "2024年直销渠道收入多少？系列酒制酒技改项目调整后的总投资多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       17
+      ],
+      [
+       2024,
+       18
+      ]
+     ],
+     "got_pages": [
+      "2024P33",
+      "2024P99",
+      "2024P14",
+      "2024P114",
+      "2024P102"
+     ]
+    },
+    {
+     "id": 188,
+     "type": "cross_page",
+     "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       19
+      ],
+      [
+       2024,
+       21
+      ]
+     ],
+     "got_pages": [
+      "2024P19",
+      "2025P20",
+      "2025P135",
+      "2024P136",
+      "2025P135"
+     ]
+    },
+    {
+     "id": 189,
+     "type": "cross_page",
+     "question": "2024年末存货账面价值多少？其中自制半成品多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       59
+      ],
+      [
+       2024,
+       93
+      ]
+     ],
+     "got_pages": [
+      "2024P93",
+      "2024P14",
+      "2024P79",
+      "2024P93",
+      "2024P98"
+     ]
+    },
+    {
+     "id": 190,
+     "type": "cross_page",
+     "question": "2024年固定资产计提折旧多少？年末应交税费合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.25,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2024,
+       98
+      ],
+      [
+       2024,
+       105
+      ]
+     ],
+     "got_pages": [
+      "2024P80",
+      "2024P80",
+      "2024P100",
+      "2024P105",
+      "2024P98"
+     ]
+    },
+    {
+     "id": 191,
+     "type": "cross_page",
+     "question": "2024年游亚林从公司获得的税前报酬是多少？全体董监高报酬合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2024,
+       25
+      ],
+      [
+       2024,
+       26
+      ]
+     ],
+     "got_pages": [
+      "2024P26",
+      "2024P26",
+      "2024P25",
+      "2024P25",
+      "2024P28"
+     ]
+    },
+    {
+     "id": 192,
+     "type": "fact",
+     "question": "2025年第一季度茅台营业收入是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       7
+      ]
+     ],
+     "got_pages": [
+      "2025P30",
+      "2025P7",
+      "2025P54",
+      "2025P30",
+      "2025P10"
+     ]
+    },
+    {
+     "id": 193,
+     "type": "fact",
+     "question": "2025年非经常性损益合计是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       7
+      ]
+     ],
+     "got_pages": [
+      "2025P7",
+      "2025P7",
+      "2025P143",
+      "2025P7",
+      "2025P142"
+     ]
+    },
+    {
+     "id": 194,
+     "type": "fact",
+     "question": "2025年茅台营销网络覆盖多少个国家和地区？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       8
+      ]
+     ],
+     "got_pages": [
+      "2025P8",
+      "2025P10",
+      "2025P23",
+      "2025P17",
+      "2025P15"
+     ]
+    },
+    {
+     "id": 195,
+     "type": "fact",
+     "question": "Brand Finance 2025年榜单上茅台的品牌价值是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2025P9",
+      "2025P21",
+      "2025P21",
+      "2025P17",
+      "2025P16"
+     ]
+    },
+    {
+     "id": 196,
+     "type": "fact",
+     "question": "2025年度累计派发现金红利多少（含年度分红预案金额）？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.2,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2025P33",
+      "2025P33",
+      "2025P2",
+      "2025P32",
+      "2025P9"
+     ]
+    },
+    {
+     "id": 197,
+     "type": "fact",
+     "question": "2025年茅台营业收入是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2025P54",
+      "2025P10",
+      "2025P12",
+      "2025P129",
+      "2025P61"
+     ]
+    },
+    {
+     "id": 198,
+     "type": "fact",
+     "question": "2025年销售费用同比增长百分之多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2025P12",
+      "2025P63",
+      "2025P9",
+      "2025P9",
+      "2025P108"
+     ]
+    },
+    {
+     "id": 199,
+     "type": "fact",
+     "question": "2025年前五名客户销售额是多少万元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2025P11",
+      "2025P11",
+      "2025P12",
+      "2025P64",
+      "2025P17"
+     ]
+    },
+    {
+     "id": 200,
+     "type": "fact",
+     "question": "2025年研发投入合计多少元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2025P12",
+      "2025P12",
+      "2025P118",
+      "2025P63",
+      "2025P118"
+     ]
+    },
+    {
+     "id": 201,
+     "type": "fact",
+     "question": "2025年公司研发人员有多少名？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2025P12",
+      "2025P12",
+      "2025P23",
+      "2025P30",
+      "2025P31"
+     ]
+    },
+    {
+     "id": 202,
+     "type": "fact",
+     "question": "2025年末货币资金是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       14
+      ]
+     ],
+     "got_pages": [
+      "2025P116",
+      "2025P116",
+      "2025P56",
+      "2025P64",
+      "2025P70"
+     ]
+    },
+    {
+     "id": 203,
+     "type": "fact",
+     "question": "2025年末茅台境外资产规模是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       14
+      ]
+     ],
+     "got_pages": [
+      "2025P14",
+      "2025P15",
+      "2025P14",
+      "2025P20",
+      "2025P129"
+     ]
+    },
+    {
+     "id": 204,
+     "type": "fact",
+     "question": "2025年末半成品酒（含基础酒）库存多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       16
+      ]
+     ],
+     "got_pages": [
+      "2025P16",
+      "2025P15",
+      "2025P15",
+      "2025P10",
+      "2025P16"
+     ]
+    },
+    {
+     "id": 205,
+     "type": "fact",
+     "question": "2025年茅台酒产量是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       16
+      ]
+     ],
+     "got_pages": [
+      "2025P15",
+      "2025P15",
+      "2025P16",
+      "2025P129",
+      "2025P1"
+     ]
+    },
+    {
+     "id": 206,
+     "type": "fact",
+     "question": "2025年直销渠道营业收入是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       18
+      ]
+     ],
+     "got_pages": [
+      "2025P17",
+      "2025P10",
+      "2025P8",
+      "2025P107",
+      "2025P141"
+     ]
+    },
+    {
+     "id": 207,
+     "type": "fact",
+     "question": "截至2025年末茅台金石基金累计投资金额多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       20
+      ]
+     ],
+     "got_pages": [
+      "2025P20",
+      "2025P135",
+      "2025P135",
+      "2025P19",
+      "2025P137"
+     ]
+    },
+    {
+     "id": 208,
+     "type": "fact",
+     "question": "2025年贵州茅台酒销售有限公司的净利润是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       20
+      ]
+     ],
+     "got_pages": [
+      "2025P120",
+      "2025P20",
+      "2025P129",
+      "2025P72",
+      "2025P40"
+     ]
+    },
+    {
+     "id": 209,
+     "type": "fact",
+     "question": "2025年度公司召开了几次股东会？审议通过多少项议案？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       23
+      ]
+     ],
+     "got_pages": [
+      "2025P23",
+      "2025P31",
+      "2025P30",
+      "2025P30",
+      "2025P31"
+     ]
+    },
+    {
+     "id": 210,
+     "type": "fact",
+     "question": "2025年合并报表中归属于上市公司股东的净利润是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2025P33",
+      "2025P7",
+      "2025P6",
+      "2025P62",
+      "2025P6"
+     ]
+    },
+    {
+     "id": 211,
+     "type": "fact",
+     "question": "2025年公司累计回购并注销了多少股？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       47
+      ]
+     ],
+     "got_pages": [
+      "2025P136",
+      "2025P47",
+      "2025P83",
+      "2025P136",
+      "2025P137"
+     ]
+    },
+    {
+     "id": 212,
+     "type": "fact",
+     "question": "2025年末应交税费合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       104
+      ]
+     ],
+     "got_pages": [
+      "2025P104",
+      "2025P68",
+      "2025P70",
+      "2025P6",
+      "2025P83"
+     ]
+    },
+    {
+     "id": 213,
+     "type": "fact",
+     "question": "2025年控股股东增持计划的增持金额是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       137
+      ]
+     ],
+     "got_pages": [
+      "2025P137",
+      "2025P33",
+      "2025P33",
+      "2025P32",
+      "2025P70"
+     ]
+    },
+    {
+     "id": 214,
+     "type": "cross_page",
+     "question": "2025年第一季度营业收入和全年归母净利润分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       7
+      ],
+      [
+       2025,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2025P7",
+      "2025P62",
+      "2025P30",
+      "2025P33",
+      "2025P63"
+     ]
+    },
+    {
+     "id": 215,
+     "type": "cross_page",
+     "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       9
+      ],
+      [
+       2025,
+       47
+      ]
+     ],
+     "got_pages": [
+      "2025P33",
+      "2025P2",
+      "2025P33",
+      "2025P32",
+      "2025P136"
+     ]
+    },
+    {
+     "id": 216,
+     "type": "cross_page",
+     "question": "2025年前五名客户销售额多少万元？研发投入合计多少元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2025,
+       11
+      ],
+      [
+       2025,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2025P12",
+      "2025P11",
+      "2025P11",
+      "2025P64",
+      "2025P118"
+     ]
+    },
+    {
+     "id": 217,
+     "type": "cross_page",
+     "question": "2025年茅台酒产量多少吨？直销渠道营业收入多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.2,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       16
+      ],
+      [
+       2025,
+       18
+      ]
+     ],
+     "got_pages": [
+      "2025P17",
+      "2025P10",
+      "2025P15",
+      "2025P8",
+      "2025P18"
+     ]
+    },
+    {
+     "id": 218,
+     "type": "cross_page",
+     "question": "2025年末存货账面价值多少？其中自制半成品多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       14
+      ],
+      [
+       2025,
+       91
+      ]
+     ],
+     "got_pages": [
+      "2025P91",
+      "2025P91",
+      "2025P77",
+      "2025P16",
+      "2025P68"
+     ]
+    },
+    {
+     "id": 219,
+     "type": "cross_page",
+     "question": "2025年钟正强从公司获得的税前薪酬是多少？董事和高级管理人员报酬合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2025,
+       25
+      ],
+      [
+       2025,
+       26
+      ]
+     ],
+     "got_pages": [
+      "2025P26",
+      "2025P28",
+      "2025P28",
+      "2025P25",
+      "2025P29"
+     ]
+    },
+    {
+     "id": 220,
+     "type": "cross_page",
+     "question": "2025年末应交税费合计多少？控股股东增持金额多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2025,
+       104
+      ],
+      [
+       2025,
+       137
+      ]
+     ],
+     "got_pages": [
+      "2025P137",
+      "2025P68",
+      "2025P104",
+      "2025P70",
+      "2025P33"
+     ]
+    },
+    {
+     "id": 221,
+     "type": "cross_year",
+     "question": "2022年和2023年茅台酒的毛利率分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ],
+      [
+       2023,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2022P9",
+      "2023P9",
+      "2022P8",
+      "2022P16",
+      "2023P9"
+     ]
+    },
+    {
+     "id": 222,
+     "type": "cross_year",
+     "question": "2022年和2023年酒类生产量各是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ],
+      [
+       2023,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2023P10",
+      "2023P14",
+      "2022P14",
+      "2023P14",
+      "2022P9"
+     ]
+    },
+    {
+     "id": 223,
+     "type": "cross_year",
+     "question": "2022年和2023年研发投入合计分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       10
+      ],
+      [
+       2023,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2023P11",
+      "2022P10",
+      "2023P30",
+      "2023P24",
+      "2023P31"
+     ]
+    },
+    {
+     "id": 224,
+     "type": "cross_year",
+     "question": "2023年和2024年研发人员数量各是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ],
+      [
+       2024,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2024P11",
+      "2024P11",
+      "2023P11",
+      "2024P32",
+      "2024P32"
+     ]
+    },
+    {
+     "id": 225,
+     "type": "cross_year",
+     "question": "2024年和2025年研发投入合计分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2024,
+       11
+      ],
+      [
+       2025,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2025P12",
+      "2024P11",
+      "2024P120",
+      "2025P31",
+      "2025P32"
+     ]
+    },
+    {
+     "id": 226,
+     "type": "cross_year",
+     "question": "2022年末和2023年末货币资金各是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       12
+      ],
+      [
+       2023,
+       13
+      ]
+     ],
+     "got_pages": [
+      "2023P87",
+      "2022P54",
+      "2022P12",
+      "2022P81",
+      "2023P118"
+     ]
+    },
+    {
+     "id": 227,
+     "type": "cross_year",
+     "question": "2023年末和2024年末存货账面价值分别是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       13
+      ],
+      [
+       2024,
+       59
+      ]
+     ],
+     "got_pages": [
+      "2024P5",
+      "2023P94",
+      "2024P93",
+      "2024P34",
+      "2023P72"
+     ]
+    },
+    {
+     "id": 228,
+     "type": "cross_year",
+     "question": "2024年末和2025年末固定资产账面价值各是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       59
+      ],
+      [
+       2025,
+       14
+      ]
+     ],
+     "got_pages": [
+      "2025P6",
+      "2024P100",
+      "2024P98",
+      "2025P97",
+      "2024P5"
+     ]
+    },
+    {
+     "id": 229,
+     "type": "cross_year",
+     "question": "2022年末和2023年末应交税费合计分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       97
+      ],
+      [
+       2023,
+       105
+      ]
+     ],
+     "got_pages": [
+      "2022P13",
+      "2022P97",
+      "2023P104",
+      "2023P70",
+      "2023P104"
+     ]
+    },
+    {
+     "id": 230,
+     "type": "cross_year",
+     "question": "2024年末和2025年末应交税费合计各是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2024,
+       105
+      ],
+      [
+       2025,
+       104
+      ]
+     ],
+     "got_pages": [
+      "2025P6",
+      "2025P104",
+      "2024P105",
+      "2025P68",
+      "2025P70"
+     ]
+    },
+    {
+     "id": 231,
+     "type": "cross_year",
+     "question": "2023年和2024年归属于上市公司股东的净利润分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2023,
+       5
+      ],
+      [
+       2024,
+       35
+      ]
+     ],
+     "got_pages": [
+      "2024P6",
+      "2023P6",
+      "2023P5",
+      "2024P35",
+      "2023P6"
+     ]
+    },
+    {
+     "id": 232,
+     "type": "cross_year",
+     "question": "2022年和2025年归属于上市公司股东的净利润各是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       59
+      ],
+      [
+       2025,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2025P33",
+      "2025P7",
+      "2022P6",
+      "2025P6",
+      "2022P5"
+     ]
+    },
+    {
+     "id": 233,
+     "type": "cross_year",
+     "question": "2022年末和2025年末香港中央结算有限公司持有茅台股份各多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       48
+      ],
+      [
+       2025,
+       49
+      ]
+     ],
+     "got_pages": [
+      "2025P49",
+      "2022P48",
+      "2025P49",
+      "2022P47",
+      "2025P48"
+     ]
+    },
+    {
+     "id": 234,
+     "type": "cross_year",
+     "question": "截至2024年末和2025年末，茅台金石基金累计投资金额各是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2024,
+       19
+      ],
+      [
+       2025,
+       20
+      ]
+     ],
+     "got_pages": [
+      "2024P19",
+      "2025P20",
+      "2025P135",
+      "2024P136",
+      "2025P135"
+     ]
+    },
+    {
+     "id": 235,
+     "type": "cross_year",
+     "question": "2022年报提出的2023年基本建设投资目标和2024年报提出的2025年固定资产投资目标各是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       19
+      ],
+      [
+       2024,
+       21
+      ]
+     ],
+     "got_pages": [
+      "2022P19",
+      "2023P5",
+      "2025P6",
+      "2024P5",
+      "2024P21"
+     ]
+    },
+    {
+     "id": 236,
+     "type": "no_answer",
+     "question": "五粮液2024年的净利润是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       17
+      ]
+     ],
+     "got_pages": [
+      "2024P6",
+      "2024P64",
+      "2024P6",
+      "2024P66",
+      "2024P35"
+     ]
+    },
+    {
+     "id": 237,
+     "type": "no_answer",
+     "question": "泸州老窖2023年的净利润是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2023P6",
+      "2023P5",
+      "2023P6",
+      "2023P64",
+      "2023P65"
+     ]
+    },
+    {
+     "id": 238,
+     "type": "no_answer",
+     "question": "山西汾酒2025年营业总收入多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.2,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       18
+      ]
+     ],
+     "got_pages": [
+      "2025P61",
+      "2025P10",
+      "2025P12",
+      "2025P54",
+      "2025P18"
+     ]
+    },
+    {
+     "id": 239,
+     "type": "no_answer",
+     "question": "洋河股份2022年的营业收入是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2022P52",
+      "2022P8",
+      "2022P60",
+      "2022P100",
+      "2022P60"
+     ]
+    },
+    {
+     "id": 240,
+     "type": "no_answer",
+     "question": "2024年茅台1935的单瓶出厂价是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       17
+      ]
+     ],
+     "got_pages": [
+      "2024P15",
+      "2024P30",
+      "2024P30",
+      "2024P30",
+      "2024P129"
+     ]
+    },
+    {
+     "id": 241,
+     "type": "no_answer",
+     "question": "2023年茅台经销商大会的参会人数是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2023P29",
+      "2023P29",
+      "2023P43",
+      "2023P43",
+      "2023P28"
+     ]
+    },
+    {
+     "id": 242,
+     "type": "no_answer",
+     "question": "2022年前五大客户的具体名称是什么？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2022P7",
+      "2022P52",
+      "2022P52",
+      "2022P113",
+      "2022P7"
+     ]
+    },
+    {
+     "id": 243,
+     "type": "no_answer",
+     "question": "2025年茅台在美国市场的销量是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       18
+      ]
+     ],
+     "got_pages": [
+      "2025P16",
+      "2025P9",
+      "2025P9",
+      "2025P22",
+      "2025P15"
+     ]
+    },
+    {
+     "id": 244,
+     "type": "no_answer",
+     "question": "2024年茅台酒的终端零售指导价是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       17
+      ]
+     ],
+     "got_pages": [
+      "2024P120",
+      "2024P120",
+      "2024P30",
+      "2024P7",
+      "2024P30"
+     ]
+    },
+    {
+     "id": 245,
+     "type": "no_answer",
+     "question": "2023年茅台团购渠道的出厂价是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2023P16",
+      "2023P29",
+      "2023P7",
+      "2023P29",
+      "2023P29"
+     ]
+    },
+    {
+     "id": 246,
+     "type": "no_answer",
+     "question": "茅台2025年年报对2026年股价的预测是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       21
+      ]
+     ],
+     "got_pages": [
+      "2025P15",
+      "2025P26",
+      "2025P22",
+      "2025P31",
+      "2025P53"
+     ]
+    },
+    {
+     "id": 247,
+     "type": "no_answer",
+     "question": "2024年白酒行业上市公司纳税总额排名如何？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       105
+      ]
+     ],
+     "got_pages": [
+      "2024P14",
+      "2024P20",
+      "2024P85",
+      "2024P6",
+      "2024P7"
+     ]
+    },
+    {
+     "id": 248,
+     "type": "no_answer",
+     "question": "2022年茅台生肖酒的产量是多少吨？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       15
+      ]
+     ],
+     "got_pages": [
+      "2022P14",
+      "2022P14",
+      "2022P14",
+      "2022P113",
+      "2022P90"
+     ]
+    },
+    {
+     "id": 249,
+     "type": "no_answer",
+     "question": "2023年茅台微信公众号的粉丝数量是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       21
+      ]
+     ],
+     "got_pages": [
+      "2023P29",
+      "2023P7",
+      "2023P58",
+      "2023P18",
+      "2023P51"
+     ]
+    },
+    {
+     "id": 250,
+     "type": "no_answer",
+     "question": "2022年茅台股票每个交易日的收盘价是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       48
+      ]
+     ],
+     "got_pages": [
+      "2022P48",
+      "2022P4",
+      "2022P52",
+      "2022P51",
+      "2022P48"
+     ]
+    }
+   ],
+   "seconds": 1.7
+  },
+  "peryear_dedup": {
+   "summary": {
+    "k": 5,
+    "overall": {
+     "n": 150,
+     "page_hit@k": 0.7733,
+     "all_gold_hit@k": 0.6667,
+     "mrr": 0.6251,
+     "page_prec@k": 0.1853
+    },
+    "cross_page": {
+     "n": 30,
+     "page_hit@k": 0.9,
+     "all_gold_hit@k": 0.4667,
+     "mrr": 0.7328,
+     "page_prec@k": 0.2733
+    },
+    "cross_year": {
+     "n": 15,
+     "page_hit@k": 0.8,
+     "all_gold_hit@k": 0.6,
+     "mrr": 0.6333,
+     "page_prec@k": 0.28
+    },
+    "fact": {
+     "n": 90,
+     "page_hit@k": 0.8333,
+     "all_gold_hit@k": 0.8333,
+     "mrr": 0.6787,
+     "page_prec@k": 0.1667
+    },
+    "no_answer": {
+     "n": 15,
+     "page_hit@k": 0.1333,
+     "all_gold_hit@k": 0.1333,
+     "mrr": 0.08,
+     "page_prec@k": 0.0267
+    }
+   },
+   "rows": [
+    {
+     "id": 101,
+     "type": "fact",
+     "question": "茅台2022年第四季度营业收入是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       6
+      ]
+     ],
+     "got_pages": [
+      "2022P6",
+      "2022P52",
+      "2022P125",
+      "2022P7",
+      "2022P16"
+     ]
+    },
+    {
+     "id": 102,
+     "type": "fact",
+     "question": "2022年第一季度归属于上市公司股东的净利润有多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       6
+      ]
+     ],
+     "got_pages": [
+      "2022P6",
+      "2022P5",
+      "2022P32",
+      "2022P60",
+      "2022P59"
+     ]
+    },
+    {
+     "id": 103,
+     "type": "fact",
+     "question": "茅台2022年非经常性损益合计是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       6
+      ]
+     ],
+     "got_pages": [
+      "2022P126",
+      "2022P6",
+      "2022P5"
+     ]
+    },
+    {
+     "id": 104,
+     "type": "fact",
+     "question": "2022年销售费用比上年增长了百分之多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       8
+      ]
+     ],
+     "got_pages": [
+      "2022P9",
+      "2022P8",
+      "2022P60"
+     ]
+    },
+    {
+     "id": 105,
+     "type": "fact",
+     "question": "2022年研发费用同比增幅是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       8
+      ]
+     ],
+     "got_pages": [
+      "2022P10",
+      "2022P8",
+      "2022P101",
+      "2022P60"
+     ]
+    },
+    {
+     "id": 106,
+     "type": "fact",
+     "question": "2022年茅台酒的毛利率是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2022P9",
+      "2022P16",
+      "2022P8"
+     ]
+    },
+    {
+     "id": 107,
+     "type": "fact",
+     "question": "2022年国外市场营业收入同比增长多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2022P7",
+      "2022P9",
+      "2022P60",
+      "2022P58"
+     ]
+    },
+    {
+     "id": 108,
+     "type": "fact",
+     "question": "2022年直销模式的营业收入是多少元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2022P9",
+      "2022P7",
+      "2022P52",
+      "2022P8"
+     ]
+    },
+    {
+     "id": 109,
+     "type": "fact",
+     "question": "2022年酒类的库存量是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2022P14",
+      "2022P9",
+      "2022P7"
+     ]
+    },
+    {
+     "id": 110,
+     "type": "fact",
+     "question": "2022年前五名客户销售额占年度销售总额的比重是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2022P10",
+      "2022P52",
+      "2022P9",
+      "2022P7"
+     ]
+    },
+    {
+     "id": 111,
+     "type": "fact",
+     "question": "茅台2022年研发投入合计多少元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2022P10",
+      "2022P59",
+      "2022P56",
+      "2022P27",
+      "2022P17"
+     ]
+    },
+    {
+     "id": 112,
+     "type": "fact",
+     "question": "2022年研发人员里博士研究生有几人？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2022P10",
+      "2022P11",
+      "2022P31",
+      "2022P22"
+     ]
+    },
+    {
+     "id": 113,
+     "type": "fact",
+     "question": "2022年支付的各项税费现金是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2022P11",
+      "2022P63",
+      "2022P12",
+      "2022P62"
+     ]
+    },
+    {
+     "id": 114,
+     "type": "fact",
+     "question": "2022年末货币资金有多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.25,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2022P54",
+      "2022P81",
+      "2022P108",
+      "2022P12",
+      "2022P56"
+     ]
+    },
+    {
+     "id": 115,
+     "type": "fact",
+     "question": "2022年末存货的账面价值是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2022P75",
+      "2022P86",
+      "2022P5"
+     ]
+    },
+    {
+     "id": 116,
+     "type": "fact",
+     "question": "茅台2022年末总资产规模多大？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       13
+      ]
+     ],
+     "got_pages": [
+      "2022P13",
+      "2022P5",
+      "2022P14",
+      "2022P56",
+      "2022P54"
+     ]
+    },
+    {
+     "id": 117,
+     "type": "fact",
+     "question": "2022年包装材料的采购金额是多少万元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       15
+      ]
+     ],
+     "got_pages": [
+      "2022P15",
+      "2022P10",
+      "2022P39"
+     ]
+    },
+    {
+     "id": 118,
+     "type": "fact",
+     "question": "2022年直销渠道卖了多少吨酒？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       15
+      ]
+     ],
+     "got_pages": [
+      "2022P15",
+      "2022P7",
+      "2022P16",
+      "2022P14"
+     ]
+    },
+    {
+     "id": 119,
+     "type": "fact",
+     "question": "2022年年报里提出的2023年营业总收入增长目标是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       19
+      ]
+     ],
+     "got_pages": [
+      "2022P19",
+      "2023P20",
+      "2022P7",
+      "2023P5",
+      "2022P58"
+     ]
+    },
+    {
+     "id": 120,
+     "type": "fact",
+     "question": "2022年末茅台在职员工总数是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       31
+      ]
+     ],
+     "got_pages": [
+      "2022P30",
+      "2022P27",
+      "2022P51",
+      "2022P7"
+     ]
+    },
+    {
+     "id": 121,
+     "type": "fact",
+     "question": "2022年投入的环保资金是多少万元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2022P34",
+      "2022P17",
+      "2022P35",
+      "2022P10",
+      "2022P61"
+     ]
+    },
+    {
+     "id": 122,
+     "type": "fact",
+     "question": "2022年乡村振兴项目总投入多少万元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       37
+      ]
+     ],
+     "got_pages": [
+      "2022P37",
+      "2022P17",
+      "2022P10",
+      "2022P61"
+     ]
+    },
+    {
+     "id": 123,
+     "type": "fact",
+     "question": "2022年广告宣传及市场拓展费用花了多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       101
+      ]
+     ],
+     "got_pages": [
+      "2022P101",
+      "2022P8",
+      "2022P106",
+      "2022P7"
+     ]
+    },
+    {
+     "id": 124,
+     "type": "cross_page",
+     "question": "2022年第一季度归母净利润和全年利润总额分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       6
+      ],
+      [
+       2022,
+       59
+      ]
+     ],
+     "got_pages": [
+      "2022P6",
+      "2022P60",
+      "2022P59"
+     ]
+    },
+    {
+     "id": 125,
+     "type": "cross_page",
+     "question": "2022年直销渠道的营业收入是多少元？销售量是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ],
+      [
+       2022,
+       15
+      ]
+     ],
+     "got_pages": [
+      "2022P15",
+      "2022P9",
+      "2022P16",
+      "2022P7"
+     ]
+    },
+    {
+     "id": 126,
+     "type": "cross_page",
+     "question": "2022年研发投入合计多少元？30岁以下的研发人员有多少人？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       10
+      ],
+      [
+       2022,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2022P11",
+      "2022P10",
+      "2022P102",
+      "2022P101"
+     ]
+    },
+    {
+     "id": 127,
+     "type": "cross_page",
+     "question": "2022年末货币资金和总资产分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       12
+      ],
+      [
+       2022,
+       13
+      ]
+     ],
+     "got_pages": [
+      "2022P12",
+      "2022P54",
+      "2022P81",
+      "2022P108",
+      "2022P13"
+     ]
+    },
+    {
+     "id": 128,
+     "type": "cross_page",
+     "question": "2022年环保资金投入多少万元？核定的COD排放总量是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       34
+      ],
+      [
+       2022,
+       35
+      ]
+     ],
+     "got_pages": [
+      "2022P34",
+      "2022P35",
+      "2022P36"
+     ]
+    },
+    {
+     "id": 129,
+     "type": "cross_page",
+     "question": "截至2023年3月29日控股股东方面合计增持了多少股？茅台集团持有贵州银行多少比例的股份？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       48
+      ],
+      [
+       2022,
+       49
+      ]
+     ],
+     "got_pages": [
+      "2023P52",
+      "2023P29",
+      "2023P51"
+     ]
+    },
+    {
+     "id": 130,
+     "type": "cross_page",
+     "question": "2022年末应交消费税余额和2022年全年消费税发生额各是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       97
+      ],
+      [
+       2022,
+       101
+      ]
+     ],
+     "got_pages": [
+      "2022P97",
+      "2022P101",
+      "2022P80",
+      "2022P64",
+      "2022P123"
+     ]
+    },
+    {
+     "id": 131,
+     "type": "cross_page",
+     "question": "2022年销售费用同比增长多少？2022年报对2023年营业总收入的增长目标是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.2,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       8
+      ],
+      [
+       2022,
+       19
+      ]
+     ],
+     "got_pages": [
+      "2022P7",
+      "2023P11",
+      "2022P60",
+      "2023P8",
+      "2022P19"
+     ]
+    },
+    {
+     "id": 132,
+     "type": "fact",
+     "question": "2023年茅台营业收入是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       5
+      ]
+     ],
+     "got_pages": [
+      "2023P56",
+      "2023P141",
+      "2023P63",
+      "2023P13"
+     ]
+    },
+    {
+     "id": 133,
+     "type": "fact",
+     "question": "2023年归属于上市公司股东的净利润有多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       5
+      ]
+     ],
+     "got_pages": [
+      "2023P6",
+      "2023P5",
+      "2023P34"
+     ]
+    },
+    {
+     "id": 134,
+     "type": "fact",
+     "question": "茅台2023年基本每股收益是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       5
+      ]
+     ],
+     "got_pages": [
+      "2023P5",
+      "2023P65",
+      "2023P66",
+      "2023P13"
+     ]
+    },
+    {
+     "id": 135,
+     "type": "fact",
+     "question": "2023年加权平均净资产收益率是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       5
+      ]
+     ],
+     "got_pages": [
+      "2023P5",
+      "2023P143",
+      "2023P72",
+      "2023P66"
+     ]
+    },
+    {
+     "id": 136,
+     "type": "fact",
+     "question": "2023年茅台营销网络覆盖多少个国家和地区？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       7
+      ]
+     ],
+     "got_pages": [
+      "2023P7",
+      "2023P29",
+      "2023P14",
+      "2023P3"
+     ]
+    },
+    {
+     "id": 137,
+     "type": "fact",
+     "question": "2023年其他系列酒的营业收入是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2023P141",
+      "2023P56",
+      "2023P14",
+      "2023P109",
+      "2023P17"
+     ]
+    },
+    {
+     "id": 138,
+     "type": "fact",
+     "question": "2023年直销渠道营业收入同比增长多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2023P9",
+      "2023P16",
+      "2023P8",
+      "2023P109"
+     ]
+    },
+    {
+     "id": 139,
+     "type": "fact",
+     "question": "2023年酒类生产量是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2023P10",
+      "2023P14",
+      "2023P15"
+     ]
+    },
+    {
+     "id": 140,
+     "type": "fact",
+     "question": "2023年酒类销售量多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2023P10",
+      "2023P14",
+      "2023P16"
+     ]
+    },
+    {
+     "id": 141,
+     "type": "fact",
+     "question": "2023年前五名供应商采购额占年度采购总额的比例？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2023P11",
+      "2023P16",
+      "2023P42",
+      "2023P7"
+     ]
+    },
+    {
+     "id": 142,
+     "type": "fact",
+     "question": "2023年销售费用是多少元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2023P11",
+      "2023P110",
+      "2023P65",
+      "2023P9"
+     ]
+    },
+    {
+     "id": 143,
+     "type": "fact",
+     "question": "2023年研发投入合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2023P11",
+      "2023P119",
+      "2023P31",
+      "2023P120",
+      "2023P30"
+     ]
+    },
+    {
+     "id": 144,
+     "type": "fact",
+     "question": "2023年公司研发人员有多少名？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2023P30",
+      "2023P11",
+      "2023P22"
+     ]
+    },
+    {
+     "id": 145,
+     "type": "fact",
+     "question": "2023年末货币资金是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.25,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       13
+      ]
+     ],
+     "got_pages": [
+      "2023P87",
+      "2023P118",
+      "2023P123",
+      "2023P13",
+      "2023P88"
+     ]
+    },
+    {
+     "id": 146,
+     "type": "fact",
+     "question": "2023年末应收账款比上期末增长了百分之多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       13
+      ]
+     ],
+     "got_pages": [
+      "2023P5",
+      "2023P90",
+      "2023P138"
+     ]
+    },
+    {
+     "id": 147,
+     "type": "fact",
+     "question": "2023年年报提出的2024年固定资产投资目标是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       20
+      ]
+     ],
+     "got_pages": [
+      "2023P82",
+      "2024P5",
+      "2023P5",
+      "2024P34",
+      "2023P12"
+     ]
+    },
+    {
+     "id": 148,
+     "type": "fact",
+     "question": "2023年度公司召开了几次股东大会？审议通过多少项议案？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       21
+      ]
+     ],
+     "got_pages": [
+      "2023P21",
+      "2023P29",
+      "2023P30",
+      "2023P31"
+     ]
+    },
+    {
+     "id": 149,
+     "type": "fact",
+     "question": "2023年公司披露了多少份临时公告？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       22
+      ]
+     ],
+     "got_pages": [
+      "2023P22",
+      "2023P29",
+      "2023P28"
+     ]
+    },
+    {
+     "id": 150,
+     "type": "fact",
+     "question": "2023年度利润分配每10股派发现金红利多少元？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2023P75",
+      "2023P2",
+      "2023P33"
+     ]
+    },
+    {
+     "id": 151,
+     "type": "fact",
+     "question": "2023年度现金分红金额合计多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2023P33",
+      "2023P8",
+      "2023P68",
+      "2023P66"
+     ]
+    },
+    {
+     "id": 152,
+     "type": "fact",
+     "question": "2023年末公司在贵州银行的存款余额是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       44
+      ]
+     ],
+     "got_pages": [
+      "2023P44",
+      "2023P135",
+      "2023P72",
+      "2023P12",
+      "2023P133"
+     ]
+    },
+    {
+     "id": 153,
+     "type": "fact",
+     "question": "2023年末茅台集团持有上市公司多少比例的股份？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       51
+      ]
+     ],
+     "got_pages": [
+      "2023P52",
+      "2023P75",
+      "2023P8",
+      "2023P122"
+     ]
+    },
+    {
+     "id": 154,
+     "type": "fact",
+     "question": "2023年其他业务收入是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       108
+      ]
+     ],
+     "got_pages": [
+      "2023P108",
+      "2023P141",
+      "2023P72",
+      "2023P24"
+     ]
+    },
+    {
+     "id": 155,
+     "type": "cross_page",
+     "question": "2023年归母净利润和年度现金分红金额分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.25,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       5
+      ],
+      [
+       2023,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2023P8",
+      "2023P6",
+      "2023P33",
+      "2023P5"
+     ]
+    },
+    {
+     "id": 156,
+     "type": "cross_page",
+     "question": "2023年茅台酒营业收入是多少？酒类生产量是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       9
+      ],
+      [
+       2023,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2023P14",
+      "2023P10",
+      "2023P15",
+      "2023P56"
+     ]
+    },
+    {
+     "id": 157,
+     "type": "cross_page",
+     "question": "2023年研发人员总数多少？其中30岁以下的有多少人？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ],
+      [
+       2023,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2023P12",
+      "2023P11",
+      "2023P32",
+      "2023P33"
+     ]
+    },
+    {
+     "id": 158,
+     "type": "cross_page",
+     "question": "2023年末存货账面价值多少？其中自制半成品余额多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       13
+      ],
+      [
+       2023,
+       94
+      ]
+     ],
+     "got_pages": [
+      "2023P94",
+      "2023P80",
+      "2023P93",
+      "2023P70",
+      "2023P72"
+     ]
+    },
+    {
+     "id": 159,
+     "type": "cross_page",
+     "question": "2023年召开了几次股东大会？全年披露了多少份临时公告？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2023,
+       21
+      ],
+      [
+       2023,
+       22
+      ]
+     ],
+     "got_pages": [
+      "2023P22",
+      "2023P29",
+      "2023P23",
+      "2023P21"
+     ]
+    },
+    {
+     "id": 160,
+     "type": "cross_page",
+     "question": "2023年末公司在贵州银行的存款余额多少？茅台集团持股比例多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       44
+      ],
+      [
+       2023,
+       51
+      ]
+     ],
+     "got_pages": [
+      "2023P135",
+      "2023P44",
+      "2023P122",
+      "2023P133",
+      "2023P52"
+     ]
+    },
+    {
+     "id": 161,
+     "type": "cross_page",
+     "question": "2023年末应交税费合计多少？2023年全年消费税发生额多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2023,
+       105
+      ],
+      [
+       2023,
+       109
+      ]
+     ],
+     "got_pages": [
+      "2023P104",
+      "2023P109",
+      "2023P72",
+      "2023P70",
+      "2023P87"
+     ]
+    },
+    {
+     "id": 162,
+     "type": "cross_page",
+     "question": "2023年其他业务收入多少？年末已签订未履约合同对应的收入金额多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2023,
+       108
+      ],
+      [
+       2023,
+       109
+      ]
+     ],
+     "got_pages": [
+      "2023P109",
+      "2023P142",
+      "2023P108",
+      "2023P85"
+     ]
+    },
+    {
+     "id": 163,
+     "type": "fact",
+     "question": "2024年第一季度茅台营业收入是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       6
+      ]
+     ],
+     "got_pages": [
+      "2024P32",
+      "2024P6",
+      "2024P141",
+      "2024P56",
+      "2024P16"
+     ]
+    },
+    {
+     "id": 164,
+     "type": "fact",
+     "question": "2024年第四季度归属于上市公司股东的净利润有多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       6
+      ]
+     ],
+     "got_pages": [
+      "2024P6",
+      "2024P35",
+      "2024P65",
+      "2024P5"
+     ]
+    },
+    {
+     "id": 165,
+     "type": "fact",
+     "question": "2024年非经常性损益合计是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       7
+      ]
+     ],
+     "got_pages": [
+      "2024P6",
+      "2024P142",
+      "2024P7"
+     ]
+    },
+    {
+     "id": 166,
+     "type": "fact",
+     "question": "2024年销售费用是多少元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.25,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2024P109",
+      "2024P8",
+      "2024P65",
+      "2024P11"
+     ]
+    },
+    {
+     "id": 167,
+     "type": "fact",
+     "question": "2024年研发投入合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2024P11",
+      "2024P120",
+      "2024P119"
+     ]
+    },
+    {
+     "id": 168,
+     "type": "fact",
+     "question": "2024年公司研发人员数量是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2024P11",
+      "2024P32",
+      "2024P26",
+      "2024P33"
+     ]
+    },
+    {
+     "id": 169,
+     "type": "fact",
+     "question": "2024年购建固定资产、无形资产和其他长期资产支付的现金是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2024P12",
+      "2024P68",
+      "2024P81"
+     ]
+    },
+    {
+     "id": 170,
+     "type": "fact",
+     "question": "2024年直销渠道营业收入多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       17
+      ]
+     ],
+     "got_pages": [
+      "2024P108",
+      "2024P17",
+      "2024P141",
+      "2024P15"
+     ]
+    },
+    {
+     "id": 171,
+     "type": "fact",
+     "question": "2024年国外地区营业收入是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.25,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       17
+      ]
+     ],
+     "got_pages": [
+      "2024P141",
+      "2024P108",
+      "2024P9",
+      "2024P17"
+     ]
+    },
+    {
+     "id": 172,
+     "type": "fact",
+     "question": "酱香型系列酒制酒技改工程及配套设施项目的总投资调整后是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       18
+      ]
+     ],
+     "got_pages": [
+      "2024P99",
+      "2022P91",
+      "2023P99",
+      "2023P101",
+      "2022P17"
+     ]
+    },
+    {
+     "id": 173,
+     "type": "fact",
+     "question": "截至2024年末茅台金石基金累计投资金额是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       19
+      ]
+     ],
+     "got_pages": [
+      "2024P19",
+      "2024P136",
+      "2024P135",
+      "2024P96"
+     ]
+    },
+    {
+     "id": 174,
+     "type": "fact",
+     "question": "2024年年报提出的2025年经营目标是什么？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       21
+      ]
+     ],
+     "got_pages": [
+      "2024P21",
+      "2025P31",
+      "2024P14",
+      "2025P64",
+      "2024P32"
+     ]
+    },
+    {
+     "id": 175,
+     "type": "fact",
+     "question": "2024年董事、监事和高级管理人员从公司获得的税前报酬总额合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       26
+      ]
+     ],
+     "got_pages": [
+      "2024P26",
+      "2024P29",
+      "2024P25"
+     ]
+    },
+    {
+     "id": 176,
+     "type": "fact",
+     "question": "2024年合并报表中归属于上市公司股东的净利润是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       35
+      ]
+     ],
+     "got_pages": [
+      "2024P6",
+      "2024P35",
+      "2024P65",
+      "2024P64",
+      "2024P5"
+     ]
+    },
+    {
+     "id": 177,
+     "type": "fact",
+     "question": "最近三个会计年度累计现金分红金额是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       35
+      ]
+     ],
+     "got_pages": [
+      "2025P33",
+      "2024P35",
+      "2025P34",
+      "2023P33",
+      "2022P32"
+     ]
+    },
+    {
+     "id": 178,
+     "type": "fact",
+     "question": "2024年茅台本部7000t/d污水处理厂的COD排放总量是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       37
+      ]
+     ],
+     "got_pages": [
+      "2024P37",
+      "2024P38",
+      "2024P39"
+     ]
+    },
+    {
+     "id": 179,
+     "type": "fact",
+     "question": "2024年末华泰柏瑞沪深300ETF持有茅台多少股？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       51
+      ]
+     ],
+     "got_pages": [
+      "2024P51",
+      "2024P52",
+      "2024P24"
+     ]
+    },
+    {
+     "id": 180,
+     "type": "fact",
+     "question": "2024年末茅台资产总计是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       59
+      ]
+     ],
+     "got_pages": [
+      "2024P61",
+      "2024P5",
+      "2024P30",
+      "2024P131"
+     ]
+    },
+    {
+     "id": 181,
+     "type": "fact",
+     "question": "2024年末存货中自制半成品的余额是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       93
+      ]
+     ],
+     "got_pages": [
+      "2024P93",
+      "2024P14",
+      "2024P79",
+      "2024P70"
+     ]
+    },
+    {
+     "id": 182,
+     "type": "fact",
+     "question": "2024年固定资产本期计提折旧多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       98
+      ]
+     ],
+     "got_pages": [
+      "2024P80",
+      "2024P100",
+      "2024P98"
+     ]
+    },
+    {
+     "id": 183,
+     "type": "fact",
+     "question": "2024年末应交税费合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       105
+      ]
+     ],
+     "got_pages": [
+      "2024P105",
+      "2024P70",
+      "2024P62",
+      "2024P5"
+     ]
+    },
+    {
+     "id": 184,
+     "type": "fact",
+     "question": "2024年计入当期损益的政府补助是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       122
+      ]
+     ],
+     "got_pages": [
+      "2024P83",
+      "2024P6",
+      "2024P122"
+     ]
+    },
+    {
+     "id": 185,
+     "type": "cross_page",
+     "question": "2024年第一季度营业收入和全年归母净利润分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       6
+      ],
+      [
+       2024,
+       35
+      ]
+     ],
+     "got_pages": [
+      "2024P6",
+      "2024P32",
+      "2024P65",
+      "2024P64"
+     ]
+    },
+    {
+     "id": 186,
+     "type": "cross_page",
+     "question": "2024年研发投入合计多少？购建固定资产等长期资产支付的现金多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       11
+      ],
+      [
+       2024,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2024P80",
+      "2024P12",
+      "2024P68",
+      "2024P81"
+     ]
+    },
+    {
+     "id": 187,
+     "type": "cross_page",
+     "question": "2024年直销渠道收入多少？系列酒制酒技改项目调整后的总投资多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       17
+      ],
+      [
+       2024,
+       18
+      ]
+     ],
+     "got_pages": [
+      "2024P33",
+      "2024P99",
+      "2024P14",
+      "2024P114",
+      "2024P102"
+     ]
+    },
+    {
+     "id": 188,
+     "type": "cross_page",
+     "question": "截至2024年末茅台金石基金累计投资多少？2024年报提出的2025年固定资产投资目标多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       19
+      ],
+      [
+       2024,
+       21
+      ]
+     ],
+     "got_pages": [
+      "2024P19",
+      "2025P20",
+      "2024P136",
+      "2025P135",
+      "2024P135"
+     ]
+    },
+    {
+     "id": 189,
+     "type": "cross_page",
+     "question": "2024年末存货账面价值多少？其中自制半成品多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2024,
+       59
+      ],
+      [
+       2024,
+       93
+      ]
+     ],
+     "got_pages": [
+      "2024P93",
+      "2024P14",
+      "2024P79",
+      "2024P98"
+     ]
+    },
+    {
+     "id": 190,
+     "type": "cross_page",
+     "question": "2024年固定资产计提折旧多少？年末应交税费合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2024,
+       98
+      ],
+      [
+       2024,
+       105
+      ]
+     ],
+     "got_pages": [
+      "2024P80",
+      "2024P100",
+      "2024P105",
+      "2024P98"
+     ]
+    },
+    {
+     "id": 191,
+     "type": "cross_page",
+     "question": "2024年游亚林从公司获得的税前报酬是多少？全体董监高报酬合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2024,
+       25
+      ],
+      [
+       2024,
+       26
+      ]
+     ],
+     "got_pages": [
+      "2024P26",
+      "2024P25",
+      "2024P28"
+     ]
+    },
+    {
+     "id": 192,
+     "type": "fact",
+     "question": "2025年第一季度茅台营业收入是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       7
+      ]
+     ],
+     "got_pages": [
+      "2025P30",
+      "2025P7",
+      "2025P54",
+      "2025P10"
+     ]
+    },
+    {
+     "id": 193,
+     "type": "fact",
+     "question": "2025年非经常性损益合计是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       7
+      ]
+     ],
+     "got_pages": [
+      "2025P7",
+      "2025P143",
+      "2025P142"
+     ]
+    },
+    {
+     "id": 194,
+     "type": "fact",
+     "question": "2025年茅台营销网络覆盖多少个国家和地区？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       8
+      ]
+     ],
+     "got_pages": [
+      "2025P8",
+      "2025P10",
+      "2025P23",
+      "2025P17",
+      "2025P15"
+     ]
+    },
+    {
+     "id": 195,
+     "type": "fact",
+     "question": "Brand Finance 2025年榜单上茅台的品牌价值是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2025P9",
+      "2025P21",
+      "2025P17",
+      "2025P16"
+     ]
+    },
+    {
+     "id": 196,
+     "type": "fact",
+     "question": "2025年度累计派发现金红利多少（含年度分红预案金额）？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.25,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2025P33",
+      "2025P2",
+      "2025P32",
+      "2025P9"
+     ]
+    },
+    {
+     "id": 197,
+     "type": "fact",
+     "question": "2025年茅台营业收入是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2025P54",
+      "2025P10",
+      "2025P12",
+      "2025P129",
+      "2025P61"
+     ]
+    },
+    {
+     "id": 198,
+     "type": "fact",
+     "question": "2025年销售费用同比增长百分之多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2025P12",
+      "2025P63",
+      "2025P9",
+      "2025P108"
+     ]
+    },
+    {
+     "id": 199,
+     "type": "fact",
+     "question": "2025年前五名客户销售额是多少万元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2025P11",
+      "2025P12",
+      "2025P64",
+      "2025P17"
+     ]
+    },
+    {
+     "id": 200,
+     "type": "fact",
+     "question": "2025年研发投入合计多少元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2025P12",
+      "2025P118",
+      "2025P63"
+     ]
+    },
+    {
+     "id": 201,
+     "type": "fact",
+     "question": "2025年公司研发人员有多少名？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2025P12",
+      "2025P23",
+      "2025P30",
+      "2025P31"
+     ]
+    },
+    {
+     "id": 202,
+     "type": "fact",
+     "question": "2025年末货币资金是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       14
+      ]
+     ],
+     "got_pages": [
+      "2025P116",
+      "2025P56",
+      "2025P64",
+      "2025P70"
+     ]
+    },
+    {
+     "id": 203,
+     "type": "fact",
+     "question": "2025年末茅台境外资产规模是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       14
+      ]
+     ],
+     "got_pages": [
+      "2025P14",
+      "2025P15",
+      "2025P20",
+      "2025P129"
+     ]
+    },
+    {
+     "id": 204,
+     "type": "fact",
+     "question": "2025年末半成品酒（含基础酒）库存多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       16
+      ]
+     ],
+     "got_pages": [
+      "2025P16",
+      "2025P15",
+      "2025P10"
+     ]
+    },
+    {
+     "id": 205,
+     "type": "fact",
+     "question": "2025年茅台酒产量是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       16
+      ]
+     ],
+     "got_pages": [
+      "2025P15",
+      "2025P16",
+      "2025P129",
+      "2025P1"
+     ]
+    },
+    {
+     "id": 206,
+     "type": "fact",
+     "question": "2025年直销渠道营业收入是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       18
+      ]
+     ],
+     "got_pages": [
+      "2025P17",
+      "2025P10",
+      "2025P8",
+      "2025P107",
+      "2025P141"
+     ]
+    },
+    {
+     "id": 207,
+     "type": "fact",
+     "question": "截至2025年末茅台金石基金累计投资金额多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       20
+      ]
+     ],
+     "got_pages": [
+      "2025P20",
+      "2025P135",
+      "2025P19",
+      "2025P137"
+     ]
+    },
+    {
+     "id": 208,
+     "type": "fact",
+     "question": "2025年贵州茅台酒销售有限公司的净利润是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       20
+      ]
+     ],
+     "got_pages": [
+      "2025P120",
+      "2025P20",
+      "2025P129",
+      "2025P72",
+      "2025P40"
+     ]
+    },
+    {
+     "id": 209,
+     "type": "fact",
+     "question": "2025年度公司召开了几次股东会？审议通过多少项议案？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       23
+      ]
+     ],
+     "got_pages": [
+      "2025P23",
+      "2025P31",
+      "2025P30"
+     ]
+    },
+    {
+     "id": 210,
+     "type": "fact",
+     "question": "2025年合并报表中归属于上市公司股东的净利润是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2025P33",
+      "2025P7",
+      "2025P6",
+      "2025P62"
+     ]
+    },
+    {
+     "id": 211,
+     "type": "fact",
+     "question": "2025年公司累计回购并注销了多少股？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       47
+      ]
+     ],
+     "got_pages": [
+      "2025P136",
+      "2025P47",
+      "2025P83",
+      "2025P137"
+     ]
+    },
+    {
+     "id": 212,
+     "type": "fact",
+     "question": "2025年末应交税费合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       104
+      ]
+     ],
+     "got_pages": [
+      "2025P104",
+      "2025P68",
+      "2025P70",
+      "2025P6",
+      "2025P83"
+     ]
+    },
+    {
+     "id": 213,
+     "type": "fact",
+     "question": "2025年控股股东增持计划的增持金额是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       137
+      ]
+     ],
+     "got_pages": [
+      "2025P137",
+      "2025P33",
+      "2025P32",
+      "2025P70"
+     ]
+    },
+    {
+     "id": 214,
+     "type": "cross_page",
+     "question": "2025年第一季度营业收入和全年归母净利润分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       7
+      ],
+      [
+       2025,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2025P7",
+      "2025P62",
+      "2025P30",
+      "2025P33",
+      "2025P63"
+     ]
+    },
+    {
+     "id": 215,
+     "type": "cross_page",
+     "question": "2025年度累计派发现金红利多少？同年回购注销了多少股？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       9
+      ],
+      [
+       2025,
+       47
+      ]
+     ],
+     "got_pages": [
+      "2025P33",
+      "2025P2",
+      "2025P32",
+      "2025P136"
+     ]
+    },
+    {
+     "id": 216,
+     "type": "cross_page",
+     "question": "2025年前五名客户销售额多少万元？研发投入合计多少元？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2025,
+       11
+      ],
+      [
+       2025,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2025P12",
+      "2025P11",
+      "2025P64",
+      "2025P118"
+     ]
+    },
+    {
+     "id": 217,
+     "type": "cross_page",
+     "question": "2025年茅台酒产量多少吨？直销渠道营业收入多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.2,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       16
+      ],
+      [
+       2025,
+       18
+      ]
+     ],
+     "got_pages": [
+      "2025P17",
+      "2025P10",
+      "2025P15",
+      "2025P8",
+      "2025P18"
+     ]
+    },
+    {
+     "id": 218,
+     "type": "cross_page",
+     "question": "2025年末存货账面价值多少？其中自制半成品多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       14
+      ],
+      [
+       2025,
+       91
+      ]
+     ],
+     "got_pages": [
+      "2025P91",
+      "2025P77",
+      "2025P16",
+      "2025P68"
+     ]
+    },
+    {
+     "id": 219,
+     "type": "cross_page",
+     "question": "2025年钟正强从公司获得的税前薪酬是多少？董事和高级管理人员报酬合计多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2025,
+       25
+      ],
+      [
+       2025,
+       26
+      ]
+     ],
+     "got_pages": [
+      "2025P26",
+      "2025P28",
+      "2025P25",
+      "2025P29"
+     ]
+    },
+    {
+     "id": 220,
+     "type": "cross_page",
+     "question": "2025年末应交税费合计多少？控股股东增持金额多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2025,
+       104
+      ],
+      [
+       2025,
+       137
+      ]
+     ],
+     "got_pages": [
+      "2025P137",
+      "2025P68",
+      "2025P104",
+      "2025P70",
+      "2025P33"
+     ]
+    },
+    {
+     "id": 221,
+     "type": "cross_year",
+     "question": "2022年和2023年茅台酒的毛利率分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ],
+      [
+       2023,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2022P9",
+      "2023P9",
+      "2022P8",
+      "2023P17",
+      "2022P16"
+     ]
+    },
+    {
+     "id": 222,
+     "type": "cross_year",
+     "question": "2022年和2023年酒类生产量各是多少吨？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.5,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ],
+      [
+       2023,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2022P14",
+      "2023P10",
+      "2022P9",
+      "2023P14",
+      "2022P36"
+     ]
+    },
+    {
+     "id": 223,
+     "type": "cross_year",
+     "question": "2022年和2023年研发投入合计分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       10
+      ],
+      [
+       2023,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2022P10",
+      "2023P11",
+      "2022P19",
+      "2023P30",
+      "2022P48"
+     ]
+    },
+    {
+     "id": 224,
+     "type": "cross_year",
+     "question": "2023年和2024年研发人员数量各是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ],
+      [
+       2024,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2023P11",
+      "2024P11",
+      "2023P24",
+      "2024P32",
+      "2023P33"
+     ]
+    },
+    {
+     "id": 225,
+     "type": "cross_year",
+     "question": "2024年和2025年研发投入合计分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2024,
+       11
+      ],
+      [
+       2025,
+       12
+      ]
+     ],
+     "got_pages": [
+      "2024P11",
+      "2025P12",
+      "2024P120",
+      "2025P31",
+      "2024P32"
+     ]
+    },
+    {
+     "id": 226,
+     "type": "cross_year",
+     "question": "2022年末和2023年末货币资金各是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       12
+      ],
+      [
+       2023,
+       13
+      ]
+     ],
+     "got_pages": [
+      "2022P54",
+      "2023P87",
+      "2022P12",
+      "2023P118",
+      "2022P81"
+     ]
+    },
+    {
+     "id": 227,
+     "type": "cross_year",
+     "question": "2023年末和2024年末存货账面价值分别是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       13
+      ],
+      [
+       2024,
+       59
+      ]
+     ],
+     "got_pages": [
+      "2023P94",
+      "2024P5",
+      "2023P72",
+      "2024P93",
+      "2023P5"
+     ]
+    },
+    {
+     "id": 228,
+     "type": "cross_year",
+     "question": "2024年末和2025年末固定资产账面价值各是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       59
+      ],
+      [
+       2025,
+       14
+      ]
+     ],
+     "got_pages": [
+      "2024P100",
+      "2025P6",
+      "2024P98",
+      "2025P97",
+      "2024P5"
+     ]
+    },
+    {
+     "id": 229,
+     "type": "cross_year",
+     "question": "2022年末和2023年末应交税费合计分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       97
+      ],
+      [
+       2023,
+       105
+      ]
+     ],
+     "got_pages": [
+      "2022P13",
+      "2023P104",
+      "2022P97",
+      "2023P5",
+      "2022P65"
+     ]
+    },
+    {
+     "id": 230,
+     "type": "cross_year",
+     "question": "2024年末和2025年末应交税费合计各是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2024,
+       105
+      ],
+      [
+       2025,
+       104
+      ]
+     ],
+     "got_pages": [
+      "2024P105",
+      "2025P6",
+      "2024P5",
+      "2025P104",
+      "2024P70"
+     ]
+    },
+    {
+     "id": 231,
+     "type": "cross_year",
+     "question": "2023年和2024年归属于上市公司股东的净利润分别是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.3333333333333333,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2023,
+       5
+      ],
+      [
+       2024,
+       35
+      ]
+     ],
+     "got_pages": [
+      "2023P6",
+      "2024P6",
+      "2023P5",
+      "2024P35",
+      "2023P64"
+     ]
+    },
+    {
+     "id": 232,
+     "type": "cross_year",
+     "question": "2022年和2025年归属于上市公司股东的净利润各是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       59
+      ],
+      [
+       2025,
+       34
+      ]
+     ],
+     "got_pages": [
+      "2022P6",
+      "2025P33",
+      "2022P5",
+      "2025P7",
+      "2022P32"
+     ]
+    },
+    {
+     "id": 233,
+     "type": "cross_year",
+     "question": "2022年末和2025年末香港中央结算有限公司持有茅台股份各多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2022,
+       48
+      ],
+      [
+       2025,
+       49
+      ]
+     ],
+     "got_pages": [
+      "2022P48",
+      "2025P49",
+      "2022P47",
+      "2025P48",
+      "2022P5"
+     ]
+    },
+    {
+     "id": 234,
+     "type": "cross_year",
+     "question": "截至2024年末和2025年末，茅台金石基金累计投资金额各是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.4,
+     "gold_pages": [
+      [
+       2024,
+       19
+      ],
+      [
+       2025,
+       20
+      ]
+     ],
+     "got_pages": [
+      "2024P19",
+      "2025P20",
+      "2024P136",
+      "2025P135",
+      "2024P135"
+     ]
+    },
+    {
+     "id": 235,
+     "type": "cross_year",
+     "question": "2022年报提出的2023年基本建设投资目标和2024年报提出的2025年固定资产投资目标各是多少？",
+     "page_hit": true,
+     "all_gold_hit": false,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       19
+      ],
+      [
+       2024,
+       21
+      ]
+     ],
+     "got_pages": [
+      "2022P19",
+      "2023P5",
+      "2024P5",
+      "2025P6",
+      "2022P29"
+     ]
+    },
+    {
+     "id": 236,
+     "type": "no_answer",
+     "question": "五粮液2024年的净利润是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       17
+      ]
+     ],
+     "got_pages": [
+      "2024P6",
+      "2024P64",
+      "2024P66",
+      "2024P35"
+     ]
+    },
+    {
+     "id": 237,
+     "type": "no_answer",
+     "question": "泸州老窖2023年的净利润是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2023P6",
+      "2023P5",
+      "2023P64",
+      "2023P65"
+     ]
+    },
+    {
+     "id": 238,
+     "type": "no_answer",
+     "question": "山西汾酒2025年营业总收入多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 0.2,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2025,
+       18
+      ]
+     ],
+     "got_pages": [
+      "2025P61",
+      "2025P10",
+      "2025P12",
+      "2025P54",
+      "2025P18"
+     ]
+    },
+    {
+     "id": 239,
+     "type": "no_answer",
+     "question": "洋河股份2022年的营业收入是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       9
+      ]
+     ],
+     "got_pages": [
+      "2022P52",
+      "2022P8",
+      "2022P60",
+      "2022P100"
+     ]
+    },
+    {
+     "id": 240,
+     "type": "no_answer",
+     "question": "2024年茅台1935的单瓶出厂价是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       17
+      ]
+     ],
+     "got_pages": [
+      "2024P15",
+      "2024P30",
+      "2024P129"
+     ]
+    },
+    {
+     "id": 241,
+     "type": "no_answer",
+     "question": "2023年茅台经销商大会的参会人数是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       11
+      ]
+     ],
+     "got_pages": [
+      "2023P29",
+      "2023P43",
+      "2023P28"
+     ]
+    },
+    {
+     "id": 242,
+     "type": "no_answer",
+     "question": "2022年前五大客户的具体名称是什么？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2022P7",
+      "2022P52",
+      "2022P113"
+     ]
+    },
+    {
+     "id": 243,
+     "type": "no_answer",
+     "question": "2025年茅台在美国市场的销量是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       18
+      ]
+     ],
+     "got_pages": [
+      "2025P16",
+      "2025P9",
+      "2025P22",
+      "2025P15"
+     ]
+    },
+    {
+     "id": 244,
+     "type": "no_answer",
+     "question": "2024年茅台酒的终端零售指导价是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       17
+      ]
+     ],
+     "got_pages": [
+      "2024P120",
+      "2024P30",
+      "2024P7"
+     ]
+    },
+    {
+     "id": 245,
+     "type": "no_answer",
+     "question": "2023年茅台团购渠道的出厂价是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       10
+      ]
+     ],
+     "got_pages": [
+      "2023P16",
+      "2023P29",
+      "2023P7"
+     ]
+    },
+    {
+     "id": 246,
+     "type": "no_answer",
+     "question": "茅台2025年年报对2026年股价的预测是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2025,
+       21
+      ]
+     ],
+     "got_pages": [
+      "2025P15",
+      "2025P26",
+      "2025P22",
+      "2025P31",
+      "2025P53"
+     ]
+    },
+    {
+     "id": 247,
+     "type": "no_answer",
+     "question": "2024年白酒行业上市公司纳税总额排名如何？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2024,
+       105
+      ]
+     ],
+     "got_pages": [
+      "2024P14",
+      "2024P20",
+      "2024P85",
+      "2024P6",
+      "2024P7"
+     ]
+    },
+    {
+     "id": 248,
+     "type": "no_answer",
+     "question": "2022年茅台生肖酒的产量是多少吨？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2022,
+       15
+      ]
+     ],
+     "got_pages": [
+      "2022P14",
+      "2022P113",
+      "2022P90"
+     ]
+    },
+    {
+     "id": 249,
+     "type": "no_answer",
+     "question": "2023年茅台微信公众号的粉丝数量是多少？",
+     "page_hit": false,
+     "all_gold_hit": false,
+     "mrr": 0.0,
+     "page_prec": 0.0,
+     "gold_pages": [
+      [
+       2023,
+       21
+      ]
+     ],
+     "got_pages": [
+      "2023P29",
+      "2023P7",
+      "2023P58",
+      "2023P18",
+      "2023P51"
+     ]
+    },
+    {
+     "id": 250,
+     "type": "no_answer",
+     "question": "2022年茅台股票每个交易日的收盘价是多少？",
+     "page_hit": true,
+     "all_gold_hit": true,
+     "mrr": 1.0,
+     "page_prec": 0.2,
+     "gold_pages": [
+      [
+       2022,
+       48
+      ]
+     ],
+     "got_pages": [
+      "2022P48",
+      "2022P4",
+      "2022P52",
+      "2022P51"
+     ]
+    }
+   ],
+   "seconds": 1.9
+  }
+ }
+}
