@@ -46,6 +46,28 @@ describe('answerNumbers', () => {
     expect(answerNumbers('营收1,708.99亿元，毛利率94.19%，再说94.19%。'))
       .toEqual(['1,708.99亿元', '94.19%'])
   })
+
+  it('排除已标「计算得出」的数——纸上没有，红框框不出来', () => {
+    const answer = '直销收入 8,454,303.19 万元（即 845.43 亿元（计算得出））；' +
+      ' [来源: 2025年报 P17]'
+    expect(answerNumbers(answer)).toEqual(['8,454,303.19'])
+  })
+
+  it('排除逗号写法的计算得出标记', () => {
+    const answer = '净利润 4,259,628.69 万元（约425.96亿元，计算得出）' +
+      ' [来源: 2023年报 P19]'
+    expect(answerNumbers(answer)).toEqual(['4,259,628.69'])
+  })
+
+  it('不把邻近别的数的标记算过来', () => {
+    // 94.50% 自己带标记该排除；10.51% 不该被隔壁的标记牵连
+    const answer = '同比减少10.51%，毛利率94.50%（计算得出）'
+    expect(answerNumbers(answer)).toEqual(['10.51%'])
+  })
+
+  it('全是计算值时返回空——不出红框图', () => {
+    expect(answerNumbers('增幅 67.64%（计算得出）')).toEqual([])
+  })
 })
 
 describe('streamAsk', () => {

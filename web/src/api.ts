@@ -105,13 +105,21 @@ const UNIT = '(?:万亿元|亿元|百万元|千万元|千元|万元|元|亿|万|
 const NUM_RE = new RegExp(
   `\\d{1,3}(?:,\\d{3})+(?:\\.\\d+)?${UNIT}|\\d+(?:\\.\\d+)?${UNIT}`, 'g')
 
-/** 答案里待坐标核验的指标数字：剥出处与列举序号、跳过年份（与后端同约定）。 */
+/** 答案里待坐标核验的指标数字：剥出处与列举序号、跳过年份（与后端同约定）。
+ *  已标「计算得出」的数排除在外——那是模型算的，年报纸上没有，送进红框
+ *  只会框不出来，而界面写着「红框 = 答案引用的数字」，等于承诺做不到的事。 */
 export function answerNumbers(answer: string): string[] {
   const body = answer.replace(CITE_RE, '').replace(LIST_MARK_RE, '')
   const seen: string[] = []
-  for (const m of body.match(NUM_RE) ?? []) {
-    if (/^20\d{2}$/.test(m)) continue
-    if (!seen.includes(m)) seen.push(m)
+  for (const m of body.matchAll(NUM_RE)) {
+    const raw = m[0]
+    if (/^20\d{2}$/.test(raw)) continue
+    if (seen.includes(raw)) continue
+    const at = (m.index ?? 0) + raw.length
+    // 截到下一个数字或出处标注前，避免把邻近别的数的标记算过来
+    const tail = body.slice(at, at + 40).split(/\[来源|\d/)[0]
+    if (tail.includes('计算得出')) continue
+    seen.push(raw)
   }
   return seen
 }

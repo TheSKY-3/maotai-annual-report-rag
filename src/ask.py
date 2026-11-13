@@ -257,41 +257,20 @@ def _agent_meta(question: str, standalone: str, text: str,
 
 
 
-_NUM_RE = re.compile(r"[0-9][0-9,，]*(?:\.[0-9]+)?")
-_CITE_RE = re.compile(r"\[来源[^\]]*\]")
-
-
-def _flat_digits(s: str) -> str:
-    return re.sub(r"\s+", "", s.replace(",", "").replace("，", ""))
-
-
 def ungrounded_numbers(answer: str, context: str) -> list[str]:
-    """回答中在语境（含单位换算双向）里找不到的数字，按出现顺序去重。
+    """回答中在语境里找不到的数字，按出现顺序去重，保留单位写法。
 
-    单位换算：answer 的 n 亿元 ↔ context 的 n×1e8 元，反之亦然——
-    E4 实测小模型最常见的粗心正是"元/万元"抄错一万倍。
+    抽数复用 claims.citation_spec（剥出处标注、列举序号、年份），比对复用
+    numeric.find_number（按 token 比 + 单位归一 + 表头「单位：X」还原）。
+
+    原实现用子串包含判"原文有没有这串字符"，于是 10.51 被 110.51 满足、
+    34.92 被 1,234.92 满足——模型自算的百分比假接地，既不触发修正重试
+    也不标「计算得出」，读者当成原文引用。单位换算原先靠枚举字符串形态
+    （×1e4/×1e8）精确匹配，四舍五入过的亿元数凑不上就误报，容差比对一并修好。
     """
-    ans = _CITE_RE.sub("", answer)  # 出处标注里的页码/年份不算数
-    hay = _flat_digits(context)
-    bad: list[str] = []
-    seen: set[str] = set()
-    for m in _NUM_RE.findall(ans):
-        n = m.replace(",", "").replace("，", "")
-        if len(n) < 2 or n in seen:
-            continue
-        seen.add(n)
-        try:
-            v = float(n)
-        except ValueError:
-            continue
-        forms = {n}
-        for f in (v * 1e4, v * 1e8, v / 1e4, v / 1e8):
-            # 小于 1 的换算形态会四舍五入成 "0"（永在原文中）→ 假接地，跳过
-            if f >= 1:
-                forms.add(f"{f:.2f}".rstrip("0").rstrip("."))
-        if not any(x in hay for x in forms):
-            bad.append(n)
-    return bad
+    spec = structured_claims.citation_spec(answer)
+    return [n for n in spec["numbers"]
+            if not numeric.find_number(n, [context])]
 
 
 def _grounding_fix(client: OpenAI, model: str, text: str,
